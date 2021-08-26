@@ -18,20 +18,21 @@ use Illuminate\Notifications\Notifiable;
  * Class User
  *
  * @property int $id
- * @property int $exercise_id
  * @property int $user_type_id
  * @property int $civility_id
+ * @property int $library_id
  * @property string $first_name
  * @property string $last_name
  * @property string|null $email
  * @property string|null $phone_number
+ * @property string|null $remember_token
  * @property string|null $deleted_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  *
- * @property Civility $civility
- * @property Exercise $exercise
  * @property UserType $user_type
+ * @property Library $library
+ * @property Civility $civility
  * @property Collection|Human[] $humans
  * @property Collection|Person[] $people
  *
@@ -39,39 +40,43 @@ use Illuminate\Notifications\Notifiable;
  */
 class User extends Authenticatable
 {
-
 	use SoftDeletes, HasFactory, Notifiable;
 	protected $table = 'users';
 
 	protected $casts = [
-		'exercise_id' => 'int',
 		'user_type_id' => 'int',
-		'civility_id' => 'int'
+		'civility_id' => 'int',
+		'library_id' => 'int'
+	];
+
+	protected $hidden = [
+		'remember_token'
 	];
 
 	protected $fillable = [
-		'exercise_id',
 		'user_type_id',
 		'civility_id',
+		'library_id',
 		'first_name',
 		'last_name',
 		'email',
-		'phone_number'
+		'phone_number',
+		'remember_token'
 	];
-
-	public function civility()
-	{
-		return $this->belongsTo(Civility::class);
-	}
-
-	public function exercise()
-	{
-		return $this->belongsTo(Exercise::class);
-	}
 
 	public function user_type()
 	{
 		return $this->belongsTo(UserType::class);
+	}
+
+	public function library()
+	{
+		return $this->belongsTo(Library::class);
+	}
+
+	public function civility()
+	{
+		return $this->belongsTo(Civility::class);
 	}
 
 	public function humans()
@@ -83,9 +88,4 @@ class User extends Authenticatable
 	{
 		return $this->hasMany(Person::class);
 	}
-
-    public function getFullNameAttribute()
-    {
-        return $this->last_name.' '.$this->first_name;
-    }
 }

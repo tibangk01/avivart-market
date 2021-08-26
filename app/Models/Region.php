@@ -11,41 +11,29 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Enterprise
+ * Class Region
  * 
  * @property int $id
  * @property string $code
  * @property string $name
- * @property string $phone_number
- * @property string|null $website
- * @property string $address
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  * 
  * @property Collection|Agency[] $agencies
- * @property Collection|Society[] $societies
  *
  * @package App\Models
  */
-class Enterprise extends Model
+class Region extends Model
 {
-	protected $table = 'enterprises';
+	protected $table = 'regions';
 
 	protected $fillable = [
 		'code',
-		'name',
-		'phone_number',
-		'website',
-		'address'
+		'name'
 	];
 
 	public function agencies()
 	{
 		return $this->hasMany(Agency::class);
-	}
-
-	public function societies()
-	{
-		return $this->hasMany(Society::class);
 	}
 }

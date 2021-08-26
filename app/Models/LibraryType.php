@@ -11,27 +11,27 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class UserType
+ * Class LibraryType
  * 
  * @property int $id
  * @property string $name
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  * 
- * @property Collection|User[] $users
+ * @property Collection|Library[] $libraries
  *
  * @package App\Models
  */
-class UserType extends Model
+class LibraryType extends Model
 {
-	protected $table = 'user_types';
+	protected $table = 'library_types';
 
 	protected $fillable = [
 		'name'
 	];
 
-	public function users()
+	public function libraries()
 	{
-		return $this->hasMany(User::class);
+		return $this->hasMany(Library::class);
 	}
 }

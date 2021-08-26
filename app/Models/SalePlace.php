@@ -11,43 +11,33 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Society
+ * Class SalePlace
  * 
  * @property int $id
- * @property int $enterprise_id
- * @property string $tppcr
- * @property string $fiscal_code
+ * @property int $agency_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * 
- * @property Enterprise $enterprise
- * @property Collection|Agency[] $agencies
+ * @property Agency $agency
  * @property Collection|Staff[] $staff
  *
  * @package App\Models
  */
-class Society extends Model
+class SalePlace extends Model
 {
-	protected $table = 'societies';
+	protected $table = 'sale_places';
 
 	protected $casts = [
-		'enterprise_id' => 'int'
+		'agency_id' => 'int'
 	];
 
 	protected $fillable = [
-		'enterprise_id',
-		'tppcr',
-		'fiscal_code'
+		'agency_id'
 	];
 
-	public function enterprise()
+	public function agency()
 	{
-		return $this->belongsTo(Enterprise::class);
-	}
-
-	public function agencies()
-	{
-		return $this->hasMany(Agency::class);
+		return $this->belongsTo(Agency::class);
 	}
 
 	public function staff()

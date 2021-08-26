@@ -12,17 +12,19 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Agency
- *
+ * 
  * @property int $id
- * @property int $enterprise_id
+ * @property int $region_id
  * @property int $society_id
+ * @property int $enterprise_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- *
- * @property Enterprise $enterprise
+ * 
  * @property Society $society
- * @property Collection|Director[] $directors
- * @property Collection|SellerPlace[] $seller_places
+ * @property Enterprise $enterprise
+ * @property Region $region
+ * @property Collection|Staff[] $staff
+ * @property Collection|SalePlace[] $sale_places
  *
  * @package App\Models
  */
@@ -31,32 +33,41 @@ class Agency extends Model
 	protected $table = 'agencies';
 
 	protected $casts = [
-		'enterprise_id' => 'int',
-		'society_id' => 'int'
+		'region_id' => 'int',
+		'society_id' => 'int',
+		'enterprise_id' => 'int'
 	];
 
 	protected $fillable = [
-		'enterprise_id',
-		'society_id'
+		'region_id',
+		'society_id',
+		'enterprise_id'
 	];
-
-	public function enterprise()
-	{
-		return $this->belongsTo(Enterprise::class);
-	}
 
 	public function society()
 	{
 		return $this->belongsTo(Society::class);
 	}
 
-	public function directors()
+	public function enterprise()
 	{
-		return $this->hasMany(Director::class);
+		return $this->belongsTo(Enterprise::class);
 	}
 
-	public function seller_places()
+	public function region()
 	{
-		return $this->hasMany(SellerPlace::class);
+		return $this->belongsTo(Region::class);
+	}
+
+	public function staff()
+	{
+		return $this->belongsToMany(Staff::class)
+					->withPivot('id')
+					->withTimestamps();
+	}
+
+	public function sale_places()
+	{
+		return $this->hasMany(SalePlace::class);
 	}
 }

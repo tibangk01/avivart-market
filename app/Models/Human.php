@@ -22,9 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property User $user
  * @property Collection|Developer[] $developers
- * @property Collection|Director[] $directors
- * @property Collection|Employee[] $employees
- * @property Collection|Owner[] $owners
+ * @property Collection|Staff[] $staff
  *
  * @package App\Models
  */
@@ -56,18 +54,8 @@ class Human extends Model
 		return $this->hasMany(Developer::class);
 	}
 
-	public function directors()
+	public function staff()
 	{
-		return $this->hasMany(Director::class);
-	}
-
-	public function employees()
-	{
-		return $this->hasMany(Employee::class);
-	}
-
-	public function owners()
-	{
-		return $this->hasMany(Owner::class);
+		return $this->hasMany(Staff::class);
 	}
 }

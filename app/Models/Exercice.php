@@ -10,31 +10,27 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Employee
+ * Class Exercice
  * 
  * @property int $id
- * @property int $human_id
+ * @property Carbon $start_date
+ * @property Carbon $end_date
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * 
- * @property Human $human
  *
  * @package App\Models
  */
-class Employee extends Model
+class Exercice extends Model
 {
-	protected $table = 'employees';
+	protected $table = 'exercices';
 
-	protected $casts = [
-		'human_id' => 'int'
+	protected $dates = [
+		'start_date',
+		'end_date'
 	];
 
 	protected $fillable = [
-		'human_id'
+		'start_date',
+		'end_date'
 	];
-
-	public function human()
-	{
-		return $this->belongsTo(Human::class);
-	}
 }
