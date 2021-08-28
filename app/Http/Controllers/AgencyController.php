@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Agency;
+use App\Models\Region;
+use App\Models\Society;
+use App\Models\Enterprise;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class AgencyController extends Controller
 {
@@ -14,9 +19,8 @@ class AgencyController extends Controller
      */
     public function index()
     {
-        //
-
         $agencies = Agency::all();
+
         return view('pages.agencies.index', compact('agencies'));
     }
 
@@ -27,8 +31,9 @@ class AgencyController extends Controller
      */
     public function create()
     {
+        $regions = Region::pluck('name', 'id')->toArray();
 
-        return view('pages.agencies.create');
+        return view('pages.agencies.create', compact('regions'));
     }
 
     /**
@@ -39,28 +44,51 @@ class AgencyController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->isMethod('POST'))
-        {
+
+        if ($request->isMethod('POST')) {
+
             $this->validate($request, [
-                'name' => ['required', 'min:5'],
-                'phone_number' => ['required', 'min:5'],
-                'address' => ['required', 'min:3'],
+                'region_id' => ['required'],
+                'name' => ['required', 'min:3', 'max:50'],
+                'phone_number' => ['required', 'min:8'],
+                'address' => ['required', 'max:40'],
             ]);
 
-            $storeData = $request->validate([
-                'name' => 'required|max:255',
-                'email' => 'required|max:255',
-                'phone' => 'required|numeric',
-            ]);
-            $employee = Employee::create($storeData);
+            try {
 
-            return redirect('/employees')->with('completed', 'Employee created!');
+                DB::beginTransaction();
 
-           // $society->update($request->only('tppcr', 'fiscal_code'));
-           // $society->enterprise->update($request->only('name', 'phone_number', 'address', 'website'));
+                $enterprises = Enterprise::all();
+                $code = (int)++$enterprises->sortBy('created_at')->last()->code;
 
-            session()->flash('success', 'OK'); //TODO: message update society ok.
+                $enterprise = Enterprise::create([
+                    'code' => '0' . $code,
+                    'name' => $request->name,
+                    'phone_number' => $request->phone_number,
+                    'address' => $request->address,
+                ]);
+
+                $societies = Society::all();
+                $society_id = (int)$societies->sortBy('created_at')->last()->id;
+
+                $agency = Agency::create([
+                    'region_id' => $request->region_id,
+                    'society_id' => $society_id,
+                    'enterprise_id' => $enterprise->id,
+                ]);
+
+                if ($enterprise && $agency) DB::commit();
+
+                session()->flash('agencyInserted', 'Agence enregistrée.');
+            } catch (\Throwable $th) {
+
+                DB::rollBack();
+                session()->flash('agencyInsertionFailed', 'Erreur interne, Réessayez plus tard.');
+            } finally {
+                return back();
+            }
         }
+
         return back();
     }
 
@@ -83,7 +111,8 @@ class AgencyController extends Controller
      */
     public function edit(Agency $agency)
     {
-        return view('pages.agencies.index', compact('agency'));
+        $regions = Region::pluck('name', 'id')->toArray();
+        return view('pages.agencies.edit', compact('regions', 'agency'));
     }
 
     /**
@@ -96,21 +125,27 @@ class AgencyController extends Controller
     public function update(Request $request, Agency $agency)
     {
 
-        if($request->isMethod('PUT'))
-        {
-            $this->validate($request, [
-                'name' => ['required', 'min:3'],
-                'phone_number' => ['required', 'min:3'],
-                'address' => ['required', 'min:3'],
+        if ($request->isMethod('put')) {
 
-                'tppcr' => ['required', 'min:3'],
-                'fiscal_code' => ['required', 'min:3'],
+            $this->validate($request, [
+                'region_id' => ['required'],
+                'name' => ['required', 'min:3', 'max:50'],
+                'phone_number' => ['required', 'min:8'],
+                'address' => ['required', 'max:40'],
             ]);
 
-           // $society->update($request->only('tppcr', 'fiscal_code'));
-           // $society->enterprise->update($request->only('name', 'phone_number', 'address', 'website'));
+            try {
+                DB::beginTransaction();
+                $agency->update($request->only('region_id'));
+                $agency->enterprise->update($request->only('name', 'phone_number', 'address'));
+                DB::commit();
+            } catch (\Throwable $th) {
+                DB::rollBack();
+                session()->flash('agencyUpdateFailed', 'Une erreur s\'est produite'); //TODO: define message for agency update error.
+                return back();
+            }
 
-            session()->flash('success', 'OK'); //TODO: message update society ok.
+            session()->flash('agencyUpdated', 'Agence modifier.'); //TODO: message update agency ok.
         }
         return back();
     }

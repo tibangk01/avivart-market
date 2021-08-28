@@ -88,4 +88,7 @@ class User extends Authenticatable
 	{
 		return $this->hasMany(Person::class);
 	}
+
+    //TODO: getfullnameattributes:
+
 }

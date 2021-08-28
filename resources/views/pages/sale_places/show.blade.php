@@ -1,4 +1,4 @@
-@extends('layouts.main', ['title' => 'Afficher une agence'])
+@extends('layouts.main', ['title' => 'Afficher un point de vente'])
 
 @section('body')
     <section class="content">
@@ -6,7 +6,7 @@
             <!-- info boxes (Stat box) -->
             <div class="row">
                 <div class="col-lg-12">
-                    <a name="" id="" class="btn btn-primary" href="{{ route('agency.index') }}" role="button">Retour</a>
+                    <a name="" id="" class="btn btn-primary" href="{{ route('sale_place.index') }}" role="button">Retour</a>
                 </div>
                 <div class="col-lg-12">
                     <table class="table table-striped table-inverse table-responsive">
@@ -15,14 +15,10 @@
                             <thead>
                                 <td>Code</td>
                                 <td>Nom</td>
-                                <td>Téléphone</td>
-                                <td>Adresse</td>
                             </thead>
                             <tr>
-                                <td>{{ $agency->enterprise->code }}</td>
-                                <td>{{ $agency->enterprise->name }}</td>
-                                <td>{{ $agency->enterprise->phone_number }}</td>
-                                <td>{{ $agency->enterprise->address }}</td>
+                                <td>{{ $salePlace->id }}</td>
+                                <td>{{ $salePlace->name}}</td>
                             </tr>
                         </tbody>
                     </table>

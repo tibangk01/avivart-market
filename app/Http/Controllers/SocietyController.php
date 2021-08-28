@@ -70,7 +70,7 @@ class SocietyController extends Controller
      */
     public function update(Request $request, Society $society)
     {
-        if($request->isMethod('PUT'))
+        if($request->isMethod('put'))
         {
             $this->validate($request, [
                 'name' => ['required', 'min:3'],

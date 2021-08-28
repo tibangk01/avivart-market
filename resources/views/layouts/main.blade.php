@@ -103,6 +103,42 @@
                         <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
                     </div>
                 </li>
+
+                <!-- Profil -->
+                <li class="nav-item dropdown user user-menu">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                        <i class="far fa-user"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- User image -->
+                        <li class="user-header" style="background-color:#17a2b8">
+                            <img src="{{ asset('vendors/dist/img/avatar.png') }}" class="img-circle"
+                                alt="User Image" />
+                            <p>
+                                Nom
+                                <small>Role</small>
+                            </p>
+                        </li>
+                        <!-- Menu Footer-->
+                        <li class="user-footer">
+                            <div class="d-flex">
+                                <div class="mr-auto p-2">
+                                    <a href="{{ route('page.index') }}" class="btn btn-warning btn-flat"><i class="fa fa-user-circle"></i> Profil</a>
+                                </div>
+                                <div class="p-2">
+                                    <a href="{{ route('page.logout') }}" class="btn btn-default btn-flat"><i class="fa fa-sign-out-alt"></i> Déconnexion</a>
+                                </div>
+                              </div>
+                            {{-- <div class="pull-left">
+                                <a href="{{ route('page.index') }}" class="btn btn-warning btn-flat"><i class="fa fa-user-circle"></i> Profil</a>
+                            </div>
+                            <div class="pull-right">
+                                <a href="{{ route('page.logout') }}" class="btn btn-default btn-flat"><i class="fa fa-sign-out-alt"></i> Déconnexion</a>
+                            </div> --}}
+                        </li>
+                    </ul>
+                </li>
+
             </ul>
         </nav>
         <!-- /.navbar -->
@@ -125,7 +161,8 @@
                             alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">{{ auth()->user()->full_name }}</a>
+                        <a href="#" class="d-block">{{ auth()->user()->full_name }}</a> //TODO: remove profil here,
+                        and add dropdown logout
                     </div>
                 </div>
 

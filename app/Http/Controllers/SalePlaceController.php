@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Agency;
+use App\Models\SalePlace;
 use Illuminate\Http\Request;
 
 class SalePlaceController extends Controller
@@ -13,7 +15,8 @@ class SalePlaceController extends Controller
      */
     public function index()
     {
-        //
+        $sale_places = SalePlace::all();
+        return view('pages.sale_places.index', compact('sale_places'));
     }
 
     /**
@@ -23,7 +26,8 @@ class SalePlaceController extends Controller
      */
     public function create()
     {
-        //
+        $agencies = Agency::all()->load('enterprise')->pluck('enterprise.name', 'id')->toArray();
+        return view('pages.sale_places.create', compact('agencies'));
     }
 
     /**
@@ -34,50 +38,81 @@ class SalePlaceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->isMethod('post')) {
+
+            $this->validate($request, [
+                'agency_id' => ['required'],
+                'name' => ['required', 'min:3', 'max:40'],
+            ]);
+
+            $sale_place = SalePlace::create([
+                'agency_id' => $request->agency_id,
+                'name' => $request->name,
+            ]);
+
+            if ($sale_place) {
+                session()->flash('salePlaceInserted', 'Point de vente enregistrée.');
+            } else {
+                session()->flash('salePlaceInsertionFailed', 'Une erreur s\'est produite');
+            }
+            return back();
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\SalePlace  $salePlace
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(SalePlace $salePlace)
     {
-        //
+        return view('pages.sale_places.show', compact('salePlace'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\SalePlace  $salePlace
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(SalePlace $salePlace)
     {
-        //
+        $agencies = Agency::all()->load('enterprise')->pluck('enterprise.name', 'id')->toArray();
+        return view('pages.sale_places.edit', compact('agencies', 'salePlace'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\SalePlace  $salePlace
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, SalePlace $salePlace)
     {
-        //
+        if ($request->isMethod('put')) {
+
+            $this->validate($request, [
+                'agency_id' => ['required'],
+                'name' => ['required', 'max:40'],
+            ]);
+
+            $salePlace->update($request->only('agency_id', 'name'));
+
+            session()->flash('salePlaceUpdated', 'Point de vente mis à jour');
+
+            return back();
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\SalePlace  $salePlace
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(SalePlace $salePlace)
     {
         //
     }
