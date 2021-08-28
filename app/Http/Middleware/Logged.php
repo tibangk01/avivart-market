@@ -17,7 +17,7 @@ class Logged
     public function handle(Request $request, Closure $next)
     {
         if(auth()->check())
-            return redirect()->route('page.index');
+            return redirect()->route('page.dashboard.index');
 
         return $next($request);
     }

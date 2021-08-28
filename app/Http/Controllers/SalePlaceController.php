@@ -16,7 +16,7 @@ class SalePlaceController extends Controller
     public function index()
     {
         $sale_places = SalePlace::all();
-        return view('pages.sale_places.index', compact('sale_places'));
+        return view('pages.dashboard.sale_places.index', compact('sale_places'));
     }
 
     /**
@@ -27,7 +27,7 @@ class SalePlaceController extends Controller
     public function create()
     {
         $agencies = Agency::all()->load('enterprise')->pluck('enterprise.name', 'id')->toArray();
-        return view('pages.sale_places.create', compact('agencies'));
+        return view('pages.dashboard.sale_places.create', compact('agencies'));
     }
 
     /**
@@ -67,7 +67,7 @@ class SalePlaceController extends Controller
      */
     public function show(SalePlace $salePlace)
     {
-        return view('pages.sale_places.show', compact('salePlace'));
+        return view('pages.dashboard.sale_places.show', compact('salePlace'));
     }
 
     /**
@@ -79,7 +79,7 @@ class SalePlaceController extends Controller
     public function edit(SalePlace $salePlace)
     {
         $agencies = Agency::all()->load('enterprise')->pluck('enterprise.name', 'id')->toArray();
-        return view('pages.sale_places.edit', compact('agencies', 'salePlace'));
+        return view('pages.dashboard.sale_places.edit', compact('agencies', 'salePlace'));
     }
 
     /**

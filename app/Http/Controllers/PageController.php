@@ -16,21 +16,9 @@ class PageController extends Controller
      */
     public function index(Request $request)
     {
-        //return view('pages.index');
-        echo 'page.index';
-        die;
+        return view('index');
     }
 
-    /**
-     * main
-     *
-     * @param Request $request
-     * @return void
-     */
-    public function main(Request $request)
-    {
-        return view('pages.main');
-    }
 
     /**
      * login
@@ -58,14 +46,63 @@ class PageController extends Controller
 
                     session()->flash('success', 'Bienvenue');
 
-                    return redirect()->route('page.main');
+                    return redirect()->route('page.dashboard.index');
                 }
                 return back()->withWarning('Mot de passe incorrect.');
             }
 
             return back()->withDanger('Erreur de connexion.');
         }
-        return view('pages.login');
+        return view('pages.auth.login');
+    }
+
+    /**
+     * dashboard
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function dashboard(Request $request)
+    {
+        return view('pages.dashboard.index');
+    }
+
+    /**
+     * forgot_password
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function forgot_password(Request $request)
+    {
+
+        if($request->isMethod('post'))
+        {
+            dd($request->all());
+        }
+        return view('pages.auth.forgot-password');
+    }
+
+    /**
+     * verify_mail
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function verify_mail(Request $request)
+    {
+        return view('pages.auth.verify-mail');
+    }
+
+    /**
+     * reset_password
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function reset_password(Request $request)
+    {
+        return view('pages.auth.reset-password');
     }
 
     /**
@@ -77,6 +114,6 @@ class PageController extends Controller
     public function logout(Request $request)
     {
         auth()->logout();
-        return redirect()->route('page.login');
+        return redirect()->route('page.auth.login');
     }
 }

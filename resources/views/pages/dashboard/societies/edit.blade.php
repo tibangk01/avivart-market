@@ -1,4 +1,4 @@
-@extends('layouts.main', ['title' => $society->enterprise->name])
+@extends('layouts.dashboard', ['title' => $society->enterprise->name])
 
 @section('body')
     <section class="content">
@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-lg-12">
 
-                    {!! Form::model($society, ['method' => 'PUT', 'route' => ['society.update', $society]]) !!}
+                    {!! Form::model($society, ['method' => 'put', 'route' => ['society.update', $society]]) !!}
                     <div class="form-group">
                         {!! Form::label('name', 'Nom de la société', ['class' => 'form-label']) !!}
                         {!! Form::text('name', $society->enterprise->name, ['class' => 'form-control']) !!}

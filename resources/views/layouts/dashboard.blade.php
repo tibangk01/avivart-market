@@ -123,10 +123,10 @@
                         <li class="user-footer">
                             <div class="d-flex">
                                 <div class="mr-auto p-2">
-                                    <a href="{{ route('page.index') }}" class="btn btn-warning btn-flat"><i class="fa fa-user-circle"></i> Profil</a>
+                                    <a href="" class="btn btn-warning btn-flat"><i class="fa fa-user-circle"></i> Profil</a>
                                 </div>
                                 <div class="p-2">
-                                    <a href="{{ route('page.logout') }}" class="btn btn-default btn-flat"><i class="fa fa-sign-out-alt"></i> Déconnexion</a>
+                                    <a href="" class="btn btn-default btn-flat"><i class="fa fa-sign-out-alt"></i> Déconnexion</a>
                                 </div>
                               </div>
                             {{-- <div class="pull-left">
@@ -154,21 +154,6 @@
 
             <!-- Sidebar -->
             <div class="sidebar">
-                <!-- Sidebar user panel (optional) -->
-                <div class="user-panel mt-3 pb-1 mb-3 d-flex">
-                    <div class="image">
-                        <img src="{{ asset('vendors/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2"
-                            alt="User Image">
-                    </div>
-                    <div class="info">
-                        <a href="#" class="d-block">{{ auth()->user()->full_name }}</a> //TODO: remove profil here,
-                        and add dropdown logout
-                    </div>
-                </div>
-
-                <!-- SidebarSearch Form -->
-                <div class="form-inline">
-                </div>
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
@@ -177,7 +162,7 @@
                         <!-- Add icons to the links using the .nav-icon class
             with font-awesome or any other icon font library -->
                         <li class="nav-item menu-open">
-                            <a href="{{ route('page.main') }}" class="nav-link active">
+                            <a href="" class="nav-link active">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Tableau de bord
@@ -209,7 +194,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('page.logout') }}" class="nav-link">
+                            <a href="{{ route('page.auth.logout') }}" class="nav-link">
                                 <i class="nav-icon fas fas fa-sign-out-alt"></i>
                                 <p>
                                     Déconnexion

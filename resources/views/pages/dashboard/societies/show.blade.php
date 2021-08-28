@@ -1,4 +1,4 @@
-@extends('layouts.main', ['title' => $society->enterprise->name])
+@extends('layouts.dashboard', ['title' => $society->enterprise->name])
 
 @section('body')
     <section class="content">

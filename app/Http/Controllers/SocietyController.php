@@ -15,7 +15,7 @@ class SocietyController extends Controller
     public function index()
     {
         $societies = Society::all();
-        return view('pages.societies.index', compact('societies'));
+        return view('pages.dashboard.societies.index', compact('societies'));
     }
 
     /**
@@ -47,7 +47,7 @@ class SocietyController extends Controller
      */
     public function show(Society $society)
     {
-        return view('pages.societies.show', compact('society'));
+        return view('pages.dashboard.societies.show', compact('society'));
     }
 
     /**
@@ -58,7 +58,7 @@ class SocietyController extends Controller
      */
     public function edit(Society $society)
     {
-        return view('pages.societies.edit', compact('society'));
+        return view('pages.dashboard.societies.edit', compact('society'));
     }
 
     /**

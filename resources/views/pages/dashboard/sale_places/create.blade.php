@@ -1,15 +1,12 @@
-@extends('layouts.main', ['title' => 'Editer Un point de vente'])
+@extends('layouts.dashboard', ['title' => 'Ajouter Un point de vente'])
 
 @section('body')
     <section class="content">
         <div class="container-fluid">
-            <!-- info boxes (Stat box) -->
+            <!-- info boxes (Stat box) //TODO: redefine form error messages , msg for success and failed sale_place insertion -->
             <div class="row">
                 <div class="col-lg-12">
-                    <a class="btn btn-primary" href="{{ route('sale_place.index') }}"> Retour à la liste</a>
-                </div>
-                <div class="col-lg-12">
-                    {!! Form::model($salePlace, ['method' => 'put', 'route' => ['sale_place.update', $salePlace]]) !!}
+                    {!! Form::open(['method' => 'POST', 'route' => 'sale_place.store']) !!}
 
                     <div class="form-group{{ $errors->has('agency_id') ? ' has-error' : '' }}">
                         {!! Form::label('agency_id', 'Agences') !!}
@@ -17,15 +14,17 @@
                         <small class="text-danger">{{ $errors->first('agency_id') }}</small>
                     </div>
 
-                    <div class="form-group">
-                        {!! Form::label('name', 'Nom du point de vente', ['class' => 'form-label']) !!}
-                        {!! Form::text('name', $salePlace->name, ['class' => 'form-control']) !!}
+                    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                        {!! Form::label('name', 'Nom du point de vente') !!}
+                        {!! Form::text('name', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                        <small class="text-danger">{{ $errors->first('name') }}</small>
                     </div>
 
                     <div class="btn-group pull-right">
                         {!! Form::reset('Annuler', ['class' => 'btn btn-warning']) !!}
-                        {!! Form::submit('Modifier', ['class' => 'btn btn-success']) !!}
+                        {!! Form::submit('Ajouter', ['class' => 'btn btn-success']) !!}
                     </div>
+
                     {!! Form::close() !!}
                 </div>
             </div>

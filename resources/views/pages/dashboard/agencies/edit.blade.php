@@ -1,4 +1,4 @@
-@extends('layouts.main', ['title' => 'Editer Une agence'])
+@extends('layouts.dashboard', ['title' => 'Editer Une agence'])
 
 @section('body')
     <section class="content">

@@ -1,4 +1,4 @@
-@extends('layouts.main', ['title' => 'Liste des Agences'])
+@extends('layouts.dashboard', ['title' => 'Liste des points de ventes'])
 
 @section('body')
     <section class="content">
@@ -6,35 +6,31 @@
             <!-- info boxes (Stat box) -->
             <div class="row">
                 <div class="col-lg-12">
-                    <a name="" id="" class="btn btn-primary" href="{{ route('agency.create') }}" role="button">Ajouter</a>
+                    <a name="" id="" class="btn btn-primary" href="{{ route('sale_place.create') }}" role="button">Ajouter</a>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    @if($agencies->count())
+                    @if($sale_places->count())
                     <div class="table-responsive">
                         <table class="table">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th>Id</th>
-                                    <th>Code</th>
-                                    <th>Nom</th>
-                                    <th>Téléphone</th>
-                                    <th>Adresse</th>
+                                    {{-- <th>Id</th> --}}
+                                    <th>Point de vente</th>
+                                    <th>Agence</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($agencies as $agency)
+                                @foreach ($sale_places as $sale_place)
                                 <tr>
-                                    <td>{{ $agency->id }}</td>
-                                    <td>{{ $agency->enterprise->code }}</td>
-                                    <td>{{ $agency->enterprise->name }}</td>
-                                    <td>{{ $agency->enterprise->phone_number }}</td>
-                                    <td>{{ $agency->enterprise->address }}</td>
+                                    {{-- <td>{{ $sale_place->id }}</td> --}}
+                                    <td>{{ $sale_place->name }}</td>
+                                    <td>{{ $sale_place->agency->enterprise->name }}</td>
                                     <td>
-                                        {!! link_to_route('agency.show','Afficher', ['agency' => $agency], ['class' => 'btn '] ) !!}
-                                        {!! link_to_route('agency.edit','Editer', ['agency' => $agency], ['class' => 'btn'] ) !!}
+                                        {!! link_to_route('sale_place.show','Afficher', ['sale_place' => $sale_place], ['class' => 'btn '] ) !!}
+                                        {!! link_to_route('sale_place.edit','Editer', ['sale_place' => $sale_place], ['class' => 'btn'] ) !!}
                                     </td>
                                 </tr>
                                 @endforeach
