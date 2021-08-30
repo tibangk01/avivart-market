@@ -4,7 +4,7 @@
     <div class="card">
         <div class="card-body login-card-body">
             <p class="login-box-msg">Redéfinissez votre mot de passe</p>
-            <form method="post" action="{{ route('page.auth.reset_password') }}">
+            <form method="post" action="{{ route('page.reset_password') }}">
                 @csrf
                 <div class="input-group mb-3">
                     <input type="password" name="new_password" class="form-control rounded-0 text-sm"
@@ -40,7 +40,7 @@
             </form>
 
             <p class="mb-1">
-                <a href="{{ route('page.auth.login') }}" class="text-sm">Connexion</a>
+                <a href="{{ route('page.login') }}" class="text-sm">Connexion</a>
             </p>
         </div>
         <!-- /.login-card-body -->

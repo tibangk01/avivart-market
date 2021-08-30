@@ -115,7 +115,7 @@
                             <img src="{{ asset('vendors/dist/img/avatar.png') }}" class="img-circle"
                                 alt="User Image" />
                             <p>
-                                Nom
+                                {{ auth()->user()->full_name }}
                                 <small>Role</small>
                             </p>
                         </li>
@@ -126,7 +126,7 @@
                                     <a href="" class="btn btn-warning btn-flat"><i class="fa fa-user-circle"></i> Profil</a>
                                 </div>
                                 <div class="p-2">
-                                    <a href="" class="btn btn-default btn-flat"><i class="fa fa-sign-out-alt"></i> Déconnexion</a>
+                                    <a href="{{ route('page.logout') }}" class="btn btn-default btn-flat"><i class="fa fa-sign-out-alt"></i> Déconnexion</a>
                                 </div>
                               </div>
                             {{-- <div class="pull-left">
@@ -193,14 +193,6 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('page.auth.logout') }}" class="nav-link">
-                                <i class="nav-icon fas fas fa-sign-out-alt"></i>
-                                <p>
-                                    Déconnexion
-                                </p>
-                            </a>
-                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -228,7 +220,8 @@
             <!-- /.content-header -->
 
             <!-- Main content -->
-            @include('layouts.partials._validation_errors')
+            {{-- @include('layouts.partials._validation_errors') --}}
+            @include('sweetalert::alert')
 
             @yield('body')
             <!-- /.content -->

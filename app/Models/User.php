@@ -40,55 +40,57 @@ use Illuminate\Notifications\Notifiable;
  */
 class User extends Authenticatable
 {
-	use SoftDeletes, HasFactory, Notifiable;
-	protected $table = 'users';
+    use SoftDeletes, HasFactory, Notifiable;
+    protected $table = 'users';
 
-	protected $casts = [
-		'user_type_id' => 'int',
-		'civility_id' => 'int',
-		'library_id' => 'int'
-	];
+    protected $casts = [
+        'user_type_id' => 'int',
+        'civility_id' => 'int',
+        'library_id' => 'int'
+    ];
 
-	protected $hidden = [
-		'remember_token'
-	];
+    protected $hidden = [
+        'remember_token'
+    ];
 
-	protected $fillable = [
-		'user_type_id',
-		'civility_id',
-		'library_id',
-		'first_name',
-		'last_name',
-		'email',
-		'phone_number',
-		'remember_token'
-	];
+    protected $fillable = [
+        'user_type_id',
+        'civility_id',
+        'library_id',
+        'first_name',
+        'last_name',
+        'email',
+        'phone_number',
+        'remember_token'
+    ];
 
-	public function user_type()
-	{
-		return $this->belongsTo(UserType::class);
-	}
+    public function user_type()
+    {
+        return $this->belongsTo(UserType::class);
+    }
 
-	public function library()
-	{
-		return $this->belongsTo(Library::class);
-	}
+    public function library()
+    {
+        return $this->belongsTo(Library::class);
+    }
 
-	public function civility()
-	{
-		return $this->belongsTo(Civility::class);
-	}
+    public function civility()
+    {
+        return $this->belongsTo(Civility::class);
+    }
 
-	public function humans()
-	{
-		return $this->hasMany(Human::class);
-	}
+    public function humans()
+    {
+        return $this->hasMany(Human::class);
+    }
 
-	public function people()
-	{
-		return $this->hasMany(Person::class);
-	}
+    public function people()
+    {
+        return $this->hasMany(Person::class);
+    }
 
-    //TODO: getfullnameattributes:
-
+    public function getFullNameAttribute()
+    {
+        return strtoupper($this->last_name) .  ' ' . ucfirst(strtolower($this->first_name));
+    }
 }

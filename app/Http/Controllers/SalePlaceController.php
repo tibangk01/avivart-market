@@ -100,7 +100,7 @@ class SalePlaceController extends Controller
 
             $salePlace->update($request->only('agency_id', 'name'));
 
-            session()->flash('salePlaceUpdated', 'Point de vente mis à jour');
+            session()->flash('salePlaceUpdated', 'Point de vente mis à jour'); //TODO: msg sale palce updated
 
             return back();
         }

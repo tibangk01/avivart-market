@@ -4,8 +4,8 @@
     <div class="card">
         <div class="card-body login-card-body">
             <p class="login-box-msg">Connectez-vous</p>
-            <form method="post" action="{{ route('page.auth.login') }}">
-                @csrf
+            
+            {!! Form::open(['route' => 'page.login']) !!}
                 <div class="input-group mb-3">
                     <input type="text" name="username" class="form-control rounded-0 text-sm" placeholder="Identifiant"
                         autofocus>
@@ -42,10 +42,10 @@
                     </div>
                 </div>
 
-            </form>
+            {!! Form::close() !!}
 
             <p class="mb-1">
-                <a href="{{ route('page.auth.forgot_password') }}" class="text-sm">Mot de passe oublié ?</a>
+                <a href="{{ route('page.forgot_password') }}" class="text-sm">Mot de passe oublié ?</a>
             </p>
         </div>
         <!-- /.login-card-body -->

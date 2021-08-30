@@ -36,4 +36,9 @@ class Region extends Model
 	{
 		return $this->hasMany(Agency::class);
 	}
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

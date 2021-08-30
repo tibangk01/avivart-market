@@ -4,7 +4,7 @@
     <div class="card">
         <div class="card-body login-card-body">
             <p class="login-box-msg">Récupération du mot de passe</p>
-            <form method="post" action="{{ route('page.auth.login') }}">
+            <form method="post" action="{{ route('page.login') }}">
                 @csrf
                 <div class="input-group mb-3">
                     <input type="email" name="email" class="form-control rounded-0 text-sm"
@@ -30,7 +30,7 @@
             </form>
 
             <p class="mb-1">
-                <a href="{{ route('page.auth.login') }}" class="text-sm">Connexion</a>
+                <a href="{{ route('page.login') }}" class="text-sm">Connexion</a>
             </p>
         </div>
         <!-- /.login-card-body -->

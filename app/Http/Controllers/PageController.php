@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Human;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class PageController extends Controller
 {
@@ -16,7 +18,7 @@ class PageController extends Controller
      */
     public function index(Request $request)
     {
-        return view('index');
+        return view('pages.dashboard.index');
     }
 
 
@@ -44,9 +46,19 @@ class PageController extends Controller
 
                     auth()->login($human->user);
 
-                    session()->flash('success', 'Bienvenue');
+                    $message = 'Bienvenue '. ucfirst($human->user->full_name).' ! &#128079;';
 
-                    return redirect()->route('page.dashboard.index');
+                    switch (intval($user->user_type_id)) {
+                        case 1: //developer
+                            $redirectRoute = 'page.developer';
+                            break;
+                        
+                        default:    //statf
+                            $redirectRoute = 'page.index';
+                            break;
+                    }
+
+                    return redirect()->route($redirectRoute)->withToastSuccess($message);
                 }
                 return back()->withWarning('Mot de passe incorrect.');
             }
@@ -57,17 +69,6 @@ class PageController extends Controller
     }
 
     /**
-     * dashboard
-     *
-     * @param Request $request
-     * @return void
-     */
-    public function dashboard(Request $request)
-    {
-        return view('pages.dashboard.index');
-    }
-
-    /**
      * forgot_password
      *
      * @param Request $request
@@ -75,9 +76,7 @@ class PageController extends Controller
      */
     public function forgot_password(Request $request)
     {
-
-        if($request->isMethod('post'))
-        {
+        if ($request->isMethod('post')) {
             dd($request->all());
         }
         return view('pages.auth.forgot-password');
@@ -114,6 +113,6 @@ class PageController extends Controller
     public function logout(Request $request)
     {
         auth()->logout();
-        return redirect()->route('page.auth.login');
+        return redirect()->route('page.login');
     }
 }

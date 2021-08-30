@@ -9,7 +9,6 @@ use App\Models\Enterprise;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-
 class AgencyController extends Controller
 {
     /**
@@ -31,7 +30,7 @@ class AgencyController extends Controller
      */
     public function create()
     {
-        $regions = Region::pluck('name', 'id')->toArray();
+        $regions = Region::all()->pluck(null, 'id');
 
         return view('pages.dashboard.agencies.create', compact('regions'));
     }
@@ -58,34 +57,27 @@ class AgencyController extends Controller
 
                 DB::beginTransaction();
 
-                $enterprises = Enterprise::all();
-                $code = (int)++$enterprises->sortBy('created_at')->last()->code;
+                $enterprise = Enterprise::orderBy('id', 'DESC')->first();
+                $society = Society::orderBy('id', 'DESC')->firstOrFail();
 
-                $enterprise = Enterprise::create([
-                    'code' => '0' . $code,
-                    'name' => $request->name,
-                    'phone_number' => $request->phone_number,
-                    'address' => $request->address,
-                ]);
-
-                $societies = Society::all();
-                $society_id = (int)$societies->sortBy('created_at')->last()->id;
+                $enterprise = Enterprise::create(array_merge($request->all(),
+                    [
+                        'code' => '0' . ++$enterprise->code,
+                    ]
+                ));
 
                 $agency = Agency::create([
                     'region_id' => $request->region_id,
-                    'society_id' => $society_id,
+                    'society_id' => $society->id,
                     'enterprise_id' => $enterprise->id,
                 ]);
 
-                if ($enterprise && $agency) DB::commit();
+                DB::commit();
 
-                session()->flash('agencyInserted', 'Agence enregistrée.');
+                session()->flash('agencyInserted', 'Agence enregistrée.'); //TODO: msg agency inserted
             } catch (\Throwable $th) {
-
                 DB::rollBack();
                 session()->flash('agencyInsertionFailed', 'Erreur interne, Réessayez plus tard.');
-            } finally {
-                return back();
             }
         }
 
@@ -111,7 +103,8 @@ class AgencyController extends Controller
      */
     public function edit(Agency $agency)
     {
-        $regions = Region::pluck('name', 'id')->toArray();
+        $regions = Region::all()->pluck(null, 'id');
+
         return view('pages.dashboard.agencies.edit', compact('regions', 'agency'));
     }
 
@@ -136,8 +129,10 @@ class AgencyController extends Controller
 
             try {
                 DB::beginTransaction();
+
                 $agency->update($request->only('region_id'));
                 $agency->enterprise->update($request->only('name', 'phone_number', 'address'));
+                
                 DB::commit();
             } catch (\Throwable $th) {
                 DB::rollBack();

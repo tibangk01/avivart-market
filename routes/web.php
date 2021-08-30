@@ -23,40 +23,31 @@ use App\Http\Controllers\SocietyController;
 Route::prefix('/')->name('page.')->group(function () {
 
     # Home :
-    Route::get('/', [PageController::class, 'index'])->name('index');
+    Route::get('/', [PageController::class, 'index'])->name('index')->middleware('auth');
 
     # Auth :
-    Route::prefix('/')->name('auth.')->group(function () {
+    Route::middleware('logged')->group(function () {
 
         # Login
         Route::match(['get', 'post'], '/login', [PageController::class, 'login'])
-            ->name('login')
-            ->middleware('logged');
+            ->name('login');
 
         # Forgot password
         Route::match(['get', 'post'], '/forgot-password', [PageController::class, 'forgot_password'])
-            ->name('forgot_password')
-            ->middleware('logged');
+            ->name('forgot_password');
 
         # Verify mail
         Route::get('/verify-mail', [PageController::class, 'verify_mail'])
-            ->name('verify_mail')
-            ->middleware('logged');
+            ->name('verify_mail');
 
         # Reset Password
         Route::match(['get', 'post'], '/reset-password', [PageController::class, 'reset_password'])
-            ->name('reset_password')
-            ->middleware('logged');
-
-        # Logout :
-        Route::get('/logout', [PageController::class, 'logout'])
-            ->name('logout')
-            ->middleware('auth');
+            ->name('reset_password');
     });
 
-    # Dash :
-    Route::get('/dashboard', [PageController::class, 'dashboard'])
-        ->name('dashboard.index')
+    # Logout :
+    Route::get('/logout', [PageController::class, 'logout'])
+        ->name('logout')
         ->middleware('auth');
 });
 /** End Pages routes */
