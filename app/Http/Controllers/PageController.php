@@ -44,15 +44,16 @@ class PageController extends Controller
 
                 if (Hash::check($request->password, $human->password)) {
 
+                    session()->put('human', $human);
                     auth()->login($human->user);
 
                     $message = 'Bienvenue '. ucfirst($human->user->full_name).' ! &#128079;';
 
-                    switch (intval($user->user_type_id)) {
+                    switch (intval($human->user->user_type_id)) {
                         case 1: //developer
                             $redirectRoute = 'page.developer';
                             break;
-                        
+
                         default:    //statf
                             $redirectRoute = 'page.index';
                             break;
@@ -112,6 +113,7 @@ class PageController extends Controller
      */
     public function logout(Request $request)
     {
+        session()->forget('human');
         auth()->logout();
         return redirect()->route('page.login');
     }
