@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -20,6 +21,8 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property Person $person
  * @property CustomerType $customer_type
+ * @property Collection|Order[] $orders
+ * @property Collection|Proforma[] $proformas
  *
  * @package App\Models
  */
@@ -45,5 +48,15 @@ class Customer extends Model
 	public function customer_type()
 	{
 		return $this->belongsTo(CustomerType::class);
+	}
+
+	public function orders()
+	{
+		return $this->hasMany(Order::class);
+	}
+
+	public function proformas()
+	{
+		return $this->hasMany(Proforma::class);
 	}
 }

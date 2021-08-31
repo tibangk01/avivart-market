@@ -12,12 +12,13 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class SalePlace
- *
+ * 
  * @property int $id
  * @property int $agency_id
+ * @property string $name
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- *
+ * 
  * @property Agency $agency
  * @property Collection|Staff[] $staff
  *
@@ -33,7 +34,7 @@ class SalePlace extends Model
 
 	protected $fillable = [
 		'agency_id',
-		'name',
+		'name'
 	];
 
 	public function agency()

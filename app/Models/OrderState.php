@@ -11,29 +11,27 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Region
+ * Class OrderState
  * 
  * @property int $id
  * @property string $name
- * @property string $code
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * 
- * @property Collection|Agency[] $agencies
+ * @property Collection|Order[] $orders
  *
  * @package App\Models
  */
-class Region extends Model
+class OrderState extends Model
 {
-	protected $table = 'regions';
+	protected $table = 'order_states';
 
 	protected $fillable = [
-		'name',
-		'code'
+		'name'
 	];
 
-	public function agencies()
+	public function orders()
 	{
-		return $this->hasMany(Agency::class);
+		return $this->hasMany(Order::class);
 	}
 }
