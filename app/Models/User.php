@@ -8,12 +8,15 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 /**
  * Class User
- * 
+ *
  * @property int $id
  * @property int $user_type_id
  * @property int $civility_id
@@ -26,7 +29,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $deleted_at
  * @property Carbon $created_at
  * @property Carbon $updated_at
- * 
+ *
  * @property UserType $user_type
  * @property Library $library
  * @property Civility $civility
@@ -35,9 +38,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @package App\Models
  */
-class User extends Model
+class User extends Authenticatable
 {
-	use SoftDeletes;
+	use SoftDeletes, HasFactory, Notifiable;
 	protected $table = 'users';
 
 	protected $casts = [
@@ -85,4 +88,9 @@ class User extends Model
 	{
 		return $this->hasMany(Person::class);
 	}
+
+    public function getFullNameAttribute()
+    {
+        return strtoupper($this->last_name) .  ' ' . ucfirst(strtolower($this->first_name));
+    }
 }
