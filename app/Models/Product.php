@@ -14,19 +14,21 @@ use Illuminate\Database\Eloquent\Model;
  * Class Product
  * 
  * @property int $id
+ * @property int $library_id
+ * @property int $product_category_id
+ * @property int $conversion_id
+ * @property int $currency_id
  * @property string $name
  * @property float $price
  * @property int $stock_quantity
  * @property int $sold_quantity
- * @property int $product_category_id
- * @property int $conversion_id
- * @property int $currency_id
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * 
  * @property ProductCategory $product_category
  * @property Conversion $conversion
  * @property Currency $currency
+ * @property Library $library
  * @property Collection|ProductOrder[] $product_orders
  * @property Collection|Proforma[] $proformas
  * @property Collection|Purchase[] $purchases
@@ -38,22 +40,24 @@ class Product extends Model
 	protected $table = 'products';
 
 	protected $casts = [
-		'price' => 'float',
-		'stock_quantity' => 'int',
-		'sold_quantity' => 'int',
+		'library_id' => 'int',
 		'product_category_id' => 'int',
 		'conversion_id' => 'int',
-		'currency_id' => 'int'
+		'currency_id' => 'int',
+		'price' => 'float',
+		'stock_quantity' => 'int',
+		'sold_quantity' => 'int'
 	];
 
 	protected $fillable = [
+		'library_id',
+		'product_category_id',
+		'conversion_id',
+		'currency_id',
 		'name',
 		'price',
 		'stock_quantity',
-		'sold_quantity',
-		'product_category_id',
-		'conversion_id',
-		'currency_id'
+		'sold_quantity'
 	];
 
 	public function product_category()
@@ -69,6 +73,11 @@ class Product extends Model
 	public function currency()
 	{
 		return $this->belongsTo(Currency::class);
+	}
+
+	public function library()
+	{
+		return $this->belongsTo(Library::class);
 	}
 
 	public function product_orders()

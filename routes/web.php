@@ -5,8 +5,10 @@ namespace App;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\AgencyController;
-use App\Http\Controllers\SalePlaceController;
+use App\Http\Controllers\LibraryController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SocietyController;
+use App\Http\Controllers\SalePlaceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,7 +54,6 @@ Route::prefix('/')->name('page.')->group(function () {
 });
 /** End Pages routes */
 
-
 /** Societies routes */
 Route::resource('society', SocietyController::class)
     ->middleware('auth');
@@ -63,7 +64,17 @@ Route::resource('agency', AgencyController::class)
     ->middleware('auth');
 /** End Agencies routes */
 
-/** Agencies routes */
+/** Sale Places routes */
 Route::resource('sale_place', SalePlaceController::class)
     ->middleware('auth');
-/** End Societies routes */
+/** End Sale Places routes */
+
+/** Products routes */
+Route::resource('product', ProductController::class)
+    ->middleware('auth');
+/** End Products routes */
+
+/** Libraries routes */
+Route::resource('library', LibraryController::class)
+    ->middleware('auth');
+/** End Libraries routes */

@@ -12,12 +12,12 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Conversion
- * 
+ *
  * @property int $id
  * @property string $name
  * @property Carbon $created_at
  * @property Carbon $updated_at
- * 
+ *
  * @property Collection|Product[] $products
  *
  * @package App\Models
@@ -34,4 +34,14 @@ class Conversion extends Model
 	{
 		return $this->hasMany(Product::class);
 	}
+
+        /**
+     * toString
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

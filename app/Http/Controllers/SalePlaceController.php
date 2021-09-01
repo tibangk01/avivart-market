@@ -51,9 +51,9 @@ class SalePlaceController extends Controller
             ]);
 
             if ($sale_place) {
-                session()->flash('salePlaceInserted', 'Point de vente enregistrée.');
+                session()->flash('succes', 'Point de vente enregistrée.'); //TODO: sale place msg insertion success
             } else {
-                session()->flash('salePlaceInsertionFailed', 'Une erreur s\'est produite');
+                session()->flash('error', "Une erreur s'est produite");
             }
             return back();
         }

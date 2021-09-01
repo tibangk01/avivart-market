@@ -12,13 +12,13 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class ProductCategory
- * 
+ *
  * @property int $id
  * @property string $name
  * @property int $product_ray_id
  * @property Carbon $created_at
  * @property Carbon $updated_at
- * 
+ *
  * @property ProductRay $product_ray
  * @property Collection|Product[] $products
  *
@@ -46,4 +46,14 @@ class ProductCategory extends Model
 	{
 		return $this->hasMany(Product::class);
 	}
+
+        /**
+     * toString
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->name;
+    }
 }
