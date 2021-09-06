@@ -51,7 +51,8 @@ class PageController extends Controller
 
                     switch (intval($human->user->user_type_id)) {
                         case 1: //developer
-                            $redirectRoute = 'page.developer';
+                            // $redirectRoute = 'page.developer';
+                            $redirectRoute = 'page.dashboard.index'; // Temporary
                             break;
 
                         default:    //statf
