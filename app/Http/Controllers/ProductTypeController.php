@@ -14,7 +14,9 @@ class ProductTypeController extends Controller
      */
     public function index()
     {
-        //
+        $productTypes = ProductType::all();
+
+        return view('product_types.index', compact('productTypes'));
     }
 
     /**
@@ -24,7 +26,7 @@ class ProductTypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('product_types.create');
     }
 
     /**
@@ -35,7 +37,23 @@ class ProductTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->isMethod('post')) {
+
+            $request->validate([
+                'name' => ['required', 'min:3', 'max:30'],
+            ]);
+
+            $productType = ProductType::create($request->only('name'));
+
+            if ($productType) {
+                session()->flash('success', "Donnée enregistrée");
+            } else {
+                session()->flash('error', "Une erreur s'est produite");
+            }
+            
+        }
+
+        return back();
     }
 
     /**
@@ -46,7 +64,7 @@ class ProductTypeController extends Controller
      */
     public function show(ProductType $productType)
     {
-        //
+        return view('product_types.show', compact('productType'));
     }
 
     /**
@@ -57,7 +75,7 @@ class ProductTypeController extends Controller
      */
     public function edit(ProductType $productType)
     {
-        //
+        return view('product_types.edit', compact('productType'));
     }
 
     /**
@@ -69,7 +87,18 @@ class ProductTypeController extends Controller
      */
     public function update(Request $request, ProductType $productType)
     {
-        //
+        if ($request->isMethod('put')) {
+
+            $request->validate([
+                'name' => ['required', 'max:30'],
+            ]);
+
+            $productType->update($request->all());
+
+            session()->flash('success', 'Modification réussi');
+        }
+
+        return back();
     }
 
     /**

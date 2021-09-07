@@ -72,7 +72,6 @@
                                                     </tbody>
                                                 </table>
                                             </div>
-
                                     </div>
 
                                 </div>
@@ -81,10 +80,8 @@
                         </div>
                     </div>
                 </div>
-                {{-- /.row --}}
 
-            </div><!-- /.container-fluid -->
+            </div>
         </div>
     </div>
-    <!-- /.content-wrapper -->
 @endsection

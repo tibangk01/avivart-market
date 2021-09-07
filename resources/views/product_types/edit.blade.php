@@ -1,11 +1,11 @@
-@extends('layouts.dashboard', ['title' => "Editer un type d'employé"])
+@extends('layouts.dashboard', ['title' => "Editer le type de produit"])
 
 @section('body')
 <section class="content">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                {!! Form::model($staffType, ['method' => 'PUT', 'route' => ['staff_type.update',  $staffType]]) !!}
+                {!! Form::model($productType, ['method' => 'PUT', 'route' => ['product_type.update',  $productType]]) !!}
 
                 <div class="form-group">
                     {!! Form::label('name', "Nom") !!}
