@@ -46,10 +46,12 @@ class AgencyController extends Controller
 
         if ($request->isMethod('POST')) {
 
-            $this->validate($request, [
+            $request->validate([
                 'region_id' => ['required'],
                 'name' => ['required', 'min:3', 'max:50'],
                 'phone_number' => ['required', 'min:8'],
+                'email' => ['required', 'email', 'max:60'],
+                'website' => ['required', 'max:60'],
                 'address' => ['required', 'max:40'],
             ]);
 
@@ -58,6 +60,7 @@ class AgencyController extends Controller
                 DB::beginTransaction();
 
                 $enterprise = Enterprise::orderBy('id', 'DESC')->first();
+
                 $society = Society::orderBy('id', 'DESC')->firstOrFail();
 
                 $enterprise = Enterprise::create(array_merge($request->all(),
@@ -66,7 +69,7 @@ class AgencyController extends Controller
                     ]
                 ));
 
-                $agency = Agency::create([
+                Agency::create([
                     'region_id' => $request->region_id,
                     'society_id' => $society->id,
                     'enterprise_id' => $enterprise->id,
@@ -74,10 +77,13 @@ class AgencyController extends Controller
 
                 DB::commit();
 
-                session()->flash('agencyInserted', 'Agence enregistrée.'); //TODO: msg agency inserted
+                session()->flash('success', 'Donnée enregistrée.');
+
             } catch (\Throwable $th) {
+
                 DB::rollBack();
-                session()->flash('agencyInsertionFailed', 'Erreur interne, Réessayez plus tard.');
+
+                session()->flash('error', "Une erreur s'est produite");
             }
         }
 
@@ -120,27 +126,35 @@ class AgencyController extends Controller
 
         if ($request->isMethod('put')) {
 
-            $this->validate($request, [
+            $request->validate([
                 'region_id' => ['required'],
                 'name' => ['required', 'min:3', 'max:50'],
+                'email' => ['required', 'email', 'max:60'],
+                'website' => ['required', 'max:60'],
                 'phone_number' => ['required', 'min:8'],
                 'address' => ['required', 'max:40'],
             ]);
 
             try {
+
                 DB::beginTransaction();
 
                 $agency->update($request->only('region_id'));
-                $agency->enterprise->update($request->only('name', 'phone_number', 'address'));
-                
+
+                $agency->enterprise->update($request->except('region_id') );
+
                 DB::commit();
+
             } catch (\Throwable $th) {
+
                 DB::rollBack();
-                session()->flash('agencyUpdateFailed', 'Une erreur s\'est produite'); //TODO: define message for agency update error.
+
+                session()->flash('error', "Une erreur s'est produite");
+
                 return back();
             }
 
-            session()->flash('agencyUpdated', 'Agence modifier.'); //TODO: message update agency ok.
+            session()->flash('success', 'Modification réussi');
         }
         return back();
     }

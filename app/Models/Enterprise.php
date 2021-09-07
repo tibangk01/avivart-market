@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Enterprise
- * 
+ *
  * @property int $id
  * @property string $code
  * @property string $name
@@ -21,7 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $address
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * 
+ *
  * @property Collection|Agency[] $agencies
  * @property Collection|Society[] $societies
  *
@@ -35,6 +35,7 @@ class Enterprise extends Model
 		'code',
 		'name',
 		'phone_number',
+        'email',
 		'website',
 		'address'
 	];

@@ -80,5 +80,9 @@
         </div>
 
     </div>
+<<<<<<< HEAD
 </div>
 @endsection
+=======
+@endsection
+>>>>>>> bbf32a11c95b12a01ab8dd412f6782dd72375f28
