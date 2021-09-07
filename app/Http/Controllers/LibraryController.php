@@ -16,7 +16,7 @@ class LibraryController extends Controller
      */
     public function edit(Library $library)
     {
-        return view('pages.dashboard.libraries.edit', compact('library'));
+        return view('libraries.edit', compact('library'));
     }
 
     /**

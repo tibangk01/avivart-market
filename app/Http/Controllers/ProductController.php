@@ -21,7 +21,7 @@ class ProductController extends Controller
     {
         $products = Product::all();
 
-        return view('pages.dashboard.products.index', compact('products'));
+        return view('products.index', compact('products'));
     }
 
     /**
@@ -35,7 +35,7 @@ class ProductController extends Controller
         $conversions = Conversion::all()->pluck(null, 'id');
         $currencies = Currency::all()->pluck(null, 'id');
 
-        return view('pages.dashboard.products.create', compact('product_categories', 'conversions', 'currencies'));
+        return view('products.create', compact('product_categories', 'conversions', 'currencies'));
     }
 
     /**
@@ -92,7 +92,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('pages.dashboard.products.show', compact('product'));
+        return view('products.show', compact('product'));
     }
 
     /**
@@ -107,7 +107,7 @@ class ProductController extends Controller
         $conversions = Conversion::all()->pluck(null, 'id');
         $currencies = Currency::all()->pluck(null, 'id');
 
-        return view('pages.dashboard.products.edit', compact('product', 'product_categories', 'conversions', 'currencies'));
+        return view('products.edit', compact('product', 'product_categories', 'conversions', 'currencies'));
     }
 
     /**

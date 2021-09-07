@@ -9,6 +9,7 @@ use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SocietyController;
 use App\Http\Controllers\SalePlaceController;
+use App\Http\Controllers\StaffTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,7 @@ Route::prefix('/')->name('page.')->group(function () {
     Route::get('/', [PageController::class, 'index'])->name('index')->middleware('auth');
 
     # Auth :
-    Route::middleware('logged')->group(function () {
+    Route::middleware('guest')->group(function () {
 
         # Login
         Route::match(['get', 'post'], '/login', [PageController::class, 'login'])
@@ -56,6 +57,7 @@ Route::prefix('/')->name('page.')->group(function () {
 
 /** Societies routes */
 Route::resource('society', SocietyController::class)
+    ->only(['show', 'edit', 'update'])
     ->middleware('auth');
 /** End Societies routes */
 
@@ -78,3 +80,8 @@ Route::resource('product', ProductController::class)
 Route::resource('library', LibraryController::class)
     ->middleware('auth');
 /** End Libraries routes */
+
+/** staff types routes */
+Route::resource('staff_type', StaffTypeController::class)
+    ->middleware('auth');
+/** End staff types routes */

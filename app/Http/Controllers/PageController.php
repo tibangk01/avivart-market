@@ -18,7 +18,7 @@ class PageController extends Controller
      */
     public function index(Request $request)
     {
-        return view('pages.dashboard.index');
+        return view('pages.index');
     }
 
 
@@ -66,7 +66,7 @@ class PageController extends Controller
 
             return back()->withDanger('Erreur de connexion.');
         }
-        return view('pages.auth.login');
+        return view('pages.login');
     }
 
     /**
@@ -80,7 +80,7 @@ class PageController extends Controller
         if ($request->isMethod('post')) {
             dd($request->all());
         }
-        return view('pages.auth.forgot-password');
+        return view('pages.forgot-password');
     }
 
     /**
@@ -91,7 +91,7 @@ class PageController extends Controller
      */
     public function verify_mail(Request $request)
     {
-        return view('pages.auth.verify-mail');
+        return view('pages.verify-mail');
     }
 
     /**
@@ -102,7 +102,7 @@ class PageController extends Controller
      */
     public function reset_password(Request $request)
     {
-        return view('pages.auth.reset-password');
+        return view('pages.reset-password');
     }
 
     /**

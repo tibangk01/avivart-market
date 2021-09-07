@@ -8,38 +8,6 @@ use Illuminate\Http\Request;
 class SocietyController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $societies = Society::all();
-        return view('pages.dashboard.societies.index', compact('societies'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  \App\Models\Society  $society
@@ -47,7 +15,7 @@ class SocietyController extends Controller
      */
     public function show(Society $society)
     {
-        return view('pages.dashboard.societies.show', compact('society'));
+        return view('societies.show', compact('society'));
     }
 
     /**
@@ -58,7 +26,7 @@ class SocietyController extends Controller
      */
     public function edit(Society $society)
     {
-        return view('pages.dashboard.societies.edit', compact('society'));
+        return view('societies.edit', compact('society'));
     }
 
     /**
@@ -86,17 +54,7 @@ class SocietyController extends Controller
 
             session()->flash('success', 'OK'); //TODO: message update society ok.
         }
-        return back();
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Society  $society
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Society $society)
-    {
-        //
+        return back();
     }
 }

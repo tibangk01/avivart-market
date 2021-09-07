@@ -20,7 +20,7 @@ class AgencyController extends Controller
     {
         $agencies = Agency::all();
 
-        return view('pages.dashboard.agencies.index', compact('agencies'));
+        return view('agencies.index', compact('agencies'));
     }
 
     /**
@@ -32,7 +32,7 @@ class AgencyController extends Controller
     {
         $regions = Region::all()->pluck(null, 'id');
 
-        return view('pages.dashboard.agencies.create', compact('regions'));
+        return view('agencies.create', compact('regions'));
     }
 
     /**
@@ -92,7 +92,7 @@ class AgencyController extends Controller
      */
     public function show(Agency $agency)
     {
-        return view('pages.dashboard.agencies.show', compact('agency'));
+        return view('agencies.show', compact('agency'));
     }
 
     /**
@@ -105,7 +105,7 @@ class AgencyController extends Controller
     {
         $regions = Region::all()->pluck(null, 'id');
 
-        return view('pages.dashboard.agencies.edit', compact('regions', 'agency'));
+        return view('agencies.edit', compact('regions', 'agency'));
     }
 
     /**
