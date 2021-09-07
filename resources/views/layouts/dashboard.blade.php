@@ -187,7 +187,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('society.show', [1]) }}" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-cart"></i>
+                                <i class="nav-icon fa fa-building"></i>
                                 <p>
                                     Société
                                 </p>
