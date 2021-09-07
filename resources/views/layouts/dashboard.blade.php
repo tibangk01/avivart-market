@@ -313,6 +313,14 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('product_ray.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-shopping-cart"></i>
+                                <p>
+                                   Rayons de produits
+                                </p>
+                            </a>
+                        </li>
 
                     </ul>
                 </nav>

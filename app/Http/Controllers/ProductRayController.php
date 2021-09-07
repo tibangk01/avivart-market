@@ -14,7 +14,9 @@ class ProductRayController extends Controller
      */
     public function index()
     {
-        //
+        $productRays = ProductRay::all();
+
+        return view('product_rays.index', compact('productRays'));
     }
 
     /**
@@ -24,7 +26,7 @@ class ProductRayController extends Controller
      */
     public function create()
     {
-        //
+        return view('product_rays.create');
     }
 
     /**
@@ -35,7 +37,23 @@ class ProductRayController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->isMethod('post')) {
+
+            $request->validate([
+                'name' => ['required', 'min:3', 'max:30'],
+            ]);
+
+            $productRay = ProductRay::create($request->only('name'));
+
+            if ($productRay) {
+                session()->flash('success', "Donnée enregistrée");
+            } else {
+                session()->flash('error', "Une erreur s'est produite");
+            }
+
+        }
+
+        return back();
     }
 
     /**
@@ -46,7 +64,7 @@ class ProductRayController extends Controller
      */
     public function show(ProductRay $productRay)
     {
-        //
+        return view('product_rays.show', compact('productRay'));
     }
 
     /**
@@ -57,7 +75,7 @@ class ProductRayController extends Controller
      */
     public function edit(ProductRay $productRay)
     {
-        //
+        return view('product_rays.edit', compact('productRay'));
     }
 
     /**
@@ -69,7 +87,18 @@ class ProductRayController extends Controller
      */
     public function update(Request $request, ProductRay $productRay)
     {
-        //
+        if ($request->isMethod('put')) {
+
+            $request->validate([
+                'name' => ['required', 'max:30'],
+            ]);
+
+            $productRay->update($request->all());
+
+            session()->flash('success', 'Modification réussi');
+        }
+
+        return back();
     }
 
     /**
