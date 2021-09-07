@@ -47,20 +47,19 @@ class PageController extends Controller
                     session()->put('human', $human);
                     auth()->login($human->user);
 
-                    $message = 'Bienvenue '. ucfirst($human->user->full_name).' ! &#128079;';
+                    $message = 'Bienvenue '. ucfirst($human->user->full_name);
 
                     switch (intval($human->user->user_type_id)) {
                         case 1: //developer
+                            $redirectRoute = 'page.index'; // Temporary
                             // $redirectRoute = 'page.developer';
-                            $redirectRoute = 'page.dashboard.index'; // Temporary
                             break;
-
-                        default:    //statf
+                        default:    //staff
                             $redirectRoute = 'page.index';
                             break;
                     }
 
-                    return redirect()->route($redirectRoute)->withToastSuccess($message);
+                    return redirect()->route($redirectRoute)->withSuccess($message);
                 }
                 return back()->withWarning('Mot de passe incorrect.');
             }
