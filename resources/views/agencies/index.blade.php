@@ -30,7 +30,7 @@
                                     </div>
 
                                     <div class="table-responsive">
-                                        <table class="table table-bordered table-hover datatable text-nowrap text-center">
+                                        <table class="table table-bordered table-hover datatable text-center">
                                             <thead class="thead-dark">
                                                 <tr>
                                                     <th>Code</th>
@@ -53,8 +53,18 @@
                                                             <td>{{ $agency->enterprise->website }}</td>
                                                             <td>{{ $agency->enterprise->address }}</td>
                                                             <td>
-                                                                {!! link_to_route('agency.show', 'Afficher', ['agency' => $agency], ['class' => 'btn ']) !!}
-                                                                {!! link_to_route('agency.edit', 'Editer', ['agency' => $agency], ['class' => 'btn']) !!}
+                                                                <a class="btn btn-info btn-xs"
+                                                                    href="{{ route('agency.show', $agency) }}"
+                                                                    title="Afficher"><i class="fa fa-eye"
+                                                                        aria-hidden="true"></i></a>
+                                                                <a class="btn btn-warning btn-xs"
+                                                                    href="{{ route('agency.edit', $agency) }}"
+                                                                    title="Modifier"><i class="fa fa-edit"
+                                                                        aria-hidden="true"></i></a>
+                                                                <a class="btn btn-danger btn-xs"
+                                                                    href="{{ route('agency.destroy', $agency) }}"
+                                                                    title="Supprimer"><i class="fa fa-trash"
+                                                                        aria-hidden="true"></i></a>
                                                             </td>
                                                         </tr>
                                                     @endforeach
@@ -75,6 +85,5 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 @endsection

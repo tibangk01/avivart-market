@@ -1,7 +1,6 @@
 @extends('layouts.dashboard', ['title' => 'Liste des points de ventes'])
 
 @section('body')
-    <!-- Main content -->
     <div class="content">
         <div class="container">
             <div class="row">
@@ -30,7 +29,7 @@
                                     </div>
 
                                     <div class="table-responsive">
-                                        <table class="table table-bordered table-hover datatable text-nowrap text-center">
+                                        <table class="table table-bordered table-hover datatable text-center">
                                             <thead class="thead-dark">
                                                 <tr>
                                                     <th>Point de vente</th>
@@ -42,18 +41,28 @@
                                                 @if ($sale_places->count())
                                                     @foreach ($sale_places as $sale_place)
                                                         <tr>
-                                                            {{-- <td>{{ $sale_place->id }}</td> --}}
                                                             <td>{{ $sale_place->name }}</td>
                                                             <td>{{ $sale_place->agency->enterprise->name }}</td>
                                                             <td>
-                                                                {!! link_to_route('sale_place.show', 'Afficher', ['sale_place' => $sale_place], ['class' => 'btn ']) !!}
-                                                                {!! link_to_route('sale_place.edit', 'Editer', ['sale_place' => $sale_place], ['class' => 'btn']) !!}
+                                                                <a class="btn btn-info btn-xs"
+                                                                href="{{ route('sale_place.show', $sale_place) }}"
+                                                                title="Afficher"><i class="fa fa-eye"
+                                                                    aria-hidden="true"></i></a>
+                                                            <a class="btn btn-warning btn-xs"
+                                                                href="{{ route('sale_place.edit', $sale_place) }}"
+                                                                title="Modifier"><i class="fa fa-edit"
+                                                                    aria-hidden="true"></i></a>
+                                                            <a class="btn btn-danger btn-xs"
+                                                                href="{{ route('sale_place.destroy', $sale_place) }}"
+                                                                title="Supprimer"><i class="fa fa-trash"
+                                                                    aria-hidden="true"></i></a>
+
                                                             </td>
                                                         </tr>
                                                     @endforeach
                                                 @else
                                                     <tr>
-                                                        <td colspan="3">Pas d'enregistrment</td>
+                                                        <td colspan="6">Pas d'enregistrment</td>
                                                     </tr>
 
                                                 @endif
@@ -63,13 +72,11 @@
                                 </div>
 
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-    </div>
+
 @endsection
