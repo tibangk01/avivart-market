@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => "Liste des types d'employés"])
+@extends('layouts.dashboard', ['title' => "Liste des person rays"])
 
 @section('body')
 
@@ -26,7 +26,7 @@
                                         <div class="d-flex">
                                             <div class="ml-auto">
                                                 <a class="btn btn-flat btn-primary mb-1"
-                                                    href="{{ route('staff_type.create') }}"><i class="fa fa-plus"></i>
+                                                    href="{{ route('person_ray.create') }}"><i class="fa fa-plus"></i>
                                                     Ajouter</a>
                                             </div>
                                         </div>
@@ -43,20 +43,20 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @if ($staffTypes->count() > 0)
-                                                            @foreach ($staffTypes as $staffType)
+                                                        @if ($personRays->count() > 0)
+                                                            @foreach ($personRays as $personRay)
                                                                 <tr>
-                                                                    <td>{{ $staffType->name }}</td>
-                                                                    <td>{{ $staffType->created_at }}</td>
-                                                                    <td>{{ $staffType->created_at }}</td>
+                                                                    <td>{{ $personRay->name }}</td>
+                                                                    <td>{{ $personRay->created_at }}</td>
+                                                                    <td>{{ $personRay->created_at }}</td>
                                                                     <td>
-                                                                        <a class="btn btn-info btn-xs" href="{{ route('staff_type.show', $staffType) }}"
+                                                                        <a class="btn btn-info btn-xs" href="{{ route('person_ray.show', $personRay) }}"
                                                                             title="Afficher"><i class="fa fa-eye"
                                                                                 aria-hidden="true"></i></a>
-                                                                        <a class="btn btn-warning btn-xs" href="{{ route('staff_type.edit', $staffType) }}"
+                                                                        <a class="btn btn-warning btn-xs" href="{{ route('person_ray.edit', $personRay) }}"
                                                                             title="Afficher"><i class="fa fa-edit"
                                                                                 aria-hidden="true"></i></a>
-                                                                        <a class="btn btn-danger btn-xs" href="{{ route('staff_type.destroy',$staffType) }}"
+                                                                        <a class="btn btn-danger btn-xs" href="{{ route('person_ray.destroy',$personRay) }}"
                                                                             title="Afficher"><i class="fa fa-trash"
                                                                                 aria-hidden="true"></i></a>
                                                                     </td>

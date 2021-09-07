@@ -1,12 +1,12 @@
- 
-@extends('layouts.dashboard', ['title' => "Ajouter un type d'employé"])
+
+@extends('layouts.dashboard', ['title' => "Ajouter un person ray"])
 
 @section('body')
 <section class="content">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                {!! Form::open(['method' => 'POST', 'route' => 'staff_type.store']) !!}
+                {!! Form::open(['method' => 'POST', 'route' => 'person_ray.store']) !!}
 
                 <div class="form-group">
                     {!! Form::label('name', "Nom") !!}
@@ -20,6 +20,6 @@
                 {!! Form::close() !!}
             </div>
         </div>
-    </div>  
+    </div>
 </section>
 @endsection
