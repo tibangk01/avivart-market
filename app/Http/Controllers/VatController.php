@@ -14,7 +14,9 @@ class VatController extends Controller
      */
     public function index()
     {
-        //
+        $vats = Vat::all();
+
+        return view('vats.index', compact('vats'));
     }
 
     /**
@@ -24,7 +26,7 @@ class VatController extends Controller
      */
     public function create()
     {
-        //
+        return view('vats.create');
     }
 
     /**
@@ -35,7 +37,23 @@ class VatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->isMethod('post')) {
+
+            $request->validate([
+                'percentage' => ['required'],
+            ]);
+
+            $vat = Vat::create($request->only('percentage'));
+
+            if ($vat) {
+                session()->flash('success', "Donnée enregistrée");
+            } else {
+                session()->flash('error', "Une erreur s'est produite");
+            }
+            
+        }
+
+        return back();
     }
 
     /**
@@ -46,7 +64,7 @@ class VatController extends Controller
      */
     public function show(Vat $vat)
     {
-        //
+        return view('vats.show', compact('vat'));
     }
 
     /**
@@ -57,7 +75,7 @@ class VatController extends Controller
      */
     public function edit(Vat $vat)
     {
-        //
+        return view('vats.edit', compact('vat'));
     }
 
     /**
@@ -69,7 +87,18 @@ class VatController extends Controller
      */
     public function update(Request $request, Vat $vat)
     {
-        //
+        if ($request->isMethod('put')) {
+
+            $request->validate([
+                'percentage' => ['required'],
+            ]);
+
+            $vat->update($request->all());
+
+            session()->flash('success', 'Modification réussi');
+        }
+
+        return back();
     }
 
     /**

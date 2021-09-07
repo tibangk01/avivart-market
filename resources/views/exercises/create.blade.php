@@ -1,16 +1,20 @@
- 
-@extends('layouts.dashboard', ['title' => "Ajouter un type d'employé"])
+ @extends('layouts.dashboard', ['title' => "Ajouter un exercice"])
 
 @section('body')
 <section class="content">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                {!! Form::open(['method' => 'POST', 'route' => 'staff_type.store']) !!}
+                {!! Form::open(['method' => 'POST', 'route' => 'exercise.store']) !!}
 
                 <div class="form-group">
-                    {!! Form::label('name', "Nom") !!}
-                    {!! Form::text('name', null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Nom"]) !!}
+                    {!! Form::label('start_date', "Date de Début") !!}
+                    {!! Form::date('start_date', now(), ['class' => 'form-control', 'required' => true, 'placeholder' => "Date de Début"]) !!}
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('end_date', "Date de Fin") !!}
+                    {!! Form::date('end_date', now(), ['class' => 'form-control', 'required' => true, 'placeholder' => "Date de Fin"]) !!}
                 </div>
 
                  <div class="form-group text-right">

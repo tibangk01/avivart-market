@@ -46,7 +46,7 @@ class StaffTypeController extends Controller
             $staffType = StaffType::create($request->only('name'));
 
             if ($staffType) {
-                session()->flash('success', "Type d'employé enregistré");
+                session()->flash('success', "Donnée enregistrée");
             } else {
                 session()->flash('error', "Une erreur s'est produite");
             }
@@ -96,9 +96,9 @@ class StaffTypeController extends Controller
             $staffType->update($request->all());
 
             session()->flash('success', 'Modification réussi');
-
-            return back();
         }
+
+        return back();
     }
 
     /**

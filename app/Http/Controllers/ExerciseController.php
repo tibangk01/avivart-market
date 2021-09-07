@@ -14,7 +14,9 @@ class ExerciseController extends Controller
      */
     public function index()
     {
-        //
+        $exercises = Exercise::all();
+
+        return view('exercises.index', compact('exercises'));
     }
 
     /**
@@ -24,7 +26,7 @@ class ExerciseController extends Controller
      */
     public function create()
     {
-        //
+        return view('exercises.create');
     }
 
     /**
@@ -35,7 +37,24 @@ class ExerciseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->isMethod('post')) {
+
+            $request->validate([
+                'start_date' => ['required'],
+                'end_date' => ['required'],
+            ]);
+
+            $exercise = Exercise::create($request->only(['start_date', 'end_date']));
+
+            if ($exercise) {
+                session()->flash('success', "Donnée enregistrée");
+            } else {
+                session()->flash('error', "Une erreur s'est produite");
+            }
+            
+        }
+
+        return back();
     }
 
     /**
@@ -46,7 +65,7 @@ class ExerciseController extends Controller
      */
     public function show(Exercise $exercise)
     {
-        //
+        return view('exercises.show', compact('exercise'));
     }
 
     /**
@@ -57,7 +76,7 @@ class ExerciseController extends Controller
      */
     public function edit(Exercise $exercise)
     {
-        //
+        return view('exercises.edit', compact('exercise'));
     }
 
     /**
@@ -69,7 +88,19 @@ class ExerciseController extends Controller
      */
     public function update(Request $request, Exercise $exercise)
     {
-        //
+        if ($request->isMethod('put')) {
+
+            $request->validate([
+                'start_date' => ['required'],
+                'end_date' => ['required'],
+            ]);
+
+            $exercise->update($request->all());
+
+            session()->flash('success', 'Modification réussi');
+        }
+
+        return back();
     }
 
     /**

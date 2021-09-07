@@ -14,7 +14,9 @@ class WorkController extends Controller
      */
     public function index()
     {
-        //
+        $works = Work::all();
+
+        return view('works.index', compact('works'));
     }
 
     /**
@@ -24,7 +26,7 @@ class WorkController extends Controller
      */
     public function create()
     {
-        //
+        return view('works.create');
     }
 
     /**
@@ -35,7 +37,23 @@ class WorkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->isMethod('post')) {
+
+            $request->validate([
+                'name' => ['required', 'min:3', 'max:30'],
+            ]);
+
+            $work = Work::create($request->only('name'));
+
+            if ($work) {
+                session()->flash('success', "Donnée enregistrée");
+            } else {
+                session()->flash('error', "Une erreur s'est produite");
+            }
+            
+        }
+
+        return back();
     }
 
     /**
@@ -46,7 +64,7 @@ class WorkController extends Controller
      */
     public function show(Work $work)
     {
-        //
+        return view('works.show', compact('work'));
     }
 
     /**
@@ -57,7 +75,7 @@ class WorkController extends Controller
      */
     public function edit(Work $work)
     {
-        //
+        return view('works.edit', compact('work'));
     }
 
     /**
@@ -69,7 +87,18 @@ class WorkController extends Controller
      */
     public function update(Request $request, Work $work)
     {
-        //
+        if ($request->isMethod('put')) {
+
+            $request->validate([
+                'name' => ['required', 'max:30'],
+            ]);
+
+            $work->update($request->all());
+
+            session()->flash('success', 'Modification réussi');
+        }
+
+        return back();
     }
 
     /**

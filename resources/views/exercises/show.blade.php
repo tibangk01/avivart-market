@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => "Détails du type d'employé"])
+@extends('layouts.dashboard', ['title' => "Détails de l'exercice"])
 
 @section('body')
     <section class="content">
@@ -15,21 +15,25 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th>Nom</th>
-                                    <td>{{ $staffType->name }}</td>
+                                    <th>Date de Début</th>
+                                    <td>{{ $exercise->start_date }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Date de Fin</th>
+                                    <td>{{ $exercise->end_date }}</td>
                                 </tr>
                                 <tr>
                                     <th>Date de création</th>
-                                    <td>{{ $staffType->created_at->diffForHumans() }}</td>
+                                    <td>{{ $exercise->created_at->diffForHumans() }}</td>
                                 </tr>
                                 <tr>
                                     <th>Date de mise à jour</th>
-                                    <td>{{ $staffType->updated_at->diffForHumans() }}</td>
+                                    <td>{{ $exercise->updated_at->diffForHumans() }}</td>
                                 </tr>
                                 <tr class="table-light">
                                     <th>Action</th>
                                     <td>
-                                        {!! link_to_route('staff_type.edit','Editer', ['staff_type' => $staffType], ['class' => 'text-warning'] ) !!}
+                                        {!! link_to_route('exercise.edit','Editer', ['exercise' => $exercise], ['class' => 'text-warning'] ) !!}
                                     </td>
                                 </tr>
                             </tbody>

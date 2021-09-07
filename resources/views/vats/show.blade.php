@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => "Détails du type d'employé"])
+@extends('layouts.dashboard', ['title' => "Détails de la tva"])
 
 @section('body')
     <section class="content">
@@ -15,21 +15,21 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th>Nom</th>
-                                    <td>{{ $staffType->name }}</td>
+                                    <th>Pourcentage</th>
+                                    <td>{{ $vat->percentage }}</td>
                                 </tr>
                                 <tr>
                                     <th>Date de création</th>
-                                    <td>{{ $staffType->created_at->diffForHumans() }}</td>
+                                    <td>{{ $vat->created_at->diffForHumans() }}</td>
                                 </tr>
                                 <tr>
                                     <th>Date de mise à jour</th>
-                                    <td>{{ $staffType->updated_at->diffForHumans() }}</td>
+                                    <td>{{ $vat->updated_at->diffForHumans() }}</td>
                                 </tr>
                                 <tr class="table-light">
                                     <th>Action</th>
                                     <td>
-                                        {!! link_to_route('staff_type.edit','Editer', ['staff_type' => $staffType], ['class' => 'text-warning'] ) !!}
+                                        {!! link_to_route('vat.edit','Editer', ['vat' => $vat], ['class' => 'text-warning'] ) !!}
                                     </td>
                                 </tr>
                             </tbody>

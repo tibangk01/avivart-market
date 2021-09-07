@@ -1,15 +1,15 @@
-@extends('layouts.dashboard', ['title' => "Editer un type d'employé"])
+@extends('layouts.dashboard', ['title' => "Editer la remise"])
 
 @section('body')
 <section class="content">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                {!! Form::model($staffType, ['method' => 'PUT', 'route' => ['staff_type.update',  $staffType]]) !!}
+                {!! Form::model($discount, ['method' => 'PUT', 'route' => ['discount.update',  $discount]]) !!}
 
                 <div class="form-group">
-                    {!! Form::label('name', "Nom") !!}
-                    {!! Form::text('name', null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Nom"]) !!}
+                    {!! Form::label('amount', "Montant") !!}
+                    {!! Form::number('amount', null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Montant"]) !!}
                 </div>
 
                  <div class="form-group text-right">

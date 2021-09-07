@@ -14,7 +14,9 @@ class DiscountController extends Controller
      */
     public function index()
     {
-        //
+        $discounts = Discount::all();
+
+        return view('discounts.index', compact('discounts'));
     }
 
     /**
@@ -24,7 +26,7 @@ class DiscountController extends Controller
      */
     public function create()
     {
-        //
+        return view('discounts.create');
     }
 
     /**
@@ -35,7 +37,23 @@ class DiscountController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->isMethod('post')) {
+
+            $request->validate([
+                'amount' => ['required'],
+            ]);
+
+            $discount = Discount::create($request->only('amount'));
+
+            if ($discount) {
+                session()->flash('success', "Donnée enregistrée");
+            } else {
+                session()->flash('error', "Une erreur s'est produite");
+            }
+            
+        }
+
+        return back();
     }
 
     /**
@@ -46,7 +64,7 @@ class DiscountController extends Controller
      */
     public function show(Discount $discount)
     {
-        //
+        return view('discounts.show', compact('discount'));
     }
 
     /**
@@ -57,7 +75,7 @@ class DiscountController extends Controller
      */
     public function edit(Discount $discount)
     {
-        //
+        return view('discounts.edit', compact('discount'));
     }
 
     /**
@@ -69,7 +87,18 @@ class DiscountController extends Controller
      */
     public function update(Request $request, Discount $discount)
     {
-        //
+        if ($request->isMethod('put')) {
+
+            $request->validate([
+                'amount' => ['required'],
+            ]);
+
+            $discount->update($request->all());
+
+            session()->flash('success', 'Modification réussi');
+        }
+
+        return back();
     }
 
     /**

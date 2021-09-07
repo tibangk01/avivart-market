@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Exercise extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'start_date',
+        'end_date',
+    ];
+
 }

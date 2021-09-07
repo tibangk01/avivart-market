@@ -14,7 +14,9 @@ class CurrencyController extends Controller
      */
     public function index()
     {
-        //
+        $currencies = Currency::all();
+
+        return view('currencies.index', compact('currencies'));
     }
 
     /**
@@ -24,7 +26,7 @@ class CurrencyController extends Controller
      */
     public function create()
     {
-        //
+        return view('currencies.create');
     }
 
     /**
@@ -35,7 +37,23 @@ class CurrencyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->isMethod('post')) {
+
+            $request->validate([
+                'name' => ['required', 'min:3', 'max:30'],
+            ]);
+
+            $currency = Currency::create($request->only('name'));
+
+            if ($currency) {
+                session()->flash('success', "Donnée enregistrée");
+            } else {
+                session()->flash('error', "Une erreur s'est produite");
+            }
+            
+        }
+
+        return back();
     }
 
     /**
@@ -46,7 +64,7 @@ class CurrencyController extends Controller
      */
     public function show(Currency $currency)
     {
-        //
+        return view('currencies.show', compact('currency'));
     }
 
     /**
@@ -57,7 +75,7 @@ class CurrencyController extends Controller
      */
     public function edit(Currency $currency)
     {
-        //
+        return view('currencies.edit', compact('currency'));
     }
 
     /**
@@ -69,7 +87,18 @@ class CurrencyController extends Controller
      */
     public function update(Request $request, Currency $currency)
     {
-        //
+        if ($request->isMethod('put')) {
+
+            $request->validate([
+                'name' => ['required', 'max:30'],
+            ]);
+
+            $currency->update($request->all());
+
+            session()->flash('success', 'Modification réussi');
+        }
+
+        return back();
     }
 
     /**
