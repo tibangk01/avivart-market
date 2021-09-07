@@ -1,8 +1,7 @@
-@extends('layouts.dashboard', ['title' => 'Liste des Agences'])
+@extends('layouts.dashboard', ['title' => 'Liste des agences'])
 
 @section('body')
 
-    <!-- Main content -->
     <div class="content">
         <div class="container">
             <div class="row">
@@ -38,6 +37,8 @@
                                                     <th>Nom</th>
                                                     <th>Téléphone</th>
                                                     <th>Adresse</th>
+                                                    <th>Email</th>
+                                                    <th>Site web</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
@@ -48,6 +49,8 @@
                                                             <td>{{ $agency->enterprise->code }}</td>
                                                             <td>{{ $agency->enterprise->name }}</td>
                                                             <td>{{ $agency->enterprise->phone_number }}</td>
+                                                            <td>{{ $agency->enterprise->email }}</td>
+                                                            <td>{{ $agency->enterprise->website }}</td>
                                                             <td>{{ $agency->enterprise->address }}</td>
                                                             <td>
                                                                 {!! link_to_route('agency.show', 'Afficher', ['agency' => $agency], ['class' => 'btn ']) !!}
@@ -56,9 +59,9 @@
                                                         </tr>
                                                     @endforeach
                                                 @else
-                                                <tr>
-                                                    <td colspan="6">Pas d'enregistrment</td>
-                                                </tr>
+                                                    <tr>
+                                                        <td colspan="6">Pas d'enregistrment</td>
+                                                    </tr>
 
                                                 @endif
                                             </tbody>
@@ -67,12 +70,10 @@
                                 </div>
 
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
     </div>

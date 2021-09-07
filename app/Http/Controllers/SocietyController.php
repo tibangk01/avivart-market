@@ -44,15 +44,16 @@ class SocietyController extends Controller
                 'name' => ['required', 'min:3'],
                 'phone_number' => ['required', 'min:3'],
                 'address' => ['required', 'min:3'],
-
+                'email' => ['required', 'min:3'],
                 'tppcr' => ['required', 'min:3'],
                 'fiscal_code' => ['required', 'min:3'],
             ]);
 
             $society->update($request->only('tppcr', 'fiscal_code'));
-            $society->enterprise->update($request->only('name', 'phone_number', 'address', 'website'));
 
-            session()->flash('success', 'OK'); //TODO: message update society ok.
+            $society->enterprise->update($request->except('tppcr', 'fiscal_code'));
+
+            session()->flash('success', 'Modification réussi');
         }
 
         return back();
