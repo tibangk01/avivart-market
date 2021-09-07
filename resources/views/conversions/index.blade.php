@@ -1,8 +1,8 @@
-@extends('layouts.dashboard', ['title' => "Liste des types d'employés"])
+@extends('layouts.dashboard', ['title' => "Liste des unités"])
 
 @section('body')
 
-        <!-- Main content -->
+
         <div class="content">
             <div class="container">
                 <div class="row">
@@ -26,7 +26,7 @@
                                         <div class="d-flex">
                                             <div class="ml-auto">
                                                 <a class="btn btn-flat btn-primary mb-1"
-                                                    href="{{ route('staff_type.create') }}"><i class="fa fa-plus"></i>
+                                                    href="{{ route('conversion.create') }}"><i class="fa fa-plus"></i>
                                                     Ajouter</a>
                                             </div>
                                         </div>
@@ -43,20 +43,20 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @if ($staffTypes->count() > 0)
-                                                            @foreach ($staffTypes as $staffType)
+                                                        @if ($conversions->count() > 0)
+                                                            @foreach ($conversions as $conversion)
                                                                 <tr>
-                                                                    <td>{{ $staffType->name }}</td>
-                                                                    <td>{{ $staffType->created_at }}</td>
-                                                                    <td>{{ $staffType->created_at }}</td>
+                                                                    <td>{{ $conversion->name }}</td>
+                                                                    <td>{{ $conversion->created_at }}</td>
+                                                                    <td>{{ $conversion->created_at }}</td>
                                                                     <td>
-                                                                        <a class="btn btn-info btn-xs" href="{{ route('staff_type.show', $staffType) }}"
+                                                                        <a class="btn btn-info btn-xs" href="{{ route('conversion.show', $conversion) }}"
                                                                             title="Afficher"><i class="fa fa-eye"
                                                                                 aria-hidden="true"></i></a>
-                                                                        <a class="btn btn-warning btn-xs" href="{{ route('staff_type.edit', $staffType) }}"
+                                                                        <a class="btn btn-warning btn-xs" href="{{ route('conversion.edit', $conversion) }}"
                                                                             title="Afficher"><i class="fa fa-edit"
                                                                                 aria-hidden="true"></i></a>
-                                                                        <a class="btn btn-danger btn-xs" href="{{ route('staff_type.destroy',$staffType) }}"
+                                                                        <a class="btn btn-danger btn-xs" href="{{ route('conversion.destroy',$conversion) }}"
                                                                             title="Afficher"><i class="fa fa-trash"
                                                                                 aria-hidden="true"></i></a>
                                                                     </td>

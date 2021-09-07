@@ -218,10 +218,10 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{ route('conversion.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-shopping-cart"></i>
                                 <p>
-                                    Clients
+                                    Unités
                                 </p>
                             </a>
                         </li>
