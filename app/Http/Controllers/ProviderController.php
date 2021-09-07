@@ -14,7 +14,9 @@ class ProviderController extends Controller
      */
     public function index()
     {
-        //
+        $providers = Provider::all();
+
+        return view('providers.index', compact('providers'));
     }
 
     /**

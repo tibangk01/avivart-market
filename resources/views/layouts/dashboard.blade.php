@@ -274,6 +274,39 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ route('person_ray.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-shopping-cart"></i>
+                                <p>
+                                    Person rays
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('product_ray.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-shopping-cart"></i>
+                                <p>
+                                   Rayons de produits
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ route('provider.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-shopping-cart"></i>
+                                <p>
+                                   Fournisseurs
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('customer.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-shopping-cart"></i>
+                                <p>
+                                   Clients
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="" class="nav-link">
                                 <i class="nav-icon fas fa-shopping-cart"></i>
                                 <p>
@@ -302,22 +335,6 @@
                                 <i class="nav-icon fas fa-shopping-cart"></i>
                                 <p>
                                     Proformas
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('person_ray.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-cart"></i>
-                                <p>
-                                    Person rays
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('product_ray.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-cart"></i>
-                                <p>
-                                   Rayons de produits
                                 </p>
                             </a>
                         </li>
