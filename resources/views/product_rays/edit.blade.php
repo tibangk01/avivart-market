@@ -1,11 +1,11 @@
-@extends('layouts.dashboard', ['title' => "Editer un person ray"])
+@extends('layouts.dashboard', ['title' => "Editer un rayon de produit"])
 
 @section('body')
 <section class="content">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                {!! Form::model($personRay, ['method' => 'PUT', 'route' => ['person_ray.update',  $personRay]]) !!}
+                {!! Form::model($productRay, ['method' => 'PUT', 'route' => ['product_ray.update',  $productRay]]) !!}
 
                 <div class="form-group">
                     {!! Form::label('name', "Nom") !!}

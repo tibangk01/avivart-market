@@ -14,7 +14,9 @@ class ConversionController extends Controller
      */
     public function index()
     {
-        //
+        $conversions = Conversion::all();
+
+        return view('conversions.index', compact('conversions'));
     }
 
     /**
@@ -24,7 +26,7 @@ class ConversionController extends Controller
      */
     public function create()
     {
-        //
+        return view('conversions.create');
     }
 
     /**
@@ -35,7 +37,23 @@ class ConversionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->isMethod('post')) {
+
+            $request->validate([
+                'name' => ['required', 'min:3', 'max:30'],
+            ]);
+
+            $conversions = Conversion::create($request->only('name'));
+
+            if ($conversions) {
+                session()->flash('success', "Donnée enregistrée");
+            } else {
+                session()->flash('error', "Une erreur s'est produite");
+            }
+
+        }
+
+        return back();
     }
 
     /**
@@ -46,7 +64,7 @@ class ConversionController extends Controller
      */
     public function show(Conversion $conversion)
     {
-        //
+        return view('conversions.show', compact('conversion'));
     }
 
     /**
@@ -57,7 +75,7 @@ class ConversionController extends Controller
      */
     public function edit(Conversion $conversion)
     {
-        //
+        return view('conversions.edit', compact('conversion'));
     }
 
     /**
@@ -69,7 +87,18 @@ class ConversionController extends Controller
      */
     public function update(Request $request, Conversion $conversion)
     {
-        //
+        if ($request->isMethod('put')) {
+
+            $request->validate([
+                'name' => ['required', 'max:30'],
+            ]);
+
+            $conversion->update($request->all());
+
+            session()->flash('success', 'Modification réussi');
+        }
+
+        return back();
     }
 
     /**

@@ -1,8 +1,8 @@
-@extends('layouts.dashboard', ['title' => "Liste des unités"])
+@extends('layouts.dashboard', ['title' => "Liste des rayons de produits"])
 
 @section('body')
 
-
+        <!-- Main content -->
         <div class="content">
             <div class="container">
                 <div class="row">
@@ -26,7 +26,7 @@
                                         <div class="d-flex">
                                             <div class="ml-auto">
                                                 <a class="btn btn-flat btn-primary mb-1"
-                                                    href="{{ route('conversion.create') }}"><i class="fa fa-plus"></i>
+                                                    href="{{ route('product_ray.create') }}"><i class="fa fa-plus"></i>
                                                     Ajouter</a>
                                             </div>
                                         </div>
@@ -43,20 +43,20 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @if ($conversions->count() > 0)
-                                                            @foreach ($conversions as $conversion)
+                                                        @if ($productRays->count() > 0)
+                                                            @foreach ($productRays as $productRay)
                                                                 <tr>
-                                                                    <td>{{ $conversion->name }}</td>
-                                                                    <td>{{ $conversion->created_at }}</td>
-                                                                    <td>{{ $conversion->created_at }}</td>
+                                                                    <td>{{ $productRay->name }}</td>
+                                                                    <td>{{ $productRay->created_at }}</td>
+                                                                    <td>{{ $productRay->created_at }}</td>
                                                                     <td>
-                                                                        <a class="btn btn-info btn-xs" href="{{ route('conversion.show', $conversion) }}"
+                                                                        <a class="btn btn-info btn-xs" href="{{ route('product_ray.show', $productRay) }}"
                                                                             title="Afficher"><i class="fa fa-eye"
                                                                                 aria-hidden="true"></i></a>
-                                                                        <a class="btn btn-warning btn-xs" href="{{ route('conversion.edit', $conversion) }}"
+                                                                        <a class="btn btn-warning btn-xs" href="{{ route('product_ray.edit', $productRay) }}"
                                                                             title="Afficher"><i class="fa fa-edit"
                                                                                 aria-hidden="true"></i></a>
-                                                                        <a class="btn btn-danger btn-xs" href="{{ route('conversion.destroy',$conversion) }}"
+                                                                        <a class="btn btn-danger btn-xs" href="{{ route('product_ray.destroy',$productRay) }}"
                                                                             title="Afficher"><i class="fa fa-trash"
                                                                                 aria-hidden="true"></i></a>
                                                                     </td>
@@ -72,7 +72,6 @@
                                                     </tbody>
                                                 </table>
                                             </div>
-
                                     </div>
 
                                 </div>
@@ -81,10 +80,8 @@
                         </div>
                     </div>
                 </div>
-                {{-- /.row --}}
 
-            </div><!-- /.container-fluid -->
+            </div>
         </div>
     </div>
-    <!-- /.content-wrapper -->
 @endsection

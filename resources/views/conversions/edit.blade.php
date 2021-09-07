@@ -1,11 +1,11 @@
-@extends('layouts.dashboard', ['title' => "Editer un type d'employé"])
+@extends('layouts.dashboard', ['title' => "Editer un type d'unité"])
 
 @section('body')
 <section class="content">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                {!! Form::model($staffType, ['method' => 'PUT', 'route' => ['staff_type.update',  $staffType]]) !!}
+                {!! Form::model($conversion, ['method' => 'PUT', 'route' => ['conversion.update',  $conversion]]) !!}
 
                 <div class="form-group">
                     {!! Form::label('name', "Nom") !!}
@@ -19,6 +19,6 @@
                 {!! Form::close() !!}
             </div>
         </div>
-    </div>  
+    </div>
 </section>
 @endsection

@@ -16,34 +16,26 @@
                             <tbody>
                                 <tr>
                                     <th>Nom</th>
-                                    <td>{{ $productType->name }}</td>
+                                    <td>{{ $productRay->name }}</td>
                                 </tr>
                                 <tr>
                                     <th>Date de création</th>
-                                    <td>{{ $productType->created_at->diffForHumans() }}</td>
+                                    <td>{{ $productRay->created_at->diffForHumans() }}</td>
                                 </tr>
                                 <tr>
                                     <th>Date de mise à jour</th>
-                                    <td>{{ $productType->updated_at->diffForHumans() }}</td>
+                                    <td>{{ $productRay->updated_at->diffForHumans() }}</td>
                                 </tr>
                                 <tr class="table-light">
                                     <th>Action</th>
                                     <td>
-                                        {!! link_to_route('product_type.edit','Editer', ['product_type' => $productType], ['class' => 'text-warning'] ) !!}
+                                        {!! link_to_route('product_ray.edit','Editer', ['product_ray' => $productRay], ['class' => 'text-warning'] ) !!}
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-
-
-
-
-                <i class="fa fa-building" aria-hidden="true"></i>
-
-
-
             </div>
         </div>
     </section>

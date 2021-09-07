@@ -14,7 +14,9 @@ class PersonRayController extends Controller
      */
     public function index()
     {
-        //
+        $personRays = PersonRay::all();
+
+        return view('person_rays.index', compact('personRays'));
     }
 
     /**
@@ -24,7 +26,7 @@ class PersonRayController extends Controller
      */
     public function create()
     {
-        //
+        return view('person_rays.create');
     }
 
     /**
@@ -35,7 +37,23 @@ class PersonRayController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->isMethod('post')) {
+
+            $request->validate([
+                'name' => ['required', 'min:3', 'max:30'],
+            ]);
+
+            $personRay = PersonRay::create($request->only('name'));
+
+            if ($personRay) {
+                session()->flash('success', "Donnée enregistrée");
+            } else {
+                session()->flash('error', "Une erreur s'est produite");
+            }
+
+        }
+
+        return back();
     }
 
     /**
@@ -46,7 +64,7 @@ class PersonRayController extends Controller
      */
     public function show(PersonRay $personRay)
     {
-        //
+        return view('person_rays.show', compact('personRay'));
     }
 
     /**
@@ -57,7 +75,7 @@ class PersonRayController extends Controller
      */
     public function edit(PersonRay $personRay)
     {
-        //
+        return view('person_rays.edit', compact('personRay'));
     }
 
     /**
@@ -69,7 +87,18 @@ class PersonRayController extends Controller
      */
     public function update(Request $request, PersonRay $personRay)
     {
-        //
+        if ($request->isMethod('put')) {
+
+            $request->validate([
+                'name' => ['required', 'max:30'],
+            ]);
+
+            $personRay->update($request->all());
+
+            session()->flash('success', 'Modification réussi');
+        }
+
+        return back();
     }
 
     /**

@@ -1,11 +1,11 @@
-@extends('layouts.dashboard', ['title' => "Editer un person ray"])
+ @extends('layouts.dashboard', ['title' => "Ajouter un rayon de produit"])
 
 @section('body')
 <section class="content">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                {!! Form::model($personRay, ['method' => 'PUT', 'route' => ['person_ray.update',  $personRay]]) !!}
+                {!! Form::open(['method' => 'POST', 'route' => 'product_ray.store']) !!}
 
                 <div class="form-group">
                     {!! Form::label('name', "Nom") !!}
@@ -13,7 +13,7 @@
                 </div>
 
                  <div class="form-group text-right">
-                    {!! Form::submit('Modifier', ['class' => 'btn btn-warning']) !!}
+                    {!! Form::submit('Ajouter', ['class' => 'btn btn-success']) !!}
                 </div>
 
                 {!! Form::close() !!}

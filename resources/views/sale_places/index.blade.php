@@ -13,7 +13,7 @@
                 <div class="col-lg-12">
                     @if($sale_places->count())
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table datatable">
                             <thead class="thead-dark">
                                 <tr>
                                     {{-- <th>Id</th> --}}
