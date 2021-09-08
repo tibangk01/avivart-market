@@ -28,27 +28,12 @@
                                 <div class="d-flex">
                                     <div class="ml-auto">
                                         <a class="btn btn-flat btn-primary mb-1"
-                                            href=""><i class="fa fa-plus"></i>
+                                            href="{{ route('provider.create', ['create' => 'corporation']) }}"><i class="fa fa-plus"></i>
                                             Ajouter</a>
                                     </div>
                                 </div>
 
-                                <div class="table-responsive">
-                                        <table
-                                            class="table table-bordered table-hover datatable text-nowrap text-center">
-                                            <thead class="thead-dark">
-                                                <tr>
-                                                    <th>Dénomination</th>
-                                                    <th>Date de Création</th>
-                                                    <th>Date de modification</th>
-                                                    <th>Actions</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                <x-providers.index.corporation />
                             </div>
 
                             <div class="tab-pane fade" id="nav-second" role="tabpanel"
@@ -57,27 +42,12 @@
                                 <div class="d-flex">
                                     <div class="ml-auto">
                                         <a class="btn btn-flat btn-primary mb-1"
-                                            href=""><i class="fa fa-plus"></i>
+                                            href="{{ route('provider.create', ['create' => 'person']) }}"><i class="fa fa-plus"></i>
                                             Ajouter</a>
                                     </div>
                                 </div>
 
-                                <div class="table-responsive">
-                                        <table
-                                            class="table table-bordered table-hover datatable text-nowrap text-center">
-                                            <thead class="thead-dark">
-                                                <tr>
-                                                    <th>Dénomination</th>
-                                                    <th>Date de Création</th>
-                                                    <th>Date de modification</th>
-                                                    <th>Actions</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                <x-providers.index.person />
                             </div>
 
                         </div>

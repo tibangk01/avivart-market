@@ -42,36 +42,34 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @if ($agencies->count())
-                                                    @foreach ($agencies as $agency)
-                                                        <tr>
-                                                            <td>{{ $agency->enterprise->code }}</td>
-                                                            <td>{{ $agency->enterprise->name }}</td>
-                                                            <td>{{ $agency->enterprise->phone_number }}</td>
-                                                            <td>{{ $agency->enterprise->email }}</td>
-                                                            <td>{{ $agency->enterprise->address }}</td>
-                                                            <td>{{ $agency->enterprise->website }}</td>
-                                                            <td>
-                                                                <a class="btn btn-info btn-xs"
-                                                                    href="{{ route('agency.show', $agency) }}"
-                                                                    title="Afficher"><i class="fa fa-eye"
-                                                                        aria-hidden="true"></i></a>
-                                                                <a class="btn btn-warning btn-xs"
-                                                                    href="{{ route('agency.edit', $agency) }}"
-                                                                    title="Modifier"><i class="fa fa-edit"
-                                                                        aria-hidden="true"></i></a>
-                                                                <a class="btn btn-danger btn-xs"
-                                                                    href="{{ route('agency.destroy', $agency) }}"
-                                                                    title="Supprimer"><i class="fa fa-trash"
-                                                                        aria-hidden="true"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                @else
+                                                @forelse ($agencies as $agency)
                                                     <tr>
-                                                        <td colspan="7">Pas d'enregistrment</td>
+                                                        <td>{{ $agency->enterprise->code }}</td>
+                                                        <td>{{ $agency->enterprise->name }}</td>
+                                                        <td>{{ $agency->enterprise->phone_number }}</td>
+                                                        <td>{{ $agency->enterprise->email }}</td>
+                                                        <td>{{ $agency->enterprise->address }}</td>
+                                                        <td>{{ $agency->enterprise->website }}</td>
+                                                        <td>
+                                                            <a class="btn btn-info btn-xs"
+                                                                href="{{ route('agency.show', $agency) }}"
+                                                                title="Afficher"><i class="fa fa-eye"
+                                                                    aria-hidden="true"></i></a>
+                                                            <a class="btn btn-warning btn-xs"
+                                                                href="{{ route('agency.edit', $agency) }}"
+                                                                title="Modifier"><i class="fa fa-edit"
+                                                                    aria-hidden="true"></i></a>
+                                                            <a class="btn btn-danger btn-xs"
+                                                                href="{{ route('agency.destroy', $agency) }}"
+                                                                title="Supprimer"><i class="fa fa-trash"
+                                                                    aria-hidden="true"></i></a>
+                                                        </td>
                                                     </tr>
-                                                @endif
+                                                @empty
+                                                <tr>
+                                                    <td colspan="7">Pas d'enregistrment</td>
+                                                </tr>
+                                                @endforelse
                                             </tbody>
                                         </table>
                                     </div>

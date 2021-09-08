@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\DB;
 
 class AgencyController extends Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -30,9 +35,11 @@ class AgencyController extends Controller
      */
     public function create()
     {
+        $societies = Society::all()->load('enterprise')->pluck('enterprise.name', 'id');
+
         $regions = Region::all()->pluck(null, 'id');
 
-        return view('agencies.create', compact('regions'));
+        return view('agencies.create', compact('societies', 'regions'));
     }
 
     /**
@@ -43,7 +50,6 @@ class AgencyController extends Controller
      */
     public function store(Request $request)
     {
-
         if ($request->isMethod('POST')) {
 
             $request->validate([
@@ -59,20 +65,27 @@ class AgencyController extends Controller
 
                 DB::beginTransaction();
 
-                $enterprise = Enterprise::orderBy('id', 'DESC')->first();
+                $society = Society::findOrFail($request->society_id);
 
-                $society = Society::orderBy('id', 'DESC')->firstOrFail();
+                //get the last agency in database : very important here
+                $agency = Agency::orderBy('id', 'DESC')->first();
 
-                $enterprise = Enterprise::create(array_merge($request->all(),
+                $code = 1;
+
+                if ($agency) {
+                    $code = ++$agency->enterprise->code;
+                }
+
+                $enterprise = Enterprise::create(array_merge($request->except('society_id'),
                     [
-                        'code' => '0' . ++$enterprise->code,
+                        'code' => self::BEGIN_CODE . ($society->code + $code),
+                        'is_corporation' => false,
                     ]
                 ));
 
                 Agency::create([
-                    'region_id' => $request->region_id,
-                    'society_id' => $society->id,
                     'enterprise_id' => $enterprise->id,
+                    'society_id' => $society->id,
                 ]);
 
                 DB::commit();
@@ -109,9 +122,11 @@ class AgencyController extends Controller
      */
     public function edit(Agency $agency)
     {
+        $societies = Society::all()->load('enterprise')->pluck('enterprise.name', 'id');
+
         $regions = Region::all()->pluck(null, 'id');
 
-        return view('agencies.edit', compact('regions', 'agency'));
+        return view('agencies.edit', compact('societies', 'regions', 'agency'));
     }
 
     /**
@@ -123,11 +138,9 @@ class AgencyController extends Controller
      */
     public function update(Request $request, Agency $agency)
     {
-
         if ($request->isMethod('PUT')) {
 
             $request->validate([
-                'region_id' => ['required'],
                 'name' => ['required', 'min:3', 'max:50'],
                 'phone_number' => ['required', 'min:8'],
                 'email' => ['required', 'email', 'max:60'],
@@ -139,23 +152,22 @@ class AgencyController extends Controller
 
                 DB::beginTransaction();
 
-                $agency->update($request->only('region_id'));
+                //$agency->update($request->only('society_id'));
 
-                $agency->enterprise->update($request->except('region_id') );
+                $agency->enterprise->update($request->except('society_id'));
 
                 DB::commit();
+
+                session()->flash('success', 'Modification réussi');
 
             } catch (\Throwable $th) {
 
                 DB::rollBack();
 
                 session()->flash('error', "Une erreur s'est produite");
-
-                return back();
             }
-
-            session()->flash('success', 'Modification réussi');
         }
+
         return back();
     }
 

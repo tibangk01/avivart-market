@@ -32,7 +32,12 @@
                                         <table class="table table-bordered table-hover datatable text-center">
                                             <thead class="thead-dark">
                                                 <tr>
+                                                    <th>Code</th>
                                                     <th>Nom</th>
+                                                    <th>Téléphone</th>
+                                                    <th>Email</th>
+                                                    <th>Adresse</th>
+                                                    <th>Site web</th>
                                                     <th>Agence</th>
                                                     <th>Date de création</th>
                                                     <th>Date de modification</th>
@@ -40,35 +45,38 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @if ($salePlaces->count() > 0)
-                                                    @foreach ($salePlaces as $salePlace)
-                                                        <tr>
-                                                            <td>{{ $salePlace->name }}</td>
-                                                            <td>{{ $salePlace->agency->enterprise->name }}</td>
-                                                            <td>{{ $salePlace->created_at->diffForHumans() }}</td>
-                                                            <td>{{ $salePlace->updated_at->diffForHumans() }}</td>
-                                                            <td>
-                                                                <a class="btn btn-info btn-xs"
-                                                                href="{{ route('sale_place.show', $salePlace) }}"
-                                                                title="Afficher"><i class="fa fa-eye"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a class="btn btn-warning btn-xs"
-                                                                href="{{ route('sale_place.edit', $salePlace) }}"
-                                                                title="Modifier"><i class="fa fa-edit"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a class="btn btn-danger btn-xs"
-                                                                href="{{ route('sale_place.destroy', $salePlace) }}"
-                                                                title="Supprimer"><i class="fa fa-trash"
-                                                                    aria-hidden="true"></i></a>
-
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                @else
+                                                @forelse($salePlaces as $salePlace)
                                                     <tr>
-                                                        <td colspan="5">Pas d'enregistrment</td>
+                                                        <td>{{ $salePlace->enterprise->code }}</td>
+                                                        <td>{{ $salePlace->enterprise->name }}</td>
+                                                        <td>{{ $salePlace->enterprise->phone_number }}</td>
+                                                        <td>{{ $salePlace->enterprise->email }}</td>
+                                                        <td>{{ $salePlace->enterprise->address }}</td>
+                                                        <td>{{ $salePlace->enterprise->website }}</td>
+                                                        <td>{{ $salePlace->agency->enterprise->name }}</td>
+                                                        <td>{{ $salePlace->created_at->diffForHumans() }}</td>
+                                                        <td>{{ $salePlace->updated_at->diffForHumans() }}</td>
+                                                        <td>
+                                                            <a class="btn btn-info btn-xs"
+                                                            href="{{ route('sale_place.show', $salePlace) }}"
+                                                            title="Afficher"><i class="fa fa-eye"
+                                                                aria-hidden="true"></i></a>
+                                                        <a class="btn btn-warning btn-xs"
+                                                            href="{{ route('sale_place.edit', $salePlace) }}"
+                                                            title="Modifier"><i class="fa fa-edit"
+                                                                aria-hidden="true"></i></a>
+                                                        <a class="btn btn-danger btn-xs"
+                                                            href="{{ route('sale_place.destroy', $salePlace) }}"
+                                                            title="Supprimer"><i class="fa fa-trash"
+                                                                aria-hidden="true"></i></a>
+
+                                                        </td>
                                                     </tr>
-                                                @endif
+                                                @empty
+                                                <tr>
+                                                    <td colspan="10">Pas d'enregistrment</td>
+                                                </tr>
+                                                @endforelse
                                             </tbody>
                                         </table>
                                     </div>

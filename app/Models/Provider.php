@@ -14,13 +14,17 @@ use Illuminate\Database\Eloquent\Model;
  * Class Provider
  * 
  * @property int $id
- * @property int $people_id
- * @property int $provider_type_id
+ * @property int $person_type_id
+ * @property int $person_ray_id
+ * @property int|null $person_id
+ * @property int|null $corporation_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * 
- * @property Person $person
- * @property ProviderType $provider_type
+ * @property Person|null $person
+ * @property Corporation|null $corporation
+ * @property PersonType $person_type
+ * @property PersonRay $person_ray
  * @property Collection|Purchase[] $purchases
  *
  * @package App\Models
@@ -30,23 +34,37 @@ class Provider extends Model
 	protected $table = 'providers';
 
 	protected $casts = [
-		'people_id' => 'int',
-		'provider_type_id' => 'int'
+		'person_type_id' => 'int',
+		'person_ray_id' => 'int',
+		'person_id' => 'int',
+		'corporation_id' => 'int'
 	];
 
 	protected $fillable = [
-		'people_id',
-		'provider_type_id'
+		'person_type_id',
+		'person_ray_id',
+		'person_id',
+		'corporation_id'
 	];
 
 	public function person()
 	{
-		return $this->belongsTo(Person::class, 'people_id');
+		return $this->belongsTo(Person::class);
 	}
 
-	public function provider_type()
+	public function corporation()
 	{
-		return $this->belongsTo(ProviderType::class);
+		return $this->belongsTo(Corporation::class);
+	}
+
+	public function person_type()
+	{
+		return $this->belongsTo(PersonType::class);
+	}
+
+	public function person_ray()
+	{
+		return $this->belongsTo(PersonRay::class);
 	}
 
 	public function purchases()
