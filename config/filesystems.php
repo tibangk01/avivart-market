@@ -29,6 +29,23 @@ return [
     */
 
     'disks' => [
+        'ftp' => [
+            'driver' => 'ftp',
+            'host' => 'files144.hostinger.fr',
+            'username' => 'u774058325',
+            'password' => '20?Avi!varT@18',
+            // Optional FTP Settings...
+            // 'port' => 21,
+            // 'root' => '',
+            // 'passive' => true,
+            // 'ssl' => true,
+            // 'timeout' => 30,
+        ],
+
+        'uploads_path' => [
+            'driver' => 'local',
+            'root' => public_path('libraries'),
+        ],
 
         'local' => [
             'driver' => 'local',
