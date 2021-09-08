@@ -34,20 +34,15 @@
                             </label>
                         </div>
                     </div>
-                    <div class="mr-1">
-                        <button type="reset" class="btn btn-sm btn-primary rounded-0">Annuler</button>
-                    </div>
-                    <div class="pb-1">
-                        <button type="submit" class="btn btn-sm btn-success rounded-0">Valider</button>
+                    <div class="form-group">
+                        {!! Form::submit('Se connecter', ['class' => 'btn btn-sm btn-success rounded-0']) !!}
                     </div>
                 </div>
-
             {!! Form::close() !!}
 
             <p class="mb-1">
                 <a href="{{ route('page.forgot_password') }}" class="text-sm">Mot de passe oublié ?</a>
             </p>
         </div>
-        <!-- /.login-card-body -->
     </div>
 @endsection

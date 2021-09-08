@@ -41,6 +41,8 @@ Route::prefix('/')->name('page.')->group(function () {
     # Home :
     Route::get('/', [PageController::class, 'index'])->name('index')->middleware('auth');
 
+    Route::get('/developer', [PageController::class, 'developer'])->name('developer')->middleware('auth');
+
     # Auth :
     Route::middleware('guest')->group(function () {
 

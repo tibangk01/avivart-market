@@ -21,6 +21,17 @@ class PageController extends Controller
         return view('pages.index');
     }
 
+    /**
+     * developer
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function developer(Request $request)
+    {
+        return view('pages.developer');
+    }
+
 
     /**
      * login
@@ -33,7 +44,7 @@ class PageController extends Controller
 
         if ($request->isMethod('POST')) {
 
-            $this->validate($request, [
+            $request->validate([
                 'username' => ['required'],
                 'password' => ['required'],
             ]);
@@ -45,14 +56,13 @@ class PageController extends Controller
                 if (Hash::check($request->password, $human->password)) {
 
                     session()->put('human', $human);
-                    auth()->login($human->user);
+                    auth()->login($human->user, $request->has('remember_me'));
 
-                    $message = 'Bienvenue '. ucfirst($human->user->full_name);
+                    $message = "Bienvenue {$human->user->full_name}";
 
                     switch (intval($human->user->user_type_id)) {
                         case 1: //developer
-                            $redirectRoute = 'page.index'; // Temporary
-                            // $redirectRoute = 'page.developer';
+                            $redirectRoute = 'page.developer';
                             break;
                         default:    //staff
                             $redirectRoute = 'page.index';
@@ -66,6 +76,7 @@ class PageController extends Controller
 
             return back()->withDanger('Erreur de connexion.');
         }
+        
         return view('pages.login');
     }
 
