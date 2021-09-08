@@ -3,7 +3,6 @@
 @section('body')
     <section class="content">
         <div class="container-fluid">
-
             <div class="row">
                 <div class="col-12">
                     <div class="card">
@@ -12,10 +11,8 @@
                                 <div class="p-0"> <a class="btn btn-flat btn-primary"
                                         href="{{ route('product.index') }}">Retour</a> </div>
                             </div>
-
                         </div>
-                        <!-- /.card-header -->
-                        <div class="card-body table-responsive p-0" style="height: 450px;">
+                        <div class="card-body table-responsive p-0">
                             <table class="table table-head-fixed text-nowrap">
                                 <tr>
                                     <td>Id</td>
@@ -52,18 +49,17 @@
                                 <tr>
                                     <td>Image</td>
                                     <td>
-                                        <img src="{{ $product->library->remote }}" width="50" height="50" alt="{{ $product->name }}">
-                                        <a href="{{ route('library.edit', ['library' => $product->library ]) }}" class="btn btn-sm btn-info" title="Editer"><i class="fas fa-edit"></i></a>
+                                        <img src="{{ $product->library->remote }}" width="50" height="50"
+                                            alt="{{ $product->name }}">
+                                        <a href="{{ route('library.edit', ['library' => $product->library]) }}"
+                                            class="btn btn-sm btn-info" title="Editer"><i class="fas fa-edit"></i></a>
                                     </td>
-                                <tr/>
+                                <tr>
                             </table>
                         </div>
-                        <!-- /.card-body -->
                     </div>
-                    <!-- /.card -->
                 </div>
             </div>
-
         </div>
     </section>
 @endsection

@@ -1,10 +1,8 @@
 @extends('layouts.dashboard', ['title' => 'Liste des produits'])
 
 @section('body')
-
     <section class="content">
         <div class="container-fluid">
-
             <div class="d-flex">
                 <div class="ml-auto p-2">
                     <a class="btn btn-flat btn-primary" href="{{ route('product.create') }}"><i class="fa fa-plus"></i>
@@ -12,31 +10,12 @@
                 </div>
             </div>
             <div class="row">
-
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Liste des produits</h3>
-
-                            <div class="card-tools">
-                                <div class="input-group input-group-sm" style="width: 150px;">
-                                    <input type="text" name="table_search" class="form-control float-right"
-                                        placeholder="Search">
-
-                                    <div class="input-group-append">
-                                        <button type="submit" class="btn btn-default">
-                                            <i class="fas fa-search"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body table-responsive p-0" style="height: 300px;">
-                            <table class="table table-head-fixed text-nowrap" id="example"
+                        <div class="card-body table-responsive p-0">
+                            <table class="table table-head-fixed text-nowrap">
                                 <thead>
                                     <tr>
-                                        <th>Id</th>
                                         <th>Nom</th>
                                         <th>Prix</th>
                                         <th>Catégorie</th>
@@ -46,10 +25,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if ($products->count())
+                                    @if ($products->count() > 0)
                                         @foreach ($products as $product)
                                             <tr>
-                                                <td>{{ $product->id }}</td>
                                                 <td>{{ $product->name }}</td>
                                                 <td>{{ $product->price }}</td>
                                                 <td>{{ $product->product_category->name }}</td>
@@ -63,7 +41,7 @@
                                         @endforeach
                                     @else
                                         <tr>
-                                            <td colspan="8" class="text-center">
+                                            <td colspan="7" class="text-center">
                                                 Pas d'enregistrment de produit(s).
                                             </td>
                                         </tr>
@@ -71,16 +49,9 @@
                                 </tbody>
                             </table>
                         </div>
-                        <!-- /.card-body -->
                     </div>
-                    <!-- /.card -->
                 </div>
             </div>
-
         </div>
     </section>
-
-
-
-
 @endsection

@@ -37,7 +37,7 @@ class ConversionController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->isMethod('POST')) {
+        if ($request->isMethod('post')) {
 
             $request->validate([
                 'name' => ['required', 'min:3', 'max:30'],
