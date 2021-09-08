@@ -14,9 +14,10 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers = Customer::all();
+        //$corporations = Customer::where('person_type', 1)->get();
+        $people = Customer::where('person_type', 2)->get();
 
-        return view('customers.index', compact('customers'));
+        return view('customers.index', compact('people'));
     }
 
     /**
