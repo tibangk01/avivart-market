@@ -4,47 +4,55 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="d-flex">
-                                <div class="p-0"> <a class="btn btn-flat btn-primary"
-                                        href="{{ route('product.index') }}">Retour</a> </div>
-                            </div>
-                        </div>
-                        <div class="card-body table-responsive p-0">
-                            <table class="table table-head-fixed text-nowrap">
+                <div class="col-lg-12">
+                    <div class="table-responsive bg-white">
+                        <table class="table table-bordered table-stripped table-hover mb-0">
+                            <thead class="thead-dark">
                                 <tr>
-                                    <td>Id</td>
-                                    <td>{{ $product->id }}</td>
+                                    <th>Clé</th>
+                                    <th>Valeur</th>
                                 </tr>
+                            </thead>
+                            <tbody>
                                 <tr>
                                     <td>Nom</td>
                                     <td>{{ $product->name }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Quatitée en stock</td>
-                                    <td>{{ $product->stock_quantity }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Quantitée vendue</td>
-                                    <td>{{ $product->sold_quantity }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Prix Unitaire</td>
-                                    <td>{{ $product->price }}</td>
+                                    <td>Type</td>
+                                    <td>{{ $product->product_type->name }}</td>
                                 </tr>
                                 <tr>
                                     <td>Catégorie</td>
                                     <td>{{ $product->product_category->name }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Dévise</td>
+                                    <td>Unité</td>
+                                    <td>{{ $product->conversion->name }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Devise</td>
                                     <td>{{ $product->currency->name }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Conversion</td>
-                                    <td>{{ $product->conversion->name }}</td>
+                                    <td>Prix unitaire</td>
+                                    <td>{{ $product->price }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Quantité en stock</td>
+                                    <td>{{ $product->stock_quantity }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Quantité vendue</td>
+                                    <td>{{ $product->sold_quantity }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Date de création</td>
+                                    <td>{{ $product->created_at->diffForHumans() }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Date de modification</td>
+                                    <td>{{ $product->updated_at->diffForHumans() }}</td>
                                 </tr>
                                 <tr>
                                     <td>Image</td>
@@ -54,9 +62,15 @@
                                         <a href="{{ route('library.edit', ['library' => $product->library]) }}"
                                             class="btn btn-sm btn-info" title="Editer"><i class="fas fa-edit"></i></a>
                                     </td>
-                                <tr>
-                            </table>
-                        </div>
+                                </tr>
+                                <tr class="table-light">
+                                    <th>Action</th>
+                                    <td>
+                                        {!! link_to_route('product.edit', 'Editer', ['product' => $product], ['class' => 'text-warning']) !!}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

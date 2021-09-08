@@ -9,5 +9,6 @@ $(function () {
         "info": true,
         "autoWidth": false,
         "responsive": true,
+        "paging":true,
     });
 });

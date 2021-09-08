@@ -8,7 +8,7 @@
                     {!! Form::open(['method' => 'post', 'route' => 'product.store']) !!}
 
                     <div class="form-group">
-                        {!! Form::label('product_category_id', 'Catégorie de produit') !!}
+                        {!! Form::label('product_category_id', 'Catégorie') !!}
                         {!! Form::select('product_category_id', $product_categories, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez une catégorie de produit']) !!}
                     </div>
 
@@ -23,7 +23,7 @@
                     </div>
 
                     <div class="form-group">
-                        {!! Form::label('name', 'Nom du produit') !!}
+                        {!! Form::label('name', 'Nom') !!}
                         {!! Form::text('name', null, ['class' => 'form-control', 'required' => true]) !!}
                     </div>
 
@@ -39,7 +39,7 @@
 
                     <div class="form-group">
                         {!! Form::label('price', 'Prix unitaire') !!}
-                        {!! Form::text('price', null, ['class' => 'form-control', 'required' => true, 'Entrer le prix unitaire']) !!}
+                        {!! Form::number('price', null, ['class' => 'form-control', 'required' => true, 'Entrer le prix unitaire', 'step' =>'any']) !!}
                     </div>
 
                     <div class="form-group text-right">

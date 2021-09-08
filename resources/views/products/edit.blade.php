@@ -5,10 +5,6 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <a class="btn btn-primary" href="{{ route('product.index') }}"> Retour à la liste</a>
-                </div>
-
-                <div class="col-lg-12">
                     {!! Form::model($product, ['method' => 'put', 'route' => ['product.update', $product]]) !!}
 
                     <div class="form-group">
@@ -28,22 +24,22 @@
 
                     <div class="form-group">
                         {!! Form::label('name', 'Nom', ['class' => 'form-label']) !!}
-                        {!! Form::text('name', $product->name, ['class' => 'form-control']) !!}
+                        {!! Form::text('name', $product->name, ['class' => 'form-control', 'required' => true]) !!}
                     </div>
 
                     <div class="form-group">
                         {!! Form::label('price', 'Prix Unitaire', ['class' => 'form-label']) !!}
-                        {!! Form::text('price', $product->price, ['class' => 'form-control']) !!}
+                        {!! Form::text('price', $product->price, ['class' => 'form-control', 'required' => true]) !!}
                     </div>
 
                     <div class="form-group">
                         {!! Form::label('stock_quantity', 'Quantitée en stock', ['class' => 'form-label']) !!}
-                        {!! Form::text('stock_quantity', $product->stock_quantity, ['class' => 'form-control']) !!}
+                        {!! Form::text('stock_quantity', $product->stock_quantity, ['class' => 'form-control', 'required' => true]) !!}
                     </div>
 
                     <div class="form-group">
                         {!! Form::label('sold_quantity', 'Quantitée vendue', ['class' => 'form-label']) !!}
-                        {!! Form::text('sold_quantity', $product->sold_quantity, ['class' => 'form-control']) !!}
+                        {!! Form::text('sold_quantity', $product->sold_quantity, ['class' => 'form-control', 'required' => true]) !!}
                     </div>
 
                     <div class="btn-group pull-right">

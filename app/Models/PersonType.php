@@ -11,27 +11,39 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class ProductType
+ * Class PersonType
  * 
  * @property int $id
  * @property string $name
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * 
+ * @property Collection|Customer[] $customers
  * @property Collection|Product[] $products
+ * @property Collection|Provider[] $providers
  *
  * @package App\Models
  */
-class ProductType extends Model
+class PersonType extends Model
 {
-	protected $table = 'product_types';
+	protected $table = 'person_types';
 
 	protected $fillable = [
 		'name'
 	];
 
+	public function customers()
+	{
+		return $this->hasMany(Customer::class);
+	}
+
 	public function products()
 	{
-		return $this->hasMany(Product::class);
+		return $this->hasMany(Product::class, 'product_type_id');
+	}
+
+	public function providers()
+	{
+		return $this->hasMany(Provider::class);
 	}
 }

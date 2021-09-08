@@ -14,10 +14,10 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //$corporations = Customer::where('person_type', 1)->get();
-        $people = Customer::where('person_type', 2)->get();
+        $corporations = Customer::where('person_type_id', 1)->get();
+        $people = Customer::where('person_type_id', 2)->get();
 
-        return view('customers.index', compact('people'));
+        return view('customers.index', compact('people', 'corporations'));
     }
 
     /**
@@ -49,7 +49,7 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        //
+        return view('customers.show', compact('customer'));
     }
 
     /**
@@ -60,7 +60,7 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        //
+        return view('customers.edit', compact('customer'));
     }
 
     /**

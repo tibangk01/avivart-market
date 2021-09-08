@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * Class Product
  * 
  * @property int $id
+ * @property int $product_type_id
  * @property int $library_id
  * @property int $product_category_id
  * @property int $conversion_id
@@ -29,6 +30,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Conversion $conversion
  * @property Currency $currency
  * @property Library $library
+ * @property ProductType $product_type
  * @property Collection|ProductOrder[] $product_orders
  * @property Collection|Proforma[] $proformas
  * @property Collection|Purchase[] $purchases
@@ -40,6 +42,7 @@ class Product extends Model
 	protected $table = 'products';
 
 	protected $casts = [
+		'product_type_id' => 'int',
 		'library_id' => 'int',
 		'product_category_id' => 'int',
 		'conversion_id' => 'int',
@@ -50,6 +53,7 @@ class Product extends Model
 	];
 
 	protected $fillable = [
+		'product_type_id',
 		'library_id',
 		'product_category_id',
 		'conversion_id',
@@ -78,6 +82,11 @@ class Product extends Model
 	public function library()
 	{
 		return $this->belongsTo(Library::class);
+	}
+
+	public function product_type()
+	{
+		return $this->belongsTo(ProductType::class);
 	}
 
 	public function product_orders()

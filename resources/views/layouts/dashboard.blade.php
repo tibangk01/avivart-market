@@ -12,7 +12,6 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('public/vendors/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- DataTables -->
-    <!-- DataTables -->
     <link rel="stylesheet"
         href="{{ asset('public/vendors/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet"
@@ -340,6 +339,14 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('product.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-file"></i>
+                                <p>
+                                    Produits
+                                </p>
+                            </a>
+                        </li>
 
                     </ul>
                 </nav>
@@ -396,14 +403,6 @@
 
     <!-- jQuery -->
     <script src="{{ asset('public/vendors/plugins/jquery/jquery.min.js') }}"></script>
-    {{-- Data tables --}}
-    {{-- <script src="https://cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.0/js/dataTables.bootstrap4.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#example').DataTable();
-        });
-    </script> --}}
     <!-- jQuery UI 1.11.4 -->
     <script src="{{ asset('public/vendors/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->

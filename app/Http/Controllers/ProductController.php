@@ -48,14 +48,14 @@ class ProductController extends Controller
     {
         if ($request->isMethod('post')) {
 
-            $this->validate($request, [
+            $request->validate([
                 'product_category_id' => ['required'],
                 'conversion_id' => ['required'],
                 'currency_id' => ['required'],
                 'name' => ['required', 'min:3', 'max:50'],
-                'price' => ['required', 'numeric'],
                 'stock_quantity' => ['required', 'numeric'],
                 'sold_quantity' => ['required', 'numeric'],
+                'price' => ['required', 'numeric'],
             ]);
 
             try {
@@ -73,12 +73,12 @@ class ProductController extends Controller
 
                 DB::commit();
 
-                session()->flash('success', 'Le produit a été enregistré.');
+                session()->flash('success', 'Donnée enregistré.');
 
                 return redirect()->route('product.show', ['product' => $product]);
             } catch (\Throwable $th) {
                 DB::rollBack();
-                session()->flash('error', 'Erreur, Réessayez plus tard.');
+                session()->flash('error', "Une erreur s'est produite");
             }
         }
         return back();
@@ -121,20 +121,21 @@ class ProductController extends Controller
     {
         if ($request->isMethod('put')) {
 
-            $this->validate($request, [
+            $request->validate([
                 'product_category_id' => ['required'],
                 'conversion_id' => ['required'],
                 'currency_id' => ['required'],
                 'name' => ['required', 'min:3', 'max:50'],
-                'price' => ['required', 'numeric'],
                 'stock_quantity' => ['required', 'numeric'],
                 'sold_quantity' => ['required', 'numeric'],
+                'price' => ['required', 'numeric'],
             ]);
 
             $product->update($request->all());
 
-            session()->flash('success', 'le produit a été modfier.');
+            session()->flash('success', 'Modification reussi');
         }
+
         return back();
     }
 
