@@ -45,8 +45,8 @@
                                                     @foreach ($productRays as $productRay)
                                                         <tr>
                                                             <td>{{ $productRay->name }}</td>
-                                                            <td>{{ $productRay->created_at }}</td>
-                                                            <td>{{ $productRay->created_at }}</td>
+                                                            <td>{{ $productRay->created_at->diffForHumans() }}</td>
+                                                            <td>{{ $productRay->created_at->diffForHumans() }}</td>
                                                             <td>
                                                                 <a class="btn btn-info btn-xs" href="{{ route('product_ray.show', $productRay) }}"
                                                                     title="Afficher"><i class="fa fa-eye"

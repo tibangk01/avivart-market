@@ -45,8 +45,8 @@
                                                     @foreach ($discounts as $discount)
                                                         <tr>
                                                             <td>{{ $discount->amount }}</td>
-                                                            <td>{{ $discount->created_at }}</td>
-                                                            <td>{{ $discount->created_at }}</td>
+                                                            <td>{{ $discount->created_at->diffForHumans() }}</td>
+                                                            <td>{{ $discount->created_at->diffForHumans() }}</td>
                                                             <td>
                                                                 <a class="btn btn-info btn-xs" href="{{ route('discount.show', $discount) }}"
                                                                     title="Afficher"><i class="fa fa-eye"

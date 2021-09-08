@@ -45,8 +45,8 @@
                                                     @foreach ($staffTypes as $staffType)
                                                         <tr>
                                                             <td>{{ $staffType->name }}</td>
-                                                            <td>{{ $staffType->created_at }}</td>
-                                                            <td>{{ $staffType->created_at }}</td>
+                                                            <td>{{ $staffType->created_at->diffForHumans() }}</td>
+                                                            <td>{{ $staffType->created_at->diffForHumans() }}</td>
                                                             <td>
                                                                 <a class="btn btn-info btn-xs" href="{{ route('staff_type.show', $staffType) }}"
                                                                     title="Afficher"><i class="fa fa-eye"

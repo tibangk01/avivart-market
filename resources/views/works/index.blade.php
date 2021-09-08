@@ -45,8 +45,8 @@
                                                     @foreach ($works as $work)
                                                         <tr>
                                                             <td>{{ $work->name }}</td>
-                                                            <td>{{ $work->created_at }}</td>
-                                                            <td>{{ $work->created_at }}</td>
+                                                            <td>{{ $work->created_at->diffForHumans() }}</td>
+                                                            <td>{{ $work->created_at->diffForHumans() }}</td>
                                                             <td>
                                                                 <a class="btn btn-info btn-xs" href="{{ route('work.show', $work) }}"
                                                                     title="Afficher"><i class="fa fa-eye"

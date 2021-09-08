@@ -47,8 +47,8 @@
                                                         <tr>
                                                             <td>{{ $exercise->start_date }}</td>
                                                             <td>{{ $exercise->end_date }}</td>
-                                                            <td>{{ $exercise->created_at }}</td>
-                                                            <td>{{ $exercise->created_at }}</td>
+                                                            <td>{{ $exercise->created_at->diffForHumans() }}</td>
+                                                            <td>{{ $exercise->created_at->diffForHumans() }}</td>
                                                             <td>
                                                                 <a class="btn btn-info btn-xs" href="{{ route('exercise.show', $exercise) }}"
                                                                     title="Afficher"><i class="fa fa-eye"
