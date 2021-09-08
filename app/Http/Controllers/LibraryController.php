@@ -7,7 +7,11 @@ use Illuminate\Http\Request;
 
 class LibraryController extends Controller
 {
-
+    public function __construct()
+    {
+        parent::__construct();
+    }
+    
     /**
      * Show the form for editing the specified resource.
      *

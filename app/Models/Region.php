@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  *
- * @property Collection|Agency[] $agencies
+ * @property Collection|Enterprise[] $enterprises
  *
  * @package App\Models
  */
@@ -32,9 +32,9 @@ class Region extends Model
 		'code'
 	];
 
-	public function agencies()
+	public function enterprises()
 	{
-		return $this->hasMany(Agency::class);
+		return $this->hasMany(Enterprise::class);
 	}
 
     /**

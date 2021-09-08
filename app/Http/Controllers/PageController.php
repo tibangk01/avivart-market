@@ -7,9 +7,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 
-
 class PageController extends Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     /**
      * index
      *
