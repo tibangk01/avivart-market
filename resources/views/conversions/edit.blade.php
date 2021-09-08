@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                {!! Form::model($conversion, ['method' => 'PUT', 'route' => ['conversion.update',  $conversion]]) !!}
+                {!! Form::model($conversion, ['method' => 'put', 'route' => ['conversion.update',  $conversion]]) !!}
 
                 <div class="form-group">
                     {!! Form::label('name', "Nom") !!}

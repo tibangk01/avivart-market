@@ -61,7 +61,6 @@
                             class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    {{-- <a href="" class="nav-link"></a> //TODO:Use this for cachiers --}}
                 </li>
             </ul>
 
@@ -187,7 +186,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('society.show', [1]) }}" class="nav-link">
-                                <i class="nav-icon fa fa-building"></i>
+                                <i class="nav-icon fas fa-building"></i>
                                 <p>
                                     Société
                                 </p>
@@ -195,7 +194,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('agency.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-cart"></i>
+                                <i class="nav-icon fas fa-cubes"></i>
                                 <p>
                                     Agences
                                 </p>
@@ -203,7 +202,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('sale_place.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-cart"></i>
+                                <i class="nav-icon fas fa-sitemap"></i>
                                 <p>
                                     Points de vente
                                 </p>
@@ -211,7 +210,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('staff_type.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-cart"></i>
+                                <i class=" nav-icon fas fa-list-alt" aria-hidden="true"></i>
                                 <p>
                                     Types d'employés
                                 </p>
@@ -219,15 +218,15 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('conversion.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-cart"></i>
+                                <i class="nav-icon fas fa-th"></i>
                                 <p>
-                                    Unités
+                                    Unités de mesure
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('currency.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-cart"></i>
+                                <i class="nav-icon fas fa-euro-sign    "></i>
                                 <p>
                                     Devises
                                 </p>
@@ -235,7 +234,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('discount.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-cart"></i>
+                                <i class="nav-icon fas fa-handshake"></i>
                                 <p>
                                     Remises
                                 </p>
@@ -243,7 +242,8 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('exercise.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-cart"></i>
+
+                                <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
                                 <p>
                                     Exercices
                                 </p>
@@ -251,7 +251,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('vat.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-cart"></i>
+                                <i class="nav-icon fa fa-percent" aria-hidden="true"></i>
                                 <p>
                                     TVAs
                                 </p>
@@ -259,7 +259,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('work.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-cart"></i>
+                                <i class="nav-icon fas fa-suitcase"></i>
                                 <p>
                                     Professions
                                 </p>
@@ -267,7 +267,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('product_type.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-cart"></i>
+                                <i class="nav-icon fas fa-list-ol"></i>
                                 <p>
                                     Types de produit
                                 </p>
@@ -275,7 +275,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('person_ray.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-cart"></i>
+                                <i class="nav-icon fas fa-list-alt"></i>
                                 <p>
                                     Person rays
                                 </p>
@@ -283,32 +283,33 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('product_ray.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-cart"></i>
+                                <i class="nav-icon fa fa-list-ol"></i>
+
                                 <p>
-                                   Rayons de produits
+                                    Rayons de produits
                                 </p>
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a href="{{ route('provider.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-cart"></i>
+                                <i class="nav-icon fas fa-truck"></i>
                                 <p>
-                                   Fournisseurs
+                                    Fournisseurs
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('customer.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-cart"></i>
+                                <i class="nav-icon fa fa-users" aria-hidden="true"></i>
                                 <p>
-                                   Clients
+                                    Clients
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-cart"></i>
+                                <i class="nav-icon fas fa-file"></i>
                                 <p>
                                     Bons de commande
                                 </p>
@@ -316,7 +317,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-cart"></i>
+                                <i class="nav-icon fas fa-shopping-basket"></i>
                                 <p>
                                     Approvisionnements
                                 </p>
@@ -324,7 +325,8 @@
                         </li>
                         <li class="nav-item">
                             <a href="" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-cart"></i>
+                                {{-- <i class="nav-icon fas fa-shopping-cart-plu"></i> --}}
+                                <i class="nav-icon fas fa-shopping-bag    "></i>
                                 <p>
                                     Commandes
                                 </p>
@@ -332,7 +334,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-cart"></i>
+                                <i class="nav-icon fas fa-file"></i>
                                 <p>
                                     Proformas
                                 </p>
@@ -411,19 +413,19 @@
     <!-- Bootstrap 4 -->
     <script src="{{ asset('public/vendors/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- DataTables  & Plugins -->
-    <script src="{{ asset("public/vendors/plugins/datatables/jquery.dataTables.min.js")}}"></script>
-    <script src="{{ asset("public/vendors/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js")}}"></script>
-    <script src="{{ asset("public/vendors/plugins/datatables-responsive/js/dataTables.responsive.min.js")}}"></script>
-    <script src="{{ asset("public/vendors/plugins/datatables-responsive/js/responsive.bootstrap4.min.js")}}"></script>
-    <script src="{{ asset("public/vendors/plugins/datatables-buttons/js/dataTables.buttons.min.js")}}"></script>
-    <script src="{{ asset("public/vendors/plugins/datatables-buttons/js/buttons.bootstrap4.min.js")}}"></script>
-    <script src="{{ asset("public/vendors/plugins/jszip/jszip.min.js")}}"></script>
-    <script src="{{ asset("public/vendors/plugins/pdfmake/pdfmake.min.js")}}"></script>
-    <script src="{{ asset("public/vendors/plugins/pdfmake/vfs_fonts.js")}}"></script>
-    <script src="{{ asset("public/vendors/plugins/datatables-buttons/js/buttons.html5.min.js")}}"></script>
-    <script src="{{ asset("public/vendors/plugins/datatables-buttons/js/buttons.print.min.js")}}"></script>
-    <script src="{{ asset("public/vendors/plugins/datatables-buttons/js/buttons.colVis.min.js")}}"></script>
-    <script src="{{ asset("public/vendors/custom/js/datatable.js")}}"></script>
+    <script src="{{ asset('public/vendors/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('public/vendors/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('public/vendors/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('public/vendors/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('public/vendors/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('public/vendors/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('public/vendors/plugins/jszip/jszip.min.js') }}"></script>
+    <script src="{{ asset('public/vendors/plugins/pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('public/vendors/plugins/pdfmake/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('public/vendors/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('public/vendors/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('public/vendors/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+    <script src="{{ asset('public/vendors/custom/js/datatable.js') }}"></script>
     <!-- ChartJS -->
     // <script src="{{ asset('public/vendors/plugins/chart.js/Chart.min.js') }}"></script>
     <!-- Sparkline -->

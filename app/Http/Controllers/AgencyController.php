@@ -124,14 +124,14 @@ class AgencyController extends Controller
     public function update(Request $request, Agency $agency)
     {
 
-        if ($request->isMethod('put')) {
+        if ($request->isMethod('PUT')) {
 
             $request->validate([
                 'region_id' => ['required'],
                 'name' => ['required', 'min:3', 'max:50'],
+                'phone_number' => ['required', 'min:8'],
                 'email' => ['required', 'email', 'max:60'],
                 'website' => ['required', 'max:60'],
-                'phone_number' => ['required', 'min:8'],
                 'address' => ['required', 'max:40'],
             ]);
 

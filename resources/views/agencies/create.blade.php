@@ -13,12 +13,12 @@
 
                     <div class="form-group">
                         {!! Form::label('name', 'Nom') !!}
-                        {!! Form::text('name', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                        {!! Form::text('name', null, ['class' => 'form-control', 'required' => true]) !!}
                     </div>
 
                     <div class="form-group">
                         {!! Form::label('phone_number', 'Téléphone') !!}
-                        {!! Form::text('phone_number', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                        {!! Form::text('phone_number', null, ['class' => 'form-control', 'required' => true]) !!}
                     </div>
 
                     <div class="form-group">

@@ -11,13 +11,13 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class SalePlaceStaff
- * 
+ *
  * @property int $id
  * @property int $sale_place_id
  * @property int $staff_id
  * @property Carbon $created_at
  * @property Carbon $updated_at
- * 
+ *
  * @property SalePlace $sale_place
  * @property Staff $staff
  *

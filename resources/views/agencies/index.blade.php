@@ -1,7 +1,6 @@
 @extends('layouts.dashboard', ['title' => 'Liste des agences'])
 
 @section('body')
-
     <div class="content">
         <div class="container">
             <div class="row">
@@ -36,8 +35,8 @@
                                                     <th>Code</th>
                                                     <th>Nom</th>
                                                     <th>Téléphone</th>
-                                                    <th>Adresse</th>
                                                     <th>Email</th>
+                                                    <th>Adresse</th>
                                                     <th>Site web</th>
                                                     <th>Actions</th>
                                                 </tr>
@@ -50,8 +49,8 @@
                                                             <td>{{ $agency->enterprise->name }}</td>
                                                             <td>{{ $agency->enterprise->phone_number }}</td>
                                                             <td>{{ $agency->enterprise->email }}</td>
-                                                            <td>{{ $agency->enterprise->website }}</td>
                                                             <td>{{ $agency->enterprise->address }}</td>
+                                                            <td>{{ $agency->enterprise->website }}</td>
                                                             <td>
                                                                 <a class="btn btn-info btn-xs"
                                                                     href="{{ route('agency.show', $agency) }}"
@@ -70,9 +69,8 @@
                                                     @endforeach
                                                 @else
                                                     <tr>
-                                                        <td colspan="6">Pas d'enregistrment</td>
+                                                        <td colspan="7">Pas d'enregistrment</td>
                                                     </tr>
-
                                                 @endif
                                             </tbody>
                                         </table>

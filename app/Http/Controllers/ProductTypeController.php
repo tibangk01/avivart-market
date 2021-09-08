@@ -50,7 +50,7 @@ class ProductTypeController extends Controller
             } else {
                 session()->flash('error', "Une erreur s'est produite");
             }
-            
+
         }
 
         return back();

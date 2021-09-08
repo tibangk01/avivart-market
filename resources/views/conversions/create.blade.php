@@ -14,7 +14,7 @@
                 </div>
 
                  <div class="form-group text-right">
-                    {!! Form::submit('Ajouter', ['class' => 'btn btn-success']) !!}
+                    {!! Form::submit('Enregistrer', ['class' => 'btn btn-success']) !!}
                 </div>
 
                 {!! Form::close() !!}

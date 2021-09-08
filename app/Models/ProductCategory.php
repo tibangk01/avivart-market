@@ -47,7 +47,7 @@ class ProductCategory extends Model
 		return $this->hasMany(Product::class);
 	}
 
-        /**
+    /**
      * toString
      *
      * @return string

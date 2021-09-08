@@ -49,4 +49,9 @@ class Enterprise extends Model
 	{
 		return $this->hasMany(Society::class);
 	}
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

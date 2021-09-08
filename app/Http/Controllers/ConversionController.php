@@ -37,20 +37,21 @@ class ConversionController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->isMethod('post')) {
+        if ($request->isMethod('POST')) {
 
             $request->validate([
                 'name' => ['required', 'min:3', 'max:30'],
             ]);
 
-            $conversions = Conversion::create($request->only('name'));
+            $conversion = Conversion::create($request->only('name'));
 
-            if ($conversions) {
+            if ($conversion) {
+
                 session()->flash('success', "Donnée enregistrée");
             } else {
+
                 session()->flash('error', "Une erreur s'est produite");
             }
-
         }
 
         return back();
@@ -93,7 +94,7 @@ class ConversionController extends Controller
                 'name' => ['required', 'max:30'],
             ]);
 
-            $conversion->update($request->all());
+            $conversion->update($request->only('name'));
 
             session()->flash('success', 'Modification réussi');
         }

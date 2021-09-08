@@ -8,7 +8,7 @@
                     {!! Form::model($agency, ['method' => 'PUT', 'route' => ['agency.update', $agency]]) !!}
 
                         {!! Form::label('region_id', 'Choisissez une région') !!}
-                        {!! Form::select('region_id', $regions, null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Choisir une région']) !!}
+                        {!! Form::select('region_id', $regions, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisir une région']) !!}
 
                     <div class="form-group">
                         {!! Form::label('name', 'Nom', ['class' => 'form-label']) !!}

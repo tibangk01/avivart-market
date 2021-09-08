@@ -34,26 +34,30 @@
                                                 <tr>
                                                     <th>Point de vente</th>
                                                     <th>Agence</th>
+                                                    <th>Date de création</th>
+                                                    <th>Date de modification</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @if ($sale_places->count())
-                                                    @foreach ($sale_places as $sale_place)
+                                                @if ($salePlaces->count() > 0)
+                                                    @foreach ($salePlaces as $salePlace)
                                                         <tr>
-                                                            <td>{{ $sale_place->name }}</td>
-                                                            <td>{{ $sale_place->agency->enterprise->name }}</td>
+                                                            <td>{{ $salePlace->name }}</td>
+                                                            <td>{{ $salePlace->agency->enterprise->name }}</td>
+                                                            <td>{{ $salePlace->created_at->diffForHumans() }}</td>
+                                                            <td>{{ $salePlace->updated_at->diffForHumans() }}</td>
                                                             <td>
                                                                 <a class="btn btn-info btn-xs"
-                                                                href="{{ route('sale_place.show', $sale_place) }}"
+                                                                href="{{ route('sale_place.show', $salePlace) }}"
                                                                 title="Afficher"><i class="fa fa-eye"
                                                                     aria-hidden="true"></i></a>
                                                             <a class="btn btn-warning btn-xs"
-                                                                href="{{ route('sale_place.edit', $sale_place) }}"
+                                                                href="{{ route('sale_place.edit', $salePlace) }}"
                                                                 title="Modifier"><i class="fa fa-edit"
                                                                     aria-hidden="true"></i></a>
                                                             <a class="btn btn-danger btn-xs"
-                                                                href="{{ route('sale_place.destroy', $sale_place) }}"
+                                                                href="{{ route('sale_place.destroy', $salePlace) }}"
                                                                 title="Supprimer"><i class="fa fa-trash"
                                                                     aria-hidden="true"></i></a>
 
@@ -62,15 +66,13 @@
                                                     @endforeach
                                                 @else
                                                     <tr>
-                                                        <td colspan="6">Pas d'enregistrment</td>
+                                                        <td colspan="5">Pas d'enregistrment</td>
                                                     </tr>
-
                                                 @endif
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>

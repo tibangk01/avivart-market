@@ -15,8 +15,9 @@ class SalePlaceController extends Controller
      */
     public function index()
     {
-        $sale_places = SalePlace::all();
-        return view('sale_places.index', compact('sale_places'));
+        $salePlaces = SalePlace::all();
+
+        return view('sale_places.index', compact('salePlaces'));
     }
 
     /**
@@ -26,7 +27,8 @@ class SalePlaceController extends Controller
      */
     public function create()
     {
-        $agencies = Agency::all()->load('enterprise')->pluck('enterprise.name', 'id')->toArray();
+        $agencies = Agency::all()->load('enterprise')->pluck('enterprise.name', 'id');
+
         return view('sale_places.create', compact('agencies'));
     }
 
@@ -38,9 +40,9 @@ class SalePlaceController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->isMethod('post')) {
+        if ($request->isMethod('POST')) {
 
-            $this->validate($request, [
+            $request->validate([
                 'agency_id' => ['required'],
                 'name' => ['required', 'min:3', 'max:40'],
             ]);
@@ -51,10 +53,13 @@ class SalePlaceController extends Controller
             ]);
 
             if ($sale_place) {
-                session()->flash('succes', 'Point de vente enregistrée.'); //TODO: sale place msg insertion success
+
+                session()->flash('success', 'Donnée enregistrée.');
             } else {
+
                 session()->flash('error', "Une erreur s'est produite");
             }
+
             return back();
         }
     }
@@ -78,7 +83,8 @@ class SalePlaceController extends Controller
      */
     public function edit(SalePlace $salePlace)
     {
-        $agencies = Agency::all()->load('enterprise')->pluck('enterprise.name', 'id')->toArray();
+        $agencies = Agency::all()->load('enterprise')->pluck('enterprise.name', 'id');
+
         return view('sale_places.edit', compact('agencies', 'salePlace'));
     }
 
@@ -91,16 +97,16 @@ class SalePlaceController extends Controller
      */
     public function update(Request $request, SalePlace $salePlace)
     {
-        if ($request->isMethod('put')) {
+        if ($request->isMethod('PUT')) {
 
-            $this->validate($request, [
+            $request->validate([
                 'agency_id' => ['required'],
                 'name' => ['required', 'max:40'],
             ]);
 
             $salePlace->update($request->only('agency_id', 'name'));
 
-            session()->flash('salePlaceUpdated', 'Point de vente mis à jour'); //TODO: msg sale palce updated
+            session()->flash('success', 'Modification réussi');
 
             return back();
         }
