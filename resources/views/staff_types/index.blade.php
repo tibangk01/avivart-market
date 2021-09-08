@@ -11,7 +11,7 @@
                             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                 <a class="nav-item nav-link active rounded-0" id="nav-home-tab" data-toggle="tab"
                                     href="#nav-home" role="tab" aria-controls="nav-home"
-                                    aria-selected="true">Listes</a>
+                                    aria-selected="true">Liste</a>
                             </div>
                         </nav>
                     </div>
@@ -45,8 +45,8 @@
                                                     @foreach ($staffTypes as $staffType)
                                                         <tr>
                                                             <td>{{ $staffType->name }}</td>
-                                                            <td>{{ $staffType->created_at }}</td>
-                                                            <td>{{ $staffType->created_at }}</td>
+                                                            <td>{{ $staffType->created_at->diffForHumans() }}</td>
+                                                            <td>{{ $staffType->created_at->diffForHumans() }}</td>
                                                             <td>
                                                                 <a class="btn btn-info btn-xs" href="{{ route('staff_type.show', $staffType) }}"
                                                                     title="Afficher"><i class="fa fa-eye"

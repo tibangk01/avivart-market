@@ -10,7 +10,7 @@
                             <nav>
                                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                     <a class="nav-item nav-link active rounded-0" id="nav-home-tab" data-toggle="tab"
-                                        href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Listes</a>
+                                        href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Liste</a>
                                 </div>
                             </nav>
                         </div>
