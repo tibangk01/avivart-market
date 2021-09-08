@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Staff;
 use App\Models\Human;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -59,7 +60,6 @@ class PageController extends Controller
 
                 if (Hash::check($request->password, $human->password)) {
 
-                    session()->put('human', $human);
                     auth()->login($human->user, $request->has('remember_me'));
 
                     $message = "Bienvenue {$human->user->full_name}";
@@ -70,6 +70,9 @@ class PageController extends Controller
                             break;
                         default:    //staff
                             $redirectRoute = 'page.index';
+
+                            $staff = Staff::where('human_id', $human->id)->firstOrFail();
+                            session()->put('staff', $staff);
                             break;
                     }
 
