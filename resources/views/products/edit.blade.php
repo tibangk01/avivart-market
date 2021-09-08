@@ -8,6 +8,11 @@
                     {!! Form::model($product, ['method' => 'put', 'route' => ['product.update', $product]]) !!}
 
                     <div class="form-group">
+                        {!! Form::label('product_type_id', 'Type') !!}
+                        {!! Form::select('product_type_id', $product_types, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez une catégorie de produit']) !!}
+                    </div>
+
+                    <div class="form-group">
                         {!! Form::label('product_category_id', 'Catégorie') !!}
                         {!! Form::select('product_category_id', $product_categories, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez une catégorie de produit']) !!}
                     </div>
