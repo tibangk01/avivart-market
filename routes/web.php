@@ -3,26 +3,30 @@
 namespace App;
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\VatController;
+use App\Http\Controllers\BankController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\WorkController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AgencyController;
 use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SocietyController;
+use App\Http\Controllers\CurrencyController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DiscountController;
+use App\Http\Controllers\ExerciseController;
+use App\Http\Controllers\ProviderController;
+use App\Http\Controllers\PersonRayController;
 use App\Http\Controllers\SalePlaceController;
 use App\Http\Controllers\StaffTypeController;
-use App\Http\Controllers\VatController;
-use App\Http\Controllers\DiscountController;
-use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\ConversionController;
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\ProviderController;
-use App\Http\Controllers\WorkController;
-use App\Http\Controllers\ExerciseController;
-use App\Http\Controllers\PersonRayController;
-use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductRayController;
 use App\Http\Controllers\ProductTypeController;
+use App\Http\Controllers\CashRegisterController;
 use App\Http\Controllers\ProductCategoryController;
+use App\Http\Controllers\CashRegisterOperationController;
+use App\Http\Controllers\CashRegisterOperationTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -148,5 +152,21 @@ Route::middleware('auth')->group(function () {
     /** product categories routes */
     Route::resource('product_category', ProductCategoryController::class);
     /** End product categories routes */
+
+    /** banks routes */
+    Route::resource('bank', BankController::class);
+    /** End banks routes */
+
+    /** cash register routes */
+    Route::resource('cash_register', CashRegisterController::class);
+    /** End cash register routes */
+
+    /** cash register operations routes */
+    Route::resource('cash_register_operation', CashRegisterOperationController::class);
+    /** End cash register operations routes */
+
+    /** cash register operations types routes */
+    Route::resource('cash_register_operation_type', CashRegisterOperationTypeController::class);
+    /** End cash register operations types routes */
 
 });
