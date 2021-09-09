@@ -260,7 +260,7 @@
                             <a href="{{ route('work.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-suitcase"></i>
                                 <p>
-                                    Professions
+                                    Fonctions
                                 </p>
                             </a>
                         </li>
@@ -324,18 +324,18 @@
                         </li>
                         <li class="nav-item">
                             <a href="" class="nav-link">
-                                {{-- <i class="nav-icon fas fa-shopping-cart-plu"></i> --}}
-                                <i class="nav-icon fas fa-shopping-bag    "></i>
+                                <i class="nav-icon fas fa-file"></i>
                                 <p>
-                                    Commandes
+                                    Proformas
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="" class="nav-link">
-                                <i class="nav-icon fas fa-file"></i>
+                                {{-- <i class="nav-icon fas fa-shopping-cart-plu"></i> --}}
+                                <i class="nav-icon fas fa-shopping-bag    "></i>
                                 <p>
-                                    Proformas
+                                    Commandes
                                 </p>
                             </a>
                         </li>
