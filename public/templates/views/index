@@ -54,14 +54,17 @@
                                                             </td>
                                                             <td>
                                                                 //complete here
-                                                                <a class="btn btn-info btn-xs" href="{{ route('exercise.show', $exercise) }}"
+                                                                <a class="btn btn-info btn-xs"
+                                                                    href="{{ route('staff.show', $staff) }}"
                                                                     title="Afficher"><i class="fa fa-eye"
                                                                         aria-hidden="true"></i></a>
-                                                                <a class="btn btn-warning btn-xs" href="{{ route('exercise.edit', $exercise) }}"
-                                                                    title="Afficher"><i class="fa fa-edit"
+                                                                <a class="btn btn-warning btn-xs"
+                                                                    href="{{ route('staff.edit', $staff) }}"
+                                                                    title="Modifier"><i class="fa fa-edit"
                                                                         aria-hidden="true"></i></a>
-                                                                <a class="btn btn-danger btn-xs" href="{{ route('exercise.destroy',$exercise) }}"
-                                                                    title="Afficher"><i class="fa fa-trash"
+                                                                <a class="btn btn-danger btn-xs"
+                                                                    href="{{ route('staff.destroy', $staff) }}"
+                                                                    title="Supprimer"><i class="fa fa-trash"
                                                                         aria-hidden="true"></i></a>
                                                             </td>
                                                         </tr>

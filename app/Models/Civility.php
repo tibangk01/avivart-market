@@ -12,13 +12,13 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Civility
- * 
+ *
  * @property int $id
  * @property int $gender_id
  * @property string $name
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * 
+ *
  * @property Gender $gender
  * @property Collection|User[] $users
  *
@@ -46,4 +46,9 @@ class Civility extends Model
 	{
 		return $this->hasMany(User::class);
 	}
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

@@ -15,14 +15,16 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $id
  * @property int $user_id
- * @property int $work_id
- * @property string $username
- * @property string $password
+ * @property int|null $work_id
+ * @property string|null $signature
+ * @property string|null $username
+ * @property string|null $password
  * @property Carbon $created_at
  * @property Carbon $updated_at
+ * @property bool|null $password_changed
  * 
  * @property User $user
- * @property Work $work
+ * @property Work|null $work
  * @property Collection|Developer[] $developers
  * @property Collection|Staff[] $staff
  *
@@ -34,7 +36,8 @@ class Human extends Model
 
 	protected $casts = [
 		'user_id' => 'int',
-		'work_id' => 'int'
+		'work_id' => 'int',
+		'password_changed' => 'bool'
 	];
 
 	protected $hidden = [
@@ -44,8 +47,10 @@ class Human extends Model
 	protected $fillable = [
 		'user_id',
 		'work_id',
+		'signature',
 		'username',
-		'password'
+		'password',
+		'password_changed'
 	];
 
 	public function user()

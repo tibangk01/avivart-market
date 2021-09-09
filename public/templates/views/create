@@ -1,5 +1,6 @@
-// custom here
+
 @extends('layouts.dashboard', ['title' => 'Ajouter une agence'])
+//custom here
 
 @section('body')
     <section class="content">
@@ -7,7 +8,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     // costom here
-                    {!! Form::open(['method' => 'POST', 'route' => 'agency.store']) !!}
+                    {!! Form::open(['method' => 'post', 'route' => 'agency.store']) !!}
                     <div class="form-group">
                         {!! Form::label('region_id', 'Région') !!}
                         {!! Form::select('region_id', $regions, null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Choisissez une région']) !!}

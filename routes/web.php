@@ -8,6 +8,7 @@ use App\Http\Controllers\BankController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\WorkController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\StaffController;
 use App\Http\Controllers\AgencyController;
 use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\ProductController;
@@ -168,5 +169,9 @@ Route::middleware('auth')->group(function () {
     /** cash register operations types routes */
     Route::resource('cash_register_operation_type', CashRegisterOperationTypeController::class);
     /** End cash register operations types routes */
+
+    /** staffs routes */
+    Route::resource('staff', StaffController::class);
+    /** End staffs routes */
 
 });

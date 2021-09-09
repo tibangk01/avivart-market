@@ -34,4 +34,9 @@ class StaffType extends Model
 	{
 		return $this->hasMany(Staff::class);
 	}
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

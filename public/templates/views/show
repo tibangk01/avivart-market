@@ -1,5 +1,5 @@
-// custom here
 @extends('layouts.dashboard', ['title' => 'Afficher une agence'])
+// custom here
 
 @section('body')
     <section class="content">
