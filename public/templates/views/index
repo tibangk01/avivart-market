@@ -39,6 +39,9 @@
                                                 <tr>
                                                     //complete here
                                                     <th>Date de Début</th>
+
+                                                    // custom or leave
+                                                    <th>Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

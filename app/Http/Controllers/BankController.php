@@ -14,7 +14,10 @@ class BankController extends Controller
      */
     public function index()
     {
-        //
+
+        $banks = Bank::all();
+
+        return view('banks.index', compact('banks'));
     }
 
     /**
@@ -24,7 +27,7 @@ class BankController extends Controller
      */
     public function create()
     {
-        //
+        return view('banks.create');
     }
 
     /**
@@ -35,7 +38,25 @@ class BankController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->isMethod('post')) {
+
+            $request->validate([
+                'name' => ['required', 'max:40'],
+                'account' => ['required', 'max:30'],
+            ]);
+
+            $bank = Bank::create($request->all());
+
+            if ($bank) {
+
+                session()->flash('success', "Donnée enregistrée");
+            } else {
+
+                session()->flash('error', "Une erreur s'est produite");
+            }
+        }
+
+        return back();
     }
 
     /**
@@ -46,7 +67,7 @@ class BankController extends Controller
      */
     public function show(Bank $bank)
     {
-        //
+        return view('banks.show', compact('bank'));
     }
 
     /**
@@ -57,7 +78,7 @@ class BankController extends Controller
      */
     public function edit(Bank $bank)
     {
-        //
+        return view('banks.edit', compact('bank'));
     }
 
     /**
@@ -69,7 +90,19 @@ class BankController extends Controller
      */
     public function update(Request $request, Bank $bank)
     {
-        //
+        if ($request->isMethod('put')) {
+
+            $request->validate([
+                'name' => ['required', 'max:40'],
+                'account' => ['required', 'max:30'],
+            ]);
+
+            $bank->update($request->all());
+
+            session()->flash('success', 'Modification réussi');
+        }
+
+        return back();
     }
 
     /**

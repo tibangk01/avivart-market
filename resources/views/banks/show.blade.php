@@ -1,5 +1,4 @@
-// custom here
-@extends('layouts.dashboard', ['title' => 'Afficher une agence'])
+@extends('layouts.dashboard', ['title' => 'Afficher une banque'])
 
 @section('body')
     <section class="content">
@@ -9,23 +8,32 @@
                     <div class="table-responsive bg-white">
                         <table class="table table-bordered table-stripped table-hover mb-0">
                             <thead class="thead-dark">
-                                // custom here
                                 <tr>
                                     <th>Clé</th>
                                     <th>Valeur</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                // custom here
                                 <tr>
-                                    <td>Code</td>
-                                    <td></td>
+                                    <td>Nom</td>
+                                    <td>{{ $bank->name }}</td>
+                                </tr>
+                                <tr>
+                                    <td>N° de compte</td>
+                                    <td>{{ $bank->account }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Date de création</td>
+                                    <td>{{ $bank->created_at->diffForHumans() }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Date de mis à jour</td>
+                                    <td>{{ $bank->updated_at->diffForHumans() }}</td>
                                 </tr>
                                 <tr class="table-light">
                                     <th>Action</th>
                                     <td>
-                                        //custom here
-                                        {!! link_to_route('agency.edit','Editer', ['agency' => $agency], ['class' => 'text-warning'] ) !!}
+                                        {!! link_to_route('bank.edit', 'Editer', ['bank' => $bank], ['class' => 'text-warning']) !!}
                                     </td>
                                 </tr>
                             </tbody>
