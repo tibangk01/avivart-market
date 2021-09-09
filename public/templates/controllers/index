@@ -1,0 +1,7 @@
+    public function index()
+    {
+        // custom here
+        $conversions = Conversion::all();
+        // custom here
+        return view('conversions.index', compact('conversions'));
+    }

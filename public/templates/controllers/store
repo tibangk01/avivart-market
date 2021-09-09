@@ -1,0 +1,77 @@
+public function store(Request $request)
+    {
+        if ($request->isMethod('post')) {
+
+            //custom here
+            $request->validate([
+                'name' => ['required', 'min:3', 'max:30'],
+            ]);
+
+            //custom here
+            $conversion = Conversion::create($request->only('name'));
+
+            //custom here
+            if ($conversion) {
+
+                session()->flash('success', "Donnée enregistrée");
+            } else {
+
+                session()->flash('error', "Une erreur s'est produite");
+            }
+        }
+
+        return back();
+    }
+
+
+
+------->
+
+with transactions :
+
+if ($request->isMethod('POST')) {
+
+//custom here
+$request->validate([
+    'region_id' => ['required'],
+    'name' => ['required', 'min:3', 'max:50'],
+    'phone_number' => ['required', 'min:8'],
+    'email' => ['required', 'email', 'max:60'],
+    'website' => ['required', 'max:60'],
+    'address' => ['required', 'max:40'],
+]);
+
+try {
+
+    DB::beginTransaction();
+
+    //custom here
+    $enterprise = Enterprise::orderBy('id', 'DESC')->first();
+
+    $society = Society::orderBy('id', 'DESC')->firstOrFail();
+
+    $enterprise = Enterprise::create(array_merge($request->all(),
+        [
+            'code' => '0' . ++$enterprise->code,
+        ]
+    ));
+
+    Agency::create([
+        'region_id' => $request->region_id,
+        'society_id' => $society->id,
+        'enterprise_id' => $enterprise->id,
+    ]);
+
+    DB::commit();
+
+    session()->flash('success', 'Donnée enregistrée.');
+
+} catch (\Throwable $th) {
+
+    DB::rollBack();
+
+    session()->flash('error', "Une erreur s'est produite");
+}
+}
+
+return back();

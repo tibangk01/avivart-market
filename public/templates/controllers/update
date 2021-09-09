@@ -1,0 +1,55 @@
+ if ($request->isMethod('put')) {
+
+            //custom here
+            $request->validate([
+                'name' => ['required', 'max:30'],
+            ]);
+
+            //custom here
+            $conversion->update($request->only('name'));
+
+            session()->flash('success', 'Modification réussi');
+        }
+
+        return back();
+
+
+------------->
+
+with transactions :
+
+        if ($request->isMethod('PUT')) {
+
+            //custom here
+            $request->validate([
+                'region_id' => ['required'],
+                'name' => ['required', 'min:3', 'max:50'],
+                'phone_number' => ['required', 'min:8'],
+                'email' => ['required', 'email', 'max:60'],
+                'website' => ['required', 'max:60'],
+                'address' => ['required', 'max:40'],
+            ]);
+
+            try {
+
+                DB::beginTransaction();
+
+                //custom here
+                $agency->update($request->only('region_id'));
+
+                $agency->enterprise->update($request->except('region_id') );
+
+                DB::commit();
+
+            } catch (\Throwable $th) {
+
+                DB::rollBack();
+
+                session()->flash('error', "Une erreur s'est produite");
+
+                return back();
+            }
+
+            session()->flash('success', 'Modification réussi');
+        }
+        return back();

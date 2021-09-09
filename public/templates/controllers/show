@@ -1,0 +1,5 @@
+  public function show(Conversion $conversion)
+    {
+        // custom here
+        return view('conversions.show', compact('conversion'));
+    }
