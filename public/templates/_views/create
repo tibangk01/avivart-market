@@ -1,5 +1,5 @@
 
-@extends('layouts.dashboard', ['title' => 'Ajouter une agence'])
+@extends('layouts.dashboard', ['title' => "Ajouter une agence"])
 //custom here
 
 @section('body')
