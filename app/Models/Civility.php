@@ -47,6 +47,11 @@ class Civility extends Model
 		return $this->hasMany(User::class);
 	}
 
+	/**
+     * toString
+     *
+     * @return string
+     */
     public function __toString()
     {
         return $this->name;

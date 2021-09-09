@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class SocietyController extends Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
+    
     /**
      * Display the specified resource.
      *

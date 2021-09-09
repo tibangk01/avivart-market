@@ -8,10 +8,16 @@ use App\Models\Conversion;
 use App\Models\Library;
 use Illuminate\Http\Request;
 use App\Models\ProductCategory;
+use App\Models\ProductType;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -34,8 +40,10 @@ class ProductController extends Controller
         $product_categories = ProductCategory::all()->pluck(null, 'id');
         $conversions = Conversion::all()->pluck(null, 'id');
         $currencies = Currency::all()->pluck(null, 'id');
+        $product_types = ProductType::all()->pluck(null, 'id');
 
-        return view('products.create', compact('product_categories', 'conversions', 'currencies'));
+
+        return view('products.create', compact('product_categories', 'conversions', 'currencies', 'product_types'));
     }
 
     /**
@@ -49,6 +57,7 @@ class ProductController extends Controller
         if ($request->isMethod('post')) {
 
             $request->validate([
+                'product_type_id' => ['required'],
                 'product_category_id' => ['required'],
                 'conversion_id' => ['required'],
                 'currency_id' => ['required'],
@@ -106,8 +115,9 @@ class ProductController extends Controller
         $product_categories = ProductCategory::all()->pluck(null, 'id');
         $conversions = Conversion::all()->pluck(null, 'id');
         $currencies = Currency::all()->pluck(null, 'id');
+        $product_types = ProductType::all()->pluck(null, 'id');
 
-        return view('products.edit', compact('product', 'product_categories', 'conversions', 'currencies'));
+        return view('products.edit', compact('product', 'product_categories', 'conversions', 'currencies', 'product_types'));
     }
 
     /**
@@ -122,6 +132,7 @@ class ProductController extends Controller
         if ($request->isMethod('put')) {
 
             $request->validate([
+                'product_type_id' => ['required'],
                 'product_category_id' => ['required'],
                 'conversion_id' => ['required'],
                 'currency_id' => ['required'],

@@ -43,11 +43,11 @@ class Person extends Model
 
 	public function customers()
 	{
-		return $this->hasMany(Customer::class, 'people_id');
+		return $this->hasMany(Customer::class);
 	}
 
 	public function providers()
 	{
-		return $this->hasMany(Provider::class, 'people_id');
+		return $this->hasMany(Provider::class);
 	}
 }

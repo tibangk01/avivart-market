@@ -10,4 +10,11 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    const BEGIN_CODE = '0';
+
+    public function __construct()
+    {
+        // code...
+    }
 }

@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Product
- * 
+ *
  * @property int $id
  * @property int $product_type_id
  * @property int $library_id
@@ -25,7 +25,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $sold_quantity
  * @property Carbon $created_at
  * @property Carbon $updated_at
- * 
+ *
  * @property ProductCategory $product_category
  * @property Conversion $conversion
  * @property Currency $currency
@@ -107,4 +107,6 @@ class Product extends Model
 					->withPivot('id', 'ordered_quantity', 'delivered_quantity')
 					->withTimestamps();
 	}
+
+
 }

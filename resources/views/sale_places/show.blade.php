@@ -16,11 +16,27 @@
                             <tbody>
                                 <tr>
                                     <td>Code</td>
-                                    <td>...</td>
+                                    <td>{{ $salePlace->enterprise->code }}</td>
                                 </tr>
                                 <tr>
                                     <td>Nom</td>
-                                    <td>{{ $salePlace->name }}</td>
+                                    <td>{{ $salePlace->enterprise->name }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Téléphone</td>
+                                    <td>{{ $salePlace->enterprise->phone_number }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Email</td>
+                                    <td>{{ $salePlace->enterprise->email }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Site web</td>
+                                    <td>{{ $salePlace->enterprise->website }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Adresse</td>
+                                    <td>{{ $salePlace->enterprise->address }}</td>
                                 </tr>
                                 <tr>
                                     <td>Agence</td>

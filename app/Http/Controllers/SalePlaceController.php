@@ -5,9 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Agency;
 use App\Models\SalePlace;
 use Illuminate\Http\Request;
+use App\Models\Enterprise;
+use Illuminate\Support\Facades\DB;
 
 class SalePlaceController extends Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -44,24 +51,54 @@ class SalePlaceController extends Controller
 
             $request->validate([
                 'agency_id' => ['required'],
-                'name' => ['required', 'min:3', 'max:40'],
+                'name' => ['required', 'min:3', 'max:50'],
+                'phone_number' => ['required', 'min:8'],
+                'email' => ['required', 'email', 'max:60'],
+                'website' => ['required', 'max:60'],
+                'address' => ['required', 'max:40'],
             ]);
 
-            $sale_place = SalePlace::create([
-                'agency_id' => $request->agency_id,
-                'name' => $request->name,
-            ]);
+            try {
 
-            if ($sale_place) {
+                DB::beginTransaction();
+
+                $agency = Agency::findOrFail($request->agency_id);
+
+                //get the last sale place in database : very important here
+                $salePlace = SalePlace::orderBy('id', 'DESC')->first();
+
+                $code = 1;
+
+                if ($salePlace) {
+                    $code = ++$salePlace->enterprise->code;
+                }
+
+                $enterprise = Enterprise::create(array_merge($request->all(),
+                    [
+                        'region_id' => $agency->region_id,
+                        'code' => $agency->code . self::BEGIN_CODE . $code,
+                        'is_corporation' => false,
+                    ]
+                ));
+
+                $sale_place = SalePlace::create([
+                    'enterprise_id' => $enterprise->id,
+                    'agency_id' => $agency->id,
+                ]);
+
+               DB::commit();
 
                 session()->flash('success', 'Donnée enregistrée.');
-            } else {
+
+            } catch (\Throwable $th) {
+
+                DB::rollBack();
 
                 session()->flash('error', "Une erreur s'est produite");
             }
-
-            return back();
         }
+
+        return back();
     }
 
     /**
@@ -100,11 +137,16 @@ class SalePlaceController extends Controller
         if ($request->isMethod('PUT')) {
 
             $request->validate([
-                'agency_id' => ['required'],
-                'name' => ['required', 'max:40'],
+                'name' => ['required', 'min:3', 'max:50'],
+                'phone_number' => ['required', 'min:8'],
+                'email' => ['required', 'email', 'max:60'],
+                'website' => ['required', 'max:60'],
+                'address' => ['required', 'max:40'],
             ]);
 
-            $salePlace->update($request->only('agency_id', 'name'));
+            $salePlace->enterprise->update($request->except('agency_id'));
+
+            //$salePlace->update($request->only('agency_id'));
 
             session()->flash('success', 'Modification réussi');
 

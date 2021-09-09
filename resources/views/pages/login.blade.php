@@ -1,11 +1,11 @@
 @extends('layouts.auth', ['title' => 'Connexion'])
 
 @section('body')
-    <div class="card">
+    <div class="card" id="login">
         <div class="card-body login-card-body">
             <p class="login-box-msg">Connectez-vous</p>
-            
-            {!! Form::open(['route' => 'page.login']) !!}
+
+            {!! Form::open(['route' => 'page.login',]) !!}
                 <div class="input-group mb-3">
                     <input type="text" name="username" class="form-control rounded-0 text-sm" placeholder="Identifiant"
                         autofocus>

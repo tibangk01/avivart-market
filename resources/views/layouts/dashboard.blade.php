@@ -124,11 +124,11 @@
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header" style="background-color:#17a2b8">
-                            <img src="{{ asset('public/vendors/dist/img/avatar.png') }}" class="img-circle"
+                            <img src="{{ auth()->user()->library->remote }}" class="img-circle"
                                 alt="User Image" />
                             <p>
                                 {{ auth()->user()->full_name }}
-                                <small>Role</small>
+                                <small>{{ session('staff')->staff_type->name }}</small>
                             </p>
                         </li>
                         <!-- Menu Footer-->
@@ -303,6 +303,14 @@
                                 <i class="nav-icon fa fa-users" aria-hidden="true"></i>
                                 <p>
                                     Clients
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('product.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-file"></i>
+                                <p>
+                                    Produits
                                 </p>
                             </a>
                         </li>
