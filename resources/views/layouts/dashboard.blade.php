@@ -371,7 +371,14 @@
                                 </p>
                             </a>
                         </li>
-
+                        <li class="nav-item">
+                            <a href="{{ route('cash_register.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>
+                                    Caisses
+                                </p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

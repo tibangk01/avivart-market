@@ -14,7 +14,9 @@ class CashRegisterController extends Controller
      */
     public function index()
     {
-        //
+        $cashRegisters = CashRegister::all();
+
+        return view('cash_registers.index', compact('cashRegisters'));
     }
 
     /**
@@ -24,7 +26,7 @@ class CashRegisterController extends Controller
      */
     public function create()
     {
-        //
+        return view('cash_registers.create');
     }
 
     /**
@@ -35,7 +37,23 @@ class CashRegisterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        if ($request->isMethod('post')) {
+
+            $this->_validateRequest($request);
+
+            $cashRegister = CashRegister::create($request->only('name'));
+
+            if ($cashRegister) {
+
+                session()->flash('success', "Donnée enregistrée");
+            } else {
+
+                session()->flash('error', "Une erreur s'est produite");
+            }
+        }
+
+        return back();
     }
 
     /**
@@ -46,7 +64,7 @@ class CashRegisterController extends Controller
      */
     public function show(CashRegister $cashRegister)
     {
-        //
+        return view('cash_registers.show', compact('cashRegister'));
     }
 
     /**
@@ -57,7 +75,7 @@ class CashRegisterController extends Controller
      */
     public function edit(CashRegister $cashRegister)
     {
-        //
+        return view('cash_registers.edit', compact('cashRegister'));
     }
 
     /**
@@ -69,7 +87,16 @@ class CashRegisterController extends Controller
      */
     public function update(Request $request, CashRegister $cashRegister)
     {
-        //
+        if ($request->isMethod('put')) {
+
+            $this->_validateRequest($request);
+
+            $cashRegister->update($request->only('name'));
+
+            session()->flash('success', 'Modification réussi');
+        }
+
+        return back();
     }
 
     /**
@@ -81,5 +108,20 @@ class CashRegisterController extends Controller
     public function destroy(CashRegister $cashRegister)
     {
         //
+    }
+
+    /**
+     * validateRequest
+     *
+     * Validate creation and edition incomming data
+     *
+     * @param mixed $request
+     * @return void
+     */
+    private function _validateRequest($request)
+    {
+        $request->validate([
+            'name' => ['required', 'min:3', 'max:30'],
+        ]);
     }
 }
