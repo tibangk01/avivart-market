@@ -72,7 +72,7 @@ class PageController extends Controller
                             $redirectRoute = 'page.index';
 
                             $staff = Staff::where('human_id', $human->id)->firstOrFail();
-                            session()->put('staff', $staff);
+                            session()->put('staff', $staff); // Bug to fix
                             break;
                     }
 
@@ -83,7 +83,7 @@ class PageController extends Controller
 
             return back()->withDanger('Erreur de connexion.');
         }
-        
+
         return view('pages.login');
     }
 
