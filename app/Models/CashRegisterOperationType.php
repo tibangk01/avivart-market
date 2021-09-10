@@ -12,13 +12,13 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class CashRegisterOperationType
- * 
+ *
  * @property int $id
  * @property string $name
  * @property bool $is_opening
  * @property Carbon $created_at
  * @property Carbon $updated_at
- * 
+ *
  * @property Collection|CashRegisterOperation[] $cash_register_operations
  *
  * @package App\Models
@@ -40,4 +40,9 @@ class CashRegisterOperationType extends Model
 	{
 		return $this->hasMany(CashRegisterOperation::class, 'cash_operation_type_id');
 	}
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

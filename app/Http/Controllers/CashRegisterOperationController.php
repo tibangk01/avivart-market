@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CashRegisterOperation;
+use App\Models\CashRegisterOperationType;
 use Illuminate\Http\Request;
 
 class CashRegisterOperationController extends Controller
@@ -14,7 +15,9 @@ class CashRegisterOperationController extends Controller
      */
     public function index()
     {
-        //
+        $cashRegisterOperations = CashRegisterOperation::all();
+
+        return view('cash_register_operations.index', compact('cashRegisterOperations'));
     }
 
     /**
@@ -24,7 +27,9 @@ class CashRegisterOperationController extends Controller
      */
     public function create()
     {
-        //
+        $cashRegisterOperationTypes = CashRegisterOperationType::all()->pluck(null, 'id');
+
+        return view('cash_register_operations.create', compact('cashRegisterOperationTypes'));
     }
 
     /**
@@ -35,7 +40,23 @@ class CashRegisterOperationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        if ($request->isMethod('post')) {
+
+            $this->_validateRequest($request);
+
+            $cashRegisterOperation = CashRegisterOperation::create($request->all());
+
+            if ($cashRegisterOperation) {
+
+                session()->flash('success', "Donnée enregistrée");
+            } else {
+
+                session()->flash('error', "Une erreur s'est produite");
+            }
+        }
+
+        return back();
     }
 
     /**
@@ -46,7 +67,7 @@ class CashRegisterOperationController extends Controller
      */
     public function show(CashRegisterOperation $cashRegisterOperation)
     {
-        //
+        return view('cash_register_operations.show', compact('cashRegisterOperation'));
     }
 
     /**
@@ -57,7 +78,9 @@ class CashRegisterOperationController extends Controller
      */
     public function edit(CashRegisterOperation $cashRegisterOperation)
     {
-        //
+        $cashRegisterOperationTypes = CashRegisterOperationType::all()->pluck(null, 'id');
+
+        return view('cash_register_operations.edit', compact('cashRegisterOperation', 'cashRegisterOperationTypes'));
     }
 
     /**
@@ -69,7 +92,17 @@ class CashRegisterOperationController extends Controller
      */
     public function update(Request $request, CashRegisterOperation $cashRegisterOperation)
     {
-        //
+
+        if ($request->isMethod('put')) {
+
+            $this->_validateRequest($request);
+
+            $cashRegisterOperation->update($request->all());
+
+            session()->flash('success', 'Modification réussi');
+        }
+
+        return back();
     }
 
     /**
@@ -81,5 +114,21 @@ class CashRegisterOperationController extends Controller
     public function destroy(CashRegisterOperation $cashRegisterOperation)
     {
         //
+    }
+
+    /**
+     * validateRequest
+     *
+     * Validate creation and edition incomming data
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     */
+    private function _validateRequest($request)
+    {
+        $request->validate([
+            'cash_register_operation_type_id' => ['required'],
+            'name' => ['required', 'max:30'],
+        ]);
     }
 }

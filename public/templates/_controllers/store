@@ -2,16 +2,13 @@ public function store(Request $request)
     {
         if ($request->isMethod('post')) {
 
-            //custom here
-            $request->validate([
-                'name' => ['required', 'min:3', 'max:30'],
-            ]);
+            $this->_validateRequest($request);
 
-            //custom here
-            $conversion = Conversion::create($request->only('name'));
+            // custom here
+            $cashRegisterOperation = CashRegisterOperation::create($request->all());
 
-            //custom here
-            if ($conversion) {
+            // custom here
+            if ($cashRegisterOperation) {
 
                 session()->flash('success', "Donnée enregistrée");
             } else {
@@ -20,7 +17,8 @@ public function store(Request $request)
             }
         }
 
-        return back(); // dont forget !!
+        return back(); // dont forget
+
     }
 
 
@@ -31,15 +29,8 @@ with transactions :
 
 if ($request->isMethod('post')) {
 
-//custom here
-$request->validate([
-    'region_id' => ['required'],
-    'name' => ['required', 'min:3', 'max:50'],
-    'phone_number' => ['required', 'min:8'],
-    'email' => ['required', 'email', 'max:60'],
-    'website' => ['required', 'max:60'],
-    'address' => ['required', 'max:40'],
-]);
+
+$this->_validateRequest($request);
 
 try {
 

@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Product
- *
+ * 
  * @property int $id
  * @property int $product_type_id
  * @property int $library_id
@@ -23,9 +23,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property float $price
  * @property int $stock_quantity
  * @property int $sold_quantity
+ * @property string|null $serial_number
+ * @property Carbon|null $manufacture_date
+ * @property Carbon|null $expiration_date
  * @property Carbon $created_at
  * @property Carbon $updated_at
- *
+ * 
  * @property ProductCategory $product_category
  * @property Conversion $conversion
  * @property Currency $currency
@@ -52,6 +55,11 @@ class Product extends Model
 		'sold_quantity' => 'int'
 	];
 
+	protected $dates = [
+		'manufacture_date',
+		'expiration_date'
+	];
+
 	protected $fillable = [
 		'product_type_id',
 		'library_id',
@@ -61,7 +69,10 @@ class Product extends Model
 		'name',
 		'price',
 		'stock_quantity',
-		'sold_quantity'
+		'sold_quantity',
+		'serial_number',
+		'manufacture_date',
+		'expiration_date'
 	];
 
 	public function product_category()
@@ -107,6 +118,4 @@ class Product extends Model
 					->withPivot('id', 'ordered_quantity', 'delivered_quantity')
 					->withTimestamps();
 	}
-
-
 }
