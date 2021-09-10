@@ -56,16 +56,7 @@ class ProductController extends Controller
     {
         if ($request->isMethod('post')) {
 
-            $request->validate([
-                'product_type_id' => ['required'],
-                'product_category_id' => ['required'],
-                'conversion_id' => ['required'],
-                'currency_id' => ['required'],
-                'name' => ['required', 'min:3', 'max:50'],
-                'stock_quantity' => ['required', 'numeric'],
-                'sold_quantity' => ['required', 'numeric'],
-                'price' => ['required', 'numeric'],
-            ]);
+            $this->_validateRequest($request);
 
             try {
 
@@ -87,6 +78,7 @@ class ProductController extends Controller
                 return redirect()->route('product.show', ['product' => $product]);
             } catch (\Throwable $th) {
                 DB::rollBack();
+
                 session()->flash('error', "Une erreur s'est produite");
             }
         }
@@ -131,16 +123,7 @@ class ProductController extends Controller
     {
         if ($request->isMethod('put')) {
 
-            $request->validate([
-                'product_type_id' => ['required'],
-                'product_category_id' => ['required'],
-                'conversion_id' => ['required'],
-                'currency_id' => ['required'],
-                'name' => ['required', 'min:3', 'max:50'],
-                'stock_quantity' => ['required', 'numeric'],
-                'sold_quantity' => ['required', 'numeric'],
-                'price' => ['required', 'numeric'],
-            ]);
+            $this->_validateRequest($request);
 
             $product->update($request->all());
 
@@ -159,5 +142,30 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+    }
+
+    /**
+     * validateRequest
+     *
+     * Validate creation and edition incomming data
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     */
+    private function _validateRequest($request)
+    {
+        $request->validate([
+            'product_type_id' => ['required'],
+            'product_category_id' => ['required'],
+            'conversion_id' => ['required'],
+            'currency_id' => ['required'],
+            'name' => ['required', 'min:3', 'max:50'],
+            'stock_quantity' => ['required', 'numeric'],
+            'sold_quantity' => ['required', 'numeric'],
+            'price' => ['required', 'numeric'],
+            'serial_number' => ['nullable'],
+            'manufacture_date' => ['nullable'],
+            'expiration_date' => ['nullable'],
+        ]);
     }
 }

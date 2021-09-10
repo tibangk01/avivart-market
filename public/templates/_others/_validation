@@ -1,4 +1,7 @@
-   /**
+
+    $this->_validateRequest($request);
+
+    /**
      * validateRequest
      *
      * Validate creation and edition incomming data
@@ -8,6 +11,7 @@
      */
     private function _validateRequest($request)
     {
+        // customize here
         $request->validate([
             'region_id' => ['required'],
             'is_active' => ['required'],

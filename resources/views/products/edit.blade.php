@@ -29,22 +29,37 @@
 
                     <div class="form-group">
                         {!! Form::label('name', 'Nom', ['class' => 'form-label']) !!}
-                        {!! Form::text('name', $product->name, ['class' => 'form-control', 'required' => true]) !!}
+                        {!! Form::text('name', null, ['class' => 'form-control', 'required' => true]) !!}
                     </div>
 
                     <div class="form-group">
                         {!! Form::label('price', 'Prix Unitaire', ['class' => 'form-label']) !!}
-                        {!! Form::text('price', $product->price, ['class' => 'form-control', 'required' => true]) !!}
+                        {!! Form::text('price', null, ['class' => 'form-control', 'required' => true]) !!}
                     </div>
 
                     <div class="form-group">
                         {!! Form::label('stock_quantity', 'Quantitée en stock', ['class' => 'form-label']) !!}
-                        {!! Form::text('stock_quantity', $product->stock_quantity, ['class' => 'form-control', 'required' => true]) !!}
+                        {!! Form::text('stock_quantity', null, ['class' => 'form-control', 'required' => true]) !!}
                     </div>
 
                     <div class="form-group">
                         {!! Form::label('sold_quantity', 'Quantitée vendue', ['class' => 'form-label']) !!}
-                        {!! Form::text('sold_quantity', $product->sold_quantity, ['class' => 'form-control', 'required' => true]) !!}
+                        {!! Form::text('sold_quantity', null, ['class' => 'form-control', 'required' => true]) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('serial_number', 'Numéro de série', ['class' => 'form-label']) !!}
+                        {!! Form::text('serial_number',null, ['class' => 'form-control']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('manufacture_date', 'Date de fabrication', ['class' => 'form-label']) !!}
+                        {!! Form::date('manufacture_date', $product->manufacture_date, ['class' => 'form-control']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('expiration_date', "Date d'expiration", ['class' => 'form-label']) !!}
+                        {!! Form::date('expiration_date', $product->expiration_date, ['class' => 'form-control']) !!}
                     </div>
 
                     <div class="btn-group pull-right">

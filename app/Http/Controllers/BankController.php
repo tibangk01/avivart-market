@@ -14,7 +14,6 @@ class BankController extends Controller
      */
     public function index()
     {
-
         $banks = Bank::all();
 
         return view('banks.index', compact('banks'));
@@ -38,12 +37,10 @@ class BankController extends Controller
      */
     public function store(Request $request)
     {
+
         if ($request->isMethod('post')) {
 
-            $request->validate([
-                'name' => ['required', 'max:40'],
-                'account' => ['required', 'max:30'],
-            ]);
+            $this->_validateRequest($request);
 
             $bank = Bank::create($request->all());
 
@@ -92,10 +89,7 @@ class BankController extends Controller
     {
         if ($request->isMethod('put')) {
 
-            $request->validate([
-                'name' => ['required', 'max:40'],
-                'account' => ['required', 'max:30'],
-            ]);
+            $this->_validateRequest($request);
 
             $bank->update($request->all());
 
@@ -114,5 +108,21 @@ class BankController extends Controller
     public function destroy(Bank $bank)
     {
         //
+    }
+
+    /**
+     * validateRequest
+     *
+     * Validate creation and edition incomming data
+     *
+     * @param mixed $request
+     * @return void
+     */
+    private function _validateRequest($request)
+    {
+        $request->validate([
+            'name' => ['required', 'max:40'],
+            'account' => ['required', 'max:30'],
+        ]);
     }
 }

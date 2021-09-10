@@ -47,6 +47,18 @@
                                     <td>{{ $product->sold_quantity }}</td>
                                 </tr>
                                 <tr>
+                                    <td>Numéro de série</td>
+                                    <td>{{ $product->serial_number ? $product->serial_number : '-' }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Date de fabrication</td>
+                                    <td>{{ $product->manufacture_date ? $product->manufacture_date : '-' }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Date d'expiration</td>
+                                    <td>{{ $product->expiration_date ? $product->expiration_date  : '-' }}</td>
+                                </tr>
+                                <tr>
                                     <td>Date de création</td>
                                     <td>{{ $product->created_at->diffForHumans() }}</td>
                                 </tr>

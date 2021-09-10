@@ -47,6 +47,21 @@
                         {!! Form::number('price', null, ['class' => 'form-control', 'required' => true, 'Entrer le prix unitaire', 'step' =>'any']) !!}
                     </div>
 
+                    <div class="form-group">
+                        {!! Form::label('serial_number', 'Numéro de série', ['class' => 'form-label']) !!}
+                        {!! Form::text('serial_number', null, ['class' => 'form-control']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('manufacture_date', 'Date de fabrication', ['class' => 'form-label']) !!}
+                        {!! Form::date('manufacture_date', now(), ['class' => 'form-control']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('expiration_date', "Date d'expiration", ['class' => 'form-label']) !!}
+                        {!! Form::date('expiration_date', now(), ['class' => 'form-control']) !!}
+                    </div>
+
                     <div class="form-group text-right">
                         {!! Form::submit('Enregistrer', ['class' => 'btn btn-success']) !!}
                     </div>
