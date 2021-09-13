@@ -9,12 +9,12 @@
 
                     <div class="form-group">
                         {!! Form::label('name', 'Nom', ['class' => 'form-label']) !!}
-                        {!! Form::text('name', $bank->name, ['class' => 'form-control']) !!}
+                        {!! Form::text('name', null, ['class' => 'form-control']) !!}
                     </div>
 
                     <div class="form-group">
                         {!! Form::label('account', 'N° de compte', ['class' => 'form-label']) !!}
-                        {!! Form::text('account', $bank->account, ['class' => 'form-control']) !!}
+                        {!! Form::text('account', null, ['class' => 'form-control']) !!}
                     </div>
 
                     <div class="form-group text-right">

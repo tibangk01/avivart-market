@@ -25,22 +25,22 @@
 
                     <div class="form-group">
                         {!! Form::label('last_name', 'Nom', ['class' => 'form-label']) !!}
-                        {!! Form::text('last_name', null, ['class' => 'form-control', 'required' => true]) !!}
+                        {!! Form::text('last_name', $staff->human->user->last_name , ['class' => 'form-control', 'required' => true]) !!}
                     </div>
 
                     <div class="form-group">
                         {!! Form::label('first_name', 'Prénom', ['class' => 'form-label']) !!}
-                        {!! Form::text('first_name', null, ['class' => 'form-control', 'required' => true]) !!}
+                        {!! Form::text('first_name', $staff->human->user->first_name, ['class' => 'form-control', 'required' => true]) !!}
                     </div>
 
                     <div class="form-group">
                         {!! Form::label('phone_number', 'Téléphone', ['class' => 'form-label']) !!}
-                        {!! Form::text('phone_number', null, ['class' => 'form-control']) !!}
+                        {!! Form::text('phone_number', $staff->human->user->phone_number, ['class' => 'form-control']) !!}
                     </div>
 
                     <div class="form-group">
                         {!! Form::label('email', 'Email', ['class' => 'form-label']) !!}
-                        {!! Form::email('email', null, ['class' => 'form-control']) !!}
+                        {!! Form::email('email', $staff->human->user->email, ['class' => 'form-control']) !!}
                     </div>
 
                     <div class="form-group text-right">
