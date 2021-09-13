@@ -10,7 +10,7 @@
 
                     <div class="form-group">
                         {!! Form::label('name', 'Dénomination', ['class' => 'form-label']) !!}
-                        {!! Form::text('name', $cashRegisterOperationType->name, ['class' => 'form-control', 'required' => true]) !!}
+                        {!! Form::text('name', null, ['class' => 'form-control', 'required' => true]) !!}
                     </div>
 
                     <div class="form-group">

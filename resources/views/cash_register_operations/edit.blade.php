@@ -15,7 +15,7 @@
 
                     <div class="form-group">
                         {!! Form::label('name', 'Nom') !!}
-                        {!! Form::text('name', $cashRegisterOperation->name, ['class' => 'form-control', 'required' => true]) !!}
+                        {!! Form::text('name', null, ['class' => 'form-control', 'required' => true]) !!}
                     </div>
 
                     <div class="form-group text-right">

@@ -356,18 +356,18 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('bank.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-file"></i>
-                                <p>
-                                    Banques
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a href="{{ route('staff.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>
                                     Employés
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('bank.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-file"></i>
+                                <p>
+                                    Banques
                                 </p>
                             </a>
                         </li>
