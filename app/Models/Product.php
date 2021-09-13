@@ -18,7 +18,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $library_id
  * @property int $product_category_id
  * @property int $conversion_id
- * @property int $currency_id
  * @property string $name
  * @property float $price
  * @property int $stock_quantity
@@ -31,7 +30,6 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property ProductCategory $product_category
  * @property Conversion $conversion
- * @property Currency $currency
  * @property Library $library
  * @property ProductType $product_type
  * @property Collection|ProductOrder[] $product_orders
@@ -49,7 +47,6 @@ class Product extends Model
 		'library_id' => 'int',
 		'product_category_id' => 'int',
 		'conversion_id' => 'int',
-		'currency_id' => 'int',
 		'price' => 'float',
 		'stock_quantity' => 'int',
 		'sold_quantity' => 'int'
@@ -65,7 +62,6 @@ class Product extends Model
 		'library_id',
 		'product_category_id',
 		'conversion_id',
-		'currency_id',
 		'name',
 		'price',
 		'stock_quantity',
@@ -83,11 +79,6 @@ class Product extends Model
 	public function conversion()
 	{
 		return $this->belongsTo(Conversion::class);
-	}
-
-	public function currency()
-	{
-		return $this->belongsTo(Currency::class);
 	}
 
 	public function library()

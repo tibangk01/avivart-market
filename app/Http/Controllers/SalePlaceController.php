@@ -6,6 +6,7 @@ use App\Models\Agency;
 use App\Models\SalePlace;
 use Illuminate\Http\Request;
 use App\Models\Enterprise;
+use App\Models\Country;
 use Illuminate\Support\Facades\DB;
 
 class SalePlaceController extends Controller
@@ -35,8 +36,9 @@ class SalePlaceController extends Controller
     public function create()
     {
         $agencies = Agency::all()->load('enterprise')->pluck('enterprise.name', 'id');
+        $countries = Country::all()->pluck(null, 'id');
 
-        return view('sale_places.create', compact('agencies'));
+        return view('sale_places.create', compact('agencies', 'countries'));
     }
 
     /**
@@ -50,12 +52,14 @@ class SalePlaceController extends Controller
         if ($request->isMethod('POST')) {
 
             $request->validate([
+                'country_id' => ['required'],
                 'agency_id' => ['required'],
                 'name' => ['required', 'min:3', 'max:50'],
                 'phone_number' => ['required', 'min:8'],
                 'email' => ['required', 'email', 'max:60'],
                 'website' => ['required', 'max:60'],
-                'address' => ['required', 'max:40'],
+                'address' => ['max:50'],
+                'city' => ['max:30'],
             ]);
 
             try {
@@ -121,8 +125,9 @@ class SalePlaceController extends Controller
     public function edit(SalePlace $salePlace)
     {
         $agencies = Agency::all()->load('enterprise')->pluck('enterprise.name', 'id');
+        $countries = Country::all()->pluck(null, 'id');
 
-        return view('sale_places.edit', compact('agencies', 'salePlace'));
+        return view('sale_places.edit', compact('agencies', 'countries', 'salePlace'));
     }
 
     /**
@@ -137,11 +142,14 @@ class SalePlaceController extends Controller
         if ($request->isMethod('PUT')) {
 
             $request->validate([
+                'country_id' => ['required'],
+                'agency_id' => ['required'],
                 'name' => ['required', 'min:3', 'max:50'],
                 'phone_number' => ['required', 'min:8'],
                 'email' => ['required', 'email', 'max:60'],
                 'website' => ['required', 'max:60'],
-                'address' => ['required', 'max:40'],
+                'address' => ['max:50'],
+                'city' => ['max:30'],
             ]);
 
             $salePlace->enterprise->update($request->except('agency_id'));

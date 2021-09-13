@@ -23,6 +23,8 @@ class PageController extends Controller
      */
     public function index(Request $request)
     {
+        //dd(bcrypt(123456789));
+        
         return view('pages.index');
     }
 

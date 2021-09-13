@@ -6,6 +6,7 @@ use App\Models\Agency;
 use App\Models\Region;
 use App\Models\Society;
 use App\Models\Enterprise;
+use App\Models\Country;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -36,10 +37,10 @@ class AgencyController extends Controller
     public function create()
     {
         $societies = Society::all()->load('enterprise')->pluck('enterprise.name', 'id');
-
         $regions = Region::all()->pluck(null, 'id');
+        $countries = Country::all()->pluck(null, 'id');
 
-        return view('agencies.create', compact('societies', 'regions'));
+        return view('agencies.create', compact('societies', 'regions', 'countries'));
     }
 
     /**
@@ -53,6 +54,7 @@ class AgencyController extends Controller
         if ($request->isMethod('POST')) {
 
             $request->validate([
+                'country_id' => ['required'],
                 'region_id' => ['required'],
                 'name' => ['required', 'min:3', 'max:50'],
                 'phone_number' => ['required', 'min:8'],
@@ -123,10 +125,10 @@ class AgencyController extends Controller
     public function edit(Agency $agency)
     {
         $societies = Society::all()->load('enterprise')->pluck('enterprise.name', 'id');
-
         $regions = Region::all()->pluck(null, 'id');
+        $countries = Country::all()->pluck(null, 'id');
 
-        return view('agencies.edit', compact('societies', 'regions', 'agency'));
+        return view('agencies.edit', compact('societies', 'regions', 'countries', 'agency'));
     }
 
     /**
@@ -141,6 +143,7 @@ class AgencyController extends Controller
         if ($request->isMethod('PUT')) {
 
             $request->validate([
+                'country_id' => ['required'],
                 'name' => ['required', 'min:3', 'max:50'],
                 'phone_number' => ['required', 'min:8'],
                 'email' => ['required', 'email', 'max:60'],

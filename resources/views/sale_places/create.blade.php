@@ -6,6 +6,12 @@
             <div class="row">
                 <div class="col-lg-12">
                     {!! Form::open(['method' => 'POST', 'route' => 'sale_place.store']) !!}
+
+                    <div class="form-group">
+                        {!! Form::label('country_id', 'Pays') !!}
+                        {!! Form::select('country_id', $countries, null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Choisissez un pays']) !!}
+                    </div>
+                
                     <div class="form-group">
                         {!! Form::label('agency_id', 'Agence') !!}
                         {!! Form::select('agency_id', $agencies, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez une agence']) !!}
@@ -32,8 +38,13 @@
                     </div>
 
                     <div class="form-group">
-                        {!! Form::label('address', 'Adresse') !!}
+                        {!! Form::label('address', "Adresse", ['class' => 'form-label']) !!}
                         {!! Form::text('address', null, ['class' => 'form-control']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('city', "Ville", ['class' => 'form-label']) !!}
+                        {!! Form::text('city', null, ['class' => 'form-control']) !!}
                     </div>
 
                     <div class="form-group text-right">

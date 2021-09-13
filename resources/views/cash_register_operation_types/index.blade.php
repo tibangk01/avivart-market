@@ -37,7 +37,6 @@
                                                 <tr>
 
                                                     <th>Dénomination</th>
-                                                    <th>Ouverture / Fermeture</th>
                                                     <th>Date de création</th>
                                                     <th>Date de mise à jour</th>
                                                     <th>Actions</th>
@@ -48,16 +47,8 @@
 
                                                     @foreach ($cashRegisterOperationTypes as $cashRegisterOperationType)
                                                         <tr>
-                                                            <td>
+                                                            <td class="{{ $cashRegisterOperationType->getForeColor() }}">
                                                                 {{ $cashRegisterOperationType->name }}
-                                                            </td>
-
-                                                            <td>
-                                                                @if ($cashRegisterOperationType->is_opening)
-                                                                    <span class="badge badge-info">Ouverture</span>
-                                                                @else
-                                                                    <span class="badge badge-warning">Fermeture</span>
-                                                                @endif
                                                             </td>
 
                                                             <td>

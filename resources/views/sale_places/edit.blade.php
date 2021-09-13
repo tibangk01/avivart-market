@@ -6,6 +6,12 @@
             <div class="row">
                 <div class="col-lg-12">
                     {!! Form::model($salePlace, ['method' => 'PUT', 'route' => ['sale_place.update', $salePlace]]) !!}
+
+                    <div class="form-group">
+                        {!! Form::label('country_id', 'Pays') !!}
+                        {!! Form::select('country_id', $countries, $salePlace->enterprise->country_id, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Choisissez un pays']) !!}
+                    </div>
+
                     <div class="form-group">
                         {!! Form::label('agency_id', 'Agence') !!}
                         {!! Form::select('agency_id', $agencies, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez une agence', 'disabled' => true]) !!}
@@ -30,6 +36,10 @@
                     <div class="form-group">
                         {!! Form::label('address', 'Adresse', ['class' => 'form-label']) !!}
                         {!! Form::text('address', $salePlace->enterprise->address, ['class' => 'form-control']) !!}
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('city', 'Ville', ['class' => 'form-label']) !!}
+                        {!! Form::text('city', $salePlace->enterprise->city, ['class' => 'form-control']) !!}
                     </div>
 
                     <div class="form-group text-right">

@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property int $id
  * @property string $name
- * @property bool $is_opening
+ * @property bool $state
  * @property Carbon $created_at
  * @property Carbon $updated_at
  *
@@ -28,18 +28,23 @@ class CashRegisterOperationType extends Model
 	protected $table = 'cash_register_operation_types';
 
 	protected $casts = [
-		'is_opening' => 'bool'
+		'state' => 'bool'
 	];
 
 	protected $fillable = [
 		'name',
-		'is_opening'
+		'state'
 	];
 
 	public function cash_register_operations()
 	{
 		return $this->hasMany(CashRegisterOperation::class, 'cash_operation_type_id');
 	}
+
+    public function getForeColor()
+    {
+        return $this->state ? 'text-success' : 'text-danger';
+    }
 
     public function __toString()
     {

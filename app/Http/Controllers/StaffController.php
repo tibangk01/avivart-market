@@ -9,6 +9,9 @@ use App\Helpers\Helper;
 use App\Models\Library;
 use App\Models\Civility;
 use App\Models\StaffType;
+use App\Models\Work;
+use App\Models\Role;
+use App\Models\Country;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -35,8 +38,11 @@ class StaffController extends Controller
     {
         $civilities = Civility::all()->pluck(null, 'id');
         $staffTypes = StaffType::all()->pluck(null, 'id');
+        $works = Work::all()->pluck(null, 'id');
+        $roles = Role::all()->pluck(null, 'id');
+        $countries = Country::all()->pluck(null, 'id');
 
-        return view('staffs.create', compact('civilities', 'staffTypes'));
+        return view('staffs.create', compact('civilities', 'staffTypes', 'works', 'roles', 'countries'));
     }
 
     /**
@@ -49,7 +55,7 @@ class StaffController extends Controller
     {
         if ($request->isMethod('post')) {
 
-            $this->_validateRequest($request);
+            $this->_validateRequest($request, 'post');
 
             try {
 
@@ -62,22 +68,23 @@ class StaffController extends Controller
                     'remote' => env('UPLOADS_PATH') .'images/users/profile.png',
                 ]);
 
-                $user = User::create([
-                    'user_type_id' => 2,
-                    'civility_id' => $request->civility_id,
-                    'library_id' => $library->id,
-                    'last_name' => $request->last_name,
-                    'first_name' => $request->first_name,
-                    'phone_number' => $request->phone_number,
-                    'email' => $request->email,
-                ]);
+                $user = User::create(array_merge(
+                    $request->only('civility_id', 'country_id', 'last_name', 'first_name', 'phone_number', 'email', 'address', 'city'),
+                    [
+                        'user_type_id' => 2,
+                        'library_id' => $library->id,
+                    ]
+                ));
 
-                $human = Human::create([
-                    'user_id' => $user->id,
-                    'signature' => $request->signature,
-                    'username' => Helper::randomAlphaNumeric(false),
-                    'password' => Helper::randomAlphaNumeric(true),
-                ]);
+                $human = Human::create(
+                    array_merge(
+                    $request->only('work_id', 'role_id', 'signature', 'username'),
+                    [
+                        'user_id' => $user->id,
+                        #'username' => Helper::randomAlphaNumeric(false),
+                        'password' => bcrypt(Helper::randomAlphaNumeric(true)),
+                    ]
+                ));
 
                 $staff = Staff::create([
                     'staff_type_id' => $request->staff_type_id,
@@ -121,8 +128,11 @@ class StaffController extends Controller
     {
         $civilities = Civility::all()->pluck(null, 'id');
         $staffTypes = StaffType::all()->pluck(null, 'id');
+        $works = Work::all()->pluck(null, 'id');
+        $roles = Role::all()->pluck(null, 'id');
+        $countries = Country::all()->pluck(null, 'id');
 
-        return view('staffs.edit', compact('staff', 'civilities', 'staffTypes'));
+        return view('staffs.edit', compact('staff', 'civilities', 'staffTypes', 'works', 'roles', 'countries'));
     }
 
     /**
@@ -136,15 +146,15 @@ class StaffController extends Controller
     {
         if ($request->isMethod('put')) {
 
-            $this->_validateRequest($request);
+            $this->_validateRequest($request, 'put');
 
             try {
 
                 DB::beginTransaction();
 
-                $staff->human->user->update($request->except('staff_type_id', 'signature'));
+                $staff->human->user->update($request->except('work_id', 'staff_type_id', 'signature'));
 
-                $staff->human->update($request->only('signature'));
+                $staff->human->update($request->only('work_id', 'role_id', 'signature'));
 
                 $staff->update($request->only('staff_type_id'));
 
@@ -184,22 +194,29 @@ class StaffController extends Controller
      * @param mixed $request
      * @return void
      */
-    private function _validateRequest($request)
+    private function _validateRequest(Request $request, string $method)
     {
-        $request->validate([
+        $formData = [
+            'country_id' => ['required'],
+            'role_id' => ['required'],
             'civility_id' => ['required'],
+            'work_id' => ['required'],
             'staff_type_id' => ['required'],
             'last_name' => ['required', 'max:25'],
             'first_name' => ['required', 'max:25'],
             'phone_number' => ['max:20'],
             'email' => ['email', 'max:60'],
-        ]);
+            'address' => ['max:50'],
+            'city' => ['max:30'],
+        ];
 
-        if($request->isMethod('post')){
-
-            $request->validate([
+        if(mb_strtolower($method) == 'post'){
+            $formData += [
+                'username' => ['unique:humans', 'max:25'],
                 'signature' => ['unique:humans', 'max:5'],
-            ]);
+            ];
         }
+
+        $request->validate($formData);
     }
 }

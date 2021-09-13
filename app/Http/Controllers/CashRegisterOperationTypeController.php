@@ -122,7 +122,7 @@ class CashRegisterOperationTypeController extends Controller
     {
         $request->validate([
             'name' => ['required', 'min:3', 'max:30'],
-            'is_opening' => ['required'],
+            'state' => ['required'],
         ]);
     }
 }

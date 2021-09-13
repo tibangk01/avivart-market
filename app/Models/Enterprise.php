@@ -39,7 +39,8 @@ class Enterprise extends Model
 
 	protected $casts = [
 		'is_corporation' => 'bool',
-		'region_id' => 'int'
+		'country_id' => 'int',
+		'region_id' => 'int',
 	];
 
 	protected $fillable = [
@@ -49,9 +50,16 @@ class Enterprise extends Model
 		'website',
 		'email',
 		'address',
+		'city',
 		'is_corporation',
-		'region_id'
+		'region_id',
+		'country_id',
 	];
+
+	public function country()
+	{
+		return $this->belongsTo(Country::class);
+	}
 
 	public function region()
 	{

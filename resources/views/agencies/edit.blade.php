@@ -6,6 +6,12 @@
             <div class="row">
                 <div class="col-lg-12">
                     {!! Form::model($agency, ['method' => 'PUT', 'route' => ['agency.update', $agency]]) !!}
+
+                    <div class="form-group">
+                        {!! Form::label('country_id', 'Pays') !!}
+                        {!! Form::select('country_id', $countries, $agency->enterprise->country_id, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Choisissez un pays']) !!}
+                    </div>
+
                     <div class="form-group">
                         {!! Form::label('society_id', 'Société') !!}
                         {!! Form::select('society_id', $societies, $agency->society_id, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Choisissez une société', 'disabled' => true]) !!}
@@ -39,6 +45,10 @@
                     <div class="form-group">
                         {!! Form::label('address', 'Adresse', ['class' => 'form-label']) !!}
                         {!! Form::text('address', $agency->enterprise->address, ['class' => 'form-control']) !!}
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('city', 'Ville', ['class' => 'form-label']) !!}
+                        {!! Form::text('city', $agency->enterprise->city, ['class' => 'form-control']) !!}
                     </div>
                     
                     <div class="form-group text-right">

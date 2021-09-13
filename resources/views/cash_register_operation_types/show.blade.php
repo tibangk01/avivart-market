@@ -18,17 +18,7 @@
 
                                 <tr>
                                     <td>Dénomination</td>
-                                    <td>{{ $cashRegisterOperationType->name }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Ouverture/Fermeture</td>
-                                    <td>
-                                        @if ($cashRegisterOperationType->is_opening)
-                                            <span class="badge badge-info">Ouverture</span>
-                                        @else
-                                            <span class="badge badge-warning">Fermeture</span>
-                                        @endif
-                                    </td>
+                                    <td class="{{ $cashRegisterOperationType->getForeColor() }}">{{ $cashRegisterOperationType->name }}</td>
                                 </tr>
                                 <tr>
                                     <td>Date de création</td>

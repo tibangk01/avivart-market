@@ -34,4 +34,9 @@ class Work extends Model
 	{
 		return $this->hasMany(Human::class);
 	}
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

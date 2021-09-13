@@ -51,26 +51,31 @@ class CustomerController extends Controller
                 switch ($request->form) {
                     case 'corporation':
                         $request->validate([
+                            'country_id' => ['required'],
                             'region_id' => ['required'],
                             'person_ray_id' => ['required'],
                             'name' => ['required', 'min:3', 'max:50'],
                             'phone_number' => ['required', 'min:8'],
                             'email' => ['required', 'email', 'max:60'],
                             'website' => ['required', 'max:60'],
-                            'address' => ['required', 'max:40'],
                             'tppcr' => ['required', 'min:3'],
                             'fiscal_code' => ['required', 'min:3'],
+                            'address' => ['max:50'],
+                            'city' => ['max:30'],
                         ]);
                         break;
 
                     default:
                         $request->validate([
+                            'country_id' => ['required'],
                             'civility_id' => ['required'],
                             'person_ray_id' => ['required'],
                             'first_name' => ['required', 'min:3', 'max:25'],
                             'last_name' => ['required', 'min:3', 'max:25'],
                             'phone_number' => ['required', 'min:8'],
                             'email' => ['required', 'email', 'max:40'],
+                            'address' => ['max:50'],
+                            'city' => ['max:30'],
                         ]);
                         break;
                 }
@@ -191,26 +196,31 @@ class CustomerController extends Controller
                 switch ($request->form) {
                     case 'corporation':
                         $request->validate([
+                            'country_id' => ['required'],
                             'region_id' => ['required'],
                             'person_ray_id' => ['required'],
                             'name' => ['required', 'min:3', 'max:50'],
                             'phone_number' => ['required', 'min:8'],
                             'email' => ['required', 'email', 'max:60'],
                             'website' => ['required', 'max:60'],
-                            'address' => ['required', 'max:40'],
                             'tppcr' => ['required', 'min:3'],
                             'fiscal_code' => ['required', 'min:3'],
+                            'address' => ['max:50'],
+                            'city' => ['max:30'],
                         ]);
                         break;
 
                     default:
                         $request->validate([
+                            'country_id' => ['required'],
                             'civility_id' => ['required'],
                             'person_ray_id' => ['required'],
                             'first_name' => ['required', 'min:3', 'max:25'],
                             'last_name' => ['required', 'min:3', 'max:25'],
                             'phone_number' => ['required', 'min:8'],
                             'email' => ['required', 'email', 'max:40'],
+                            'address' => ['max:50'],
+                            'city' => ['max:30'],
                         ]);
                         break;
                 }

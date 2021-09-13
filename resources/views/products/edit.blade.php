@@ -23,11 +23,6 @@
                     </div>
 
                     <div class="form-group">
-                        {!! Form::label('currency_id', 'Dévises') !!}
-                        {!! Form::select('currency_id', $currencies, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez une dévise']) !!}
-                    </div>
-
-                    <div class="form-group">
                         {!! Form::label('name', 'Nom', ['class' => 'form-label']) !!}
                         {!! Form::text('name', null, ['class' => 'form-control', 'required' => true]) !!}
                     </div>

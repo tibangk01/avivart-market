@@ -16,13 +16,13 @@
                     <div class="form-group">
 
                         <label for="valueOne" class="form-label">
-                            {!! Form::radio('is_opening', '0', null, ['id' => 'valueOne']) !!} Fermeture ?
+                            {!! Form::radio('state', '0', null, ['id' => 'valueOne']) !!} Sortie ?
                         </label>
 
                         &nbsp;&nbsp;&nbsp;
 
                         <label for="valueTwo" class="form-label">
-                            {!! Form::radio('is_opening', '1', null, ['id' => 'valueTwo']) !!} Ouverture ?
+                            {!! Form::radio('state', '1', null, ['id' => 'valueTwo']) !!} Entrée ?
                         </label>
 
                     </div>

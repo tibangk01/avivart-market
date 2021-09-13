@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Currency;
 use App\Models\Exercise;
 use Illuminate\Http\Request;
 
@@ -31,7 +32,9 @@ class ExerciseController extends Controller
      */
     public function create()
     {
-        return view('exercises.create');
+        $currencies = Currency::all()->pluck(null, 'id');
+
+        return view('exercises.create', compact('currencies'));
     }
 
     /**
@@ -45,11 +48,13 @@ class ExerciseController extends Controller
         if ($request->isMethod('post')) {
 
             $request->validate([
+                'currency_id' => ['required'],
+                'title' => ['required', 'min:10', 'max:255'],
                 'start_date' => ['required'],
                 'end_date' => ['required'],
             ]);
 
-            $exercise = Exercise::create($request->only(['start_date', 'end_date']));
+            $exercise = Exercise::create($request->all());
 
             if ($exercise) {
                 session()->flash('success', "Donnée enregistrée");
@@ -81,7 +86,9 @@ class ExerciseController extends Controller
      */
     public function edit(Exercise $exercise)
     {
-        return view('exercises.edit', compact('exercise'));
+        $currencies = Currency::all()->pluck(null, 'id');
+
+        return view('exercises.edit', compact('exercise', 'currencies'));
     }
 
     /**
@@ -96,6 +103,8 @@ class ExerciseController extends Controller
         if ($request->isMethod('put')) {
 
             $request->validate([
+                'currency_id' => ['required'],
+                'title' => ['required', 'min:10', 'max:255'],
                 'start_date' => ['required'],
                 'end_date' => ['required'],
             ]);

@@ -35,49 +35,47 @@
                                                     <th>Nom</th>
                                                     <th>N° de compte</th>
                                                     <th>Date de création</th>
-                                                    <th>Date de mis à jour</th>
+                                                    <th>Date de mise à jour</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @if ($banks->count())
-                                                    @foreach ($banks as $bank)
-                                                        <tr>
-                                                            <td>
-                                                                {{ $bank->name }}
-                                                            </td>
-                                                            <td>
-                                                                {{ $bank->account }}
-                                                            </td>
-                                                            <td>
-                                                                {{ $bank->created_at->diffForHumans() }}
-                                                            </td>
-                                                            <td>
-                                                                {{ $bank->updated_at->diffForHumans() }}
-                                                            </td>
-                                                            <td>
-                                                                <a class="btn btn-info btn-xs"
-                                                                    href="{{ route('bank.show', $bank) }}"
-                                                                    title="Afficher"><i class="fa fa-eye"
-                                                                        aria-hidden="true"></i></a>
-                                                                <a class="btn btn-warning btn-xs"
-                                                                    href="{{ route('bank.edit', $bank) }}"
-                                                                    title="Afficher"><i class="fa fa-edit"
-                                                                        aria-hidden="true"></i></a>
-                                                                <a class="btn btn-danger btn-xs"
-                                                                    href="{{ route('bank.destroy', $bank) }}"
-                                                                    title="Afficher"><i class="fa fa-trash"
-                                                                        aria-hidden="true"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                @else
+                                                @forelse($banks as $bank)
+                                                    <tr>
+                                                        <td>
+                                                            {{ $bank->name }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $bank->account }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $bank->created_at->diffForHumans() }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $bank->updated_at->diffForHumans() }}
+                                                        </td>
+                                                        <td>
+                                                            <a class="btn btn-info btn-xs"
+                                                                href="{{ route('bank.show', $bank) }}"
+                                                                title="Afficher"><i class="fa fa-eye"
+                                                                    aria-hidden="true"></i></a>
+                                                            <a class="btn btn-warning btn-xs"
+                                                                href="{{ route('bank.edit', $bank) }}"
+                                                                title="Afficher"><i class="fa fa-edit"
+                                                                    aria-hidden="true"></i></a>
+                                                            <a class="btn btn-danger btn-xs"
+                                                                href="{{ route('bank.destroy', $bank) }}"
+                                                                title="Afficher"><i class="fa fa-trash"
+                                                                    aria-hidden="true"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                @empty
                                                     <tr>
                                                         <td colspan="5">
                                                             Pas d'enregistrements.
                                                         </td>
                                                     </tr>
-                                                @endif
+                                                @endforelse
                                             </tbody>
                                         </table>
                                     </div>

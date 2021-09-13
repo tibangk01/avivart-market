@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use App\Models\Currency;
 use App\Models\Conversion;
 use App\Models\Library;
 use Illuminate\Http\Request;
@@ -39,11 +38,10 @@ class ProductController extends Controller
     {
         $product_categories = ProductCategory::all()->pluck(null, 'id');
         $conversions = Conversion::all()->pluck(null, 'id');
-        $currencies = Currency::all()->pluck(null, 'id');
         $product_types = ProductType::all()->pluck(null, 'id');
 
 
-        return view('products.create', compact('product_categories', 'conversions', 'currencies', 'product_types'));
+        return view('products.create', compact('product_categories', 'conversions', 'product_types'));
     }
 
     /**
@@ -106,10 +104,9 @@ class ProductController extends Controller
     {
         $product_categories = ProductCategory::all()->pluck(null, 'id');
         $conversions = Conversion::all()->pluck(null, 'id');
-        $currencies = Currency::all()->pluck(null, 'id');
         $product_types = ProductType::all()->pluck(null, 'id');
 
-        return view('products.edit', compact('product', 'product_categories', 'conversions', 'currencies', 'product_types'));
+        return view('products.edit', compact('product', 'product_categories', 'conversions', 'product_types'));
     }
 
     /**
@@ -158,7 +155,6 @@ class ProductController extends Controller
             'product_type_id' => ['required'],
             'product_category_id' => ['required'],
             'conversion_id' => ['required'],
-            'currency_id' => ['required'],
             'name' => ['required', 'min:3', 'max:50'],
             'stock_quantity' => ['required', 'numeric'],
             'sold_quantity' => ['required', 'numeric'],

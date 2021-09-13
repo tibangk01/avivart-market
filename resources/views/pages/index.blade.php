@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => 'Tableau de bord'])
+@extends('layouts.dashboard', ['title' => "Logiciel de gestion de stock"])
 
 @section('body')
     <section class="content">

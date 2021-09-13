@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => 'Editer une banque '])
+@extends('layouts.dashboard', ['title' => 'Editer la banque'])
 
 @section('body')
     <section class="content">
@@ -20,6 +20,7 @@
                     <div class="form-group text-right">
                         {!! Form::submit('Modifier', ['class' => 'btn btn-success']) !!}
                     </div>
+                    
                     {!! Form::close() !!}
                 </div>
             </div>

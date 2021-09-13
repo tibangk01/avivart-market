@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => "Editer un type d'opération de caisse"])
+@extends('layouts.dashboard', ['title' => "Editer le type d'opération de caisse"])
 
 @section('body')
     <section class="content">
@@ -15,14 +15,14 @@
 
                     <div class="form-group">
 
-                        <label for="test" class="form-label">
-                            {!! Form::radio('is_opening', '0', null, ['id' => 'test']) !!}  Fermeture ?
+                        <label for="valueOne" class="form-label">
+                            {!! Form::radio('state', '0', null, ['id' => 'valueOne']) !!}  Sortie ?
                         </label>
 
                             &nbsp;&nbsp;&nbsp;
 
-                        <label for="test2" class="form-label">
-                            {!! Form::radio('is_opening', '1', null, ['id' => 'test2']) !!}  Ouverture ?
+                        <label for="valueTwo" class="form-label">
+                            {!! Form::radio('state', '1', null, ['id' => 'valueTwo']) !!}  Entrée ?
                         </label>
 
                     </div>

@@ -36,7 +36,7 @@
                                             <thead class="thead-dark">
                                                 <tr>
 
-                                                    <th>Dénomination</th>
+                                                    <th>Montant</th>
                                                     <th>Type d'opération de caisse</th>
                                                     <th>Date de création</th>
                                                     <th>Date de mise à jour</th>
@@ -48,17 +48,11 @@
                                                 @if ($cashRegisterOperations->count())
                                                     @foreach ($cashRegisterOperations as $cashRegisterOperation)
                                                         <tr>
-                                                            <td>
-                                                                {{ $cashRegisterOperation->name }}
+                                                            <td class="{{ $cashRegisterOperation->cash_register_operation_type->getForeColor() }}">
+                                                                {{ $cashRegisterOperation->cash_register_operation_type->name }}
                                                             </td>
                                                             <td>
-                                                                {{ $cashRegisterOperation->cash_register_operation_type->name }}
-
-                                                                @if ($cashRegisterOperation->cash_register_operation_type->is_opening)
-                                                                    <span class="badge badge-info"> Ouverture</span>
-                                                                @else
-                                                                    <span class="badge badge-warning"> Fermeture</span>
-                                                                @endif
+                                                                {{ $cashRegisterOperation->amount }}
                                                             </td>
                                                             <td>
                                                                 {{ $cashRegisterOperation->created_at->diffForHumans() }}

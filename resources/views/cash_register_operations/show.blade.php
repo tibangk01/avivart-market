@@ -15,20 +15,14 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Dénomination</td>
-                                    <td>{{ $cashRegisterOperation->name }}</td>
+                                    <td>Type</td>
+                                    <td class="{{ $cashRegisterOperation->cash_register_operation_type->getForeColor() }}">
+                                        {{ $cashRegisterOperation->cash_register_operation_type->name }}
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td>Type</td>
-                                    <td>
-                                        {{ $cashRegisterOperation->cash_register_operation_type->name }}
-
-                                        @if ($cashRegisterOperation->cash_register_operation_type->is_opening)
-                                            <span class="badge badge-info"> Ouverture</span>
-                                        @else
-                                            <span class="badge badge-warning"> Fermeture</span>
-                                        @endif
-                                    </td>
+                                    <td>Montant</td>
+                                    <td>{{ $cashRegisterOperation->amount }}</td>
                                 </tr>
                                 <tr>
                                     <td>Date de création</td>

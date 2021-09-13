@@ -8,6 +8,16 @@
                 {!! Form::model($exercise, ['method' => 'PUT', 'route' => ['exercise.update',  $exercise]]) !!}
 
                 <div class="form-group">
+                    {!! Form::label('currency_id', 'Devises') !!}
+                    {!! Form::select('currency_id', $currencies, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez une devise']) !!}
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('title', 'Titre') !!}
+                    {!! Form::text('title', null, ['class' => 'form-control', 'required' => true]) !!}
+                </div>
+
+                <div class="form-group">
                     {!! Form::label('start_date', "Date de Début") !!}
                     {!! Form::date('start_date', null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Date de Début"]) !!}
                 </div>

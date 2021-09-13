@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => "Liste des employés"])
+@extends('layouts.dashboard', ['title' => "Liste des staffs"])
 
 @section('body')
     <div class="content">
@@ -32,6 +32,7 @@
                                                     <th>Nom & Prénom</th>
                                                     <th>Sign. Num.</th>
                                                     <th>Fonction</th>
+                                                    <th>Type de staff</th>
                                                     <th>Téléphone</th>
                                                     <th>Date de création</th>
                                                     <th>Actions</th>
@@ -47,6 +48,9 @@
                                                             </td>
                                                             <td>
                                                                 {{ $staff->human->signature ? $staff->human->signature : '-' }}
+                                                            </td>
+                                                            <td>
+                                                                {{ $staff->human->work->name }}
                                                             </td>
                                                             <td>
                                                                 {{ $staff->staff_type->name }}

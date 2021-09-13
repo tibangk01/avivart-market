@@ -5,9 +5,12 @@ namespace App\View\Components\Customers\Create;
 use Illuminate\View\Component;
 use App\Models\Civility;
 use App\Models\PersonRay;
+use App\Models\Country;
 
 class Person extends Component
 {
+    public $countries;
+
     public $civilities;
 
     public $personRays;
@@ -19,6 +22,8 @@ class Person extends Component
      */
     public function __construct()
     {
+        $this->countries = Country::all()->pluck(null, 'id');
+
         $this->civilities = Civility::all()->pluck(null, 'id');
 
         $this->personRays = PersonRay::all()->pluck(null, 'id');

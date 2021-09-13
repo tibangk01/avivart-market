@@ -15,6 +15,14 @@
                         </thead>
                         <tbody>
                             <tr>
+                                <th>Devise</th>
+                                <td>{{ $exercise->currency->name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Title</th>
+                                <td>{{ $exercise->title }}</td>
+                            </tr>
+                            <tr>
                                 <th>Date de Début</th>
                                 <td>{{ $exercise->start_date }}</td>
                             </tr>

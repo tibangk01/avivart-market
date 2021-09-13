@@ -1,6 +1,12 @@
 <div>
     {!! Form::model($customer, ['method' => 'put', 'route' => ['customer.update', $customer]]) !!}
     {!! Form::hidden('form', 'corporation') !!}
+
+    <div class="form-group">
+        {!! Form::label('country_id', 'Pays') !!}
+        {!! Form::select('country_id', $countries, $customer->corporation->enterprise->country_id, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisir un pays']) !!}
+    </div>
+
     <div class="form-group">
         {!! Form::label('region_id', 'Région') !!}
         {!! Form::select('region_id', $regions, $customer->corporation->enterprise->region_id, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Choisissez une région']) !!}
@@ -32,8 +38,13 @@
     </div>
 
     <div class="form-group">
-        {!! Form::label('address', 'Adresse') !!}
+        {!! Form::label('address', "Adresse", ['class' => 'form-label']) !!}
         {!! Form::text('address', $customer->corporation->enterprise->address, ['class' => 'form-control']) !!}
+    </div>
+
+    <div class="form-group">
+        {!! Form::label('city', "Ville", ['class' => 'form-label']) !!}
+        {!! Form::text('city', $customer->corporation->enterprise->city, ['class' => 'form-control']) !!}
     </div>
 
     <div class="form-group">

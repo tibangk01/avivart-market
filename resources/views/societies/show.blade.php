@@ -35,6 +35,14 @@
                                 <td>{{ $society->enterprise->address}}</td>
                             </tr>
                             <tr>
+                                <th>Ville</th>
+                                <td>{{ $society->enterprise->city}}</td>
+                            </tr>
+                            <tr>
+                                <th>Pays</th>
+                                <td>{{ $society->enterprise->country->name}}</td>
+                            </tr>
+                            <tr>
                                 <th>Site web</th>
                                 <td><a target="_blank" href="{{ $society->enterprise->website}}">{{ $society->enterprise->website}}</a></td>
                             </tr>

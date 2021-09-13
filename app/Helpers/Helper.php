@@ -17,11 +17,8 @@ class Helper
      * @param int $length radom string length
      * @return string
      */
-    public static function randomAlphaNumeric($useNumerics = false, $length = 8 )
+    public static function randomAlphaNumeric(bool $useNumerics = false, int $length = 8): string
     {
-        if($useNumerics){
-            return substr(str_shuffle(self::$alphas.''.self::$numerics),0, $length);
-        }
-        return substr(str_shuffle(self::$alphas),0, $length);
+        return ($useNumerics) ? mb_substr(str_shuffle(self::$alphas.''.self::$numerics), 0, $length) : mb_substr(str_shuffle(self::$alphas), 0, $length);
     }
 }

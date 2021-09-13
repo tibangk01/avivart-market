@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $id
  * @property int $cash_register_operation_type_id
- * @property string $name
+ * @property float $amount
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * 
@@ -32,7 +32,7 @@ class CashRegisterOperation extends Model
 
 	protected $fillable = [
 		'cash_register_operation_type_id',
-		'name'
+		'amount'
 	];
 
 	public function cash_register_operation_type()

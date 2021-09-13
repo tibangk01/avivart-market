@@ -34,6 +34,8 @@
                                             class="table table-bordered table-hover datatable text-nowrap text-center">
                                             <thead class="thead-dark">
                                                 <tr>
+                                                    <th>Devise</th>
+                                                    <th>Titre</th>
                                                     <th>Date de Début</th>
                                                     <th>Date de Fin</th>
                                                     <th>Date de Création</th>
@@ -45,6 +47,8 @@
                                                 @if ($exercises->count() > 0)
                                                     @foreach ($exercises as $exercise)
                                                         <tr>
+                                                            <td>{{ $exercise->currency->name }}</td>
+                                                            <td>{{ $exercise->title }}</td>
                                                             <td>{{ $exercise->start_date }}</td>
                                                             <td>{{ $exercise->end_date }}</td>
                                                             <td>{{ $exercise->created_at->diffForHumans() }}</td>
@@ -64,7 +68,7 @@
                                                     @endforeach
                                                 @else
                                                     <tr>
-                                                        <td colspan="4">
+                                                        <td colspan="7">
                                                             Pas d'enregistrements.
                                                         </td>
                                                     </tr>

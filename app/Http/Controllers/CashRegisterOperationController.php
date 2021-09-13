@@ -128,7 +128,7 @@ class CashRegisterOperationController extends Controller
     {
         $request->validate([
             'cash_register_operation_type_id' => ['required'],
-            'name' => ['required', 'max:30'],
+            'amount' => ['required'],
         ]);
     }
 }

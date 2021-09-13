@@ -63,6 +63,11 @@ class Human extends Model
 		return $this->belongsTo(Work::class);
 	}
 
+	public function role()
+	{
+		return $this->belongsTo(Role::class);
+	}
+
 	public function developers()
 	{
 		return $this->hasMany(Developer::class);

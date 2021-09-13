@@ -7,9 +7,6 @@
                 <div class="col-lg-12">
 
                     {!! Form::open(['method' => 'POST', 'route' => 'bank.store']) !!}
-
-
-
                     <div class="form-group">
                         {!! Form::label('name', 'Nom') !!}
                         {!! Form::text('name', null, ['class' => 'form-control', 'required' => true]) !!}
@@ -23,13 +20,10 @@
                     <div class="form-group text-right">
                         {!! Form::submit('Enregistrer', ['class' => 'btn btn-success']) !!}
                     </div>
-
                     {!! Form::close() !!}
+                    
                 </div>
             </div>
         </div>
     </section>
 @endsection
-
-
-

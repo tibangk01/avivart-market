@@ -1,6 +1,12 @@
 <div>
     {!! Form::open(['method' => 'POST', 'route' => 'customer.store']) !!}
     {!! Form::hidden('form', 'corporation') !!}
+
+    <div class="form-group">
+        {!! Form::label('country_id', 'Pays') !!}
+        {!! Form::select('country_id', $countries, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisir un pays']) !!}
+    </div>
+    
     <div class="form-group">
         {!! Form::label('region_id', 'Région') !!}
         {!! Form::select('region_id', $regions, null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Choisissez une région']) !!}
@@ -32,8 +38,13 @@
     </div>
 
     <div class="form-group">
-        {!! Form::label('address', 'Adresse') !!}
+        {!! Form::label('address', "Adresse", ['class' => 'form-label']) !!}
         {!! Form::text('address', null, ['class' => 'form-control']) !!}
+    </div>
+
+    <div class="form-group">
+        {!! Form::label('city', "Ville", ['class' => 'form-label']) !!}
+        {!! Form::text('city', null, ['class' => 'form-control']) !!}
     </div>
 
     <div class="form-group">

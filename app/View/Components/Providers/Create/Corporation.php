@@ -5,9 +5,12 @@ namespace App\View\Components\Providers\Create;
 use Illuminate\View\Component;
 use App\Models\Region;
 use App\Models\PersonRay;
+use App\Models\Country;
 
 class Corporation extends Component
 {
+    public $countries;
+
     public $regions;
     
     public $personRays;
@@ -19,6 +22,8 @@ class Corporation extends Component
      */
     public function __construct()
     {
+        $this->countries = Country::all()->pluck(null, 'id');
+        
         $this->regions = Region::all()->pluck(null, 'id');
 
         $this->personRays = PersonRay::all()->pluck(null, 'id');

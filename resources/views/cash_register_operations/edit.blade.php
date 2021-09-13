@@ -14,8 +14,8 @@
                     </div>
 
                     <div class="form-group">
-                        {!! Form::label('name', 'Nom') !!}
-                        {!! Form::text('name', null, ['class' => 'form-control', 'required' => true]) !!}
+                        {!! Form::label('amount', 'Nom') !!}
+                        {!! Form::number('amount', null, ['class' => 'form-control', 'required' => true, 'step' => 'any']) !!}
                     </div>
 
                     <div class="form-group text-right">

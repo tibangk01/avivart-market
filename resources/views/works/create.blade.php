@@ -1,4 +1,4 @@
- @extends('layouts.dashboard', ['title' => "Ajouter une profession"])
+ @extends('layouts.dashboard', ['title' => "Ajouter une fonction"])
 
 @section('body')
 <section class="content">

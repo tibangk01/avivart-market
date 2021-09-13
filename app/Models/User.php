@@ -41,12 +41,14 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
 	use SoftDeletes, HasFactory, Notifiable;
+
 	protected $table = 'users';
 
 	protected $casts = [
 		'user_type_id' => 'int',
 		'civility_id' => 'int',
-		'library_id' => 'int'
+		'library_id' => 'int',
+		'country_id' => 'int'
 	];
 
 	protected $hidden = [
@@ -56,11 +58,14 @@ class User extends Authenticatable
 	protected $fillable = [
 		'user_type_id',
 		'civility_id',
+		'country_id',
 		'library_id',
 		'first_name',
 		'last_name',
 		'email',
 		'phone_number',
+		'address',
+		'city',
 		'remember_token'
 	];
 
@@ -79,6 +84,11 @@ class User extends Authenticatable
 		return $this->belongsTo(Civility::class);
 	}
 
+	public function country()
+	{
+		return $this->belongsTo(Country::class);
+	}
+
 	public function humans()
 	{
 		return $this->hasMany(Human::class);
@@ -89,8 +99,33 @@ class User extends Authenticatable
 		return $this->hasMany(Person::class);
 	}
 
+	public function setLastNameAttribute($value)
+    {
+        $this->last_name = mb_strtoupper($value);
+    }
+
+    public function setFirstNameAttribute($value)
+    {
+        $this->first_name = ucfirst($value);
+    }
+
+    public function setCityAttribute($value)
+    {
+        $this->city = mb_strtoupper($value);
+    }
+
+    public function setAddressAttribute($value)
+    {
+        $this->address = ucwords($value);
+    }
+
+    public function setEmailAttribute($value)
+    {
+        $this->email = mb_strtolower($value);
+    }
+
     public function getFullNameAttribute()
     {
-        return strtoupper($this->last_name) .  ' ' . ucfirst(strtolower($this->first_name));
+        return $this->last_name .  ' ' . $this->first_name;
     }
 }
