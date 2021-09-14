@@ -15,39 +15,51 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Code</td>
+                                    <th>Code</th>
                                     <td>{{ $salePlace->enterprise->code }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Nom</td>
+                                    <th>Nom</th>
                                     <td>{{ $salePlace->enterprise->name }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Téléphone</td>
+                                    <th>Téléphone</th>
                                     <td>{{ $salePlace->enterprise->phone_number }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Email</td>
+                                    <th>Email</th>
                                     <td>{{ $salePlace->enterprise->email }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Site web</td>
+                                    <th>Région</th>
+                                    <td>{{ $salePlace->enterprise->region->name }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Site web</th>
                                     <td>{{ $salePlace->enterprise->website }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Adresse</td>
+                                    <th>Adresse</th>
                                     <td>{{ $salePlace->enterprise->address }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Agence</td>
+                                    <th>Pays</th>
+                                    <td>{{ $salePlace->enterprise->country->name }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Ville</th>
+                                    <td>{{ $salePlace->enterprise->city }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Agence</th>
                                     <td>{{ $salePlace->agency->enterprise->name }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Date de création</td>
+                                    <th>Date de création</th>
                                     <td>{{ $salePlace->created_at->diffForHumans() }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Date de modification</td>
+                                    <th>Date de modification</th>
                                     <td>{{ $salePlace->updated_at->diffForHumans() }}</td>
                                 </tr>
                                 <tr class="table-light">

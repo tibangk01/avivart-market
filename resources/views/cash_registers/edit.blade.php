@@ -1,12 +1,10 @@
 @extends('layouts.dashboard', ['title' => 'Editer la caisse'])
 
-
 @section('body')
     <section class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-
                     {!! Form::model($cashRegister, ['method' => 'PUT', 'route' => ['cash_register.update', $cashRegister]]) !!}
 
                     <div class="form-group">
@@ -19,7 +17,6 @@
                     </div>
 
                     {!! Form::close() !!}
-
                 </div>
             </div>
         </div>

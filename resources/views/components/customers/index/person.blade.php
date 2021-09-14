@@ -3,8 +3,7 @@
         class="table table-bordered table-hover datatable text-nowrap text-center">
         <thead class="thead-dark">
             <tr>
-                <th>Nom</th>
-                <th>Prénoms</th>
+                <th>Nom & Prénoms</th>
                 <th>Téléphone</th>
                 <th>Email</th>
                 <th>Actions</th>
@@ -13,8 +12,7 @@
         <tbody>
             @forelse ($people as $customer)
                 <tr>
-                    <td>{{ $customer->person->user->last_name }}</td>
-                    <td>{{ $customer->person->user->first_name }}</td>
+                    <td>{{ $customer->person->user->full_name }}</td>
                     <td>{{ $customer->person->user->phone_number }}</td>
                     <td>{{ $customer->person->user->email }}</td>
                     <td>
@@ -34,7 +32,7 @@
                 </tr>
             @empty
             <tr>
-                <td colspan="5">Pas d'enregistrment</td>
+                <td colspan="4">Pas d'enregistrment</td>
             </tr>
             @endforelse
         </tbody>

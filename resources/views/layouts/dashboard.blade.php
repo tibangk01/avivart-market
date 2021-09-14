@@ -40,6 +40,8 @@
     <link rel="stylesheet" href="{{ asset('public/vendors/plugins/summernote/summernote-bs4.min.css') }}">
     {{-- Custom styles --}}
     {{-- <link rel="stylesheet" href="{{ asset('css/styles.css') }}"> --}}
+
+    @livewireStyles
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed text-sm">
@@ -298,7 +300,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{ route('purchase.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-file"></i>
                                 <p>
                                     Bons de commande
@@ -306,7 +308,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{ route('supply.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-shopping-basket"></i>
                                 <p>
                                     Approvisionnements
@@ -314,7 +316,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{ route('proforma.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-file"></i>
                                 <p>
                                     Proformas
@@ -322,19 +324,10 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
-                                {{-- <i class="nav-icon fas fa-shopping-cart-plu"></i> --}}
-                                <i class="nav-icon fas fa-shopping-bag    "></i>
+                            <a href="{{ route('order.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-shopping-bag"></i>
                                 <p>
                                     Commandes
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('product.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-file"></i>
-                                <p>
-                                    Produits
                                 </p>
                             </a>
                         </li>
@@ -473,6 +466,8 @@
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     {{-- <script src="{{ asset('public/vendors/dist/js/pages/dashboard.js') }}"></script> --}}
     <!-- Page specific script -->
+
+    @livewireScripts
 </body>
 
 </html>

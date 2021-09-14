@@ -40,4 +40,9 @@ class Supply extends Model
 	{
 		return $this->belongsTo(ProductPurchase::class, 'product_purchase_id', 'id');
 	}
+
+	public function getNumber()
+	{
+		return Carbon::parse($this->created_at)->format('dmYHis');
+	}
 }

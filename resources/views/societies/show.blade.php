@@ -31,16 +31,20 @@
                                 <td>{{ $society->enterprise->email }}</td>
                             </tr>
                             <tr>
+                                <th>Région</th>
+                                <td>{{ $society->enterprise->region->name }}</td>
+                            </tr>
+                            <tr>
                                 <th>Adresse</th>
                                 <td>{{ $society->enterprise->address}}</td>
                             </tr>
                             <tr>
-                                <th>Ville</th>
-                                <td>{{ $society->enterprise->city}}</td>
-                            </tr>
-                            <tr>
                                 <th>Pays</th>
                                 <td>{{ $society->enterprise->country->name}}</td>
+                            </tr>
+                            <tr>
+                                <th>Ville</th>
+                                <td>{{ $society->enterprise->city}}</td>
                             </tr>
                             <tr>
                                 <th>Site web</th>

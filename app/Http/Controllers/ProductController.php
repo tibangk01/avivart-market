@@ -67,7 +67,12 @@ class ProductController extends Controller
                     'remote' => env('UPLOADS_PATH') .'images/products/default.png',
                 ]);
 
-                $product = Product::create(array_merge($request->all(), ['library_id' => $library->id]));
+                $product = Product::create(array_merge(
+                    $request->all(),
+                    [
+                        'library_id' => $library->id,
+                    ]
+                ));
 
                 DB::commit();
 
@@ -157,8 +162,7 @@ class ProductController extends Controller
             'conversion_id' => ['required'],
             'name' => ['required', 'min:3', 'max:50'],
             'stock_quantity' => ['required', 'numeric'],
-            'sold_quantity' => ['required', 'numeric'],
-            'price' => ['required', 'numeric'],
+            'price' => ['required'],
             'serial_number' => ['nullable'],
             'manufacture_date' => ['nullable'],
             'expiration_date' => ['nullable'],

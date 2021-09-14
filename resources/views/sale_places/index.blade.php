@@ -2,7 +2,7 @@
 
 @section('body')
     <div class="content">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
@@ -36,8 +36,7 @@
                                                     <th>Nom</th>
                                                     <th>Téléphone</th>
                                                     <th>Email</th>
-                                                    <th>Adresse</th>
-                                                    <th>Site web</th>
+                                                    <th>Région</th>
                                                     <th>Agence</th>
                                                     <th>Date de création</th>
                                                     <th>Date de modification</th>
@@ -51,8 +50,7 @@
                                                         <td>{{ $salePlace->enterprise->name }}</td>
                                                         <td>{{ $salePlace->enterprise->phone_number }}</td>
                                                         <td>{{ $salePlace->enterprise->email }}</td>
-                                                        <td>{{ $salePlace->enterprise->address }}</td>
-                                                        <td>{{ $salePlace->enterprise->website }}</td>
+                                                        <td>{{ $salePlace->enterprise->region->name }}</td>
                                                         <td>{{ $salePlace->agency->enterprise->name }}</td>
                                                         <td>{{ $salePlace->created_at->diffForHumans() }}</td>
                                                         <td>{{ $salePlace->updated_at->diffForHumans() }}</td>
@@ -74,7 +72,7 @@
                                                     </tr>
                                                 @empty
                                                 <tr>
-                                                    <td colspan="10">Pas d'enregistrment</td>
+                                                    <td colspan="9">Pas d'enregistrment</td>
                                                 </tr>
                                                 @endforelse
                                             </tbody>

@@ -2,7 +2,7 @@
 
 @section('body')
 <div class="content">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -46,7 +46,7 @@
                                                         <tr>
                                                             <td>{{ $productRay->name }}</td>
                                                             <td>{{ $productRay->created_at->diffForHumans() }}</td>
-                                                            <td>{{ $productRay->created_at->diffForHumans() }}</td>
+                                                            <td>{{ $productRay->updated_at->diffForHumans() }}</td>
                                                             <td>
                                                                 <a class="btn btn-info btn-xs" href="{{ route('product_ray.show', $productRay) }}"
                                                                     title="Afficher"><i class="fa fa-eye"

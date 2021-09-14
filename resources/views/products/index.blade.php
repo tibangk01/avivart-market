@@ -2,7 +2,7 @@
 
 @section('body')
     <div class="content">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
@@ -36,6 +36,8 @@
                                                     <th>Prix unitaire</th>
                                                     <th>Quantité en stock</th>
                                                     <th>Quantité vendue</th>
+                                                    <th>Date de Création</th>
+                                                    <th>Date de modification</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
@@ -49,6 +51,8 @@
                                                             <td>{{ $product->price }}</td>
                                                             <td>{{ $product->stock_quantity }}</td>
                                                             <td>{{ $product->sold_quantity }}</td>
+                                                            <td>{{ $product->created_at->diffForHumans() }}</td>
+                                                            <td>{{ $product->updated_at->diffForHumans() }}</td>
                                                             <td>
                                                                 <a class="btn btn-info btn-xs"
                                                                     href="{{ route('product.show', $product) }}"
@@ -67,7 +71,7 @@
                                                     @endforeach
                                                 @else
                                                     <tr>
-                                                        <td colspan="11">
+                                                        <td colspan="9">
                                                             Pas d'enregistrements.
                                                         </td>
                                                     </tr>

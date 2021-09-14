@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -24,6 +25,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Vat $vat
  * @property Discount $discount
  * @property OrderState $order_state
+ * @property Collection|Product[] $products
  *
  * @package App\Models
  */
@@ -63,5 +65,17 @@ class Order extends Model
 	public function order_state()
 	{
 		return $this->belongsTo(OrderState::class);
+	}
+
+	public function products()
+	{
+		return $this->belongsToMany(Product::class, 'product_order')
+					->withPivot('id', 'quantity')
+					->withTimestamps();
+	}
+
+	public function getNumber()
+	{
+		return Carbon::parse($this->created_at)->format('dmYHis');
 	}
 }

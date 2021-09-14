@@ -15,28 +15,40 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Code</td>
+                                    <th>Code</th>
                                     <td>{{ $agency->enterprise->code }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Nom</td>
+                                    <th>Nom</th>
                                     <td>{{ $agency->enterprise->name }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Téléphone</td>
+                                    <th>Téléphone</th>
                                     <td>{{ $agency->enterprise->phone_number }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Email</td>
+                                    <th>Email</th>
                                     <td>{{ $agency->enterprise->email }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Site web</td>
+                                    <th>Région</th>
+                                    <td>{{ $agency->enterprise->region->name }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Site web</th>
                                     <td>{{ $agency->enterprise->website }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Adresse</td>
+                                    <th>Adresse</th>
                                     <td>{{ $agency->enterprise->address }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Pays</th>
+                                    <td>{{ $agency->enterprise->country->name }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Ville</th>
+                                    <td>{{ $agency->enterprise->city }}</td>
                                 </tr>
                                 <tr class="table-light">
                                     <th>Action</th>

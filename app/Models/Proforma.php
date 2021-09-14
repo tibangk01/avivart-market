@@ -70,4 +70,9 @@ class Proforma extends Model
 					->withPivot('id', 'quantity')
 					->withTimestamps();
 	}
+
+	public function getNumber()
+	{
+		return Carbon::parse($this->created_at)->format('dmYHis');
+	}
 }

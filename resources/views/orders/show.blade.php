@@ -1,42 +1,93 @@
-@extends('layouts.dashboard', ['title' => "Détails du type d'employé"])
+ @extends('layouts.dashboard', ['title' => "Commande et sa liste de produits"])
 
 @section('body')
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="table-responsive bg-white">
-                        <table class="table table-bordered table-stripped table-hover mb-0">
-                            <thead class="thead-dark">
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="table-responsive bg-white">
+                    <table class="table table-bordered table-stripped table-hover mb-0">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Clé</th>
+                                <th>Valeur</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Numéro</th>
+                                <td>{{ $order->getNumber() }}</td>
+                            </tr>
+                            <tr>
+                                <th>Client</th>
+                                <td>{{ $order->customer->getName() }}</td>
+                            </tr>
+                            <tr>
+                                <th>Etat</th>
+                                <td>{{ $order->order_state->name }}</td>
+                            </tr>
+                            <tr>
+                                <th>TVA</th>
+                                <td>{{ $order->vat->percentage }}</td>
+                            </tr>
+                            <tr>
+                                <th>Remise</th>
+                                <td>{{ $order->discount->amount }}</td>
+                            </tr>
+                            <tr>
+                                <th>Date de création</th>
+                                <td>{{ $order->created_at->diffForHumans() }}</td>
+                            </tr>
+                            <tr>
+                                <th>Date de mise à jour</th>
+                                <td>{{ $order->updated_at->diffForHumans() }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover text-nowrap datatable text-center">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Produit</th>
+                                <th>Qté</th>
+                                <th>DC</th>
+                                <th>DJ</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($order->products as $product)
                                 <tr>
-                                    <th>Clé</th>
-                                    <th>Valeur</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th>Nom</th>
-                                    <td>{{ $staffType->name }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Date de création</th>
-                                    <td>{{ $staffType->created_at->diffForHumans() }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Date de mise à jour</th>
-                                    <td>{{ $staffType->updated_at->diffForHumans() }}</td>
-                                </tr>
-                                <tr class="table-light">
-                                    <th>Action</th>
+                                    <td>{{ $product->name }}</td>
+                                    <td>{{ $product->pivot->quantity }}</td>
+                                    <td>{{ $product->pivot->created_at->diffForHumans() }}</td>
+                                    <td>{{ $product->pivot->updated_at->diffForHumans() }}</td>
                                     <td>
-                                        {!! link_to_route('staff_type.edit','Editer', ['staff_type' => $staffType], ['class' => 'text-warning'] ) !!}
+                                        <a class="btn btn-info btn-xs"
+                                            href="{{ route('product_order.show', $product->pivot->id) }}"
+                                            title="Afficher"><i class="fa fa-eye"
+                                                aria-hidden="true"></i></a>
+                                        <a class="btn btn-danger btn-xs"
+                                            href="{{ route('product_order.destroy', $product->pivot->id) }}"
+                                            title="Afficher"><i class="fa fa-trash"
+                                                aria-hidden="true"></i></a>
                                     </td>
                                 </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                            @empty
+                            <tr>
+                                <td colspan="5">
+                                    Pas d'enregistrements.
+                                </td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-    </section>
+    </div>  
+</section>
 @endsection

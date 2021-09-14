@@ -64,4 +64,9 @@ class Purchase extends Model
 					->withPivot('id', 'ordered_quantity', 'delivered_quantity')
 					->withTimestamps();
 	}
+
+	public function getNumber()
+	{
+		return Carbon::parse($this->created_at)->format('dmYHis');
+	}
 }

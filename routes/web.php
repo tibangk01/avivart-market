@@ -12,6 +12,12 @@ use App\Http\Controllers\StaffController;
 use App\Http\Controllers\AgencyController;
 use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\ProformaController;
+use App\Http\Controllers\SupplyController;
+use App\Http\Controllers\ProductPurchaseController;
+use App\Http\Controllers\ProductProformaController;
+use App\Http\Controllers\ProductOrderController;
 use App\Http\Controllers\SocietyController;
 use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\CustomerController;
@@ -137,6 +143,30 @@ Route::middleware('auth')->group(function () {
     /** orders routes */
     Route::resource('order', OrderController::class);
     /** End orders routes */
+
+    /** supplies routes */
+    Route::resource('supply', SupplyController::class);
+    /** End supplies routes */
+
+    /** purchases routes */
+    Route::resource('purchase', PurchaseController::class);
+    /** End purchases routes */
+
+    /** proformas routes */
+    Route::resource('proforma', ProformaController::class);
+    /** End proformas routes */
+
+    /** product proforma routes */
+    Route::resource('product_proforma', ProductProformaController::class);
+    /** End product proforma routes */
+
+    /** product order routes */
+    Route::resource('product_order', ProductOrderController::class);
+    /** End product order routes */
+
+    /** product purchase routes */
+    Route::resource('product_purchase', ProductPurchaseController::class);
+    /** End product purchase routes */
 
     /** person rays routes */
     Route::resource('person_ray', PersonRayController::class);

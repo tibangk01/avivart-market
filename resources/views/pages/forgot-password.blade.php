@@ -4,11 +4,10 @@
     <div class="card">
         <div class="card-body login-card-body">
             <p class="login-box-msg">Récupération du mot de passe</p>
-            <form method="post" action="{{ route('page.login') }}">
-                @csrf
+            
+            {!! Form::open(['route' => 'page.login',]) !!}
                 <div class="input-group mb-3">
-                    <input type="email" name="email" class="form-control rounded-0 text-sm"
-                        placeholder="Entrez votre adresse mail" autofocus>
+                    <input type="email" name="email" class="form-control rounded-0 text-sm" placeholder="Entrez votre adresse mail" required>
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
@@ -16,18 +15,10 @@
                     </div>
                 </div>
 
-                <div class="d-flex">
-                    <div class="mr-auto">
-                    </div>
-                    <div class="mr-1">
-                        <button type="reset" class="btn btn-sm btn-primary rounded-0">Annuler</button>
-                    </div>
-                    <div class="pb-1">
-                        <button type="submit" class="btn btn-sm btn-success rounded-0">Valider</button>
-                    </div>
+                <div class="form-group text-right">
+                    {!! Form::submit('Demander le lien', ['class' => 'btn btn-sm btn-success rounded-0']) !!}
                 </div>
-
-            </form>
+            {!! Form::close() !!}
 
             <p class="mb-1">
                 <a href="{{ route('page.login') }}" class="text-sm">Connexion</a>

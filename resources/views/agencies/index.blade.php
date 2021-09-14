@@ -2,7 +2,7 @@
 
 @section('body')
     <div class="content">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
@@ -36,8 +36,8 @@
                                                     <th>Nom</th>
                                                     <th>Téléphone</th>
                                                     <th>Email</th>
-                                                    <th>Adresse</th>
-                                                    <th>Site web</th>
+                                                    <th>Région</th>
+                                                    <th>Points de vente</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
@@ -48,8 +48,8 @@
                                                         <td>{{ $agency->enterprise->name }}</td>
                                                         <td>{{ $agency->enterprise->phone_number }}</td>
                                                         <td>{{ $agency->enterprise->email }}</td>
-                                                        <td>{{ $agency->enterprise->address }}</td>
-                                                        <td>{{ $agency->enterprise->website }}</td>
+                                                        <td>{{ $agency->enterprise->region->name }}</td>
+                                                        <td>{{ $agency->sale_places->count() }}</td>
                                                         <td>
                                                             <a class="btn btn-info btn-xs"
                                                                 href="{{ route('agency.show', $agency) }}"

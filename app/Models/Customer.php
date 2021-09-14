@@ -80,4 +80,17 @@ class Customer extends Model
 	{
 		return $this->hasMany(Proforma::class);
 	}
+
+	public function getName()
+	{
+		$name = 'Unknown';
+
+		if ($this->person_type_id == 1) {
+			$name = $this->corporation->enterprise->name;
+		} else {
+			$name = $this->person->user->full_name;
+		}
+
+		return $name;
+	}
 }

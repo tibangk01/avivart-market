@@ -9,6 +9,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Gloudemans\Shoppingcart\Contracts\Buyable;
 
 /**
  * Class Product
@@ -32,13 +33,13 @@ use Illuminate\Database\Eloquent\Model;
  * @property Conversion $conversion
  * @property Library $library
  * @property ProductType $product_type
- * @property Collection|ProductOrder[] $product_orders
+ * @property Collection|Order[] $orders
  * @property Collection|Proforma[] $proformas
  * @property Collection|Purchase[] $purchases
  *
  * @package App\Models
  */
-class Product extends Model
+class Product extends Model implements Buyable
 {
 	protected $table = 'products';
 
@@ -91,9 +92,11 @@ class Product extends Model
 		return $this->belongsTo(ProductType::class);
 	}
 
-	public function product_orders()
+	public function orders()
 	{
-		return $this->hasMany(ProductOrder::class);
+		return $this->belongsToMany(Order::class, 'product_order')
+					->withPivot('id', 'quantity')
+					->withTimestamps();
 	}
 
 	public function proformas()
@@ -109,4 +112,21 @@ class Product extends Model
 					->withPivot('id', 'ordered_quantity', 'delivered_quantity')
 					->withTimestamps();
 	}
+
+	public function getBuyableIdentifier($options = null) {
+        return $this->id;
+    }
+
+    public function getBuyableDescription($options = null) {
+        return $this->name;
+    }
+
+    public function getBuyablePrice($options = null) {
+        return $this->price;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

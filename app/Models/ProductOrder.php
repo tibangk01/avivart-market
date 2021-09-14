@@ -14,13 +14,13 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $id
  * @property int $product_id
- * @property int $proforma_id
+ * @property int $order_id
  * @property int $quantity
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * 
  * @property Product $product
- * @property Proforma $proforma
+ * @property Order $order
  *
  * @package App\Models
  */
@@ -32,7 +32,7 @@ class ProductOrder extends Model
 	protected $casts = [
 		'id' => 'int',
 		'product_id' => 'int',
-		'proforma_id' => 'int',
+		'order_id' => 'int',
 		'quantity' => 'int'
 	];
 
@@ -46,8 +46,8 @@ class ProductOrder extends Model
 		return $this->belongsTo(Product::class);
 	}
 
-	public function proforma()
+	public function order()
 	{
-		return $this->belongsTo(Proforma::class);
+		return $this->belongsTo(Order::class);
 	}
 }

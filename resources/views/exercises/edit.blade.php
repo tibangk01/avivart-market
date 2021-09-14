@@ -2,7 +2,7 @@
 
 @section('body')
 <section class="content">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 {!! Form::model($exercise, ['method' => 'PUT', 'route' => ['exercise.update',  $exercise]]) !!}
