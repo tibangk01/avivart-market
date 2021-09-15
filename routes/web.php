@@ -34,6 +34,7 @@ use App\Http\Controllers\CashRegisterController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\CashRegisterOperationController;
 use App\Http\Controllers\CashRegisterOperationTypeController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -149,6 +150,7 @@ Route::middleware('auth')->group(function () {
     /** End supplies routes */
 
     /** purchases routes */
+    Route::get('/{purchase}/pdf', [PurchaseController::class, 'pdf'])->name('purchase.pdf');
     Route::resource('purchase', PurchaseController::class);
     /** End purchases routes */
 
@@ -203,5 +205,13 @@ Route::middleware('auth')->group(function () {
     /** staffs routes */
     Route::resource('staff', StaffController::class);
     /** End staffs routes */
+
+    Route::prefix('/cart')->name('cart.')->group(function() {
+        Route::get('/{product}/add', [CartController::class, 'add'])->name('add');
+        Route::get('/{row}/remove', [CartController::class, 'remove'])->name('remove');
+        Route::get('/{row}/update', [CartController::class, 'update'])->name('update');
+        Route::get('/truncate', [CartController::class, 'truncate'])->name('truncate');
+        Route::match(['GET', 'POST'], '/checkout', [CartController::class, 'checkout'])->name('checkout');
+    });
 
 });

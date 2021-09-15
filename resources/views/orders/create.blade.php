@@ -7,12 +7,12 @@
             <div class="col-lg-6">
                 <h6>Liste des produits</h6>
 
-                @livewire('orders.products')
+                <x-products instance="order" />
             </div>
             <div class="col-lg-6">
                 <h6>Panier de produits</h6>
                 
-                @livewire('orders.cart')
+                <x-cart instance="order" />
             </div>
         </div>
     </div>  

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Purchase;
+use BarryvdhDomPDF as PDF;
 use Illuminate\Http\Request;
 
 class PurchaseController extends Controller
@@ -83,5 +84,12 @@ class PurchaseController extends Controller
     public function destroy(Purchase $purchase)
     {
         //
+    }
+
+    public function pdf(Request $request, Purchase $purchase)
+    {
+        $pdf = PDF::loadView('purchases.pdf.purchase', compact('purchase'));
+
+        return $pdf->stream('purchase.pdf');
     }
 }

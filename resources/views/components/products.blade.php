@@ -16,7 +16,7 @@
                     <td>{{ $product->price }}</td>
                     <td>{{ $product->stock_quantity }}</td>
                     <td>
-                        <a wire:click.prevent="addToCart({{ $product->id }})" class="btn btn-success btn-xs" href="#" title="Ajouter au panier"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                        <a class="btn btn-success btn-xs" href="{{ route('cart.add', ['product' => $product->id, 'instance' => $instance]) }}" title="Ajouter au panier"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
                     </td>
                 </tr>
                 @empty

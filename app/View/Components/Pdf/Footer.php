@@ -1,26 +1,19 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Pdf;
 
 use Illuminate\View\Component;
-use App\Models\Product;
 
-class Products extends Component
+class Footer extends Component
 {
-    public $products;
-
-    public $instance;
-
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($instance)
+    public function __construct()
     {
-        $this->products = Product::all();
-
-        $this->instance = $instance;
+        //
     }
 
     /**
@@ -30,6 +23,6 @@ class Products extends Component
      */
     public function render()
     {
-        return view('components.products');
+        return view('components.pdf.footer');
     }
 }

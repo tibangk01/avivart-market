@@ -57,6 +57,10 @@
                                                             href="{{ route('purchase.destroy', $purchase) }}"
                                                             title="Afficher"><i class="fa fa-trash"
                                                                 aria-hidden="true"></i></a>
+                                                        <a class="btn btn-warning btn-xs" target="_blank" 
+                                                            href="{{ route('purchase.pdf', $purchase) }}"
+                                                            title="Imprimer"><i class="fa fa-user"
+                                                                aria-hidden="true"></i></a>
                                                     </td>
                                                 </tr>
                                             @empty
