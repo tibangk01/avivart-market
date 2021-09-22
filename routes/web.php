@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
+
 use App\Http\Controllers\VatController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\PageController;
@@ -46,6 +48,13 @@ use App\Http\Controllers\CartController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/clear', function() {
+    Artisan::call('config:clear');
+    Artisan::call('route:clear');
+    Artisan::call('cache:clear');
+    Artisan::call('view:clear');
+    return "Route, Cache and View are cleared";
+});
 
 /** Pages routes */
 Route::prefix('/')->name('page.')->group(function () {

@@ -47,6 +47,7 @@ class Human extends Model
 	protected $fillable = [
 		'user_id',
 		'work_id',
+		'role_id',
 		'signature',
 		'username',
 		'password',

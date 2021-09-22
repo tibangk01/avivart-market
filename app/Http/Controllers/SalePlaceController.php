@@ -51,16 +51,7 @@ class SalePlaceController extends Controller
     {
         if ($request->isMethod('POST')) {
 
-            $request->validate([
-                'country_id' => ['required'],
-                'agency_id' => ['required'],
-                'name' => ['required', 'min:3', 'max:50'],
-                'phone_number' => ['required', 'min:8'],
-                'email' => ['required', 'email', 'max:60'],
-                'website' => ['required', 'max:60'],
-                'address' => ['max:50'],
-                'city' => ['max:30'],
-            ]);
+            $this->_validateRequest($request, 'post');
 
             try {
 
@@ -79,7 +70,7 @@ class SalePlaceController extends Controller
 
                 $enterprise = Enterprise::create(array_merge($request->all(),
                     [
-                        'region_id' => $agency->region_id,
+                        'region_id' => $agency->enterprise->region_id,
                         'code' => $agency->code . self::BEGIN_CODE . $code,
                         'is_corporation' => false,
                     ]
@@ -95,8 +86,9 @@ class SalePlaceController extends Controller
                 session()->flash('success', 'Donnée enregistrée.');
 
             } catch (\Throwable $th) {
-
                 DB::rollBack();
+
+                //dd($th);
 
                 session()->flash('error', "Une erreur s'est produite");
             }
@@ -141,16 +133,7 @@ class SalePlaceController extends Controller
     {
         if ($request->isMethod('PUT')) {
 
-            $request->validate([
-                'country_id' => ['required'],
-                'agency_id' => ['required'],
-                'name' => ['required', 'min:3', 'max:50'],
-                'phone_number' => ['required', 'min:8'],
-                'email' => ['required', 'email', 'max:60'],
-                'website' => ['required', 'max:60'],
-                'address' => ['max:50'],
-                'city' => ['max:30'],
-            ]);
+            $this->_validateRequest($request, 'put');
 
             $salePlace->enterprise->update($request->except('agency_id'));
 
@@ -171,5 +154,34 @@ class SalePlaceController extends Controller
     public function destroy(SalePlace $salePlace)
     {
         //
+    }
+
+    /**
+     * validateRequest
+     *
+     * Validate creation and edition incomming data
+     *
+     * @param mixed $request
+     * @return void
+     */
+    private function _validateRequest(Request $request, string $method)
+    {
+        $formData = [
+            'country_id' => ['required'],
+            'agency_id' => ['required'],
+            'name' => ['required', 'min:3', 'max:50'],
+            'phone_number' => ['required', 'min:8'],
+            'email' => ['required', 'email', 'max:60'],
+            'website' => ['required', 'max:60'],
+            'address' => ['max:50'],
+            'city' => ['max:30'],
+        ];
+
+        if(mb_strtolower($method) == 'post'){
+            $formData += [
+            ];
+        }
+
+        $request->validate($formData);
     }
 }

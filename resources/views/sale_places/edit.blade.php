@@ -4,7 +4,10 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-6">
+                <h4>Text</h4>
+            </div>
+            <div class="col-lg-6">
                     {!! Form::model($salePlace, ['method' => 'PUT', 'route' => ['sale_place.update', $salePlace]]) !!}
 
                     <div class="form-group">
@@ -14,7 +17,7 @@
 
                     <div class="form-group">
                         {!! Form::label('agency_id', 'Agence') !!}
-                        {!! Form::select('agency_id', $agencies, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez une agence', 'disabled' => true]) !!}
+                        {!! Form::select('agency_id', $agencies, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez une agence', 'readonly' => true]) !!}
                     </div>
 
                     <div class="form-group">

@@ -69,7 +69,7 @@ class StaffController extends Controller
                 ]);
 
                 $user = User::create(array_merge(
-                    $request->only('civility_id', 'country_id', 'last_name', 'first_name', 'phone_number', 'email', 'address', 'city'),
+                    $request->only('civility_id', 'country_id', 'phone_number', 'email', 'address', 'city', 'last_name', 'first_name'),
                     [
                         'user_type_id' => 2,
                         'library_id' => $library->id,
@@ -163,6 +163,8 @@ class StaffController extends Controller
 
                 DB::rollBack();
 
+                dd($th);
+
                 session()->flash('error', "Une erreur s'est produite");
 
                 return back();
@@ -184,7 +186,6 @@ class StaffController extends Controller
     {
         //
     }
-
 
     /**
      * validateRequest

@@ -50,6 +50,14 @@
                                     <th>Ville</th>
                                     <td>{{ $agency->enterprise->city }}</td>
                                 </tr>
+                                <tr>
+                                    <th>Date de Création</th>
+                                    <td>{{ $agency->created_at->diffForHumans() }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Date de mis à jour</th>
+                                    <td>{{ $agency->updated_at->diffForHumans() }}</td>
+                                </tr>
                                 <tr class="table-light">
                                     <th>Action</th>
                                     <td>

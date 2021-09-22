@@ -4,7 +4,10 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-6">
+                <h4>Text</h4>
+            </div>
+            <div class="col-lg-6">
 
                     {!! Form::model($staff, ['method' => 'put', 'route' => ['staff.update', $staff]]) !!}
 
@@ -15,7 +18,7 @@
 
                     <div class="form-group">
                         {!! Form::label('role_id', 'Role') !!}
-                        {!! Form::select('role_id', $rôles, $staff->human->role_id, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisir un rôle']) !!}
+                        {!! Form::select('role_id', $roles, $staff->human->role_id, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisir un rôle']) !!}
                     </div>
 
                     <div class="form-group">

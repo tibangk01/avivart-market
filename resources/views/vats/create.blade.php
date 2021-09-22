@@ -4,7 +4,10 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-lg-6">
+                <h4>Text</h4>
+            </div>
+            <div class="col-lg-6">
                 {!! Form::open(['method' => 'POST', 'route' => 'vat.store']) !!}
 
                 <div class="form-group">

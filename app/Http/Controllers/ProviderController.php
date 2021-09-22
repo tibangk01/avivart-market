@@ -50,33 +50,11 @@ class ProviderController extends Controller
             if ($request->has('form')) {
                 switch ($request->form) {
                     case 'corporation':
-                        $request->validate([
-                            'country_id' => ['required'],
-                            'region_id' => ['required'],
-                            'person_ray_id' => ['required'],
-                            'name' => ['required', 'min:3', 'max:50'],
-                            'phone_number' => ['required', 'min:8'],
-                            'email' => ['required', 'email', 'max:60'],
-                            'website' => ['required', 'max:60'],
-                            'tppcr' => ['required', 'min:3'],
-                            'fiscal_code' => ['required', 'min:3'],
-                            'address' => ['max:50'],
-                            'city' => ['max:30'],
-                        ]);
+                        $this->_validateProviderCorporationRequest($request, 'post');
                         break;
                     
                     default:
-                        $request->validate([
-                            'country_id' => ['required'],
-                            'civility_id' => ['required'],
-                            'person_ray_id' => ['required'],
-                            'first_name' => ['required', 'min:3', 'max:25'],
-                            'last_name' => ['required', 'min:3', 'max:25'],
-                            'phone_number' => ['required', 'min:8'],
-                            'email' => ['required', 'email', 'max:40'],
-                            'address' => ['max:50'],
-                            'city' => ['max:30'],
-                        ]);
+                        $this->_validateProviderIndividualRequest($request, 'post');
                         break;
                 }
 
@@ -152,6 +130,8 @@ class ProviderController extends Controller
 
                     DB::rollBack();
 
+                    //dd($th);
+
                     session()->flash('error', "Une erreur s'est produite");
                 }
             }
@@ -195,33 +175,11 @@ class ProviderController extends Controller
              if ($request->has('form')) {
                 switch ($request->form) {
                     case 'corporation':
-                        $request->validate([
-                            'country_id' => ['required'],
-                            'region_id' => ['required'],
-                            'person_ray_id' => ['required'],
-                            'name' => ['required', 'min:3', 'max:50'],
-                            'phone_number' => ['required', 'min:8'],
-                            'email' => ['required', 'email', 'max:60'],
-                            'website' => ['required', 'max:60'],
-                            'tppcr' => ['required', 'min:3'],
-                            'fiscal_code' => ['required', 'min:3'],
-                            'address' => ['max:50'],
-                            'city' => ['max:30'],
-                        ]);
+                        $this->_validateProviderCorporationRequest($request, 'put');
                         break;
                     
                     default:
-                        $request->validate([
-                            'country_id' => ['required'],
-                            'civility_id' => ['required'],
-                            'person_ray_id' => ['required'],
-                            'first_name' => ['required', 'min:3', 'max:25'],
-                            'last_name' => ['required', 'min:3', 'max:25'],
-                            'phone_number' => ['required', 'min:8'],
-                            'email' => ['required', 'email', 'max:40'],
-                            'address' => ['max:50'],
-                            'city' => ['max:30'],
-                        ]);
+                        $this->_validateProviderIndividualRequest($request, 'put');
                         break;
                 }
 
@@ -259,6 +217,8 @@ class ProviderController extends Controller
 
                     DB::rollBack();
 
+                    //dd($th);
+
                     session()->flash('error', "Une erreur s'est produite");
                 }
             }
@@ -276,5 +236,67 @@ class ProviderController extends Controller
     public function destroy(Provider $provider)
     {
         //
+    }
+
+    /**
+     * validateRequest
+     *
+     * Validate creation and edition incomming data
+     *
+     * @param mixed $request
+     * @return void
+     */
+    private function _validateProviderCorporationRequest(Request $request, string $method)
+    {
+        $formData = [
+            'country_id' => ['required'],
+            'region_id' => ['required'],
+            'person_ray_id' => ['required'],
+            'name' => ['required', 'min:3', 'max:50'],
+            'phone_number' => ['required', 'min:8'],
+            'email' => ['required', 'email', 'max:60'],
+            'website' => ['required', 'max:60'],
+            'address' => ['max:50'],
+            'city' => ['max:30'],
+        ];
+
+        if(mb_strtolower($method) == 'post'){
+            $formData += [
+                'tppcr' => ['required', 'min:3', 'unique:corporations'],
+                'fiscal_code' => ['required', 'min:3', 'unique:corporations'],
+            ];
+        }
+
+        $request->validate($formData);
+    }
+
+    /**
+     * validateRequest
+     *
+     * Validate creation and edition incomming data
+     *
+     * @param mixed $request
+     * @return void
+     */
+    private function _validateProviderIndividualRequest(Request $request, string $method)
+    {
+        $formData = [
+            'country_id' => ['required'],
+            'civility_id' => ['required'],
+            'person_ray_id' => ['required'],
+            'first_name' => ['required', 'min:3', 'max:25'],
+            'last_name' => ['required', 'min:3', 'max:25'],
+            'phone_number' => ['required', 'min:8'],
+            'email' => ['required', 'email', 'max:40'],
+            'address' => ['max:50'],
+            'city' => ['max:30'],
+        ];
+
+        if(mb_strtolower($method) == 'post'){
+            $formData += [
+            ];
+        }
+
+        $request->validate($formData);
     }
 }

@@ -30,6 +30,7 @@
                                             <thead class="thead-dark">
                                                 <tr>
                                                     <th>Nom & Prénom</th>
+                                                    <th>Nom d'utilisateur</th>
                                                     <th>Sign. Num.</th>
                                                     <th>Fonction</th>
                                                     <th>Type de staff</th>
@@ -45,6 +46,9 @@
                                                         <tr>
                                                             <td>
                                                                 {{ $staff->human->user->full_name }}
+                                                            </td>
+                                                            <td>
+                                                                {{ $staff->human->username }}
                                                             </td>
                                                             <td>
                                                                 {{ $staff->human->signature ? $staff->human->signature : '-' }}
@@ -80,7 +84,7 @@
                                                     @endforeach
                                                 @else
                                                     <tr>
-                                                        <td colspan="7">
+                                                        <td colspan="8">
                                                             Pas d'enregistrements.
                                                         </td>
                                                     </tr>
