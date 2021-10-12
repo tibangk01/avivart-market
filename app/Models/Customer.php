@@ -81,16 +81,34 @@ class Customer extends Model
 		return $this->hasMany(Proforma::class);
 	}
 
+	public function getInstance()
+	{
+		return ($this->person_type_id == 1) ? $this->corporation : $this->person;
+	}
+
 	public function getName()
 	{
-		$name = 'Unknown';
+		$name = null;
 
-		if ($this->person_type_id == 1) {
-			$name = $this->corporation->enterprise->name;
+		if (($customer = $this->getInstance()) instanceof Corporation) {
+			$name = $customer->enterprise->name;
 		} else {
-			$name = $this->person->user->full_name;
+			$name = $customer->user->full_name;
 		}
 
 		return $name;
+	}
+
+	public function getFullPhoneNumber()
+	{
+		$phoneNumber = null;
+
+		if (($customer = $this->getInstance()) instanceof Corporation) {
+			$phoneNumber =  '+' . $customer->enterprise->country->phonecode . ' ' . $customer->enterprise->phone_number;
+		} else {
+			$phoneNumber =  '+' . $customer->user->country->phonecode . ' ' . $customer->user->phone_number;
+		}
+
+		return $phoneNumber;
 	}
 }

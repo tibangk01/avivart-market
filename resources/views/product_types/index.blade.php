@@ -35,39 +35,39 @@
                                                 <th>Nom</th>
                                                 <th>Date de Création</th>
                                                 <th>Date de modification</th>
+                                                <th>Nombre de Produits</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @if ($productTypes->count() > 0)
-                                                @foreach ($productTypes as $productType)
-                                                    <tr>
-                                                        <td>{{ $productType->name }}</td>
-                                                        <td>{{ $productType->created_at->diffForHumans() }}</td>
-                                                        <td>{{ $productType->created_at->diffForHumans() }}</td>
-                                                        <td>
-                                                            <a class="btn btn-info btn-xs"
-                                                                href="{{ route('product_type.show', $productType) }}"
-                                                                title="Afficher"><i class="fa fa-eye"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a class="btn btn-warning btn-xs"
-                                                                href="{{ route('product_type.edit', $productType) }}"
-                                                                title="Afficher"><i class="fa fa-edit"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a class="btn btn-danger btn-xs"
-                                                                href="{{ route('product_type.destroy', $productType) }}"
-                                                                title="Afficher"><i class="fa fa-trash"
-                                                                    aria-hidden="true"></i></a>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
-                                            @else
+                                            @forelse ($productTypes as $productType)
                                                 <tr>
-                                                    <td colspan="4">
+                                                    <td>{{ $productType->name }}</td>
+                                                    <td>{{ $productType->created_at }}</td>
+                                                    <td>{{ $productType->created_at }}</td>
+                                                    <td>{{ $productType->products->count() }}</td>
+                                                    <td>
+                                                        <a class="btn btn-info btn-xs"
+                                                            href="{{ route('product_type.show', $productType) }}"
+                                                            title="Afficher"><i class="fa fa-eye"
+                                                                aria-hidden="true"></i></a>
+                                                        <a class="btn btn-warning btn-xs"
+                                                            href="{{ route('product_type.edit', $productType) }}"
+                                                            title="Afficher"><i class="fa fa-edit"
+                                                                aria-hidden="true"></i></a>
+                                                        <a class="btn btn-danger btn-xs"
+                                                            href="{{ route('product_type.destroy', $productType) }}"
+                                                            title="Afficher"><i class="fa fa-trash"
+                                                                aria-hidden="true"></i></a>
+                                                    </td>
+                                                </tr>
+                                            @empty
+                                                <tr>
+                                                    <td colspan="5">
                                                         Pas d'enregistrements.
                                                     </td>
                                                 </tr>
-                                            @endif
+                                            @endforelse
                                         </tbody>
                                     </table>
                                 </div>

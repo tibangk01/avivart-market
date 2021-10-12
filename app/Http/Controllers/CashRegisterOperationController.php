@@ -47,6 +47,11 @@ class CashRegisterOperationController extends Controller
 
             $cashRegisterOperation = CashRegisterOperation::create($request->all());
 
+            $this->updateStaffStatusBarInfo(
+                (int) $request->input('amount'),
+                (string) ($cashRegisterOperation->cash_register_operation_type->state == 1) ? '+' : '-'
+            );
+
             if ($cashRegisterOperation) {
 
                 session()->flash('success', "Donnée enregistrée");

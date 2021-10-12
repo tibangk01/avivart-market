@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Purchase;
 use BarryvdhDomPDF as PDF;
 use Illuminate\Http\Request;
+use \Cart;
+use Illuminate\Support\Facades\DB;
+use App\Models\Society;
 
 class PurchaseController extends Controller
 {
@@ -38,7 +41,47 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->isMethod('POST')) {
+            $cartContent = Cart::instance($request->input('instance'))->content();
+
+            try {
+                DB::beginTransaction();
+
+                $purchase = Purchase::create([
+                    'provider_id' => $request->input('provider_id'),
+                    'vat_id' => $request->input('vat_id'),
+                    'discount_id' => $request->input('discount_id'),
+                ]);
+
+                foreach ($cartContent as $row) {
+                    $purchase->products()->attach($purchase->id, [
+                        'product_id' => $row->id,
+                        'ordered_quantity' => $row->qty,
+                    ]);
+                }  
+
+                DB::commit();
+
+                Cart::instance($request->input('instance'))->destroy();
+
+                session()->flash('success', 'Donnée enregistrée.');
+
+                $this->updateStaffStatusBarInfo(
+                    (int) $purchase->totalTTC(),
+                    '-'
+                );
+
+                return redirect()->to(route('purchase.pdf', ['purchase' => $purchase]));    //to or away
+            } catch (\Exception $ex) {
+                DB::rollback();
+
+                dd($ex);
+
+                session()->flash('error', "Une erreur s'est produite");
+            }
+        }
+
+        return back();
     }
 
     /**
@@ -88,7 +131,11 @@ class PurchaseController extends Controller
 
     public function pdf(Request $request, Purchase $purchase)
     {
+        session()->put('sessionSociety', Society::findOrFail(1));
+
         $pdf = PDF::loadView('purchases.pdf.purchase', compact('purchase'));
+        $pdf->setPaper('a4', 'portrait');
+        $pdf->save(public_path("libraries/docs/purchase_{$purchase->getNumber()}.pdf"));
 
         return $pdf->stream('purchase.pdf');
     }

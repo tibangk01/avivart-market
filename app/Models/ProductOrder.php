@@ -27,7 +27,6 @@ use Illuminate\Database\Eloquent\Model;
 class ProductOrder extends Model
 {
 	protected $table = 'product_order';
-	public $incrementing = false;
 
 	protected $casts = [
 		'id' => 'int',
@@ -37,7 +36,6 @@ class ProductOrder extends Model
 	];
 
 	protected $fillable = [
-		'id',
 		'quantity'
 	];
 

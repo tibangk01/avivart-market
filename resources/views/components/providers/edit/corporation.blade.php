@@ -43,6 +43,11 @@
     </div>
 
     <div class="form-group">
+                    {!! Form::label('postal_code', 'Code Postal', ['class' => 'form-label']) !!}
+                    {!! Form::text('postal_code', $provider->corporation->enterprise->postal_code, ['class' => 'form-control']) !!}
+                </div>
+
+    <div class="form-group">
         {!! Form::label('city', "Ville", ['class' => 'form-label']) !!}
         {!! Form::text('city', $provider->corporation->enterprise->city, ['class' => 'form-control']) !!}
     </div>

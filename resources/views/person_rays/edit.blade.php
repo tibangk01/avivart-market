@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => "Editer un person ray"])
+@extends('layouts.dashboard', ['title' => "Editer le type de fournisseur/client"])
 
 @section('body')
 <section class="content">

@@ -72,16 +72,34 @@ class Provider extends Model
 		return $this->hasMany(Purchase::class);
 	}
 
+	public function getInstance()
+	{
+		return ($this->person_type_id == 1) ? $this->corporation : $this->person;
+	}
+
 	public function getName()
 	{
-		$name = 'Unknown';
+		$name = null;
 
-		if ($this->person_type_id == 1) {
-			$name = $this->corporation->enterprise->name;
+		if (($provider = $this->getInstance()) instanceof Corporation) {
+			$name = $provider->enterprise->name;
 		} else {
-			$name = $this->person->user->full_name;
+			$name = $provider->user->full_name;
 		}
 
 		return $name;
+	}
+
+	public function getFullPhoneNumber()
+	{
+		$phoneNumber = null;
+
+		if (($provider = $this->getInstance()) instanceof Corporation) {
+			$phoneNumber =  '+' . $provider->enterprise->country->phonecode . ' ' . $provider->enterprise->phone_number;
+		} else {
+			$phoneNumber =  '+' . $provider->user->country->phonecode . ' ' . $provider->user->phone_number;
+		}
+
+		return $phoneNumber;
 	}
 }

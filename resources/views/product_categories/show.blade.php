@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => "Détails du type d'employé"])
+@extends('layouts.dashboard', ['title' => "Détails de la catégorie de produit"])
 
 @section('body')
 <section class="content">
@@ -16,20 +16,24 @@
                         <tbody>
                             <tr>
                                 <th>Nom</th>
-                                <td>{{ $staffType->name }}</td>
+                                <td>{{ $productCategory->name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Rayon</th>
+                                <td>{{ $productCategory->product_ray->name }}</td>
                             </tr>
                             <tr>
                                 <th>Date de création</th>
-                                <td>{{ $staffType->created_at->diffForHumans() }}</td>
+                                <td>{{ $productCategory->created_at }}</td>
                             </tr>
                             <tr>
                                 <th>Date de mise à jour</th>
-                                <td>{{ $staffType->updated_at->diffForHumans() }}</td>
+                                <td>{{ $productCategory->updated_at }}</td>
                             </tr>
                             <tr class="table-light">
                                 <th>Action</th>
                                 <td>
-                                    {!! link_to_route('staff_type.edit','Editer', ['staff_type' => $staffType], ['class' => 'text-warning'] ) !!}
+                                    {!! link_to_route('product_category.edit','Editer', ['product_category' => $productCategory], ['class' => 'text-warning'] ) !!}
                                 </td>
                             </tr>
                         </tbody>

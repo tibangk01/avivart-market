@@ -52,11 +52,11 @@
                                 </tr>
                                 <tr>
                                     <th>Date de Création</th>
-                                    <td>{{ $agency->created_at->diffForHumans() }}</td>
+                                    <td>{{ $agency->created_at }}</td>
                                 </tr>
                                 <tr>
                                     <th>Date de mis à jour</th>
-                                    <td>{{ $agency->updated_at->diffForHumans() }}</td>
+                                    <td>{{ $agency->updated_at }}</td>
                                 </tr>
                                 <tr class="table-light">
                                     <th>Action</th>

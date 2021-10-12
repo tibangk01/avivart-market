@@ -28,7 +28,7 @@
                 <div class="d-flex">
                     <div class="mr-auto">
                         <div class="icheck-primary text-sm">
-                            <input type="checkbox" id="remember_me" name="remember_me">
+                            <input type="checkbox" id="remember_me" name="remember_me" checked>
                             <label for="remember_me">
                                 Se souvenir de moi
                             </label>

@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $website
  * @property string $email
  * @property string $address
+ * @property string $postal_code
  * @property bool $is_corporation
  * @property int $region_id
  * @property Carbon|null $created_at
@@ -50,6 +51,7 @@ class Enterprise extends Model
 		'website',
 		'email',
 		'address',
+		'postal_code',
 		'city',
 		'is_corporation',
 		'region_id',
@@ -89,5 +91,10 @@ class Enterprise extends Model
 	public function __toString()
 	{
 		return $this->name;
+	}
+
+	public function getFullPhoneNumber()
+	{
+		return '+' . $this->country->phonecode . ' ' . $this->phone_number;
 	}
 }

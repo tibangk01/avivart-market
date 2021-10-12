@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProductRay;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 
@@ -19,7 +20,9 @@ class ProductCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $productCategories = ProductCategory::all();
+
+        return view('product_categories.index', compact('productCategories'));
     }
 
     /**
@@ -29,7 +32,9 @@ class ProductCategoryController extends Controller
      */
     public function create()
     {
-        //
+        $productRays = ProductRay::all()->pluck(null, 'id');
+
+        return view('product_categories.create', compact('productRays'));
     }
 
     /**
@@ -40,7 +45,24 @@ class ProductCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->isMethod('post')) {
+
+            $request->validate([
+                'product_ray_id' => ['required'],
+                'name' => ['required', 'min:3', 'max:30'],
+            ]);
+
+            $productCategory = ProductCategory::create($request->all());
+
+            if ($productCategory) {
+                session()->flash('success', "Donnée enregistrée");
+            } else {
+                session()->flash('error', "Une erreur s'est produite");
+            }
+
+        }
+
+        return back();
     }
 
     /**
@@ -51,7 +73,7 @@ class ProductCategoryController extends Controller
      */
     public function show(ProductCategory $productCategory)
     {
-        //
+        return view('product_categories.show', compact('productCategory'));
     }
 
     /**
@@ -62,7 +84,9 @@ class ProductCategoryController extends Controller
      */
     public function edit(ProductCategory $productCategory)
     {
-        //
+        $productRays = ProductRay::all()->pluck(null, 'id');
+
+        return view('product_categories.edit', compact('productCategory', 'productRays'));
     }
 
     /**
@@ -74,7 +98,19 @@ class ProductCategoryController extends Controller
      */
     public function update(Request $request, ProductCategory $productCategory)
     {
-        //
+        if ($request->isMethod('put')) {
+
+            $request->validate([
+                'product_ray_id' => ['required'],
+                'name' => ['required', 'max:30'],
+            ]);
+
+            $productCategory->update($request->all());
+
+            session()->flash('success', 'Modification réussi');
+        }
+
+        return back();
     }
 
     /**

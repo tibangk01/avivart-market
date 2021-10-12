@@ -45,8 +45,8 @@
                                                     @foreach ($vats as $vat)
                                                         <tr>
                                                             <td>{{ $vat->percentage }}</td>
-                                                            <td>{{ $vat->created_at->diffForHumans() }}</td>
-                                                            <td>{{ $vat->created_at->diffForHumans() }}</td>
+                                                            <td>{{ $vat->created_at }}</td>
+                                                            <td>{{ $vat->created_at }}</td>
                                                             <td>
                                                                 <a class="btn btn-info btn-xs" href="{{ route('vat.show', $vat) }}"
                                                                     title="Afficher"><i class="fa fa-eye"

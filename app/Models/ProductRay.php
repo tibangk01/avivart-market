@@ -34,4 +34,14 @@ class ProductRay extends Model
 	{
 		return $this->hasMany(ProductCategory::class);
 	}
+
+    /**
+     * toString
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

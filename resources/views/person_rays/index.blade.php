@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => "Liste des person rays"])
+@extends('layouts.dashboard', ['title' => "Liste des types de fournisseur/client"])
 
 @section('body')
 <div class="content">
@@ -45,8 +45,8 @@
                                                     @foreach ($personRays as $personRay)
                                                         <tr>
                                                             <td>{{ $personRay->name }}</td>
-                                                            <td>{{ $personRay->created_at->diffForHumans() }}</td>
-                                                            <td>{{ $personRay->created_at->diffForHumans() }}</td>
+                                                            <td>{{ $personRay->created_at }}</td>
+                                                            <td>{{ $personRay->created_at }}</td>
                                                             <td>
                                                                 <a class="btn btn-info btn-xs" href="{{ route('person_ray.show', $personRay) }}"
                                                                     title="Afficher"><i class="fa fa-eye"

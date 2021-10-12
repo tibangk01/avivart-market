@@ -1,4 +1,4 @@
-<nav class="main-header navbar navbar-expand navbar-dark-primary navbar-light border-bottom-0 text-sm">
+<nav class="main-header navbar navbar-expand {{ session('navbarTheme', 'navbar-dark bg-danger') }} border-bottom-0 text-sm">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
         <li class="nav-item">
@@ -37,6 +37,10 @@
         <!-- Notifications Dropdown Menu -->
         @asyncWidget('notification')
 
+        <li class="nav-item">
+            <a href="{{ route('settings.index') }}" class="nav-link"><i class="fa fa-cog"></i></a>
+        </li>
+
         <!-- Profil -->
         <li class="nav-item dropdown user user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
@@ -46,7 +50,7 @@
                 <!-- User image -->
                 <li class="user-header" style="background-color:#17a2b8">
                     <img src="{{ auth()->user()->library->remote }}" class="img-circle"
-                        alt="User Image" />
+                        alt="{{ auth()->user()->library->description }}" />
                     <p>
                         {{ auth()->user()->full_name }}
                         <small>{{ session('staff')->staff_type->name }}</small>
@@ -56,7 +60,7 @@
                 <li class="user-footer">
                     <div class="d-flex">
                         <div class="mr-auto p-2">
-                            <a href="" class="btn btn-warning btn-flat"><i class="fa fa-user-circle"></i>
+                            <a href="{{ route('user.show', auth()->id()) }}" class="btn btn-danger btn-flat"><i class="fa fa-user-circle"></i>
                                 Profil</a>
                         </div>
                         <div class="p-2">
@@ -64,12 +68,6 @@
                                     class="fa fa-sign-out-alt"></i> Déconnexion</a>
                         </div>
                     </div>
-                    {{-- <div class="pull-left">
-                        <a href="{{ route('page.index') }}" class="btn btn-warning btn-flat"><i class="fa fa-user-circle"></i> Profil</a>
-                    </div>
-                    <div class="pull-right">
-                        <a href="{{ route('page.logout') }}" class="btn btn-default btn-flat"><i class="fa fa-sign-out-alt"></i> Déconnexion</a>
-                    </div> --}}
                 </li>
             </ul>
         </li>

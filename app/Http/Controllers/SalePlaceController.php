@@ -7,6 +7,7 @@ use App\Models\SalePlace;
 use Illuminate\Http\Request;
 use App\Models\Enterprise;
 use App\Models\Country;
+use App\Models\Region;
 use Illuminate\Support\Facades\DB;
 
 class SalePlaceController extends Controller
@@ -35,10 +36,11 @@ class SalePlaceController extends Controller
      */
     public function create()
     {
-        $agencies = Agency::all()->load('enterprise')->pluck('enterprise.name', 'id');
+        $agencies = Agency::with('enterprise')->get()->pluck('enterprise.name', 'id');
         $countries = Country::all()->pluck(null, 'id');
+        $regions = Region::all()->pluck(null, 'id');
 
-        return view('sale_places.create', compact('agencies', 'countries'));
+        return view('sale_places.create', compact('agencies', 'countries', 'regions'));
     }
 
     /**
@@ -59,36 +61,35 @@ class SalePlaceController extends Controller
 
                 $agency = Agency::findOrFail($request->agency_id);
 
-                //get the last sale place in database : very important here
-                $salePlace = SalePlace::orderBy('id', 'DESC')->first();
+                $region = Region::findOrFail($request->region_id);
 
-                $code = 1;
+                $code = $agency->sale_places->load('enterprise')->where('enterprise.region_id', $region->id)->count()
+                    ? $agency->sale_places->load('enterprise')->where('enterprise.region_id', $region->id)->count() + 1
+                    : 1;
+                $code = ($code < 10) ? '0' . $code : $code;
 
-                if ($salePlace) {
-                    $code = ++$salePlace->enterprise->code;
-                }
-
-                $enterprise = Enterprise::create(array_merge($request->all(),
+                $enterprise = Enterprise::create(array_merge(
+                    $request->all(),
                     [
                         'region_id' => $agency->enterprise->region_id,
-                        'code' => $agency->code . self::BEGIN_CODE . $code,
+                        'code' => $region->code . $agency->enterprise->code . $code,
                         'is_corporation' => false,
                     ]
                 ));
 
-                $sale_place = SalePlace::create([
+                $salePlace = SalePlace::create([
                     'enterprise_id' => $enterprise->id,
                     'agency_id' => $agency->id,
                 ]);
 
-               DB::commit();
+                DB::commit();
 
                 session()->flash('success', 'Donnée enregistrée.');
 
-            } catch (\Throwable $th) {
+            } catch (\Exception $ex) {
                 DB::rollBack();
 
-                //dd($th);
+                dd($ex);
 
                 session()->flash('error', "Une erreur s'est produite");
             }
@@ -116,10 +117,11 @@ class SalePlaceController extends Controller
      */
     public function edit(SalePlace $salePlace)
     {
-        $agencies = Agency::all()->load('enterprise')->pluck('enterprise.name', 'id');
+        $agencies = Agency::with('enterprise')->get()->pluck('enterprise.name', 'id');
         $countries = Country::all()->pluck(null, 'id');
+        $regions = Region::all()->pluck(null, 'id');
 
-        return view('sale_places.edit', compact('agencies', 'countries', 'salePlace'));
+        return view('sale_places.edit', compact('agencies', 'countries', 'regions', 'salePlace'));
     }
 
     /**
@@ -135,14 +137,42 @@ class SalePlaceController extends Controller
 
             $this->_validateRequest($request, 'put');
 
-            $salePlace->enterprise->update($request->except('agency_id'));
+             try {
 
-            //$salePlace->update($request->only('agency_id'));
+                DB::beginTransaction();
 
-            session()->flash('success', 'Modification réussi');
+                $agency = Agency::findOrFail($request->agency_id);
 
-            return back();
+                $region = Region::findOrFail($request->region_id);
+
+                $code = $agency->sale_places->load('enterprise')->where('enterprise.region_id', $region->id)->count()
+                    ? $agency->sale_places->load('enterprise')->where('enterprise.region_id', $region->id)->count() + 1
+                    : 1;
+                $code = ($code < 10) ? '0' . $code : $code;
+
+                $salePlace->enterprise->update(array_merge(
+                    $request->except('agency_id'),
+                    [
+                        'code' => $region->code . $agency->enterprise->code . $code,
+                    ]
+                ));
+
+                $salePlace->update($request->only('agency_id'));
+
+                DB::commit();
+
+                session()->flash('success', 'Modification réussi');
+
+            } catch (\Exception $ex) {
+                DB::rollBack();
+
+                dd($ex);
+
+                session()->flash('error', "Une erreur s'est produite");
+            }
         }
+
+        return back();
     }
 
     /**
@@ -168,13 +198,15 @@ class SalePlaceController extends Controller
     {
         $formData = [
             'country_id' => ['required'],
+            'region_id' => ['required'],
             'agency_id' => ['required'],
             'name' => ['required', 'min:3', 'max:50'],
             'phone_number' => ['required', 'min:8'],
-            'email' => ['required', 'email', 'max:60'],
+            'email' => ['required', 'email', 'max:40'],
             'website' => ['required', 'max:60'],
-            'address' => ['max:50'],
-            'city' => ['max:30'],
+            'address' => ['nullable', 'max:50'],
+            'city' => ['nullable', 'max:50'],
+            'postal_code' => ['nullable', 'max:10'],
         ];
 
         if(mb_strtolower($method) == 'post'){

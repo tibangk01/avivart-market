@@ -32,11 +32,11 @@
                             </tr>
                             <tr>
                                 <th>Date de création</th>
-                                <td>{{ $exercise->created_at->diffForHumans() }}</td>
+                                <td>{{ $exercise->created_at }}</td>
                             </tr>
                             <tr>
                                 <th>Date de mise à jour</th>
-                                <td>{{ $exercise->updated_at->diffForHumans() }}</td>
+                                <td>{{ $exercise->updated_at }}</td>
                             </tr>
                             <tr class="table-light">
                                 <th>Action</th>

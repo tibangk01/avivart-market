@@ -34,6 +34,7 @@
                                                 <th>Fournisseur</th>
                                                 <th>TVA</th>
                                                 <th>Remise</th>
+                                                <th>Total TTC</th>
                                                 <th>Date de Création</th>
                                                 <th>Date de modification</th>
                                                 <th>Actions</th>
@@ -46,8 +47,9 @@
                                                     <td>{{ $purchase->provider->getName() }}</td>
                                                     <td>{{ $purchase->vat->percentage }}</td>
                                                     <td>{{ $purchase->discount->amount }}</td>
-                                                    <td>{{ $purchase->created_at->diffForHumans() }}</td>
-                                                    <td>{{ $purchase->updated_at->diffForHumans() }}</td>
+                                                    <td>{{ $purchase->totalTTC() }}</td>
+                                                    <td>{{ $purchase->created_at }}</td>
+                                                    <td>{{ $purchase->updated_at }}</td>
                                                     <td>
                                                         <a class="btn btn-info btn-xs"
                                                             href="{{ route('purchase.show', $purchase) }}"
@@ -59,7 +61,7 @@
                                                                 aria-hidden="true"></i></a>
                                                         <a class="btn btn-warning btn-xs" target="_blank" 
                                                             href="{{ route('purchase.pdf', $purchase) }}"
-                                                            title="Imprimer"><i class="fa fa-user"
+                                                            title="Imprimer"><i class="fa fa-print"
                                                                 aria-hidden="true"></i></a>
                                                     </td>
                                                 </tr>

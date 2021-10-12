@@ -17,12 +17,12 @@
 
                     <div class="form-group">
                         {!! Form::label('society_id', 'Société') !!}
-                        {!! Form::select('society_id', $societies, $agency->society_id, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Choisissez une société', 'disabled' => true]) !!}
+                        {!! Form::select('society_id', $societies, $agency->society_id, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Choisissez une société']) !!}
                     </div>
 
                     <div class="form-group">
                         {!! Form::label('region_id', 'Choisissez une région') !!}
-                        {!! Form::select('region_id', $regions, $agency->enterprise->region_id, ['class' => 'form-control', 'required' => true, 'disabled' => true, 'placeholder' => 'Choisir une région']) !!}
+                        {!! Form::select('region_id', $regions, $agency->enterprise->region_id, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisir une région']) !!}
                     </div>
 
                     <div class="form-group">
@@ -49,6 +49,12 @@
                         {!! Form::label('address', 'Adresse', ['class' => 'form-label']) !!}
                         {!! Form::text('address', $agency->enterprise->address, ['class' => 'form-control']) !!}
                     </div>
+
+                    <div class="form-group">
+                        {!! Form::label('postal_code', 'Code Postal', ['class' => 'form-label']) !!}
+                        {!! Form::text('postal_code', $agency->enterprise->postal_code, ['class' => 'form-control']) !!}
+                    </div>
+
                     <div class="form-group">
                         {!! Form::label('city', 'Ville', ['class' => 'form-label']) !!}
                         {!! Form::text('city', $agency->enterprise->city, ['class' => 'form-control']) !!}

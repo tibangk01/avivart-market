@@ -31,12 +31,24 @@
                                 <td>{{ $proforma->discount->amount }}</td>
                             </tr>
                             <tr>
+                                <th>Total HT</th>
+                                <td>{{ $proforma->totalHT() }}</td>
+                            </tr>
+                            <tr>
+                                <th>Total TVA</th>
+                                <td>{{ $proforma->totalTVA() }}</td>
+                            </tr>
+                            <tr>
+                                <th>Total TTC</th>
+                                <td>{{ $proforma->totalTTC() }}</td>
+                            </tr>
+                            <tr>
                                 <th>Date de création</th>
-                                <td>{{ $proforma->created_at->diffForHumans() }}</td>
+                                <td>{{ $proforma->created_at }}</td>
                             </tr>
                             <tr>
                                 <th>Date de mise à jour</th>
-                                <td>{{ $proforma->updated_at->diffForHumans() }}</td>
+                                <td>{{ $proforma->updated_at }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -59,8 +71,8 @@
                                 <tr>
                                     <td>{{ $product->name }}</td>
                                     <td>{{ $product->pivot->quantity }}</td>
-                                    <td>{{ $product->pivot->created_at->diffForHumans() }}</td>
-                                    <td>{{ $product->pivot->updated_at->diffForHumans() }}</td>
+                                    <td>{{ $product->pivot->created_at }}</td>
+                                    <td>{{ $product->pivot->updated_at }}</td>
                                     <td>
                                         <a class="btn btn-info btn-xs"
                                             href="{{ route('product_proforma.show', $product->pivot->id) }}"

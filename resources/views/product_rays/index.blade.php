@@ -37,36 +37,36 @@
                                                     <th>Dénomination</th>
                                                     <th>Date de Création</th>
                                                     <th>Date de modification</th>
+                                                    <th>Nombre de Catégories</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @if ($productRays->count() > 0)
-                                                    @foreach ($productRays as $productRay)
-                                                        <tr>
-                                                            <td>{{ $productRay->name }}</td>
-                                                            <td>{{ $productRay->created_at->diffForHumans() }}</td>
-                                                            <td>{{ $productRay->updated_at->diffForHumans() }}</td>
-                                                            <td>
-                                                                <a class="btn btn-info btn-xs" href="{{ route('product_ray.show', $productRay) }}"
-                                                                    title="Afficher"><i class="fa fa-eye"
-                                                                        aria-hidden="true"></i></a>
-                                                                <a class="btn btn-warning btn-xs" href="{{ route('product_ray.edit', $productRay) }}"
-                                                                    title="Afficher"><i class="fa fa-edit"
-                                                                        aria-hidden="true"></i></a>
-                                                                <a class="btn btn-danger btn-xs" href="{{ route('product_ray.destroy',$productRay) }}"
-                                                                    title="Afficher"><i class="fa fa-trash"
-                                                                        aria-hidden="true"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                @else
+                                                @forelse ($productRays as $productRay)
                                                     <tr>
-                                                        <td colspan="4">
+                                                        <td>{{ $productRay->name }}</td>
+                                                        <td>{{ $productRay->created_at }}</td>
+                                                        <td>{{ $productRay->updated_at }}</td>
+                                                        <td>{{ $productRay->product_categories->count() }}</td>
+                                                        <td>
+                                                            <a class="btn btn-info btn-xs" href="{{ route('product_ray.show', $productRay) }}"
+                                                                title="Afficher"><i class="fa fa-eye"
+                                                                    aria-hidden="true"></i></a>
+                                                            <a class="btn btn-warning btn-xs" href="{{ route('product_ray.edit', $productRay) }}"
+                                                                title="Afficher"><i class="fa fa-edit"
+                                                                    aria-hidden="true"></i></a>
+                                                            <a class="btn btn-danger btn-xs" href="{{ route('product_ray.destroy',$productRay) }}"
+                                                                title="Afficher"><i class="fa fa-trash"
+                                                                    aria-hidden="true"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                @empty
+                                                    <tr>
+                                                        <td colspan="5">
                                                             Pas d'enregistrements.
                                                         </td>
                                                     </tr>
-                                                @endif
+                                                @endforelse
                                             </tbody>
                                         </table>
                                     </div>

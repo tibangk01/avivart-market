@@ -10,34 +10,34 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ asset('public/vendors/plugins/fontawesome-free/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendors/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- DataTables -->
     <link rel="stylesheet"
-        href="{{ asset('public/vendors/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+        href="{{ asset('vendors/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet"
-        href="{{ asset('public/vendors/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+        href="{{ asset('vendors/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet"
-        href="{{ asset('public/vendors/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+        href="{{ asset('vendors/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Tempusdominus Bootstrap 4 -->
     <link rel="stylesheet"
-        href="{{ asset('public/vendors/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+        href="{{ asset('vendors/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
     <!-- iCheck -->
-    <link rel="stylesheet" href="{{ asset('public/vendors/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendors/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/dataTables.bootstrap4.min.css">
     <!-- JQVMap -->
-    {{-- <link rel="stylesheet" href="{{ asset('public/vendors/plugins/jqvmap/jqvmap.min.css') }}"> --}}
+    {{-- <link rel="stylesheet" href="{{ asset('vendors/plugins/jqvmap/jqvmap.min.css') }}"> --}}
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('public/vendors/dist/css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendors/dist/css/adminlte.min.css') }}">
     <!-- overlayScrollbars -->
     <link rel="stylesheet"
-        href="{{ asset('public/vendors/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
+        href="{{ asset('vendors/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
     <!-- Daterange picker -->
-    <link rel="stylesheet" href="{{ asset('public/vendors/plugins/daterangepicker/daterangepicker.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendors/plugins/daterangepicker/daterangepicker.css') }}">
     <!-- summernote -->
-    <link rel="stylesheet" href="{{ asset('public/vendors/plugins/summernote/summernote-bs4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendors/plugins/summernote/summernote-bs4.min.css') }}">
     {{-- Custom styles --}}
     {{-- <link rel="stylesheet" href="{{ asset('css/styles.css') }}"> --}}
 
@@ -49,7 +49,7 @@
 
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="{{ asset('public/vendors/dist/img/AdminLTELogo.png') }}"
+            <img class="animation__shake" src="{{ asset('vendors/dist/img/AdminLTELogo.png') }}"
                 alt="AdminLTELogo" height="60" width="60">
         </div>
 
@@ -84,10 +84,12 @@
             <!-- /.content-header -->
 
             <!-- Main content -->
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        @include('layouts.partials._validation_errors')
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            @include('layouts.partials._validation_errors')
+                        </div>
                     </div>
                 </div>
             </div>
@@ -104,59 +106,61 @@
     </div>
     <!-- ./wrapper -->
 
+    <x-footer />
+
     <!-- jQuery -->
-    <script src="{{ asset('public/vendors/plugins/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/jquery/jquery.min.js') }}"></script>
     <!-- jQuery UI 1.11.4 -->
-    <script src="{{ asset('public/vendors/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
         $.widget.bridge('uibutton', $.ui.button)
     </script>
     <!-- Bootstrap 4 -->
-    <script src="{{ asset('public/vendors/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- DataTables  & Plugins -->
-    <script src="{{ asset('public/vendors/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('public/vendors/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('public/vendors/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('public/vendors/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('public/vendors/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('public/vendors/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('public/vendors/plugins/jszip/jszip.min.js') }}"></script>
-    <script src="{{ asset('public/vendors/plugins/pdfmake/pdfmake.min.js') }}"></script>
-    <script src="{{ asset('public/vendors/plugins/pdfmake/vfs_fonts.js') }}"></script>
-    <script src="{{ asset('public/vendors/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
-    <script src="{{ asset('public/vendors/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
-    <script src="{{ asset('public/vendors/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
-    <script src="{{ asset('public/vendors/custom/js/datatable.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/jszip/jszip.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/pdfmake/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+    <script src="{{ asset('vendors/custom/js/datatable.js') }}"></script>
     <!-- ChartJS -->
-    // <script src="{{ asset('public/vendors/plugins/chart.js/Chart.min.js') }}"></script>
+    // <script src="{{ asset('vendors/plugins/chart.js/Chart.min.js') }}"></script>
     <!-- Sparkline -->
-    <script src="{{ asset('public/vendors/plugins/sparklines/sparkline.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/sparklines/sparkline.js') }}"></script>
     <!-- JQVMap -->
-    {{-- <script src="{{ asset('public/vendors/plugins/jqvmap/jquery.vmap.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('public/vendors/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script> --}}
+    {{-- <script src="{{ asset('vendors/plugins/jqvmap/jquery.vmap.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('vendors/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script> --}}
     <!-- jQuery Knob Chart -->
-    <script src="{{ asset('public/vendors/plugins/jquery-knob/jquery.knob.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/jquery-knob/jquery.knob.min.js') }}"></script>
     <!-- daterangepicker -->
-    <script src="{{ asset('public/vendors/plugins/moment/moment.min.js') }}"></script>
-    <script src="{{ asset('public/vendors/plugins/daterangepicker/daterangepicker.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/moment/moment.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/daterangepicker/daterangepicker.js') }}"></script>
     <!-- Tempusdominus Bootstrap 4 -->
-    <script src="{{ asset('public/vendors/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}">
+    <script src="{{ asset('vendors/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}">
     </script>
     <!-- Summernote -->
-    <script src="{{ asset('public/vendors/plugins/summernote/summernote-bs4.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/summernote/summernote-bs4.min.js') }}"></script>
     <!-- overlayScrollbars -->
-    <script src="{{ asset('public/vendors/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
     <!-- AdminLTE App -->
-    <script src="{{ asset('public/vendors/dist/js/adminlte.js') }}"></script>
+    <script src="{{ asset('vendors/dist/js/adminlte.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="{{ asset('public/vendors/dist/js/demo.js') }}"></script>
+    <script src="{{ asset('vendors/dist/js/demo.js') }}"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    {{-- <script src="{{ asset('public/vendors/dist/js/pages/dashboard.js') }}"></script> --}}
+    {{-- <script src="{{ asset('vendors/dist/js/pages/dashboard.js') }}"></script> --}}
     <!-- Page specific script -->
     <script type="text/javascript" src="https://avivart.net/ecosoft/libs/js/jquery-active-page.js"></script>
     <script type="text/javascript">
-        $('ul.nav-sidebar > li > a').matchactive();
+        $('ul.nav-sidebar ul > li > a').matchactive();
     </script>
 
     @livewireScripts

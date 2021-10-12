@@ -34,6 +34,7 @@
                                                 <th>Client</th>
                                                 <th>TVA</th>
                                                 <th>Remise</th>
+                                                <th>Total TTC</th>
                                                 <th>Date de Création</th>
                                                 <th>Date de modification</th>
                                                 <th>Actions</th>
@@ -46,8 +47,9 @@
                                                     <td>{{ $proforma->customer->getName() }}</td>
                                                     <td>{{ $proforma->vat->percentage }}</td>
                                                     <td>{{ $proforma->discount->amount }}</td>
-                                                    <td>{{ $proforma->created_at->diffForHumans() }}</td>
-                                                    <td>{{ $proforma->updated_at->diffForHumans() }}</td>
+                                                    <td>{{ $proforma->totalTTC() }}</td>
+                                                    <td>{{ $proforma->created_at }}</td>
+                                                    <td>{{ $proforma->updated_at }}</td>
                                                     <td>
                                                         <a class="btn btn-info btn-xs"
                                                             href="{{ route('proforma.show', $proforma) }}"
@@ -57,11 +59,15 @@
                                                             href="{{ route('proforma.destroy', $proforma) }}"
                                                             title="Afficher"><i class="fa fa-trash"
                                                                 aria-hidden="true"></i></a>
+                                                        <a class="btn btn-warning btn-xs" target="_blank" 
+                                                            href="{{ route('proforma.pdf', $proforma) }}"
+                                                            title="Imprimer"><i class="fa fa-print"
+                                                                aria-hidden="true"></i></a>
                                                     </td>
                                                 </tr>
                                             @empty
                                             <tr>
-                                                <td colspan="7">
+                                                <td colspan="8">
                                                     Pas d'enregistrements.
                                                 </td>
                                             </tr>

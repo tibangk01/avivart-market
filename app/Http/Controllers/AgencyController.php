@@ -36,7 +36,7 @@ class AgencyController extends Controller
      */
     public function create()
     {
-        $societies = Society::all()->load('enterprise')->pluck('enterprise.name', 'id');
+        $societies = Society::with('enterprise')->get()->pluck('enterprise.name', 'id');
         $regions = Region::all()->pluck(null, 'id');
         $countries = Country::all()->pluck(null, 'id');
 
@@ -53,15 +53,7 @@ class AgencyController extends Controller
     {
         if ($request->isMethod('POST')) {
 
-            $request->validate([
-                'country_id' => ['required'],
-                'region_id' => ['required'],
-                'name' => ['required', 'min:3', 'max:50'],
-                'phone_number' => ['required', 'min:8'],
-                'email' => ['required', 'email', 'max:60'],
-                'website' => ['required', 'max:60'],
-                'address' => ['required', 'max:40'],
-            ]);
+            $this->_validateRequest($request, 'post');
 
             try {
 
@@ -69,23 +61,22 @@ class AgencyController extends Controller
 
                 $society = Society::findOrFail($request->society_id);
 
-                //get the last agency in database : very important here
-                $agency = Agency::orderBy('id', 'DESC')->first();
+                $region = Region::findOrFail($request->region_id);
 
-                $code = 1;
+                $code = $society->agencies->load('enterprise')->where('enterprise.region_id', $region->id)->count()
+                    ? $society->agencies->load('enterprise')->where('enterprise.region_id', $region->id)->count() + 1
+                    : 1;
+                $code = ($code < 10) ? '0' . $code : $code;
 
-                if ($agency) {
-                    $code = ++$agency->enterprise->code;
-                }
-
-                $enterprise = Enterprise::create(array_merge($request->except('society_id'),
+                $enterprise = Enterprise::create(array_merge(
+                    $request->except('society_id'),
                     [
-                        'code' => self::BEGIN_CODE . ($society->code + $code),
+                        'code' => $region->code . $society->enterprise->code . $code,
                         'is_corporation' => false,
                     ]
                 ));
 
-                Agency::create([
+                $agency = Agency::create([
                     'enterprise_id' => $enterprise->id,
                     'society_id' => $society->id,
                 ]);
@@ -94,9 +85,10 @@ class AgencyController extends Controller
 
                 session()->flash('success', 'Donnée enregistrée.');
 
-            } catch (\Throwable $th) {
-
+            } catch (\Exception $ex) {
                 DB::rollBack();
+
+                dd($ex);
 
                 session()->flash('error', "Une erreur s'est produite");
             }
@@ -124,7 +116,7 @@ class AgencyController extends Controller
      */
     public function edit(Agency $agency)
     {
-        $societies = Society::all()->load('enterprise')->pluck('enterprise.name', 'id');
+        $societies = Society::with('enterprise')->get()->pluck('enterprise.name', 'id');
         $regions = Region::all()->pluck(null, 'id');
         $countries = Country::all()->pluck(null, 'id');
 
@@ -142,30 +134,38 @@ class AgencyController extends Controller
     {
         if ($request->isMethod('PUT')) {
 
-            $request->validate([
-                'country_id' => ['required'],
-                'name' => ['required', 'min:3', 'max:50'],
-                'phone_number' => ['required', 'min:8'],
-                'email' => ['required', 'email', 'max:60'],
-                'website' => ['required', 'max:60'],
-                'address' => ['required', 'max:40'],
-            ]);
+            $this->_validateRequest($request, 'put');
 
             try {
 
                 DB::beginTransaction();
 
-                //$agency->update($request->only('society_id'));
+                $society = Society::findOrFail($request->society_id);
 
-                $agency->enterprise->update($request->except('society_id'));
+                $region = Region::findOrFail($request->region_id);
+
+                $code = $society->agencies->load('enterprise')->where('enterprise.region_id', $region->id)->count()
+                    ? $society->agencies->load('enterprise')->where('enterprise.region_id', $region->id)->count() + 1
+                    : 1;
+                $code = ($code < 10) ? '0' . $code : $code;
+
+                $agency->enterprise->update(array_merge(
+                    $request->except('society_id'),
+                    [
+                        'code' => $region->code . $society->enterprise->code . $code,
+                    ]
+                ));
+
+                $agency->update($request->only('society_id'));
 
                 DB::commit();
 
                 session()->flash('success', 'Modification réussi');
 
-            } catch (\Throwable $th) {
-
+            } catch (\Exception $ex) {
                 DB::rollBack();
+
+                dd($ex);
 
                 session()->flash('error', "Une erreur s'est produite");
             }
@@ -183,5 +183,34 @@ class AgencyController extends Controller
     public function destroy(Agency $agency)
     {
         //
+    }
+
+    /**
+     * validateRequest
+     *
+     * Validate creation and edition incomming data
+     *
+     * @param mixed $request
+     * @return void
+     */
+    private function _validateRequest(Request $request, string $method)
+    {
+        $formData = [
+            'country_id' => ['required'],
+            'region_id' => ['required'],
+            'name' => ['required', 'min:3', 'max:50'],
+            'phone_number' => ['required', 'min:8'],
+            'email' => ['required', 'email', 'max:40'],
+            'website' => ['nullable', 'max:50'],
+            'address' => ['nullable', 'max:50'],
+            'postal_code' => ['nullable', 'max:10'],
+        ];
+
+        if(mb_strtolower($method) == 'post'){
+            $formData += [
+            ];
+        }
+
+        $request->validate($formData);
     }
 }

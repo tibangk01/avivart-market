@@ -63,8 +63,8 @@ class ProductController extends Controller
                 $library = Library::create([
                     'library_type_id' => 1,
                     'folder' => 'products',
-                    'local' => 'default.png',
-                    'remote' => env('UPLOADS_PATH') .'images/products/default.png',
+                    'local' => 'default.jpg',
+                    'remote' => env('UPLOADS_PATH') .'images/products/default.jpg',
                 ]);
 
                 $product = Product::create(array_merge(
@@ -162,10 +162,14 @@ class ProductController extends Controller
             'conversion_id' => ['required'],
             'name' => ['required', 'min:3', 'max:50'],
             'stock_quantity' => ['required', 'numeric'],
-            'price' => ['required'],
+            'purchase_price' => ['required'],
+            'selling_price' => ['required'],
+            'rental_price' => ['required'],
             'serial_number' => ['nullable'],
             'manufacture_date' => ['nullable'],
             'expiration_date' => ['nullable'],
+            'mark' => ['nullable'],
+            'ref' => ['nullable'],
         ]);
     }
 }

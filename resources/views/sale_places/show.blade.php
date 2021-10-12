@@ -56,11 +56,11 @@
                                 </tr>
                                 <tr>
                                     <th>Date de création</th>
-                                    <td>{{ $salePlace->created_at->diffForHumans() }}</td>
+                                    <td>{{ $salePlace->created_at }}</td>
                                 </tr>
                                 <tr>
                                     <th>Date de modification</th>
-                                    <td>{{ $salePlace->updated_at->diffForHumans() }}</td>
+                                    <td>{{ $salePlace->updated_at }}</td>
                                 </tr>
                                 <tr class="table-light">
                                     <th>Action</th>

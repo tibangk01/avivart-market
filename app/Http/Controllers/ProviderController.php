@@ -95,8 +95,8 @@ class ProviderController extends Controller
                             $library = Library::create([
                                 'library_type_id' => 1,
                                 'folder' => 'providers',
-                                'local' => 'default.png',
-                                'remote' => env('UPLOADS_PATH') .'images/providers/default.png',
+                                'local' => 'man.png',
+                                'remote' => env('UPLOADS_PATH') .'images/providers/man.png',
                             ]);
                             
                             $user = User::create(array_merge(
@@ -254,10 +254,11 @@ class ProviderController extends Controller
             'person_ray_id' => ['required'],
             'name' => ['required', 'min:3', 'max:50'],
             'phone_number' => ['required', 'min:8'],
-            'email' => ['required', 'email', 'max:60'],
+            'email' => ['required', 'email', 'max:40'],
             'website' => ['required', 'max:60'],
-            'address' => ['max:50'],
-            'city' => ['max:30'],
+            'address' => ['nullable', 'max:50'],
+            'city' => ['nullable', 'max:50'],
+            'postal_code' => ['nullable', 'max:10'],
         ];
 
         if(mb_strtolower($method) == 'post'){
@@ -288,8 +289,8 @@ class ProviderController extends Controller
             'last_name' => ['required', 'min:3', 'max:25'],
             'phone_number' => ['required', 'min:8'],
             'email' => ['required', 'email', 'max:40'],
-            'address' => ['max:50'],
-            'city' => ['max:30'],
+            'address' => ['nullable', 'max:50'],
+            'city' => ['nullable', 'max:50'],
         ];
 
         if(mb_strtolower($method) == 'post'){

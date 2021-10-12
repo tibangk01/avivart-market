@@ -36,7 +36,13 @@ use App\Http\Controllers\CashRegisterController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\CashRegisterOperationController;
 use App\Http\Controllers\CashRegisterOperationTypeController;
+use App\Http\Controllers\BankOperationController;
+use App\Http\Controllers\BankOperationTypeController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\DayTransactionController;
+use App\Http\Controllers\CashRegisterTransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,7 +66,7 @@ Route::get('/clear', function() {
 Route::prefix('/')->name('page.')->group(function () {
 
     # Home :
-    Route::get('/', [PageController::class, 'index'])->name('index')->middleware('auth');
+    Route::get('/', [PageController::class, 'index'])->name('index')->middleware(['auth', 'staff']);
 
     Route::get('/developer', [PageController::class, 'developer'])->name('developer')->middleware('auth');
 
@@ -91,7 +97,7 @@ Route::prefix('/')->name('page.')->group(function () {
 });
 /** End Pages routes */
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'staff'])->group(function () {
 
     /** Societies routes */
     Route::resource('society', SocietyController::class)
@@ -151,6 +157,7 @@ Route::middleware('auth')->group(function () {
     /** End exercises routes */
 
     /** orders routes */
+    Route::get('/order/{order}/pdf', [OrderController::class, 'pdf'])->name('order.pdf');
     Route::resource('order', OrderController::class);
     /** End orders routes */
 
@@ -159,11 +166,12 @@ Route::middleware('auth')->group(function () {
     /** End supplies routes */
 
     /** purchases routes */
-    Route::get('/{purchase}/pdf', [PurchaseController::class, 'pdf'])->name('purchase.pdf');
+    Route::get('/purchase/{purchase}/pdf', [PurchaseController::class, 'pdf'])->name('purchase.pdf');
     Route::resource('purchase', PurchaseController::class);
     /** End purchases routes */
 
     /** proformas routes */
+    Route::get('/proforma/{proforma}/pdf', [ProformaController::class, 'pdf'])->name('proforma.pdf');
     Route::resource('proforma', ProformaController::class);
     /** End proformas routes */
 
@@ -211,9 +219,25 @@ Route::middleware('auth')->group(function () {
     Route::resource('cash_register_operation_type', CashRegisterOperationTypeController::class);
     /** End cash register operations types routes */
 
+    /** bank operations routes */
+    Route::resource('bank_operation', BankOperationController::class);
+    /** End bank operations routes */
+
+    /** bank operations types routes */
+    Route::resource('bank_operation_type', BankOperationTypeController::class);
+    /** End bank operations types routes */
+
     /** staffs routes */
     Route::resource('staff', StaffController::class);
     /** End staffs routes */
+
+    /** cash register transactions routes */
+    Route::resource('cash_register_transaction', CashRegisterTransactionController::class);
+    /** End cash register transactions routes */
+
+    /** day transactions routes */
+    Route::resource('day_transaction', DayTransactionController::class);
+    /** End day transactions routes */
 
     Route::prefix('/cart')->name('cart.')->group(function() {
         Route::get('/{product}/add', [CartController::class, 'add'])->name('add');
@@ -221,6 +245,16 @@ Route::middleware('auth')->group(function () {
         Route::get('/{row}/update', [CartController::class, 'update'])->name('update');
         Route::get('/truncate', [CartController::class, 'truncate'])->name('truncate');
         Route::match(['GET', 'POST'], '/checkout', [CartController::class, 'checkout'])->name('checkout');
+        Route::post('/load/proforma', [CartController::class, 'loadProforma'])->name('load_proforma');
+    });
+
+    Route::prefix('/settings')->name('settings.')->group(function() {
+        Route::get('/', [SettingsController::class, 'index'])->name('index');
+    });
+
+     Route::prefix('/user')->name('user.')->group(function() {
+        Route::get('/{user}/show', [UserController::class, 'show'])->name('show');
+        Route::get('/{user}/edit', [UserController::class, 'edit'])->name('edit');
     });
 
 });

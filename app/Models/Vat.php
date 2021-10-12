@@ -58,6 +58,6 @@ class Vat extends Model
      */
     public function __toString()
     {
-        return $this->percentage;
+        return strval($this->percentage);
     }
 }

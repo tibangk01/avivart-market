@@ -43,8 +43,8 @@
                                                     @foreach ($conversions as $conversion)
                                                         <tr>
                                                             <td>{{ $conversion->name }}</td>
-                                                            <td>{{ $conversion->created_at->diffForHumans() }}</td>
-                                                            <td>{{ $conversion->created_at->diffForHumans() }}</td>
+                                                            <td>{{ $conversion->created_at }}</td>
+                                                            <td>{{ $conversion->created_at }}</td>
                                                             <td>
                                                                 <a class="btn btn-info btn-xs"
                                                                     href="{{ route('conversion.show', $conversion) }}"

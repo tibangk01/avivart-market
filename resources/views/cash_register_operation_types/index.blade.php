@@ -43,44 +43,41 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @if ($cashRegisterOperationTypes->count())
+                                                @forelse ($cashRegisterOperationTypes as $cashRegisterOperationType)
+                                                <tr>
+                                                    <td class="{{ $cashRegisterOperationType->getForeColor() }}">
+                                                        {{ $cashRegisterOperationType->name }}
+                                                    </td>
 
-                                                    @foreach ($cashRegisterOperationTypes as $cashRegisterOperationType)
-                                                        <tr>
-                                                            <td class="{{ $cashRegisterOperationType->getForeColor() }}">
-                                                                {{ $cashRegisterOperationType->name }}
-                                                            </td>
+                                                    <td>
+                                                        {{ $cashRegisterOperationType->created_at }}
+                                                    </td>
 
-                                                            <td>
-                                                                {{ $cashRegisterOperationType->created_at->diffForhumans() }}
-                                                            </td>
-
-                                                            <td>
-                                                                {{ $cashRegisterOperationType->updated_at->diffForhumans() }}
-                                                            </td>
-                                                            <td>
-                                                                <a class="btn btn-info btn-xs"
-                                                                    href="{{ route('cash_register_operation_type.show', $cashRegisterOperationType) }}"
-                                                                    title="Afficher"><i class="fa fa-eye"
-                                                                        aria-hidden="true"></i></a>
-                                                                <a class="btn btn-warning btn-xs"
-                                                                    href="{{ route('cash_register_operation_type.edit', $cashRegisterOperationType) }}"
-                                                                    title="Modifier"><i class="fa fa-edit"
-                                                                        aria-hidden="true"></i></a>
-                                                                <a class="btn btn-danger btn-xs"
-                                                                    href="{{ route('cash_register_operation_type.destroy', $cashRegisterOperationType) }}"
-                                                                    title="Supprimer"><i class="fa fa-trash"
-                                                                        aria-hidden="true"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                @else
+                                                    <td>
+                                                        {{ $cashRegisterOperationType->updated_at }}
+                                                    </td>
+                                                    <td>
+                                                        <a class="btn btn-info btn-xs"
+                                                            href="{{ route('cash_register_operation_type.show', $cashRegisterOperationType) }}"
+                                                            title="Afficher"><i class="fa fa-eye"
+                                                                aria-hidden="true"></i></a>
+                                                        <a class="btn btn-warning btn-xs"
+                                                            href="{{ route('cash_register_operation_type.edit', $cashRegisterOperationType) }}"
+                                                            title="Modifier"><i class="fa fa-edit"
+                                                                aria-hidden="true"></i></a>
+                                                        <a class="btn btn-danger btn-xs"
+                                                            href="{{ route('cash_register_operation_type.destroy', $cashRegisterOperationType) }}"
+                                                            title="Supprimer"><i class="fa fa-trash"
+                                                                aria-hidden="true"></i></a>
+                                                    </td>
+                                                </tr>
+                                                @empty
                                                     <tr>
                                                         <td colspan="4">
                                                             Pas d'enregistrements.
                                                         </td>
                                                     </tr>
-                                                @endif
+                                                @endforelse
                                             </tbody>
                                         </table>
                                     </div>

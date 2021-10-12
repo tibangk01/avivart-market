@@ -27,7 +27,6 @@ use Illuminate\Database\Eloquent\Model;
 class ProductProforma extends Model
 {
 	protected $table = 'product_proforma';
-	public $incrementing = false;
 
 	protected $casts = [
 		'id' => 'int',
@@ -37,7 +36,6 @@ class ProductProforma extends Model
 	];
 
 	protected $fillable = [
-		'id',
 		'quantity'
 	];
 

@@ -7,6 +7,7 @@ use App\Models\Human;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\Society;
 
 class PageController extends Controller
 {
@@ -74,9 +75,13 @@ class PageController extends Controller
                             $redirectRoute = 'page.index';
 
                             $staff = Staff::where('human_id', $human->id)->firstOrFail();
-                            session()->put('staff', $staff); // Bug to fix
+                            session()->put('staff', $staff);
                             break;
                     }
+
+                    $society = Society::findOrFail(1);
+
+                    session()->put('sessionSociety', $society);
 
                     return redirect()->route($redirectRoute)->withSuccess($message);
                 }
@@ -133,7 +138,8 @@ class PageController extends Controller
      */
     public function logout(Request $request)
     {
-        session()->forget('human');
+        session()->forget('staff');
+        session()->forget('sessionSociety');
         auth()->logout();
         return redirect()->route('page.login');
     }

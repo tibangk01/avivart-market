@@ -58,6 +58,6 @@ class Discount extends Model
      */
     public function __toString()
     {
-        return $this->amount;
+        return strval($this->amount);
     }
 }

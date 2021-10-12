@@ -38,8 +38,16 @@
                                     <td>{{ $product->conversion->name }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Prix unitaire</th>
-                                    <td>{{ $product->price }}</td>
+                                    <th>Prix d'Achat</th>
+                                    <td>{{ $product->purchase_price }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Prix de Vente</th>
+                                    <td>{{ $product->selling_price }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Prix de Location</th>
+                                    <td>{{ $product->rental_price }}</td>
                                 </tr>
                                 <tr>
                                     <th>Quantité en stock</th>
@@ -63,11 +71,11 @@
                                 </tr>
                                 <tr>
                                     <th>Date de création</th>
-                                    <td>{{ $product->created_at->diffForHumans() }}</td>
+                                    <td>{{ $product->created_at }}</td>
                                 </tr>
                                 <tr>
                                     <th>Date de modification</th>
-                                    <td>{{ $product->updated_at->diffForHumans() }}</td>
+                                    <td>{{ $product->updated_at }}</td>
                                 </tr>
                                 <tr class="table-light">
                                     <th>Action</th>

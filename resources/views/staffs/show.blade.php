@@ -4,14 +4,18 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-lg-12">
                     <x-library :library='$staff->human->user->library' class="img-100x100" />
+
                     <p>
                         <a href="{{ route('library.edit', ['library' => $staff->human->user->library]) }}" class="btn btn-sm btn-link" title="Editer"><i class="fas fa-edit"></i></a>
                     </p>
                 </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <h4>Mes informations</h4>
 
-                <div class="col-lg-12">
                     <div class="table-responsive bg-white">
                         <table class="table table-bordered table-stripped table-hover mb-0">
                             <thead class="thead-dark">
@@ -59,11 +63,11 @@
                                 </tr>
                                 <tr>
                                     <th>Date de création</th>
-                                    <td>{{ $staff->created_at->diffForHumans() }}</td>
+                                    <td>{{ $staff->created_at }}</td>
                                 </tr>
                                 <tr>
                                     <th>Date de modification</th>
-                                    <td>{{ $staff->updated_at->diffForHumans() }}</td>
+                                    <td>{{ $staff->updated_at }}</td>
                                 </tr>
                                 <tr class="table-light">
                                     <th>Action</th>
@@ -71,6 +75,35 @@
                                         {!! link_to_route('staff.edit', 'Editer', ['staff' => $staff], ['class' => 'text-warning']) !!}
                                     </td>
                                 </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <h4>Mes Transactions de Caisse Journalière (TCJ)</h4>
+
+                    <div class="table-responsive bg-white">
+                        <table class="table table-bordered table-stripped table-hover mb-0">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Journée</th>
+                                    <th>Caisse</th>
+                                    <th>Montant</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse($staff->cash_register_transactions as $cashRegisterTransaction)
+                                <tr>
+                                    <td>{{ $cashRegisterTransaction->day_transaction->getDay() }} ({{ $cashRegisterTransaction->day_transaction->getState() }})</td>
+                                    <td>{{ $cashRegisterTransaction->cash_register->name }} ({{ $cashRegisterTransaction->getState() }})</td>
+                                    <td>{{ $cashRegisterTransaction->amount }}</td>
+                                </tr>
+                                @empty
+                                <tr>
+                                    <td colspan="3">Aucune</td>
+                                </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>

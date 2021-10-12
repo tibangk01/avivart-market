@@ -20,12 +20,16 @@ use Gloudemans\Shoppingcart\Contracts\Buyable;
  * @property int $product_category_id
  * @property int $conversion_id
  * @property string $name
- * @property float $price
+ * @property float $purchase_price
+ * @property float $selling_price
+ * @property float $rental_price
  * @property int $stock_quantity
  * @property int $sold_quantity
  * @property string|null $serial_number
  * @property Carbon|null $manufacture_date
  * @property Carbon|null $expiration_date
+ * @property string|null $mark
+ * @property string|null $ref
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * 
@@ -48,7 +52,9 @@ class Product extends Model implements Buyable
 		'library_id' => 'int',
 		'product_category_id' => 'int',
 		'conversion_id' => 'int',
-		'price' => 'float',
+		'purchase_price' => 'float',
+		'selling_price' => 'float',
+		'rental_price' => 'float',
 		'stock_quantity' => 'int',
 		'sold_quantity' => 'int'
 	];
@@ -64,12 +70,16 @@ class Product extends Model implements Buyable
 		'product_category_id',
 		'conversion_id',
 		'name',
-		'price',
+		'purchase_price',
+		'selling_price',
+		'rental_price',
 		'stock_quantity',
 		'sold_quantity',
 		'serial_number',
 		'manufacture_date',
-		'expiration_date'
+		'expiration_date',
+		'mark',
+		'ref',
 	];
 
 	public function product_category()
@@ -101,14 +111,14 @@ class Product extends Model implements Buyable
 
 	public function proformas()
 	{
-		return $this->belongsToMany(Proforma::class)
+		return $this->belongsToMany(Proforma::class, 'product_proforma')
 					->withPivot('id', 'quantity')
 					->withTimestamps();
 	}
 
 	public function purchases()
 	{
-		return $this->belongsToMany(Purchase::class)
+		return $this->belongsToMany(Purchase::class, 'product_purchase')
 					->withPivot('id', 'ordered_quantity', 'delivered_quantity')
 					->withTimestamps();
 	}
@@ -122,7 +132,7 @@ class Product extends Model implements Buyable
     }
 
     public function getBuyablePrice($options = null) {
-        return $this->price;
+        return $this->selling_price;
     }
 
     public function __toString()

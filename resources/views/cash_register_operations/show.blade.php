@@ -25,12 +25,16 @@
                                     <td>{{ $cashRegisterOperation->amount }}</td>
                                 </tr>
                                 <tr>
+                                    <td>Commentaire</td>
+                                    <td>{{ $cashRegisterOperation->comment }}</td>
+                                </tr>
+                                <tr>
                                     <td>Date de création</td>
-                                    <td>{{ $cashRegisterOperation->created_at->diffForhumans() }}</td>
+                                    <td>{{ $cashRegisterOperation->created_at }}</td>
                                 </tr>
                                 <tr>
                                     <td>Date de mis à jour</td>
-                                    <td>{{ $cashRegisterOperation->updated_at->diffForhumans() }}</td>
+                                    <td>{{ $cashRegisterOperation->updated_at }}</td>
                                 </tr>
                                 <tr class="table-light">
                                     <th>Action</th>

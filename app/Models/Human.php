@@ -74,7 +74,7 @@ class Human extends Model
 		return $this->hasMany(Developer::class);
 	}
 
-	public function staff()
+	public function staffs()
 	{
 		return $this->hasMany(Staff::class);
 	}

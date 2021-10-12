@@ -37,7 +37,7 @@
                                                     <th>Téléphone</th>
                                                     <th>Email</th>
                                                     <th>Région</th>
-                                                    <th>Points de vente</th>
+                                                    <th>Nombre de Points de vente</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>

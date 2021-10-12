@@ -95,8 +95,8 @@ class CustomerController extends Controller
                             $library = Library::create([
                                 'library_type_id' => 1,
                                 'folder' => 'customers',
-                                'local' => 'default.png',
-                                'remote' => env('UPLOADS_PATH') .'images/customers/default.png',
+                                'local' => 'man.png',
+                                'remote' => env('UPLOADS_PATH') .'images/customers/man.png',
                             ]);
 
                             $user = User::create(array_merge(
@@ -254,11 +254,12 @@ class CustomerController extends Controller
             'person_ray_id' => ['required'],
             'name' => ['required', 'min:3', 'max:50'],
             'phone_number' => ['required', 'min:8'],
-            'email' => ['required', 'email', 'max:60'],
+            'email' => ['required', 'email', 'max:40'],
             'website' => ['required', 'max:60'],
             'fiscal_code' => ['required', 'min:3'],
-            'address' => ['max:50'],
-            'city' => ['max:30'],
+            'address' => ['nullable', 'max:50'],
+            'city' => ['nullable', 'max:50'],
+            'postal_code' => ['nullable', 'max:10'],
         ];
 
         if(mb_strtolower($method) == 'post'){
@@ -289,8 +290,8 @@ class CustomerController extends Controller
             'last_name' => ['required', 'min:3', 'max:25'],
             'phone_number' => ['required', 'min:8'],
             'email' => ['required', 'email', 'max:40'],
-            'address' => ['max:50'],
-            'city' => ['max:30'],
+            'address' => ['nullable', 'max:50'],
+            'city' => ['nullable', 'max:50'],
         ];
 
         if(mb_strtolower($method) == 'post'){

@@ -16,6 +16,11 @@
                 </div>
 
                 <div class="form-group">
+                    {!! Form::label('region_id', 'Région') !!}
+                    {!! Form::select('region_id', $regions, $society->enterprise->region_id, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Choisissez une région']) !!}
+                </div>
+
+                <div class="form-group">
                     {!! Form::label('name', 'Nom', ['class' => 'form-label']) !!}
                     {!! Form::text('name', $society->enterprise->name, ['class' => 'form-control']) !!}
                 </div>
@@ -30,6 +35,10 @@
                 <div class="form-group">
                     {!! Form::label('address', 'Adresse', ['class' => 'form-label']) !!}
                     {!! Form::text('address', $society->enterprise->address, ['class' => 'form-control']) !!}
+                </div>
+                <div class="form-group">
+                    {!! Form::label('postal_code', 'Code Postal', ['class' => 'form-label']) !!}
+                    {!! Form::text('postal_code', $society->enterprise->postal_code, ['class' => 'form-control']) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::label('city', 'Ville', ['class' => 'form-label']) !!}

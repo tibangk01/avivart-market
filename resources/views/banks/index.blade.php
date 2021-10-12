@@ -49,10 +49,10 @@
                                                             {{ $bank->account }}
                                                         </td>
                                                         <td>
-                                                            {{ $bank->created_at->diffForHumans() }}
+                                                            {{ $bank->created_at }}
                                                         </td>
                                                         <td>
-                                                            {{ $bank->updated_at->diffForHumans() }}
+                                                            {{ $bank->updated_at }}
                                                         </td>
                                                         <td>
                                                             <a class="btn btn-info btn-xs"

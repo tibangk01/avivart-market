@@ -7,6 +7,7 @@ use App\Models\Provider;
 use App\Models\Customer;
 use App\Models\Vat;
 use App\Models\Discount;
+use App\Models\OrderState;
 
 class Cart extends Component
 {
@@ -19,6 +20,10 @@ class Cart extends Component
     public $vats;
 
     public $discounts;
+
+    public $orderStates;
+
+    public $routeName;
 
     /**
      * Create a new component instance.
@@ -36,6 +41,26 @@ class Cart extends Component
         $this->vats = Vat::all()->pluck(null, 'id');
 
         $this->discounts = Discount::all()->pluck(null, 'id');
+
+        $this->orderStates = OrderState::all()->pluck(null, 'id');
+
+        switch ($this->instance) {
+            case 'purchase':
+                $this->routeName = 'purchase.store';
+                break;
+
+            case 'proforma':
+                $this->routeName = 'proforma.store';
+                break;
+
+            case 'order':
+                $this->routeName = 'order.store';
+                break;
+            
+            default:
+                $this->routeName = 'cart.checkout';
+                break;
+        }
     }
 
     /**

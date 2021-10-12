@@ -24,11 +24,11 @@
                             </tr>
                             <tr>
                                 <th>Téléphone</th>
-                                <td>{{ $society->enterprise->phone_number}}</td>
+                                <td><a href="tel:{{ str_replace(' ', '', $society->enterprise->getFullPhoneNumber()) }}">{{ $society->enterprise->getFullPhoneNumber() }}</a></td>
                             </tr>
                             <tr>
                                 <th>Email</th>
-                                <td>{{ $society->enterprise->email }}</td>
+                                <td><a href="mailto:{{ $society->enterprise->email }}">{{ $society->enterprise->email }}</a></td>
                             </tr>
                             <tr>
                                 <th>Région</th>
@@ -36,19 +36,27 @@
                             </tr>
                             <tr>
                                 <th>Adresse</th>
-                                <td>{{ $society->enterprise->address}}</td>
+                                <td>{{ $society->enterprise->address }}</td>
+                            </tr>
+                            <tr>
+                                <th>Code Postal</th>
+                                <td>{{ $society->enterprise->postal_code }}</td>
                             </tr>
                             <tr>
                                 <th>Pays</th>
-                                <td>{{ $society->enterprise->country->name}}</td>
+                                <td>{{ $society->enterprise->country->name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Région</th>
+                                <td>{{ $society->enterprise->region->name }}</td>
                             </tr>
                             <tr>
                                 <th>Ville</th>
-                                <td>{{ $society->enterprise->city}}</td>
+                                <td>{{ $society->enterprise->city }}</td>
                             </tr>
                             <tr>
                                 <th>Site web</th>
-                                <td><a target="_blank" href="{{ $society->enterprise->website}}">{{ $society->enterprise->website}}</a></td>
+                                <td><a target="_blank" href="{{ $society->enterprise->website}}">{{ $society->enterprise->website }}</a></td>
                             </tr>
                             <tr>
                                 <th>Code Fiscal</th>
@@ -60,11 +68,15 @@
                             </tr>
                             <tr>
                                 <th>Date de création</th>
-                                <td>{{ $society->created_at->diffForHumans() }}</td>
+                                <td>{{ $society->created_at }}</td>
                             </tr>
                             <tr>
                                 <th>Date de mise à jour</th>
-                                <td>{{ $society->updated_at->diffForHumans() }}</td>
+                                <td>{{ $society->updated_at }}</td>
+                            </tr>
+                            <tr>
+                                <th>Nombre d'Agence</th>
+                                <td>{{ $society->agencies->count() }}</td>
                             </tr>
                             <tr class="table-light">
                                 <th>Action</th>

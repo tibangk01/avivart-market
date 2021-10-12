@@ -17,8 +17,13 @@
                     </div>
 
                     <div class="form-group">
-                        {!! Form::label('amount', 'Nom') !!}
+                        {!! Form::label('amount', 'Montant') !!}
                         {!! Form::number('amount', null, ['class' => 'form-control', 'required' => true, 'step' => 'any']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('comment', 'Commentaire') !!}
+                        {!! Form::textarea('comment', null, ['class' => 'form-control', 'required' => true]) !!}
                     </div>
 
                     <div class="form-group text-right">

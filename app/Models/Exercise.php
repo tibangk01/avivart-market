@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -21,6 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon|null $updated_at
  * 
  * @property Currency $currency
+ * @property Collection|DayTransaction[] $day_transactions
  *
  * @package App\Models
  */
@@ -47,5 +49,20 @@ class Exercise extends Model
 	public function currency()
 	{
 		return $this->belongsTo(Currency::class);
+	}
+
+	public function day_transactions()
+	{
+		return $this->hasMany(DayTransaction::class);
+	}
+
+	public function getPeriod(string $separator = ' au ')
+	{
+		return $this->start_date->format('d/m/Y') . $separator . $this->end_date->format('d/m/Y');
+	}
+
+	public function __toString()
+	{
+		return $this->getPeriod();
 	}
 }

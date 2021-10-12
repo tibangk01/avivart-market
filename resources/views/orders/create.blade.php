@@ -11,6 +11,28 @@
             </div>
             <div class="col-lg-6">
                 <h6>Panier de produits</h6>
+
+                <div>
+                    {!! Form::open(['route' => 'cart.load_proforma']) !!}
+                    <div class="form-group">
+                        <label for="proforma_id">Proforma</label>
+                        <select required class="form-control" id="proforma_id" name="proforma_id">
+                            <option value="">Chargez un proforma</option>
+                            @if($proformas->count())
+
+                            @foreach($proformas as $proforma)
+                            <option value="{{ $proforma->id }}">{{ $proforma->getNumber() }}</option>
+                            @endforeach
+
+                            @endif
+                        </select>
+                    </div>
+
+                    <div class="form-group text-right">
+                        <button type="submit" class="btn btn-success">Charger</button>
+                    </div>
+                    {!! Form::close() !!}
+                </div>
                 
                 <x-cart instance="order" />
             </div>

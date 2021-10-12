@@ -32,17 +32,36 @@
 
                 <div class="form-group">
                     {!! Form::label('stock_quantity', 'Quantitée en stock') !!}
-                    {!! Form::text('stock_quantity', null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Entrer la quantitée en sotck']) !!}
+                    {!! Form::number('stock_quantity', null, ['class' => 'form-control', 'required' => true, 'min' => 1, 'step' => 1]) !!}
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('price', 'Prix unitaire') !!}
-                    {!! Form::number('price', null, ['class' => 'form-control', 'required' => true, 'Entrer le prix unitaire', 'step' =>'any']) !!}
+                    {!! Form::label('purchase_price', "Prix d'Achat") !!}
+                    {!! Form::number('purchase_price', null, ['class' => 'form-control', 'required' => true, 'step' => 'any']) !!}
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('selling_price', "Prix de Vente") !!}
+                    {!! Form::number('selling_price', null, ['class' => 'form-control', 'required' => true, 'step' => 'any']) !!}
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('rental_price', "Prix de Location") !!}
+                    {!! Form::number('rental_price', null, ['class' => 'form-control', 'required' => true, 'step' => 'any']) !!}
                 </div>
 
                 <div class="form-group">
                     {!! Form::label('serial_number', 'Numéro de série', ['class' => 'form-label']) !!}
                     {!! Form::text('serial_number', null, ['class' => 'form-control']) !!}
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('mark', 'Marque', ['class' => 'form-label']) !!}
+                    {!! Form::text('mark', null, ['class' => 'form-control']) !!}
+                </div>
+                <div class="form-group">
+                    {!! Form::label('ref', 'Référence', ['class' => 'form-label']) !!}
+                    {!! Form::text('ref', null, ['class' => 'form-control']) !!}
                 </div>
 
                 <div class="form-group">

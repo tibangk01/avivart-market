@@ -63,7 +63,7 @@
                                                                 {{ $staff->human->user->phone_number }}
                                                             </td>
                                                             <td>
-                                                                {{ $staff->created_at->diffForHumans() }}
+                                                                {{ $staff->created_at }}
                                                             </td>
 
                                                             <td>

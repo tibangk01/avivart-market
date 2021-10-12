@@ -35,56 +35,51 @@
                                         <table class="table table-bordered table-hover datatable text-nowrap text-center">
                                             <thead class="thead-dark">
                                                 <tr>
-
+                                                    <th>Type d'opération</th>
                                                     <th>Montant</th>
-                                                    <th>Type d'opération de caisse</th>
                                                     <th>Date de création</th>
                                                     <th>Date de mise à jour</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-
-                                                @if ($cashRegisterOperations->count())
-                                                    @foreach ($cashRegisterOperations as $cashRegisterOperation)
-                                                        <tr>
-                                                            <td class="{{ $cashRegisterOperation->cash_register_operation_type->getForeColor() }}">
-                                                                {{ $cashRegisterOperation->cash_register_operation_type->name }}
-                                                            </td>
-                                                            <td>
-                                                                {{ $cashRegisterOperation->amount }}
-                                                            </td>
-                                                            <td>
-                                                                {{ $cashRegisterOperation->created_at->diffForHumans() }}
-                                                            </td>
-                                                            <td>
-                                                                {{ $cashRegisterOperation->updated_at->diffForHumans() }}
-                                                            </td>
-                                                            <td>
-
-                                                                <a class="btn btn-info btn-xs"
-                                                                    href="{{ route('cash_register_operation.show', $cashRegisterOperation) }}"
-                                                                    title="Afficher"><i class="fa fa-eye"
-                                                                        aria-hidden="true"></i></a>
-                                                                <a class="btn btn-warning btn-xs"
-                                                                    href="{{ route('cash_register_operation.edit', $cashRegisterOperation) }}"
-                                                                    title="Modifier"><i class="fa fa-edit"
-                                                                        aria-hidden="true"></i></a>
-                                                                <a class="btn btn-danger btn-xs"
-                                                                    href="{{ route('cash_register_operation.destroy', $cashRegisterOperation) }}"
-                                                                    title="Supprimer"><i class="fa fa-trash"
-                                                                        aria-hidden="true"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                @else
+                                                @forelse ($cashRegisterOperations as $cashRegisterOperation)
                                                     <tr>
+                                                        <td class="{{ $cashRegisterOperation->cash_register_operation_type->getForeColor() }}">
+                                                            {{ $cashRegisterOperation->cash_register_operation_type->name }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $cashRegisterOperation->amount }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $cashRegisterOperation->created_at }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $cashRegisterOperation->updated_at }}
+                                                        </td>
+                                                        <td>
 
+                                                            <a class="btn btn-info btn-xs"
+                                                                href="{{ route('cash_register_operation.show', $cashRegisterOperation) }}"
+                                                                title="Afficher"><i class="fa fa-eye"
+                                                                    aria-hidden="true"></i></a>
+                                                            <a class="btn btn-warning btn-xs"
+                                                                href="{{ route('cash_register_operation.edit', $cashRegisterOperation) }}"
+                                                                title="Modifier"><i class="fa fa-edit"
+                                                                    aria-hidden="true"></i></a>
+                                                            <a class="btn btn-danger btn-xs"
+                                                                href="{{ route('cash_register_operation.destroy', $cashRegisterOperation) }}"
+                                                                title="Supprimer"><i class="fa fa-trash"
+                                                                    aria-hidden="true"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                @empty
+                                                    <tr>
                                                         <td colspan="5">
                                                             Pas d'enregistrements.
                                                         </td>
                                                     </tr>
-                                                @endif
+                                                @endforelse
                                             </tbody>
                                         </table>
                                     </div>

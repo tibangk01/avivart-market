@@ -45,8 +45,8 @@
                                                     @foreach ($currencies as $currency)
                                                         <tr>
                                                             <td>{{ $currency->name }}</td>
-                                                            <td>{{ $currency->created_at->diffForHumans() }}</td>
-                                                            <td>{{ $currency->created_at->diffForHumans() }}</td>
+                                                            <td>{{ $currency->created_at }}</td>
+                                                            <td>{{ $currency->created_at }}</td>
                                                             <td>
                                                                 <a class="btn btn-info btn-xs" href="{{ route('currency.show', $currency) }}"
                                                                     title="Afficher"><i class="fa fa-eye"

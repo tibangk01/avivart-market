@@ -33,7 +33,9 @@
                                                     <th>Nom</th>
                                                     <th>Type</th>
                                                     <th>Unité</th>
-                                                    <th>Prix unitaire</th>
+                                                    <th>Prix d'Achat</th>
+                                                    <th>Prix de Vente</th>
+                                                    <th>Prix de Location</th>
                                                     <th>Quantité en stock</th>
                                                     <th>Quantité vendue</th>
                                                     <th>Date de Création</th>
@@ -42,17 +44,18 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @if ($products->count())
-                                                    @foreach ($products as $product)
+                                                    @forelse ($products as $product)
                                                         <tr>
                                                             <td>{{ $product->name }}</td>
                                                             <td>{{ $product->product_type->name }}</td>
                                                             <td>{{ $product->conversion->name }}</td>
-                                                            <td>{{ $product->price }}</td>
+                                                            <td>{{ $product->purchase_price }}</td>
+                                                            <td>{{ $product->selling_price }}</td>
+                                                            <td>{{ $product->rental_price }}</td>
                                                             <td>{{ $product->stock_quantity }}</td>
                                                             <td>{{ $product->sold_quantity }}</td>
-                                                            <td>{{ $product->created_at->diffForHumans() }}</td>
-                                                            <td>{{ $product->updated_at->diffForHumans() }}</td>
+                                                            <td>{{ $product->created_at }}</td>
+                                                            <td>{{ $product->updated_at }}</td>
                                                             <td>
                                                                 <a class="btn btn-info btn-xs"
                                                                     href="{{ route('product.show', $product) }}"
@@ -68,14 +71,13 @@
                                                                         aria-hidden="true"></i></a>
                                                             </td>
                                                         </tr>
-                                                    @endforeach
-                                                @else
+                                                    @empty
                                                     <tr>
-                                                        <td colspan="9">
+                                                        <td colspan="11">
                                                             Pas d'enregistrements.
                                                         </td>
                                                     </tr>
-                                                @endif
+                                                @endforelse
                                             </tbody>
                                         </table>
                                     </div>

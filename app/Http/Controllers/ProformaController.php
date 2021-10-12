@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Proforma;
+use BarryvdhDomPDF as PDF;
 use Illuminate\Http\Request;
+use \Cart;
+use Illuminate\Support\Facades\DB;
 
 class ProformaController extends Controller
 {
@@ -37,7 +40,42 @@ class ProformaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->isMethod('POST')) {
+            $cartContent = Cart::instance($request->input('instance'))->content();
+
+            try {
+                DB::beginTransaction();
+
+                $proforma = Proforma::create([
+                    'customer_id' => $request->input('customer_id'),
+                    'vat_id' => $request->input('vat_id'),
+                    'discount_id' => $request->input('discount_id'),
+                ]);
+
+                foreach ($cartContent as $row) {
+                    $proforma->products()->attach($proforma->id, [
+                        'product_id' => $row->id,
+                        'quantity' => $row->qty,
+                    ]);
+                }  
+
+                DB::commit();
+
+                Cart::instance($request->input('instance'))->destroy();
+
+                session()->flash('success', 'Donnée enregistrée.');
+
+                return redirect()->to(route('proforma.pdf', ['proforma' => $proforma]));    //to or away
+            } catch (\Exception $ex) {
+                DB::rollback();
+
+                dd($ex);
+
+                session()->flash('error', "Une erreur s'est produite");
+            }
+        }
+
+        return back();
     }
 
     /**
@@ -83,5 +121,14 @@ class ProformaController extends Controller
     public function destroy(Proforma $proforma)
     {
         //
+    }
+
+    public function pdf(Request $request, Proforma $proforma)
+    {
+        $pdf = PDF::loadView('proformas.pdf.proforma', compact('proforma'));
+        $pdf->setPaper('a4', 'portrait');
+        $pdf->save(public_path("libraries/docs/proforma_{$proforma->getNumber()}.pdf"));
+
+        return $pdf->stream('proforma.pdf');
     }
 }

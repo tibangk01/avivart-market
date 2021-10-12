@@ -35,6 +35,7 @@
                                                 <th>Etat</th>
                                                 <th>TVA</th>
                                                 <th>Remise</th>
+                                                <th>Total TTC</th>
                                                 <th>Date de Création</th>
                                                 <th>Date de modification</th>
                                                 <th>Actions</th>
@@ -48,8 +49,9 @@
                                                     <td>{{ $order->order_state->name }}</td>
                                                     <td>{{ $order->vat->percentage }}</td>
                                                     <td>{{ $order->discount->amount }}</td>
-                                                    <td>{{ $order->created_at->diffForHumans() }}</td>
-                                                    <td>{{ $order->updated_at->diffForHumans() }}</td>
+                                                    <td>{{ $order->totalTTC() }}</td>
+                                                    <td>{{ $order->created_at }}</td>
+                                                    <td>{{ $order->updated_at }}</td>
                                                     <td>
                                                         <a class="btn btn-info btn-xs"
                                                             href="{{ route('order.show', $order) }}"
@@ -59,11 +61,15 @@
                                                             href="{{ route('order.destroy', $order) }}"
                                                             title="Afficher"><i class="fa fa-trash"
                                                                 aria-hidden="true"></i></a>
+                                                        <a class="btn btn-warning btn-xs" target="_blank" 
+                                                            href="{{ route('order.pdf', $order) }}"
+                                                            title="Imprimer"><i class="fa fa-print"
+                                                                aria-hidden="true"></i></a>
                                                     </td>
                                                 </tr>
                                             @empty
                                             <tr>
-                                                <td colspan="8">
+                                                <td colspan="9">
                                                     Pas d'enregistrements.
                                                 </td>
                                             </tr>

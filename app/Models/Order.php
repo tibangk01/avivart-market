@@ -78,4 +78,35 @@ class Order extends Model
 	{
 		return Carbon::parse($this->created_at)->format('dmYHis');
 	}
+
+	public function totalTTC()
+	{
+		return ($this->totalHT() + $this->totalTVA()) - $this->discount->amount;
+	}
+
+	public function totalTVA()
+	{
+		$totalTVA = 0;
+
+		if ($this->products->count()) {
+			foreach ($this->products as $product) {
+				$totalTVA += $product->selling_price * $this->vat->percentage;
+			}
+		}
+
+		return $totalTVA;
+	}
+
+	public function totalHT()
+	{
+		$totalHT = 0;
+
+		if ($this->products->count()) {
+			foreach ($this->products as $product) {
+				$totalHT += $product->selling_price * $product->pivot->quantity;
+			}
+		}
+
+		return $totalHT;
+	}
 }

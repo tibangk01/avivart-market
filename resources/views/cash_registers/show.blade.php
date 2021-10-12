@@ -21,11 +21,11 @@
                                 </tr>
                                 <tr>
                                     <td>Date de création</td>
-                                    <td>{{ $cashRegister->created_at->diffForHumans() }}</td>
+                                    <td>{{ $cashRegister->created_at }}</td>
                                 </tr>
                                 <tr>
                                     <td>Date de mis à jour</td>
-                                    <td>{{ $cashRegister->updated_at->diffForHumans() }}</td>
+                                    <td>{{ $cashRegister->updated_at }}</td>
                                 </tr>
                                 <tr class="table-light">
                                     <th>Action</th>

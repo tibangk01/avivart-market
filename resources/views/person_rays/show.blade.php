@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => "Détails d'un person ray"])
+@extends('layouts.dashboard', ['title' => "Détails du type de fournisseur/client"])
 
 @section('body')
 <section class="content">
@@ -20,11 +20,11 @@
                             </tr>
                             <tr>
                                 <th>Date de création</th>
-                                <td>{{ $personRay->created_at->diffForHumans() }}</td>
+                                <td>{{ $personRay->created_at }}</td>
                             </tr>
                             <tr>
                                 <th>Date de mise à jour</th>
-                                <td>{{ $personRay->updated_at->diffForHumans() }}</td>
+                                <td>{{ $personRay->updated_at }}</td>
                             </tr>
                             <tr class="table-light">
                                 <th>Action</th>

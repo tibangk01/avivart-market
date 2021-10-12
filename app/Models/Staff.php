@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Human $human
  * @property StaffType $staff_type
  * @property Collection|Agency[] $agencies
+ * @property Collection|CashRegisterTransaction[] $cash_register_transactions
  * @property Collection|SalePlace[] $sale_places
  * @property Collection|Society[] $societies
  *
@@ -56,6 +57,11 @@ class Staff extends Model
 		return $this->belongsToMany(Agency::class)
 					->withPivot('id')
 					->withTimestamps();
+	}
+
+	public function cash_register_transactions()
+	{
+		return $this->hasMany(CashRegisterTransaction::class);
 	}
 
 	public function sale_places()

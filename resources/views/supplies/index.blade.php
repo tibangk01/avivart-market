@@ -1,4 +1,4 @@
- @extends('layouts.dashboard', ['title' => "Approvisionnements"])
+ @extends('layouts.dashboard', ['title' => "Liste des approvisionnements"])
 
 @section('body')
 <section class="content">
@@ -31,8 +31,8 @@
                                         <thead class="thead-dark">
                                             <tr>
                                                 <th>Numéro</th>
-                                                <th>Produit</th>
                                                 <th>Bon de commande</th>
+                                                <th>Produit</th>
                                                 <th>Quantité</th>
                                                 <th>Date de Création</th>
                                                 <th>Date de modification</th>
@@ -43,11 +43,11 @@
                                             @forelse ($supplies as $supply)
                                                 <tr>
                                                     <td>{{ $supply->getNumber() }}</td>
-                                                    <td>{{ $supply->product_purchase->product->name }}</td>
                                                     <td>{{ $supply->product_purchase->purchase->getNumber() }}</td>
+                                                    <td>{{ $supply->product_purchase->product->name }}</td>
                                                     <td>{{ $supply->quantity }}</td>
-                                                    <td>{{ $supply->created_at->diffForHumans() }}</td>
-                                                    <td>{{ $supply->updated_at->diffForHumans() }}</td>
+                                                    <td>{{ $supply->created_at }}</td>
+                                                    <td>{{ $supply->updated_at }}</td>
                                                     <td>
                                                         <a class="btn btn-info btn-xs"
                                                             href="{{ route('supply.show', $supply) }}"

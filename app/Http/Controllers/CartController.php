@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Proforma;
 use App\Models\Order;
 use App\Models\ProductOrder;
 use Illuminate\Http\Request;
@@ -19,42 +20,6 @@ class CartController extends Controller
 
     public function checkout(Request $request)
     {
-        $cartContent = Cart::instance($request->query('instance'))->content();
-
-        try {
-            DB::beginTransaction();
-
-            switch ($request->query('instance')) {
-                case 'purchase':
-                    
-                    $purchase = Purchase::create([
-                        'provider_id' => $request->input('provider_id'),
-                        'vat_id' => $request->input('vat_id'),
-                        'discount_id' => $request->input('discount_id'),
-                    ]);
-
-                    foreach ($cartContent as $row) {
-                        ProductPurchase::create([
-                            'purchase_id' => $purchase->id,
-                            'product_id' => $row->id,
-                            'ordered_quantity' => $row->qty,
-                        ]);
-                    }
-
-                    break;
-                
-                default:
-                    // code...
-                    break;
-            }   
-
-            DB::commit();
-
-            Cart::instance($request->query('instance'))->destroy();
-        } catch (\Exception $ex) {
-            DB::rollback();
-        }
-
         return back();
     }
 
@@ -67,7 +32,7 @@ class CartController extends Controller
             $quantity = $request->query('quantity');
         }
 
-        Cart::instance($request->query('instance'))->add($product, $quantity, array());
+        Cart::instance($request->query('instance'))->add($product, $quantity, array())->associate(Product::class);
 
         flashy()->success("Produit ajouté au panier");
 
@@ -99,6 +64,27 @@ class CartController extends Controller
     	Cart::instance($request->query('instance'))->destroy();
 
         flashy()->error("Panier vidé");
+
+        return back();
+    }
+
+    public function loadProforma(Request $request)
+    {
+        if ($request->isMethod('POST')) {
+
+            $proforma = Proforma::findOrFail($request->input('proforma_id'));
+
+            Cart::instance('order')->destroy();
+
+            foreach ($proforma->products as $product) {
+                Cart::instance('order')->add($product, $product->pivot->quantity, array())->associate(Product::class);
+            }
+
+            session()->put('loadedProforma', $proforma);
+
+            flashy()->success("Proforma charger");
+
+        }
 
         return back();
     }

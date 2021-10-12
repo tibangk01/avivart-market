@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Society;
 use App\Models\Country;
+use App\Models\Region;
 use Illuminate\Http\Request;
 
 class SocietyController extends Controller
@@ -33,8 +34,9 @@ class SocietyController extends Controller
     public function edit(Society $society)
     {
         $countries = Country::all()->pluck(null, 'id');
+        $regions = Region::all()->pluck(null, 'id');
 
-        return view('societies.edit', compact('society', 'countries'));
+        return view('societies.edit', compact('society', 'countries', 'regions'));
     }
 
     /**
@@ -48,24 +50,66 @@ class SocietyController extends Controller
     {
         if($request->isMethod('put'))
         {
-            $this->validate($request, [
-                'country_id' => ['required'],
-                'name' => ['required', 'min:3'],
-                'phone_number' => ['required', 'min:3'],
-                'email' => ['required', 'min:3'],
-                'tppcr' => ['required', 'min:3'],
-                'fiscal_code' => ['required', 'min:3'],
-                'address' => ['max:50'],
-                'city' => ['max:30'],
-            ]);
+            
+            $this->_validateRequest($request, 'put');
 
-            $society->enterprise->update($request->except('tppcr', 'fiscal_code'));
+            try {
 
-            $society->update($request->only('tppcr', 'fiscal_code'));
+                DB::beginTransaction();
+                $region = Region::findOrFail($request->region_id);
 
-            session()->flash('success', 'Modification réussi');
+                $society->enterprise->update(array_merge(
+                    $request->except('tppcr', 'fiscal_code'),
+                    [
+                        'code' => $region->code . '000',
+                    ]
+                ));
+
+                $society->update($request->only('tppcr', 'fiscal_code'));
+
+                DB::commit();
+
+                session()->flash('success', 'Modification réussi');
+            } catch (\Exception $ex) {
+                DB::rollBack();
+
+                dd($ex);
+
+                session()->flash('error', "Une erreur s'est produite");
+            }
         }
 
         return back();
+    }
+
+    /**
+     * validateRequest
+     *
+     * Validate creation and edition incomming data
+     *
+     * @param mixed $request
+     * @return void
+     */
+    private function _validateRequest(Request $request, string $method)
+    {
+        $formData = [
+            'country_id' => ['required'],
+            'region_id' => ['required'],
+            'name' => ['required', 'min:3'],
+            'phone_number' => ['required', 'min:3'],
+            'email' => ['required', 'min:3'],
+            'tppcr' => ['required', 'min:3'],
+            'fiscal_code' => ['required', 'min:3'],
+            'address' => ['nullable', 'max:50'],
+            'city' => ['nullable', 'max:50'],
+            'postal_code' => ['nullable', 'max:10'],
+        ];
+
+        if(mb_strtolower($method) == 'post'){
+            $formData += [
+            ];
+        }
+
+        $request->validate($formData);
     }
 }

@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -17,6 +18,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $account
  * @property Carbon $created_at
  * @property Carbon $updated_at
+ * 
+ * @property Collection|BankOperation[] $bank_operations
  *
  * @package App\Models
  */
@@ -28,4 +31,14 @@ class Bank extends Model
 		'name',
 		'account'
 	];
+
+	public function bank_operations()
+	{
+		return $this->hasMany(BankOperation::class);
+	}
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

@@ -64,8 +64,8 @@ class StaffController extends Controller
                 $library = Library::create([
                     'library_type_id' => 1,
                     'folder' => 'users',
-                    'local' => 'profile.png',
-                    'remote' => env('UPLOADS_PATH') .'images/users/profile.png',
+                    'local' => 'man.png',
+                    'remote' => env('UPLOADS_PATH') .'images/users/man.png',
                 ]);
 
                 $user = User::create(array_merge(

@@ -50,6 +50,11 @@
                 </div>
 
                 <div class="form-group">
+                    {!! Form::label('postal_code', 'Code Postal', ['class' => 'form-label']) !!}
+                    {!! Form::text('postal_code', null, ['class' => 'form-control']) !!}
+                </div>
+
+                <div class="form-group">
                     {!! Form::label('city', "Ville", ['class' => 'form-label']) !!}
                     {!! Form::text('city', null, ['class' => 'form-control']) !!}
                 </div>

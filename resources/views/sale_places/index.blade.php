@@ -52,8 +52,8 @@
                                                         <td>{{ $salePlace->enterprise->email }}</td>
                                                         <td>{{ $salePlace->enterprise->region->name }}</td>
                                                         <td>{{ $salePlace->agency->enterprise->name }}</td>
-                                                        <td>{{ $salePlace->created_at->diffForHumans() }}</td>
-                                                        <td>{{ $salePlace->updated_at->diffForHumans() }}</td>
+                                                        <td>{{ $salePlace->created_at }}</td>
+                                                        <td>{{ $salePlace->updated_at }}</td>
                                                         <td>
                                                             <a class="btn btn-info btn-xs"
                                                             href="{{ route('sale_place.show', $salePlace) }}"

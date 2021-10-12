@@ -11,10 +11,33 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    const BEGIN_CODE = '0';
+    protected $currencyTransformer;
 
     public function __construct()
     {
-        // code...
+        
+    }
+
+    public function updateStaffStatusBarInfo(float $amount = 0, string $sign = '+')
+    {
+        if (!is_null(session('staffStatusBarInfo'))) {
+            switch ($sign) {
+                case '+':
+                    session('staffStatusBarInfo')->update([
+                        'amount' => session('staffStatusBarInfo')->amount + $amount,
+                    ]);
+                    break;
+
+                case '-':
+                    session('staffStatusBarInfo')->update([
+                        'amount' => session('staffStatusBarInfo')->amount - $amount,
+                    ]);
+                    break;
+                
+                default:
+                    // code...
+                    break;
+            }
+        }
     }
 }

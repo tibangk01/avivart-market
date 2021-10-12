@@ -24,11 +24,11 @@
                                 </tr>
                                 <tr>
                                     <td>Date de création</td>
-                                    <td>{{ $bank->created_at->diffForHumans() }}</td>
+                                    <td>{{ $bank->created_at }}</td>
                                 </tr>
                                 <tr>
                                     <td>Date de mis à jour</td>
-                                    <td>{{ $bank->updated_at->diffForHumans() }}</td>
+                                    <td>{{ $bank->updated_at }}</td>
                                 </tr>
                                 <tr class="table-light">
                                     <th>Action</th>

@@ -31,12 +31,24 @@
                                 <td>{{ $purchase->discount->amount }}</td>
                             </tr>
                             <tr>
+                                <th>Total HT</th>
+                                <td>{{ $purchase->totalHT() }}</td>
+                            </tr>
+                            <tr>
+                                <th>Total TVA</th>
+                                <td>{{ $purchase->totalTVA() }}</td>
+                            </tr>
+                            <tr>
+                                <th>Total TTC</th>
+                                <td>{{ $purchase->totalTTC() }}</td>
+                            </tr>
+                            <tr>
                                 <th>Date de création</th>
-                                <td>{{ $purchase->created_at->diffForHumans() }}</td>
+                                <td>{{ $purchase->created_at }}</td>
                             </tr>
                             <tr>
                                 <th>Date de mise à jour</th>
-                                <td>{{ $purchase->updated_at->diffForHumans() }}</td>
+                                <td>{{ $purchase->updated_at }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -61,8 +73,8 @@
                                     <td>{{ $product->name }}</td>
                                     <td>{{ $product->pivot->ordered_quantity }}</td>
                                     <td>{{ $product->pivot->delivered_quantity }}</td>
-                                    <td>{{ $product->pivot->created_at->diffForHumans() }}</td>
-                                    <td>{{ $product->pivot->updated_at->diffForHumans() }}</td>
+                                    <td>{{ $product->pivot->created_at }}</td>
+                                    <td>{{ $product->pivot->updated_at }}</td>
                                     <td>
                                         <a class="btn btn-info btn-xs"
                                             href="{{ route('product_purchase.show', $product->pivot->id) }}"

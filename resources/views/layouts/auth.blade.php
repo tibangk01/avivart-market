@@ -7,9 +7,9 @@
     <title>{{ $title ?? config('app.name') }} | {{ config('app.name') }}</title>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <link rel="stylesheet" href="{{ asset('public/vendors/plugins/fontawesome-free/css/all.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('public/vendors/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('public/vendors/dist/css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendors/plugins/fontawesome-free/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendors/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendors/dist/css/adminlte.min.css') }}">
 
     <style>
         body {
@@ -30,9 +30,9 @@
         @yield('body')
     </div>
 
-    <script src="{{ asset('public/vendors/plugins/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('public/vendors/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('public/vendors/dist/js/adminlte.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('vendors/dist/js/adminlte.min.js') }}"></script>
 </body>
 
 </html>

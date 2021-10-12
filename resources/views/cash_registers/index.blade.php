@@ -44,10 +44,10 @@
                                                                 {{ $cashRegister->name }}
                                                             </td>
                                                             <td>
-                                                                {{ $cashRegister->created_at->diffForHumans() }}
+                                                                {{ $cashRegister->created_at }}
                                                             </td>
                                                             <td>
-                                                                {{ $cashRegister->updated_at->diffForHumans() }}
+                                                                {{ $cashRegister->updated_at }}
                                                             </td>
                                                             <td>
 
