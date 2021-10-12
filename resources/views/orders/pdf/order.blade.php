@@ -1,9 +1,9 @@
-@extends('layouts.pdf', ['title' => "Commande"])
+@extends('layouts.pdf', ['title' => "Facture"])
 
 @php($increment = 0)
 
 @section('body')
-<h4 class="text-center text-danger"><u>COMMANDE</u></h4>
+<h4 class="text-center text-danger"><u>FACTURE</u></h4>
 
 <h6>REF : {{ $order->getNumber() }} | {{ session('sessionSociety')->enterprise->city }}, {{ $order->created_at->format('d M Y') }}.</h6>
 

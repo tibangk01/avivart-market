@@ -285,14 +285,6 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a data-attr="menu-open" data-class="active" href="{{ route('order.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-bag"></i>
-                                <p>
-                                    Bons de livraison frs et clt
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('proforma.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-file"></i>
                                 <p>
@@ -304,7 +296,15 @@
                             <a data-attr="menu-open" data-class="active" href="{{ route('order.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-shopping-bag"></i>
                                 <p>
-                                    Commandes / Factures
+                                    Factures
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('order.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-shopping-bag"></i>
+                                <p>
+                                    Bons de livraison frs et clt
                                 </p>
                             </a>
                         </li>

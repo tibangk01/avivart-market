@@ -1,4 +1,4 @@
- @extends('layouts.dashboard', ['title' => "Commandes"])
+ @extends('layouts.dashboard', ['title' => "Edition d'une facture"])
 
 @section('body')
 <section class="content">
