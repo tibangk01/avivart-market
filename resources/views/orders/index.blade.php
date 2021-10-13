@@ -19,7 +19,10 @@
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
                                 aria-labelledby="nav-home-tab">
                                 <div class="d-flex">
-                                    <div class="ml-auto">
+                                    <div class="ml-auto mb-1">
+                                        <a class="btn btn-flat btn-dark" target="_blank" 
+                                                            href="{{ route('order.printing.all') }}"
+                                                            title="Imprimer"><i class="fa fa-print"></i> Imprimer</a>
 
                                         <a class="btn btn-flat btn-primary mb-1"
                                             href="{{ route('order.create') }}"><i class="fa fa-plus"></i>
@@ -61,8 +64,8 @@
                                                             href="{{ route('order.destroy', $order) }}"
                                                             title="Afficher"><i class="fa fa-trash"
                                                                 aria-hidden="true"></i></a>
-                                                        <a class="btn btn-warning btn-xs" target="_blank" 
-                                                            href="{{ route('order.pdf', $order) }}"
+                                                        <a class="btn btn-dark btn-xs" target="_blank" 
+                                                            href="{{ route('order.printing.one', $order) }}"
                                                             title="Imprimer"><i class="fa fa-print"
                                                                 aria-hidden="true"></i></a>
                                                     </td>

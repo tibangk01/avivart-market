@@ -9,21 +9,21 @@
             </div>
             <div class="col-lg-6">
 
-                    {!! Form::open(['method' => 'POST', 'route' => 'bank.store']) !!}
-                    <div class="form-group">
-                        {!! Form::label('name', 'Nom') !!}
-                        {!! Form::text('name', null, ['class' => 'form-control', 'required' => true]) !!}
-                    </div>
+                {!! Form::open(['method' => 'POST', 'route' => 'bank.store']) !!}
+                <div class="form-group">
+                    {!! Form::label('name', 'Nom') !!}
+                    {!! Form::text('name', null, ['class' => 'form-control', 'required' => true]) !!}
+                </div>
 
-                    <div class="form-group">
-                        {!! Form::label('account', 'N° de compte') !!}
-                        {!! Form::text('account', null, ['class' => 'form-control', 'required' => true]) !!}
-                    </div>
+                <div class="form-group">
+                    {!! Form::label('account', 'N° de compte') !!}
+                    {!! Form::text('account', null, ['class' => 'form-control', 'required' => true]) !!}
+                </div>
 
-                    <div class="form-group text-right">
-                        {!! Form::submit('Enregistrer', ['class' => 'btn btn-success']) !!}
-                    </div>
-                    {!! Form::close() !!}
+                <div class="form-group text-right">
+                    {!! Form::submit('Enregistrer', ['class' => 'btn btn-success']) !!}
+                </div>
+                {!! Form::close() !!}
                     
                 </div>
             </div>

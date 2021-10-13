@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\ProductCategory;
 use App\Models\ProductType;
 use Illuminate\Support\Facades\DB;
+use BarryvdhDomPDF as PDF;
 
 class ProductController extends Controller
 {
@@ -171,5 +172,26 @@ class ProductController extends Controller
             'mark' => ['nullable'],
             'ref' => ['nullable'],
         ]);
+    }
+
+    public function printingAll(Request $request)
+    {
+        $products = Product::all();
+
+        $pdf = PDF::loadView('products.printing.products', compact('products'));
+        //$pdf->setOptions(array('isRemoteEnabled' => true));
+        $pdf->setPaper('a4', 'landscape');
+        $pdf->save(public_path("libraries/docs/products.pdf"));
+
+        return $pdf->stream('products.pdf');
+    }
+
+    public function printingOne(Request $request, Product $product)
+    {
+        $pdf = PDF::loadView('products.printing.product', compact('product'));
+        $pdf->setPaper('a4', 'portrait');
+        $pdf->save(public_path("libraries/docs/product_{$product->id}.pdf"));
+
+        return $pdf->stream('product.pdf');
     }
 }

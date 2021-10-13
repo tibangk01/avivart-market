@@ -56,6 +56,7 @@ class Enterprise extends Model
 		'is_corporation',
 		'region_id',
 		'country_id',
+		'library_id',
 	];
 
 	public function country()
@@ -66,6 +67,11 @@ class Enterprise extends Model
 	public function region()
 	{
 		return $this->belongsTo(Region::class);
+	}
+
+	public function library()
+	{
+		return $this->belongsTo(Library::class);
 	}
 
 	public function agencies()

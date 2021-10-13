@@ -7,6 +7,7 @@ use App\Models\Region;
 use App\Models\Society;
 use App\Models\Enterprise;
 use App\Models\Country;
+use App\Models\Library;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -68,9 +69,17 @@ class AgencyController extends Controller
                     : 1;
                 $code = ($code < 10) ? '0' . $code : $code;
 
+                $library = Library::create([
+                    'library_type_id' => 1,
+                    'folder' => 'agencies',
+                    'local' => 'logo.png',
+                    'remote' => env('UPLOADS_PATH') .'images/agencies/logo.png',
+                ]);
+
                 $enterprise = Enterprise::create(array_merge(
                     $request->except('society_id'),
                     [
+                        'library_id' => $library->id,
                         'code' => $region->code . $society->enterprise->code . $code,
                         'is_corporation' => false,
                     ]

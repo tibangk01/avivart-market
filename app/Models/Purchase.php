@@ -34,13 +34,13 @@ class Purchase extends Model
 	protected $casts = [
 		'provider_id' => 'int',
 		'vat_id' => 'int',
-		'discount_id' => 'int'
+		'discount_id' => 'int',
 	];
 
 	protected $fillable = [
 		'provider_id',
 		'vat_id',
-		'discount_id'
+		'discount_id',
 	];
 
 	public function provider()
@@ -61,7 +61,7 @@ class Purchase extends Model
 	public function products()
 	{
 		return $this->belongsToMany(Product::class, 'product_purchase')
-					->withPivot('id', 'ordered_quantity', 'delivered_quantity')
+					->withPivot('id', 'ordered_quantity', 'delivered_quantity', 'comment')
 					->withTimestamps();
 	}
 

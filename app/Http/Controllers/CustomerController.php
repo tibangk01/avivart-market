@@ -65,9 +65,17 @@ class CustomerController extends Controller
                     switch ($request->form) {
                         case 'corporation':
 
+                            $library = Library::create([
+                                'library_type_id' => 1,
+                                'folder' => 'customers',
+                                'local' => 'logo.png',
+                                'remote' => env('UPLOADS_PATH') .'images/customers/logo.png',
+                            ]);
+
                             $enterprise = Enterprise::create(array_merge(
                                 $request->except('person_ray_id', 'tppcr', 'fiscal_code'),
                                 [
+                                    'library_id' => $library->id,
                                     'code' => mb_strtoupper(mb_substr(sha1(uniqid()), 0, 6)),
                                     'is_corporation' => true,
                                 ]

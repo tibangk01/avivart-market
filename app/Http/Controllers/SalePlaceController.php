@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Enterprise;
 use App\Models\Country;
 use App\Models\Region;
+use App\Models\Library;
 use Illuminate\Support\Facades\DB;
 
 class SalePlaceController extends Controller
@@ -68,9 +69,17 @@ class SalePlaceController extends Controller
                     : 1;
                 $code = ($code < 10) ? '0' . $code : $code;
 
+                $library = Library::create([
+                    'library_type_id' => 1,
+                    'folder' => 'sale_places',
+                    'local' => 'logo.png',
+                    'remote' => env('UPLOADS_PATH') .'images/sale_places/logo.png',
+                ]);
+
                 $enterprise = Enterprise::create(array_merge(
                     $request->all(),
                     [
+                        'library_id' => $library->id,
                         'region_id' => $agency->enterprise->region_id,
                         'code' => $region->code . $agency->enterprise->code . $code,
                         'is_corporation' => false,

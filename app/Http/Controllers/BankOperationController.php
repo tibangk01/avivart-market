@@ -50,7 +50,7 @@ class BankOperationController extends Controller
             $bankOperation = BankOperation::create($request->all());
 
             $this->updateStaffStatusBarInfo(
-                (int) $request->input('amount'),
+                (float) $request->input('amount'),
                 (string) ($bankOperation->bank_operation_type->state == 1) ? '+' : '-'
             );
 

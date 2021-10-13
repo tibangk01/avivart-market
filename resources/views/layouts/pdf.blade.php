@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{{ config('app.name') }} - {{ $title ?? 'Laravel' }}</title>
+    <title>{{ config('app.name') }} - Impression - {{ $title ?? 'Laravel' }}</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
@@ -20,6 +20,7 @@
             /*border: 1px solid red;*/
             margin: 1cm;
             padding-top: 2cm;
+            padding-bottom: 2cm;
         }
 
         header {
@@ -48,24 +49,33 @@
         }
 
         #watermark {
+            /*border: 1px solid black;*/
             position: fixed;
             opacity: .3;
 
             transform: rotate(-45deg);
 
-            /** 
-                Set a position in the page for your image
-                This should center it vertically
-            **/
-            bottom:   10cm;
-            left:     2.5cm;
+            z-index: -1000;
 
-            /** Change image dimensions**/
-            width:    14cm;
-            height:   10cm;
+            text-align: center;
 
-            /** Your watermark should be behind every content**/
-            z-index:  -1000;
+            width: 20cm;
+            height: 10cm;
+        }
+
+        #watermark img {
+            width: 100%;
+            height: 100%;
+        }
+
+        #watermark.portrait {
+            top: 9.85cm;
+            left: .5cm;
+        }
+
+        #watermark.landscape {
+            top: 5.5cm;
+            left: 4.85cm;
         }
 
         img.logo {
@@ -109,7 +119,7 @@
 
     <!-- <div class="page-break"></div> -->
 
-    <x-pdf.header />
+    <x-pdf.header :watermark="$watermark" :orientation="$orientation" />
 
     <x-pdf.footer />
 

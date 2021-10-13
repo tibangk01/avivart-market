@@ -36,7 +36,8 @@ class ProductOrder extends Model
 	];
 
 	protected $fillable = [
-		'quantity'
+		'quantity',
+		'comment',
 	];
 
 	public function product()

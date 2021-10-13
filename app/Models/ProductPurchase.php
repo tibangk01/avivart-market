@@ -41,7 +41,8 @@ class ProductPurchase extends Model
 
 	protected $fillable = [
 		'ordered_quantity',
-		'delivered_quantity'
+		'delivered_quantity',
+		'comment',
 	];
 
 	public function product()

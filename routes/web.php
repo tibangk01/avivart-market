@@ -43,6 +43,8 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DayTransactionController;
 use App\Http\Controllers\CashRegisterTransactionController;
+use App\Http\Controllers\OrderDeliveryNoteController;
+use App\Http\Controllers\PurchaseDeliveryNoteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -113,6 +115,11 @@ Route::middleware(['auth', 'staff'])->group(function () {
     /** End Sale Places routes */
 
     /** Products routes */
+    Route::prefix('/product/printing')->name('product.printing.')->group(function() {
+        Route::get('/', [ProductController::class, 'printingAll'])->name('all');
+        Route::get('/{product}', [ProductController::class, 'printingOne'])->name('one');
+    });
+
     Route::resource('product', ProductController::class);
     /** End Products routes */
 
@@ -157,7 +164,11 @@ Route::middleware(['auth', 'staff'])->group(function () {
     /** End exercises routes */
 
     /** orders routes */
-    Route::get('/order/{order}/pdf', [OrderController::class, 'pdf'])->name('order.pdf');
+    Route::prefix('/order/printing')->name('order.printing.')->group(function() {
+        Route::get('/', [OrderController::class, 'printingAll'])->name('all');
+        Route::get('/{order}', [OrderController::class, 'printingOne'])->name('one');
+    });
+    
     Route::resource('order', OrderController::class);
     /** End orders routes */
 
@@ -165,13 +176,29 @@ Route::middleware(['auth', 'staff'])->group(function () {
     Route::resource('supply', SupplyController::class);
     /** End supplies routes */
 
+    /** order delivery notes routes */
+    Route::resource('order_delivery_note', OrderDeliveryNoteController::class);
+    /** End order delivery notes routes */
+
+    /** purchase delivery notes routes */
+    Route::resource('purchase_delivery_note', PurchaseDeliveryNoteController::class);
+    /** End purchase delivery notes routes */
+
     /** purchases routes */
-    Route::get('/purchase/{purchase}/pdf', [PurchaseController::class, 'pdf'])->name('purchase.pdf');
+    Route::prefix('/purchase/printing')->name('purchase.printing.')->group(function() {
+        Route::get('/', [PurchaseController::class, 'printingAll'])->name('all');
+        Route::get('/{purchase}', [PurchaseController::class, 'printingOne'])->name('one');
+    });
+    
     Route::resource('purchase', PurchaseController::class);
     /** End purchases routes */
 
     /** proformas routes */
-    Route::get('/proforma/{proforma}/pdf', [ProformaController::class, 'pdf'])->name('proforma.pdf');
+    Route::prefix('/proforma/printing')->name('proforma.printing.')->group(function() {
+        Route::get('/', [ProformaController::class, 'printingAll'])->name('all');
+        Route::get('/{proforma}', [ProformaController::class, 'printingOne'])->name('one');
+    });
+    
     Route::resource('proforma', ProformaController::class);
     /** End proformas routes */
 

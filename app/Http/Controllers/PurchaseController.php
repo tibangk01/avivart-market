@@ -67,7 +67,7 @@ class PurchaseController extends Controller
                 session()->flash('success', 'Donnée enregistrée.');
 
                 $this->updateStaffStatusBarInfo(
-                    (int) $purchase->totalTTC(),
+                    (float) $purchase->totalTTC(),
                     '-'
                 );
 
@@ -129,13 +129,22 @@ class PurchaseController extends Controller
         //
     }
 
-    public function pdf(Request $request, Purchase $purchase)
+    public function printingAll(Request $request)
     {
-        session()->put('sessionSociety', Society::findOrFail(1));
+        $purchases = Purchase::all();
 
-        $pdf = PDF::loadView('purchases.pdf.purchase', compact('purchase'));
+        $pdf = PDF::loadView('purchases.printing.purchases', compact('purchases'));
+        $pdf->setPaper('a4', 'landscape');
+        $pdf->save(public_path("libraries/docs/purchases.pdf"));
+
+        return $pdf->stream('purchases.pdf');
+    }
+
+    public function printingOne(Request $request, Purchase $purchase)
+    {
+        $pdf = PDF::loadView('purchases.printing.purchase', compact('purchase'));
         $pdf->setPaper('a4', 'portrait');
-        $pdf->save(public_path("libraries/docs/purchase_{$purchase->getNumber()}.pdf"));
+        $pdf->save(public_path("libraries/docs/purchase_{$purchase->id}.pdf"));
 
         return $pdf->stream('purchase.pdf');
     }

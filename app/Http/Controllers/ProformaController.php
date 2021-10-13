@@ -123,11 +123,22 @@ class ProformaController extends Controller
         //
     }
 
-    public function pdf(Request $request, Proforma $proforma)
+    public function printingAll(Request $request)
     {
-        $pdf = PDF::loadView('proformas.pdf.proforma', compact('proforma'));
+        $proformas = Proforma::all();
+
+        $pdf = PDF::loadView('proformas.printing.proformas', compact('proformas'));
+        $pdf->setPaper('a4', 'landscape');
+        $pdf->save(public_path("libraries/docs/proformas.pdf"));
+
+        return $pdf->stream('proformas.pdf');
+    }
+
+    public function printingOne(Request $request, Proforma $proforma)
+    {
+        $pdf = PDF::loadView('proformas.printing.proforma', compact('proforma'));
         $pdf->setPaper('a4', 'portrait');
-        $pdf->save(public_path("libraries/docs/proforma_{$proforma->getNumber()}.pdf"));
+        $pdf->save(public_path("libraries/docs/proforma_{$proforma->id}.pdf"));
 
         return $pdf->stream('proforma.pdf');
     }

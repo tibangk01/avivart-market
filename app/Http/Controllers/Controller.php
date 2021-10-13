@@ -24,13 +24,13 @@ class Controller extends BaseController
             switch ($sign) {
                 case '+':
                     session('staffStatusBarInfo')->update([
-                        'amount' => session('staffStatusBarInfo')->amount + $amount,
+                        'amount' => floatval(session('staffStatusBarInfo')->amount) + $amount,
                     ]);
                     break;
 
                 case '-':
                     session('staffStatusBarInfo')->update([
-                        'amount' => session('staffStatusBarInfo')->amount - $amount,
+                        'amount' => floatval(session('staffStatusBarInfo')->amount) - $amount,
                     ]);
                     break;
                 

@@ -37,14 +37,14 @@ class Order extends Model
 		'customer_id' => 'int',
 		'vat_id' => 'int',
 		'discount_id' => 'int',
-		'order_state_id' => 'int'
+		'order_state_id' => 'int',
 	];
 
 	protected $fillable = [
 		'customer_id',
 		'vat_id',
 		'discount_id',
-		'order_state_id'
+		'order_state_id',
 	];
 
 	public function customer()
@@ -70,7 +70,7 @@ class Order extends Model
 	public function products()
 	{
 		return $this->belongsToMany(Product::class, 'product_order')
-					->withPivot('id', 'quantity')
+					->withPivot('id', 'quantity', 'comment')
 					->withTimestamps();
 	}
 

@@ -19,7 +19,10 @@
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
                                 aria-labelledby="nav-home-tab">
                                 <div class="d-flex">
-                                    <div class="ml-auto">
+                                    <div class="ml-auto mb-1">
+                                        <a class="btn btn-flat btn-dark" target="_blank" 
+                                                            href="{{ route('purchase.printing.all') }}"
+                                                            title="Imprimer"><i class="fa fa-print"></i> Imprimer</a>
 
                                         <a class="btn btn-flat btn-primary mb-1"
                                             href="{{ route('purchase.create') }}"><i class="fa fa-plus"></i>
@@ -59,15 +62,15 @@
                                                             href="{{ route('purchase.destroy', $purchase) }}"
                                                             title="Afficher"><i class="fa fa-trash"
                                                                 aria-hidden="true"></i></a>
-                                                        <a class="btn btn-warning btn-xs" target="_blank" 
-                                                            href="{{ route('purchase.pdf', $purchase) }}"
+                                                        <a class="btn btn-dark btn-xs" target="_blank" 
+                                                            href="{{ route('purchase.printing.one', $purchase) }}"
                                                             title="Imprimer"><i class="fa fa-print"
                                                                 aria-hidden="true"></i></a>
                                                     </td>
                                                 </tr>
                                             @empty
                                             <tr>
-                                                <td colspan="7">
+                                                <td colspan="8">
                                                     Pas d'enregistrements.
                                                 </td>
                                             </tr>

@@ -11,6 +11,20 @@ class LibraryController extends Controller
     {
         parent::__construct();
     }
+
+    public function create(Request $request)
+    {
+        return view('libraries.create');
+    }
+
+    public function store(Request $request)
+    {
+        if ($request->isMethod('POST')) {
+            // code...
+        }
+
+        return back();
+    }
     
     /**
      * Show the form for editing the specified resource.

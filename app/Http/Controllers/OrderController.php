@@ -75,7 +75,7 @@ class OrderController extends Controller
                 session()->flash('success', 'Donnée enregistrée.');
 
                 $this->updateStaffStatusBarInfo(
-                    (int) $order->totalTTC(),
+                    (float) $order->totalTTC(),
                     '+'
                 );
 
@@ -137,11 +137,22 @@ class OrderController extends Controller
         //
     }
 
-    public function pdf(Request $request, Order $order)
+    public function printingAll(Request $request)
     {
-        $pdf = PDF::loadView('orders.pdf.order', compact('order'));
+        $orders = Order::all();
+
+        $pdf = PDF::loadView('orders.printing.orders', compact('orders'));
+        $pdf->setPaper('a4', 'landscape');
+        $pdf->save(public_path("libraries/docs/orders.pdf"));
+
+        return $pdf->stream('orders.pdf');
+    }
+
+    public function printingOne(Request $request, Order $order)
+    {
+        $pdf = PDF::loadView('orders.printing.order', compact('order'));
         $pdf->setPaper('a4', 'portrait');
-        $pdf->save(public_path("libraries/docs/order_{$order->getNumber()}.pdf"));
+        $pdf->save(public_path("libraries/docs/order_{$order->id}.pdf"));
 
         return $pdf->stream('order.pdf');
     }

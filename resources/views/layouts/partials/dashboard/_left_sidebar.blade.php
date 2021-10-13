@@ -301,10 +301,18 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a data-attr="menu-open" data-class="active" href="{{ route('order.index') }}" class="nav-link">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('purchase_delivery_note.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-shopping-bag"></i>
                                 <p>
-                                    Bons de livraison frs et clt
+                                    Bons de réception fournisseurs
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('order_delivery_note.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-shopping-bag"></i>
+                                <p>
+                                    Bons de livraison clients
                                 </p>
                             </a>
                         </li>
