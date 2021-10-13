@@ -15,7 +15,11 @@ class Footer extends Component
      */
     public function __construct()
     {
-        $this->staffStatusBarInfo = session('staff')->cash_register_transactions()->orderBy('id', 'DESC')->first();
+        $this->staffStatusBarInfo = session('staff')->cash_register_transactions()
+        ->orderBy('id', 'DESC')
+        ->first();
+
+        session()->put('staffStatusBarInfo', $this->staffStatusBarInfo);
     }
 
     /**
