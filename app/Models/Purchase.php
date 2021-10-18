@@ -41,6 +41,7 @@ class Purchase extends Model
 		'provider_id',
 		'vat_id',
 		'discount_id',
+		'has_delivery_note',
 	];
 
 	public function provider()

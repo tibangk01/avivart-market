@@ -6,6 +6,8 @@ use App\Models\Society;
 use App\Models\Country;
 use App\Models\Region;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use BarryvdhDomPDF as PDF;
 
 class SocietyController extends Controller
 {
@@ -111,5 +113,14 @@ class SocietyController extends Controller
         }
 
         $request->validate($formData);
+    }
+
+    public function printingOne(Request $request, Society $society)
+    {
+        $pdf = PDF::loadView('societies.printing.society', compact('society'));
+        $pdf->setPaper('a4', 'portrait');
+        $pdf->save(public_path("libraries/docs/society_{$society->id}.pdf"));
+
+        return $pdf->stream('society.pdf');
     }
 }

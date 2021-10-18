@@ -5,6 +5,12 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
+
+                <div>
+                    <x-library :library='$salePlace->enterprise->library' class="img200_200" />
+                    <a href="{{ route('library.edit', $salePlace->enterprise->library) }}"><i class="fas fa-edit"></i> Editer</a>
+                </div>
+
                     <div class="table-responsive bg-white">
                         <table class="table table-bordered table-stripped table-hover mb-0">
                             <thead class="thead-dark">

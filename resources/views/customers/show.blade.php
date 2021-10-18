@@ -8,8 +8,20 @@
 
                 @if(request()->has('show'))
                     @if(request()->query('show') == 'corporation')
+
+                    <div>
+                        <x-library :library='$customer->corporation->enterprise->library' class="img200_200" />
+                        <a href="{{ route('library.edit', $customer->corporation->enterprise->library) }}"><i class="fas fa-edit"></i> Editer</a>
+                    </div>
+
                     <x-customers.show.corporation :customer="$customer" />
                     @elseif(request()->query('show') == 'person')
+
+                    <div>
+                        <x-library :library='$customer->person->user->library' class="img200_200" />
+                        <a href="{{ route('library.edit', $customer->person->user->library) }}"><i class="fas fa-edit"></i> Editer</a>
+                    </div>
+
                     <x-customers.show.person :customer="$customer" />
                     @else
                     <p>Erreur de formulaire</p>

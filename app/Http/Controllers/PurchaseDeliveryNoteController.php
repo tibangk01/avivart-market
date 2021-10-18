@@ -54,18 +54,6 @@ class PurchaseDeliveryNoteController extends Controller
                     'comment' => $request->input('comment'),
                 ]);
 
-                $library = Library::create([
-                    'library_type_id' => 1,
-                    'folder' => 'purchase_delivery_notes',
-                    'local' => 'delivery_note.png',
-                    'remote' => env('UPLOADS_PATH') .'images/purchase_delivery_notes/delivery_note.png',
-                ]);
-
-                $purchaseDeliveryNote = PurchaseDeliveryNote::create([
-                    'purchase_id' => $productPurchase->purchase_id,
-                    'library_id' => $library->id,
-                ]);
-
                 DB::commit();
 
                 session()->flash('success', 'Donnée enregistrée.');

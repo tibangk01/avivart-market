@@ -45,6 +45,7 @@ class Order extends Model
 		'vat_id',
 		'discount_id',
 		'order_state_id',
+		'has_delivery_note',
 	];
 
 	public function customer()

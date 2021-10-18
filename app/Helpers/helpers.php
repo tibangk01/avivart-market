@@ -28,3 +28,16 @@ if (!function_exists('nativeNumberTransformer')) {
 		return (new NumberFormatter(app()->getLocale(), NumberFormatter::SPELLOUT))->format($value);
 	}
 }
+
+if (!function_exists('amountConverter')) {
+	function amountConverter($value = 0)
+	{
+		$currency = '';
+
+		if(!is_null(session('staffStatusBarInfo'))) {
+			$currency = session('staffStatusBarInfo')->day_transaction->exercise->currency->name;
+		}
+
+		return number_format($value, 2, ',', ' ') . $currency;
+	}
+}

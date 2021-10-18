@@ -19,8 +19,12 @@
                                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
                                     aria-labelledby="nav-home-tab">
                                     <div class="d-flex">
-                                        <div class="ml-auto">
-                                            <a class="btn btn-flat btn-primary mb-1" href="{{ route('staff.create') }}"><i
+                                        <div class="ml-auto mb-1">
+                                            <a class="btn btn-flat btn-dark" target="_blank" 
+                                                            href="{{ route('staff.printing.all') }}"
+                                                            title="Imprimer"><i class="fa fa-print"></i> Imprimer</a>
+                                                            
+                                            <a class="btn btn-flat btn-primary" href="{{ route('staff.create') }}"><i
                                                     class="fa fa-plus"></i>
                                                 Ajouter</a>
                                         </div>
@@ -39,56 +43,40 @@
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
-
                                             <tbody>
-                                                @if ($staffs->count())
-                                                    @foreach ($staffs as $staff)
-                                                        <tr>
-                                                            <td>
-                                                                {{ $staff->human->user->full_name }}
-                                                            </td>
-                                                            <td>
-                                                                {{ $staff->human->username }}
-                                                            </td>
-                                                            <td>
-                                                                {{ $staff->human->signature ? $staff->human->signature : '-' }}
-                                                            </td>
-                                                            <td>
-                                                                {{ $staff->human->work->name }}
-                                                            </td>
-                                                            <td>
-                                                                {{ $staff->staff_type->name }}
-                                                            </td>
-                                                            <td>
-                                                                {{ $staff->human->user->phone_number }}
-                                                            </td>
-                                                            <td>
-                                                                {{ $staff->created_at }}
-                                                            </td>
-
-                                                            <td>
-                                                                <a class="btn btn-info btn-xs"
-                                                                    href="{{ route('staff.show', $staff) }}"
-                                                                    title="Afficher"><i class="fa fa-eye"
-                                                                        aria-hidden="true"></i></a>
-                                                                <a class="btn btn-warning btn-xs"
-                                                                    href="{{ route('staff.edit', $staff) }}"
-                                                                    title="Modifier"><i class="fa fa-edit"
-                                                                        aria-hidden="true"></i></a>
-                                                                <a class="btn btn-danger btn-xs"
-                                                                    href="{{ route('staff.destroy', $staff) }}"
-                                                                    title="Supprimer"><i class="fa fa-trash"
-                                                                        aria-hidden="true"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                @else
-                                                    <tr>
-                                                        <td colspan="8">
-                                                            Pas d'enregistrements.
-                                                        </td>
-                                                    </tr>
-                                                @endif
+                                            @forelse ($staffs as $staff)
+                                            <tr>
+                                                <td>{{ $staff->human->user->full_name }}</td>
+                                                <td>{{ $staff->human->username }}</td>
+                                                <td>{{ $staff->human->signature ? $staff->human->signature : '-' }}</td>
+                                                <td>{{ $staff->human->work->name }}</td>
+                                                <td>{{ $staff->staff_type->name }}</td>
+                                                <td>{{ $staff->human->user->phone_number }}</td>
+                                                <td>{{ $staff->created_at }}</td>
+                                                <td>
+                                                    <a class="btn btn-info btn-xs"
+                                                        href="{{ route('staff.show', $staff) }}"
+                                                        title="Afficher"><i class="fa fa-eye"
+                                                            aria-hidden="true"></i></a>
+                                                    <a class="btn btn-warning btn-xs"
+                                                        href="{{ route('staff.edit', $staff) }}"
+                                                        title="Modifier"><i class="fa fa-edit"
+                                                            aria-hidden="true"></i></a>
+                                                    <a class="btn btn-danger btn-xs"
+                                                        href="{{ route('staff.destroy', $staff) }}"
+                                                        title="Supprimer"><i class="fa fa-trash"
+                                                            aria-hidden="true"></i></a>
+                                                    <a class="btn btn-dark btn-xs" target="_blank" 
+                                                            href="{{ route('staff.printing.one', $staff) }}"
+                                                            title="Imprimer"><i class="fa fa-print"
+                                                                aria-hidden="true"></i></a>
+                                                </td>
+                                            </tr>
+                                            @empty
+                                            <tr>
+                                                <td colspan="8">Pas d'enregistrements.</td>
+                                            </tr>
+                                            @endforelse
                                             </tbody>
                                         </table>
                                     </div>

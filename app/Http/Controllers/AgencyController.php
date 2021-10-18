@@ -10,6 +10,7 @@ use App\Models\Country;
 use App\Models\Library;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use BarryvdhDomPDF as PDF;
 
 class AgencyController extends Controller
 {
@@ -80,7 +81,7 @@ class AgencyController extends Controller
                     $request->except('society_id'),
                     [
                         'library_id' => $library->id,
-                        'code' => $region->code . $society->enterprise->code . $code,
+                        'code' => $region->code . '0' . $code,
                         'is_corporation' => false,
                     ]
                 ));
@@ -161,7 +162,7 @@ class AgencyController extends Controller
                 $agency->enterprise->update(array_merge(
                     $request->except('society_id'),
                     [
-                        'code' => $region->code . $society->enterprise->code . $code,
+                        'code' => $region->code . '0' . $code,
                     ]
                 ));
 
@@ -221,5 +222,26 @@ class AgencyController extends Controller
         }
 
         $request->validate($formData);
+    }
+
+    public function printingAll(Request $request)
+    {
+        $agencies = Agency::all();
+
+        $pdf = PDF::loadView('agencies.printing.agencies', compact('agencies'));
+        //$pdf->setOptions(array('isRemoteEnabled' => true));
+        $pdf->setPaper('a4', 'landscape');
+        $pdf->save(public_path("libraries/docs/agencies.pdf"));
+
+        return $pdf->stream('agencies.pdf');
+    }
+
+    public function printingOne(Request $request, Agency $agency)
+    {
+        $pdf = PDF::loadView('agencies.printing.agency', compact('agency'));
+        $pdf->setPaper('a4', 'portrait');
+        $pdf->save(public_path("libraries/docs/agency_{$agency->id}.pdf"));
+
+        return $pdf->stream('agency.pdf');
     }
 }

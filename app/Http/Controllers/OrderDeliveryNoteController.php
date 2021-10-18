@@ -54,18 +54,6 @@ class OrderDeliveryNoteController extends Controller
                     'comment' => $request->input('comment'),
                 ]);
 
-                $library = Library::create([
-                    'library_type_id' => 1,
-                    'folder' => 'order_delivery_notes',
-                    'local' => 'delivery_note.png',
-                    'remote' => env('UPLOADS_PATH') .'images/order_delivery_notes/delivery_note.png',
-                ]);
-
-                $orderDeliveryNote = OrderDeliveryNote::create([
-                    'order_id' => $productOrder->order_id,
-                    'library_id' => $library->id,
-                ]);
-
                 DB::commit();
 
                 session()->flash('success', 'Donnée enregistrée.');

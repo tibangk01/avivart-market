@@ -5,11 +5,8 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <x-library :library='$staff->human->user->library' class="img-100x100" />
-
-                    <p>
-                        <a href="{{ route('library.edit', ['library' => $staff->human->user->library]) }}" class="btn btn-sm btn-link" title="Editer"><i class="fas fa-edit"></i></a>
-                    </p>
+                    <x-library :library='$staff->human->user->library' class="img200_200" />
+                    <a href="{{ route('library.edit', $staff->human->user->library) }}"><i class="fas fa-edit"></i> Editer</a>
                 </div>
             </div>
             <div class="row">

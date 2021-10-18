@@ -21,11 +21,6 @@
                     </div>
 
                     <div class="form-group">
-                        {!! Form::label('region_id', 'Choisissez une région') !!}
-                        {!! Form::select('region_id', $regions, $salePlace->enterprise->region_id, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisir une région']) !!}
-                    </div>
-
-                    <div class="form-group">
                         {!! Form::label('name', 'Nom', ['class' => 'form-label']) !!}
                         {!! Form::text('name', $salePlace->enterprise->name, ['class' => 'form-control']) !!}
                     </div>

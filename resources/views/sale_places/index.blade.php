@@ -21,8 +21,12 @@
                                     aria-labelledby="nav-home-tab">
 
                                     <div class="d-flex">
-                                        <div class="ml-auto">
-                                            <a class="btn btn-flat btn-primary mb-1"
+                                        <div class="ml-auto mb-1">
+                                            <a class="btn btn-flat btn-dark" target="_blank" 
+                                                            href="{{ route('sale_place.printing.all') }}"
+                                                            title="Imprimer"><i class="fa fa-print"></i> Imprimer</a>
+
+                                            <a class="btn btn-flat btn-primary"
                                                 href="{{ route('sale_place.create') }}"><i class="fa fa-plus"></i>
                                                 Ajouter</a>
                                         </div>
@@ -67,7 +71,10 @@
                                                             href="{{ route('sale_place.destroy', $salePlace) }}"
                                                             title="Supprimer"><i class="fa fa-trash"
                                                                 aria-hidden="true"></i></a>
-
+                                                        <a class="btn btn-dark btn-xs" target="_blank" 
+                                                            href="{{ route('sale_place.printing.one', $salePlace) }}"
+                                                            title="Imprimer"><i class="fa fa-print"
+                                                                aria-hidden="true"></i></a>
                                                         </td>
                                                     </tr>
                                                 @empty

@@ -1,23 +1,23 @@
-@extends('layouts.dashboard', ['title' => "Edition bibliothèque"])
+@extends('layouts.dashboard', ['title' => "Bibliothèque"])
 
 @section('body')
 <section class="content">
     <div class="container-fluid">
         <div class="row">
             
-            <div class="col-md-12">
-                <x-library :library='$library' />
+            <div class="col-md-12 my-3">
+                <x-library :library='$library' class="img200_200" />
             </div>
 
             <div class="col-md-12">
                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
-                            aria-controls="pills-home" aria-selected="true">Local</a>
+                            aria-controls="pills-home" aria-selected="true">En local</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile"
-                            role="tab" aria-controls="pills-profile" aria-selected="false">Remote</a>
+                            role="tab" aria-controls="pills-profile" aria-selected="false">En ligne</a>
                     </li>
                 </ul>
                 <div class="tab-content" id="pills-tabContent">
@@ -27,7 +27,7 @@
                         {!! Form::hidden('form', 'local') !!}
                         
                             <div class="form-group">
-                                <label for="exampleInputFile">Image</label>
+                                <label for="exampleInputFile">Image / Audio / Vidéo / Document</label>
                                 <div class="input-group">
                                     <div class="custom-file">
                                         {!! Form::file('image', ['required' => 'required', 'class' => 'custom-file-input']) !!}
@@ -50,8 +50,8 @@
                         {!! Form::hidden('form', 'remote') !!}
 
                         <div class="form-group">
-                            {!! Form::label('remote', 'Image') !!}
-                            {!! Form::text('remote', null, ['required' => true, 'class' => 'form-control', 'placeholder' => 'Entrez le lien vers une image']) !!}
+                            {!! Form::label('remote', 'Image / Audio / Vidéo / Document') !!}
+                            {!! Form::text('remote', null, ['required' => true, 'class' => 'form-control', 'placeholder' => 'Entrez un lien']) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('description', 'Description', ['class' => 'form-label']) !!}

@@ -10,6 +10,7 @@ use App\Models\Country;
 use App\Models\Region;
 use App\Models\Library;
 use Illuminate\Support\Facades\DB;
+use BarryvdhDomPDF as PDF;
 
 class SalePlaceController extends Controller
 {
@@ -39,9 +40,8 @@ class SalePlaceController extends Controller
     {
         $agencies = Agency::with('enterprise')->get()->pluck('enterprise.name', 'id');
         $countries = Country::all()->pluck(null, 'id');
-        $regions = Region::all()->pluck(null, 'id');
 
-        return view('sale_places.create', compact('agencies', 'countries', 'regions'));
+        return view('sale_places.create', compact('agencies', 'countries'));
     }
 
     /**
@@ -62,10 +62,8 @@ class SalePlaceController extends Controller
 
                 $agency = Agency::findOrFail($request->agency_id);
 
-                $region = Region::findOrFail($request->region_id);
-
-                $code = $agency->sale_places->load('enterprise')->where('enterprise.region_id', $region->id)->count()
-                    ? $agency->sale_places->load('enterprise')->where('enterprise.region_id', $region->id)->count() + 1
+                $code = $agency->sale_places->load('enterprise')->where('enterprise.region_id', $agency->enterprise->region_id)->count()
+                    ? $agency->sale_places->load('enterprise')->where('enterprise.region_id', $agency->enterprise->region_id)->count() + 1
                     : 1;
                 $code = ($code < 10) ? '0' . $code : $code;
 
@@ -81,7 +79,7 @@ class SalePlaceController extends Controller
                     [
                         'library_id' => $library->id,
                         'region_id' => $agency->enterprise->region_id,
-                        'code' => $region->code . $agency->enterprise->code . $code,
+                        'code' => $agency->enterprise->code . $code,
                         'is_corporation' => false,
                     ]
                 ));
@@ -128,9 +126,8 @@ class SalePlaceController extends Controller
     {
         $agencies = Agency::with('enterprise')->get()->pluck('enterprise.name', 'id');
         $countries = Country::all()->pluck(null, 'id');
-        $regions = Region::all()->pluck(null, 'id');
 
-        return view('sale_places.edit', compact('agencies', 'countries', 'regions', 'salePlace'));
+        return view('sale_places.edit', compact('agencies', 'countries', 'salePlace'));
     }
 
     /**
@@ -152,17 +149,15 @@ class SalePlaceController extends Controller
 
                 $agency = Agency::findOrFail($request->agency_id);
 
-                $region = Region::findOrFail($request->region_id);
-
-                $code = $agency->sale_places->load('enterprise')->where('enterprise.region_id', $region->id)->count()
-                    ? $agency->sale_places->load('enterprise')->where('enterprise.region_id', $region->id)->count() + 1
+                $code = $agency->sale_places->load('enterprise')->where('enterprise.region_id', $agency->enterprise->region_id)->count()
+                    ? $agency->sale_places->load('enterprise')->where('enterprise.region_id', $agency->enterprise->region_id)->count() + 1
                     : 1;
                 $code = ($code < 10) ? '0' . $code : $code;
 
                 $salePlace->enterprise->update(array_merge(
                     $request->except('agency_id'),
                     [
-                        'code' => $region->code . $agency->enterprise->code . $code,
+                        'code' => $agency->enterprise->code . $code,
                     ]
                 ));
 
@@ -207,7 +202,6 @@ class SalePlaceController extends Controller
     {
         $formData = [
             'country_id' => ['required'],
-            'region_id' => ['required'],
             'agency_id' => ['required'],
             'name' => ['required', 'min:3', 'max:50'],
             'phone_number' => ['required', 'min:8'],
@@ -224,5 +218,26 @@ class SalePlaceController extends Controller
         }
 
         $request->validate($formData);
+    }
+
+    public function printingAll(Request $request)
+    {
+        $salePlaces = SalePlace::all();
+
+        $pdf = PDF::loadView('sale_places.printing.sale_places', compact('salePlaces'));
+        //$pdf->setOptions(array('isRemoteEnabled' => true));
+        $pdf->setPaper('a4', 'landscape');
+        $pdf->save(public_path("libraries/docs/sale_places.pdf"));
+
+        return $pdf->stream('sale_places.pdf');
+    }
+
+    public function printingOne(Request $request, SalePlace $salePlace)
+    {
+        $pdf = PDF::loadView('sale_places.printing.sale_place', compact('salePlace'));
+        $pdf->setPaper('a4', 'portrait');
+        $pdf->save(public_path("libraries/docs/sale_place_{$salePlace->id}.pdf"));
+
+        return $pdf->stream('sale_place.pdf');
     }
 }

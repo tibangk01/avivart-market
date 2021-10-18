@@ -5,6 +5,18 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
+                <p>
+                <a class="btn btn-flat btn-dark" target="_blank" 
+                                                            href="{{ route('society.printing.one', $society) }}"
+                                                            title="Imprimer"><i class="fa fa-print"
+                                                                aria-hidden="true"></i> Imprimer</a>
+                </p>
+
+                <div>
+                    <x-library :library='$society->enterprise->library' class="img200_200" />
+                    <a href="{{ route('library.edit', $society->enterprise->library) }}"><i class="fas fa-edit"></i> Editer</a>
+                </div>
+
                 <div class="table-responsive bg-white">
                     <table class="table table-bordered table-stripped table-hover mb-0">
                         <thead class="thead-dark">

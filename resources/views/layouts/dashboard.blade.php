@@ -41,6 +41,8 @@
     {{-- Custom styles --}}
     {{-- <link rel="stylesheet" href="{{ asset('css/styles.css') }}"> --}}
 
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
     @livewireStyles
 </head>
 
@@ -65,6 +67,19 @@
             <!-- Content Header (Page header) -->
             <div class="content-header">
                 <div class="container-fluid">
+                    @if(!is_null($staffStatusBarInfo = session('staffStatusBarInfo')))
+                    <div class="row mb-2">
+                        <div class="col-lg-12">
+                            <table class="table table-bordered">
+                                <tr class="table-success">
+                                    <th>Montant de la caisse</th>
+                                    <td>{{ amountConverter($staffStatusBarInfo->amount) }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    @endif
+
                     <div class="row mb-2">
                         <div class="col-sm-6">
                             <h1 class="m-0">{{ $title ?? 'Laravel' }}</h1>

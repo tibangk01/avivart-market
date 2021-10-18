@@ -28,7 +28,11 @@
                             <tr class="table-primary">
                                 <th colspan="10">Bon de commande N° {{ $purchase->getNumber() }}</th>
                                 <td>
-                                    <a href="{{ route('library.create') }}">Attacher un fichier</a>
+                                    @if($purchase->has_delivery_note)
+                                    <strong class="badge badge-info">Fichier attaché</strong>
+                                    @else
+                                    <a href="{{ route('library.create', array('purchase' => $purchase->id)) }}">Attacher un fichier</a>
+                                    @endif
                                 </td>
                             </tr>
 

@@ -14,6 +14,7 @@ use App\Models\Role;
 use App\Models\Country;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use BarryvdhDomPDF as PDF;
 
 class StaffController extends Controller
 {
@@ -219,5 +220,26 @@ class StaffController extends Controller
         }
 
         $request->validate($formData);
+    }
+
+    public function printingAll(Request $request)
+    {
+        $staffs = Staff::all();
+
+        $pdf = PDF::loadView('staffs.printing.staffs', compact('staffs'));
+        //$pdf->setOptions(array('isRemoteEnabled' => true));
+        $pdf->setPaper('a4', 'landscape');
+        $pdf->save(public_path("libraries/docs/staffs.pdf"));
+
+        return $pdf->stream('staffs.pdf');
+    }
+
+    public function printingOne(Request $request, Staff $staff)
+    {
+        $pdf = PDF::loadView('staffs.printing.staff', compact('staff'));
+        $pdf->setPaper('a4', 'portrait');
+        $pdf->save(public_path("libraries/docs/staff_{$staff->id}.pdf"));
+
+        return $pdf->stream('staff.pdf');
     }
 }

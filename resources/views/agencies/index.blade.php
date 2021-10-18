@@ -21,8 +21,12 @@
                                     aria-labelledby="nav-home-tab">
 
                                     <div class="d-flex">
-                                        <div class="ml-auto">
-                                            <a class="btn btn-flat btn-primary mb-1"
+                                        <div class="ml-auto mb-1">
+                                            <a class="btn btn-flat btn-dark" target="_blank" 
+                                                            href="{{ route('agency.printing.all') }}"
+                                                            title="Imprimer"><i class="fa fa-print"></i> Imprimer</a>
+
+                                            <a class="btn btn-flat btn-primary"
                                                 href="{{ route('agency.create') }}"><i class="fa fa-plus"></i>
                                                 Ajouter</a>
                                         </div>
@@ -63,6 +67,10 @@
                                                                 href="{{ route('agency.destroy', $agency) }}"
                                                                 title="Supprimer"><i class="fa fa-trash"
                                                                     aria-hidden="true"></i></a>
+                                                            <a class="btn btn-dark btn-xs" target="_blank" 
+                                                            href="{{ route('agency.printing.one', $agency) }}"
+                                                            title="Imprimer"><i class="fa fa-print"
+                                                                aria-hidden="true"></i></a>
                                                         </td>
                                                     </tr>
                                                 @empty

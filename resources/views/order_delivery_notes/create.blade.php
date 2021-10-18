@@ -28,7 +28,11 @@
                             <tr class="table-primary">
                                 <th colspan="10">Facture N° {{ $order->getNumber() }}</th>
                                 <td>
-                                    <a href="{{ route('library.create') }}">Attacher un fichier</a>
+                                    @if($order->has_delivery_note)
+                                    <strong class="badge badge-info">Fichier attaché</strong>
+                                    @else
+                                    <a href="{{ route('library.create', array('order' => $order->id)) }}">Attacher un fichier</a>
+                                    @endif
                                 </td>
                             </tr>
 

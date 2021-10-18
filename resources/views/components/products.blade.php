@@ -4,7 +4,6 @@
             <thead class="thead-dark">
                 <tr>
                     <th>Nom</th>
-                    <th>Checkbox</th>
                     <th>Prix d'Achat</th>
                     <th>Prix de Vente</th>
                     <th>Prix de Location</th>
@@ -17,9 +16,6 @@
                 @forelse ($products as $product)
                 <tr>
                     <td>{{ $product->name }}</td>
-                    <th>
-                        <input type="checkbox" onclick="addProductToCart({{ $product->id }}, $instance)">
-                    </th>
                     <td>{{ $product->purchase_price }}</td>
                     <td>{{ $product->selling_price }}</td>
                     <td>{{ $product->rental_price }}</td>
@@ -37,8 +33,4 @@
             </tbody>
         </table>
     </div>
-
-    <p>
-        <a href="" class="btn btn-warning">Ajouter la sélection</a>
-    </p>
 </div>

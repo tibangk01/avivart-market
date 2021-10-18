@@ -102,15 +102,30 @@ Route::prefix('/')->name('page.')->group(function () {
 Route::middleware(['auth', 'staff'])->group(function () {
 
     /** Societies routes */
+    Route::prefix('/society/printing')->name('society.printing.')->group(function() {
+        Route::get('/', [SocietyController::class, 'printingAll'])->name('all');
+        Route::get('/{society}', [SocietyController::class, 'printingOne'])->name('one');
+    });
+
     Route::resource('society', SocietyController::class)
         ->only(['show', 'edit', 'update']);
     /** End Societies routes */
 
     /** Agencies routes */
+    Route::prefix('/agency/printing')->name('agency.printing.')->group(function() {
+        Route::get('/', [AgencyController::class, 'printingAll'])->name('all');
+        Route::get('/{agency}', [AgencyController::class, 'printingOne'])->name('one');
+    });
+
     Route::resource('agency', AgencyController::class);
     /** End Agencies routes */
 
     /** Sale Places routes */
+    Route::prefix('/sale_place/printing')->name('sale_place.printing.')->group(function() {
+        Route::get('/', [SalePlaceController::class, 'printingAll'])->name('all');
+        Route::get('/{sale_place}', [SalePlaceController::class, 'printingOne'])->name('one');
+    });
+
     Route::resource('sale_place', SalePlaceController::class);
     /** End Sale Places routes */
 
@@ -255,6 +270,11 @@ Route::middleware(['auth', 'staff'])->group(function () {
     /** End bank operations types routes */
 
     /** staffs routes */
+    Route::prefix('/staff/printing')->name('staff.printing.')->group(function() {
+        Route::get('/', [StaffController::class, 'printingAll'])->name('all');
+        Route::get('/{staff}', [StaffController::class, 'printingOne'])->name('one');
+    });
+
     Route::resource('staff', StaffController::class);
     /** End staffs routes */
 

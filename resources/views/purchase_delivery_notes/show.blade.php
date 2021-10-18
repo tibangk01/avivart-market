@@ -4,6 +4,12 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row">
+
+            <div class="col-lg-12">
+                <x-library :library='$purchaseDeliveryNote->library' class="img200_200" />
+                <a href="{{ route('library.edit', $purchaseDeliveryNote->library) }}"><i class="fas fa-edit"></i> Editer</a>
+            </div>
+
             <div class="col-lg-6">
                 <div class="table-responsive bg-white">
                     <table class="table table-bordered table-stripped table-hover mb-0">
