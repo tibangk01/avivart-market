@@ -33,6 +33,7 @@
                                         <table class="table table-bordered table-hover text-nowrap datatable text-center">
                                             <thead class="thead-dark">
                                                 <tr>
+                                                    <th></th>
                                                     <th>Nom</th>
                                                     <th>Type</th>
                                                     <th>Unité</th>
@@ -49,6 +50,7 @@
                                             <tbody>
                                                     @forelse ($products as $product)
                                                         <tr>
+                                                            <td><x-library :library='$product->library' class="img25_25" /></td>
                                                             <td>{{ $product->name }}</td>
                                                             <td>{{ $product->product_type->name }}</td>
                                                             <td>{{ $product->conversion->name }}</td>
@@ -80,7 +82,7 @@
                                                         </tr>
                                                     @empty
                                                     <tr>
-                                                        <td colspan="11">
+                                                        <td colspan="12">
                                                             Pas d'enregistrements.
                                                         </td>
                                                     </tr>

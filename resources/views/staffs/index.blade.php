@@ -33,6 +33,7 @@
                                         <table class="table table-bordered table-hover datatable text-center">
                                             <thead class="thead-dark">
                                                 <tr>
+                                                    <th></th>
                                                     <th>Nom & Prénom</th>
                                                     <th>Nom d'utilisateur</th>
                                                     <th>Sign. Num.</th>
@@ -46,6 +47,7 @@
                                             <tbody>
                                             @forelse ($staffs as $staff)
                                             <tr>
+                                                <td><x-library :library='$staff->human->user->library' class="img25_25" /></td>
                                                 <td>{{ $staff->human->user->full_name }}</td>
                                                 <td>{{ $staff->human->username }}</td>
                                                 <td>{{ $staff->human->signature ? $staff->human->signature : '-' }}</td>
@@ -74,7 +76,7 @@
                                             </tr>
                                             @empty
                                             <tr>
-                                                <td colspan="8">Pas d'enregistrements.</td>
+                                                <td colspan="9">Pas d'enregistrements.</td>
                                             </tr>
                                             @endforelse
                                             </tbody>

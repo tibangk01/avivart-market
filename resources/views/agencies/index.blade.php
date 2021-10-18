@@ -36,6 +36,7 @@
                                         <table class="table table-bordered table-hover datatable text-center">
                                             <thead class="thead-dark">
                                                 <tr>
+                                                    <th></th>
                                                     <th>Code</th>
                                                     <th>Nom</th>
                                                     <th>Téléphone</th>
@@ -48,6 +49,7 @@
                                             <tbody>
                                                 @forelse ($agencies as $agency)
                                                     <tr>
+                                                        <td><x-library :library='$agency->enterprise->library' class="img25_25" /></td>
                                                         <td>{{ $agency->enterprise->code }}</td>
                                                         <td>{{ $agency->enterprise->name }}</td>
                                                         <td>{{ $agency->enterprise->phone_number }}</td>
@@ -75,7 +77,7 @@
                                                     </tr>
                                                 @empty
                                                 <tr>
-                                                    <td colspan="7">Pas d'enregistrment</td>
+                                                    <td colspan="8">Pas d'enregistrment</td>
                                                 </tr>
                                                 @endforelse
                                             </tbody>

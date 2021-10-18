@@ -30,6 +30,7 @@
                                     <table class="table table-bordered table-hover text-nowrap datatable text-center">
                                         <thead class="thead-dark">
                                             <tr>
+                                                <th></th>
                                                 <th>Numéro</th>
                                                 <th>Facture</th>
                                                 <th>Date de Création</th>
@@ -40,6 +41,7 @@
                                         <tbody>
                                             @forelse ($orderDeliveryNotes as $orderDeliveryNote)
                                                 <tr>
+                                                    <td><x-library :library='$orderDeliveryNote->library' class="img25_25" /></td>
                                                     <td>{{ $orderDeliveryNote->getNumber() }}</td>
                                                     <td>{{ $orderDeliveryNote->order->getNumber() }}</td>
                                                     <td>{{ $orderDeliveryNote->created_at }}</td>
@@ -57,9 +59,7 @@
                                                 </tr>
                                             @empty
                                             <tr>
-                                                <td colspan="7">
-                                                    Pas d'enregistrements.
-                                                </td>
+                                                <td colspan="8">Pas d'enregistrements</td>
                                             </tr>
                                             @endforelse
                                         </tbody>
