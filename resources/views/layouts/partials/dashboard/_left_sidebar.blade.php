@@ -14,7 +14,7 @@
               <img src="{{ auth()->user()->library->remote }}" class="img-circle elevation-2" alt="{{ auth()->user()->library->description }}">
             </div>
             <div class="info">
-              <a href="#" class="d-block">{{ auth()->user()->full_name }}e</a>
+              <a href="{{ route('user.show', auth()->id()) }}" class="d-block">{{ auth()->user()->full_name }}e</a>
             </div>
           </div>
 
@@ -328,7 +328,18 @@
                       </p>
                     </a>
                     <ul class="nav nav-treeview">
-                      
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('page.backups') }}" class="nav-link">
+                                <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
+                                <p>Payements bons de commande</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('page.backups') }}" class="nav-link">
+                                <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
+                                <p>Payements factures</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 
@@ -341,7 +352,19 @@
                       </p>
                     </a>
                     <ul class="nav nav-treeview">
-                      
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('page.backups') }}" class="nav-link">
+                                <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
+                                <p>Sauvegarde des données</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('transaction.index') }}" class="nav-link">
+                                <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
+                                <p>Pistes d'audit</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 
@@ -354,7 +377,12 @@
                       </p>
                     </a>
                     <ul class="nav nav-treeview">
-                      
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('settings.index') }}" class="nav-link">
+                                <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
+                                <p>Parametres</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 
@@ -367,7 +395,24 @@
                       </p>
                     </a>
                     <ul class="nav nav-treeview">
-                      
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('page.doc') }}" class="nav-link">
+                                <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
+                                <p>Documentation</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('page.licence') }}" class="nav-link">
+                                <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
+                                <p>Licence</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('page.about') }}" class="nav-link">
+                                <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
+                                <p>A propos</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 

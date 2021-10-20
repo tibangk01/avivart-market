@@ -39,7 +39,7 @@ class Staff extends Model
 
 	protected $fillable = [
 		'staff_type_id',
-		'human_id'
+		'human_id',
 	];
 
 	public function human()

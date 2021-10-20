@@ -168,6 +168,7 @@ return [
         Barryvdh\DomPDF\ServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
+        LaravelQRCode\Providers\QRCodeServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -236,7 +237,7 @@ return [
         'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'NumConvert' => 'HnhDigital\LaravelNumberConverter\Facade',
-
+        'WerneckbhQRCode' => LaravelQRCode\Facades\QRCode::class,
     ],
 
 ];

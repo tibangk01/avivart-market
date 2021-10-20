@@ -37,6 +37,16 @@
                     </div>
 
                     <div class="form-group">
+                        {!! Form::label('contract_type_id', "Type de contrat") !!}
+                        {!! Form::select('contract_type_id', $contractTypes, $staff->human->contract_type_id, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisir un type de contrat']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('study_level_id', "Niveau d'étude") !!}
+                        {!! Form::select('study_level_id', $studyLevels, $staff->human->study_level_id, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisir un niveau d'étude"]) !!}
+                    </div>
+
+                    <div class="form-group">
                         {!! Form::label('last_name', 'Nom', ['class' => 'form-label']) !!}
                         {!! Form::text('last_name', $staff->human->user->last_name , ['class' => 'form-control', 'required' => true]) !!}
                     </div>
@@ -64,6 +74,26 @@
                     <div class="form-group">
                         {!! Form::label('city', "Ville", ['class' => 'form-label']) !!}
                         {!! Form::text('city', $staff->human->user->city, ['class' => 'form-control']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('date_of_birth', "Date de naissance", ['class' => 'form-label']) !!}
+                        {!! Form::date('date_of_birth',$staff->human->date_of_birth, ['class' => 'form-control']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('place_of_birth', "Lieu de naissance", ['class' => 'form-label']) !!}
+                        {!! Form::text('place_of_birth', $staff->human->place_of_birth, ['class' => 'form-control']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('hiring_date', "Date d'embauche", ['class' => 'form-label']) !!}
+                        {!! Form::date('hiring_date', $staff->human->hiring_date, ['class' => 'form-control']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('contract_end_date', 'Date de fin de contrat', ['class' => 'form-label']) !!}
+                        {!! Form::date('contract_end_date', $staff->human->contract_end_date, ['class' => 'form-control']) !!}
                     </div>
 
                     <div class="form-group text-right">

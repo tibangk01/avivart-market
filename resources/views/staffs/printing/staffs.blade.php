@@ -20,7 +20,7 @@
             <tr>
                 <td>{{ $staff->human->user->full_name }}</td>
                 <td>{{ $staff->human->username }}</td>
-                <td>{{ $staff->human->signature ? $staff->human->signature : '-' }}</td>
+                <td>{{ $staff->human->signature }}</td>
                 <td>{{ $staff->human->work->name }}</td>
                 <td>{{ $staff->staff_type->name }}</td>
                 <td>{{ $staff->human->user->phone_number }}</td>

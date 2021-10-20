@@ -34,6 +34,7 @@
                                             <thead class="thead-dark">
                                                 <tr>
                                                     <th></th>
+                                                    <th>N° Matricule</th>
                                                     <th>Nom & Prénom</th>
                                                     <th>Nom d'utilisateur</th>
                                                     <th>Sign. Num.</th>
@@ -48,9 +49,10 @@
                                             @forelse ($staffs as $staff)
                                             <tr>
                                                 <td><x-library :library='$staff->human->user->library' class="img25_25" /></td>
+                                                <td>{{ $staff->human->serial_number }}</td>
                                                 <td>{{ $staff->human->user->full_name }}</td>
                                                 <td>{{ $staff->human->username }}</td>
-                                                <td>{{ $staff->human->signature ? $staff->human->signature : '-' }}</td>
+                                                <td>{{ $staff->human->signature }}</td>
                                                 <td>{{ $staff->human->work->name }}</td>
                                                 <td>{{ $staff->staff_type->name }}</td>
                                                 <td>{{ $staff->human->user->phone_number }}</td>
@@ -72,11 +74,15 @@
                                                             href="{{ route('staff.printing.one', $staff) }}"
                                                             title="Imprimer"><i class="fa fa-print"
                                                                 aria-hidden="true"></i></a>
+                                                    <a class="btn btn-success btn-xs" target="_blank" 
+                                                            href="{{ route('staff.printing.qrcode', $staff) }}"
+                                                            title="QR CODE"><i class="fa fa-qrcode"
+                                                                aria-hidden="true"></i></a>
                                                 </td>
                                             </tr>
                                             @empty
                                             <tr>
-                                                <td colspan="9">Pas d'enregistrements.</td>
+                                                <td colspan="10">Pas d'enregistrements.</td>
                                             </tr>
                                             @endforelse
                                             </tbody>

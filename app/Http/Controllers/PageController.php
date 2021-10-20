@@ -40,6 +40,41 @@ class PageController extends Controller
         return view('pages.developer');
     }
 
+    /**
+     * @param Request $request
+     * @return void
+     */
+    public function doc(Request $request)
+    {
+        return view('pages.doc');
+    }
+
+    /**
+     * @param Request $request
+     * @return void
+     */
+    public function licence(Request $request)
+    {
+        return view('pages.licence');
+    }
+
+    /**
+     * @param Request $request
+     * @return void
+     */
+    public function about(Request $request)
+    {
+        return view('pages.about');
+    }
+
+    /**
+     * @param Request $request
+     * @return void
+     */
+    public function backups(Request $request)
+    {
+        return view('pages.backups');
+    }
 
     /**
      * login
@@ -79,6 +114,8 @@ class PageController extends Controller
                             break;
                     }
 
+                    $this->saveTransaction(1, $human->user_id, 'Connexion avec success');
+
                     $society = Society::findOrFail(1);
 
                     session()->put('sessionSociety', $society);
@@ -105,6 +142,7 @@ class PageController extends Controller
         if ($request->isMethod('post')) {
             dd($request->all());
         }
+
         return view('pages.forgot-password');
     }
 
@@ -138,9 +176,12 @@ class PageController extends Controller
      */
     public function logout(Request $request)
     {
+        $this->saveTransaction(1, session('staff')->human->user_id, 'Déconnexion avec success');
+
         session()->forget('staff');
         session()->forget('sessionSociety');
         auth()->logout();
+
         return redirect()->route('page.login');
     }
 }

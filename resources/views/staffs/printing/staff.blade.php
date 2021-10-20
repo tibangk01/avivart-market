@@ -16,6 +16,10 @@
     </thead>
     <tbody>
         <tr>
+            <th>Numéro Matricule</th>
+            <td>{{ $staff->human->serial_number }}</td>
+        </tr>
+        <tr>
             <th>Pays</th>
             <td>{{ $staff->human->user->country->name }}</td>
         </tr>
@@ -50,6 +54,30 @@
         <tr>
             <th>Type de staff</th>
             <td>{{ $staff->staff_type->name }}</td>
+        </tr>
+        <tr>
+            <th>Type de contrat</th>
+            <td>{{ $staff->human->contract_type->name }}</td>
+        </tr>
+        <tr>
+            <th>Niveau d'étude</th>
+            <td>{{ $staff->human->study_level->name }}</td>
+        </tr>
+        <tr>
+            <th>Date de naissance</th>
+            <td>{{ $staff->human->date_of_birth }}</td>
+        </tr>
+        <tr>
+            <th>Lieu de naissance</th>
+            <td>{{ $staff->human->place_of_birth }}</td>
+        </tr>
+        <tr>
+            <th>Date d'embauche</th>
+            <td>{{ $staff->human->hiring_date }}</td>
+        </tr>
+        <tr>
+            <th>Date de fin de contrat</th>
+            <td>{{ $staff->human->contract_end_date }}</td>
         </tr>
         <tr>
             <th>Date de création</th>

@@ -51,7 +51,14 @@ class Human extends Model
 		'signature',
 		'username',
 		'password',
-		'password_changed'
+		'password_changed',
+		'contract_type_id',
+		'study_level_id',
+		'date_of_birth',
+		'place_of_birth',
+		'serial_number',
+		'hiring_date',
+		'contract_end_date',
 	];
 
 	public function user()
@@ -67,6 +74,16 @@ class Human extends Model
 	public function role()
 	{
 		return $this->belongsTo(Role::class);
+	}
+
+	public function contract_type()
+	{
+		return $this->belongsTo(ContractType::class);
+	}
+
+	public function study_level()
+	{
+		return $this->belongsTo(StudyLevel::class);
 	}
 
 	public function developers()

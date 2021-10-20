@@ -45,6 +45,7 @@ use App\Http\Controllers\DayTransactionController;
 use App\Http\Controllers\CashRegisterTransactionController;
 use App\Http\Controllers\OrderDeliveryNoteController;
 use App\Http\Controllers\PurchaseDeliveryNoteController;
+use App\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,10 +68,17 @@ Route::get('/clear', function() {
 /** Pages routes */
 Route::prefix('/')->name('page.')->group(function () {
 
-    # Home :
-    Route::get('/', [PageController::class, 'index'])->name('index')->middleware(['auth', 'staff']);
+    Route::middleware(['auth', 'staff'])->group(function () {
+        Route::get('/', [PageController::class, 'index'])->name('index');
 
-    Route::get('/developer', [PageController::class, 'developer'])->name('developer')->middleware('auth');
+        Route::get('/doc', [PageController::class, 'doc'])->name('doc');
+
+        Route::get('/licence', [PageController::class, 'licence'])->name('licence');
+
+        Route::get('/about', [PageController::class, 'about'])->name('about');
+
+        Route::get('/backups', [PageController::class, 'backups'])->name('backups');
+    });
 
     # Auth :
     Route::middleware('guest')->group(function () {
@@ -92,10 +100,11 @@ Route::prefix('/')->name('page.')->group(function () {
             ->name('reset_password');
     });
 
-    # Logout :
-    Route::get('/logout', [PageController::class, 'logout'])
-        ->name('logout')
-        ->middleware('auth');
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/developer', [PageController::class, 'developer'])->name('developer');
+        
+        Route::get('/logout', [PageController::class, 'logout'])->name('logout');
+    });
 });
 /** End Pages routes */
 
@@ -273,10 +282,20 @@ Route::middleware(['auth', 'staff'])->group(function () {
     Route::prefix('/staff/printing')->name('staff.printing.')->group(function() {
         Route::get('/', [StaffController::class, 'printingAll'])->name('all');
         Route::get('/{staff}', [StaffController::class, 'printingOne'])->name('one');
+        Route::get('/qrcode/{staff}', [StaffController::class, 'qrcode'])->name('qrcode');
     });
 
     Route::resource('staff', StaffController::class);
     /** End staffs routes */
+
+    /** transactions routes */
+    Route::prefix('/transaction/printing')->name('transaction.printing.')->group(function() {
+        Route::get('/', [TransactionController::class, 'printingAll'])->name('all');
+        Route::get('/{transaction}', [TransactionController::class, 'printingOne'])->name('one');
+    });
+
+    Route::resource('transaction', TransactionController::class)->only('index', 'show');
+    /** End transactions routes */
 
     /** cash register transactions routes */
     Route::resource('cash_register_transaction', CashRegisterTransactionController::class);

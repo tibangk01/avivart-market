@@ -12,9 +12,12 @@ use App\Models\StaffType;
 use App\Models\Work;
 use App\Models\Role;
 use App\Models\Country;
+use App\Models\ContractType;
+use App\Models\StudyLevel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use BarryvdhDomPDF as PDF;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class StaffController extends Controller
 {
@@ -42,8 +45,10 @@ class StaffController extends Controller
         $works = Work::all()->pluck(null, 'id');
         $roles = Role::all()->pluck(null, 'id');
         $countries = Country::all()->pluck(null, 'id');
+        $contractTypes = ContractType::all()->pluck(null, 'id');
+        $studyLevels = StudyLevel::all()->pluck(null, 'id');
 
-        return view('staffs.create', compact('civilities', 'staffTypes', 'works', 'roles', 'countries'));
+        return view('staffs.create', compact('civilities', 'staffTypes', 'works', 'roles', 'countries', 'contractTypes', 'studyLevels'));
     }
 
     /**
@@ -77,10 +82,16 @@ class StaffController extends Controller
                     ]
                 ));
 
+                $code = Human::count()
+                    ? Human::count() + 1
+                    : 1;
+                $code = ($code < 10) ? '0000' . $code : '000' .$code;
+
                 $human = Human::create(
                     array_merge(
-                    $request->only('work_id', 'role_id', 'signature', 'username'),
+                    $request->only('work_id', 'role_id', 'signature', 'username', 'contract_type_id', 'study_level_id', 'serial_number', 'date_of_birth', 'place_of_birth', 'hiring_date', 'contract_end_date'),
                     [
+                        'serial_number' => $code,
                         'user_id' => $user->id,
                         #'username' => Helper::randomAlphaNumeric(false),
                         'password' => bcrypt(Helper::randomAlphaNumeric(true)),
@@ -132,8 +143,10 @@ class StaffController extends Controller
         $works = Work::all()->pluck(null, 'id');
         $roles = Role::all()->pluck(null, 'id');
         $countries = Country::all()->pluck(null, 'id');
+        $contractTypes = ContractType::all()->pluck(null, 'id');
+        $studyLevels = StudyLevel::all()->pluck(null, 'id');
 
-        return view('staffs.edit', compact('staff', 'civilities', 'staffTypes', 'works', 'roles', 'countries'));
+        return view('staffs.edit', compact('staff', 'civilities', 'staffTypes', 'works', 'roles', 'countries', 'contractTypes', 'studyLevels'));
     }
 
     /**
@@ -155,7 +168,7 @@ class StaffController extends Controller
 
                 $staff->human->user->update($request->except('work_id', 'staff_type_id', 'signature'));
 
-                $staff->human->update($request->only('work_id', 'role_id', 'signature'));
+                $staff->human->update($request->only('work_id', 'role_id', 'signature', 'contract_type_id', 'study_level_id', 'date_of_birth', 'place_of_birth', 'hiring_date', 'contract_end_date'));
 
                 $staff->update($request->only('staff_type_id'));
 
@@ -203,6 +216,8 @@ class StaffController extends Controller
             'role_id' => ['required'],
             'civility_id' => ['required'],
             'work_id' => ['required'],
+            'contract_type_id' => ['required'],
+            'study_level_id' => ['required'],
             'staff_type_id' => ['required'],
             'last_name' => ['required', 'max:25'],
             'first_name' => ['required', 'max:25'],
@@ -241,5 +256,21 @@ class StaffController extends Controller
         $pdf->save(public_path("libraries/docs/staff_{$staff->id}.pdf"));
 
         return $pdf->stream('staff.pdf');
+    }
+
+    public function qrcode(Request $request, Staff $staff)
+    {
+        \WerneckbhQRCode::text('QR Code Generator for Laravel!')
+        ->setOutfile(public_path('qrcodes/qrcode1.png'))
+        ->png();
+        
+        //QrCode::format('png')->generate('Make me into a QrCode!', public_path('qrcodes/qrcode.png'));
+
+        //array(0,0,567.00,283.80) a0...a10
+        $pdf = PDF::loadView('staffs.printing.qrcode', compact('staff'));
+        $pdf->setPaper('a7', 'landscape');
+        $pdf->save(public_path("libraries/docs/staff_qrcode_{$staff->id}.pdf"));
+
+        return $pdf->stream('staff_qrcode.pdf');
     }
 }

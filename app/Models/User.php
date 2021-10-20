@@ -99,6 +99,11 @@ class User extends Authenticatable
 		return $this->hasMany(Person::class);
 	}
 
+	public function transactions()
+	{
+		return $this->hasMany(Transaction::class);
+	}
+
 	public function setLastNameAttribute($value)
     {
         $this->attributes['last_name'] = mb_strtoupper($value);
