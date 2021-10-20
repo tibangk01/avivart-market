@@ -41,32 +41,28 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @if ($vats->count() > 0)
-                                                    @foreach ($vats as $vat)
-                                                        <tr>
-                                                            <td>{{ $vat->percentage }}</td>
-                                                            <td>{{ $vat->created_at }}</td>
-                                                            <td>{{ $vat->created_at }}</td>
-                                                            <td>
-                                                                <a class="btn btn-info btn-xs" href="{{ route('vat.show', $vat) }}"
-                                                                    title="Afficher"><i class="fa fa-eye"
-                                                                        aria-hidden="true"></i></a>
-                                                                <a class="btn btn-warning btn-xs" href="{{ route('vat.edit', $vat) }}"
-                                                                    title="Afficher"><i class="fa fa-edit"
-                                                                        aria-hidden="true"></i></a>
-                                                                <a class="btn btn-danger btn-xs" href="{{ route('vat.destroy',$vat) }}"
-                                                                    title="Afficher"><i class="fa fa-trash"
-                                                                        aria-hidden="true"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                @else
+                                                @forelse ($vats as $vat)
                                                     <tr>
-                                                        <td colspan="4">
-                                                            Pas d'enregistrements.
+                                                        <td>{{ $vat->percentage }}</td>
+                                                        <td>{{ $vat->created_at }}</td>
+                                                        <td>{{ $vat->created_at }}</td>
+                                                        <td>
+                                                            <a class="btn btn-info btn-xs" href="{{ route('vat.show', $vat) }}"
+                                                                title="Afficher"><i class="fa fa-eye"
+                                                                    aria-hidden="true"></i></a>
+                                                            <a class="btn btn-warning btn-xs" href="{{ route('vat.edit', $vat) }}"
+                                                                title="Modifier"><i class="fa fa-edit"
+                                                                    aria-hidden="true"></i></a>
+                                                            <a class="btn btn-danger btn-xs" href="{{ route('vat.destroy',$vat) }}"
+                                                                title="Supprimer"><i class="fa fa-trash"
+                                                                    aria-hidden="true"></i></a>
                                                         </td>
                                                     </tr>
-                                                @endif
+                                                @empty
+                                                    <tr>
+                                                        <td colspan="4">Pas d'enregistrements</td>
+                                                    </tr>
+                                                @endforelse
                                             </tbody>
                                         </table>
                                     </div>

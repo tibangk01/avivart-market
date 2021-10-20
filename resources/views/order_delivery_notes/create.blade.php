@@ -16,17 +16,18 @@
                                 <th>Prix d'Achat</th>
                                 <th>Prix de Vente</th>
                                 <th>Prix de Location</th>
-                                <th>Quantité en stock</th>
-                                <th>Quantité vendue</th>
-                                <th>Date de Création</th>
-                                <th>Date de modification</th>
+                                <th>Qté en stock</th>
+                                <th>Qté vendue</th>
+                                <th>Date de Créat</th>
+                                <th>Date de modif</th>
+                                <th>Qté</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($orders as $order)
                             <tr class="table-primary">
-                                <th colspan="10">Facture N° {{ $order->getNumber() }}</th>
+                                <th colspan="11">Facture N° {{ $order->getNumber() }} addressée au client {{ $order->customer->getName() }}</th>
                                 <td>
                                     @if($order->has_delivery_note)
                                     <strong class="badge badge-info">Fichier attaché</strong>
@@ -48,9 +49,10 @@
                                 <td>{{ $product->sold_quantity }}</td>
                                 <td>{{ $product->created_at }}</td>
                                 <td>{{ $product->updated_at }}</td>
+                                <td>{{ $product->pivot->quantity }}</td>
                                 <td>
                                     @if(!is_null($product->pivot->comment))
-                                    <strong class="badge badge-success">Commentaire appliqué</strong>
+                                    <strong class="badge badge-success">{{ $product->pivot->comment }}</strong>
                                     @else
                                     {!! Form::open(['route' => 'order_delivery_note.store']) !!}
                                     <input type="hidden" name="product_order_id" value="{{ $product->pivot->id }}">
@@ -67,17 +69,13 @@
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="11">
-                                    Pas de produit.
-                                </td>
+                                <td colspan="12">Pas de produit</td>
                             </tr>
                             @endforelse
 
                             @empty
                             <tr>
-                                <td colspan="11">
-                                    Pas d'enregistrements.
-                                </td>
+                                <td colspan="12">Pas d'enregistrements</td>
                             </tr>
                             @endforelse
                         </tbody>

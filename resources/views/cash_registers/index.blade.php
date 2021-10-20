@@ -40,17 +40,10 @@
                                                 @if ($cashRegisters->count())
                                                     @foreach ($cashRegisters as $cashRegister)
                                                         <tr>
+                                                            <td>{{ $cashRegister->name }}</td>
+                                                            <td>{{ $cashRegister->created_at }}</td>
+                                                            <td>{{ $cashRegister->updated_at }}</td>
                                                             <td>
-                                                                {{ $cashRegister->name }}
-                                                            </td>
-                                                            <td>
-                                                                {{ $cashRegister->created_at }}
-                                                            </td>
-                                                            <td>
-                                                                {{ $cashRegister->updated_at }}
-                                                            </td>
-                                                            <td>
-
                                                                 <a class="btn btn-info btn-xs"
                                                                     href="{{ route('cash_register.show', $cashRegister) }}"
                                                                     title="Afficher"><i class="fa fa-eye"
@@ -68,9 +61,7 @@
                                                     @endforeach
                                                 @else
                                                     <tr>
-                                                        <td colspan="4">
-                                                            Pas d'enregistrements.
-                                                        </td>
+                                                        <td colspan="4">Pas d'enregistrements</td>
                                                     </tr>
                                                 @endif
                                             </tbody>

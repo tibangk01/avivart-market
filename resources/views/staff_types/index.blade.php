@@ -41,32 +41,28 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @if ($staffTypes->count() > 0)
-                                                    @foreach ($staffTypes as $staffType)
-                                                        <tr>
-                                                            <td>{{ $staffType->name }}</td>
-                                                            <td>{{ $staffType->created_at }}</td>
-                                                            <td>{{ $staffType->created_at }}</td>
-                                                            <td>
-                                                                <a class="btn btn-info btn-xs" href="{{ route('staff_type.show', $staffType) }}"
-                                                                    title="Afficher"><i class="fa fa-eye"
-                                                                        aria-hidden="true"></i></a>
-                                                                <a class="btn btn-warning btn-xs" href="{{ route('staff_type.edit', $staffType) }}"
-                                                                    title="Afficher"><i class="fa fa-edit"
-                                                                        aria-hidden="true"></i></a>
-                                                                <a class="btn btn-danger btn-xs" href="{{ route('staff_type.destroy',$staffType) }}"
-                                                                    title="Afficher"><i class="fa fa-trash"
-                                                                        aria-hidden="true"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                @else
+                                                @forelse ($staffTypes as $staffType)
                                                     <tr>
-                                                        <td colspan="4">
-                                                            Pas d'enregistrements.
+                                                        <td>{{ $staffType->name }}</td>
+                                                        <td>{{ $staffType->created_at }}</td>
+                                                        <td>{{ $staffType->created_at }}</td>
+                                                        <td>
+                                                            <a class="btn btn-info btn-xs" href="{{ route('staff_type.show', $staffType) }}"
+                                                                title="Afficher"><i class="fa fa-eye"
+                                                                    aria-hidden="true"></i></a>
+                                                            <a class="btn btn-warning btn-xs" href="{{ route('staff_type.edit', $staffType) }}"
+                                                                title="Modifier"><i class="fa fa-edit"
+                                                                    aria-hidden="true"></i></a>
+                                                            <a class="btn btn-danger btn-xs" href="{{ route('staff_type.destroy',$staffType) }}"
+                                                                title="Supprimer"><i class="fa fa-trash"
+                                                                    aria-hidden="true"></i></a>
                                                         </td>
                                                     </tr>
-                                                @endif
+                                                @empty
+                                                    <tr>
+                                                        <td colspan="4">Pas d'enregistrements</td>
+                                                    </tr>
+                                                @endforelse
                                             </tbody>
                                         </table>
                                     </div>

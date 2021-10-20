@@ -82,6 +82,10 @@
                                             href="{{ route('product_order.show', $product->pivot->id) }}"
                                             title="Afficher"><i class="fa fa-eye"
                                                 aria-hidden="true"></i></a>
+                                        <a class="btn btn-warning btn-xs"
+                                            href="{{ route('product_order.edit', $product->pivot->id) }}"
+                                            title="Editer"><i class="fa fa-edit"
+                                                aria-hidden="true"></i></a>
                                         <a class="btn btn-danger btn-xs"
                                             href="{{ route('product_order.destroy', $product->pivot->id) }}"
                                             title="Afficher"><i class="fa fa-trash"

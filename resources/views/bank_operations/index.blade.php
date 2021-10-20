@@ -46,23 +46,12 @@
                                             <tbody>
                                                 @forelse ($bankOperations as $bankOperation)
                                                     <tr>
+                                                        <td>{{ $bankOperation->bank->name }}</td>
+                                                        <td class="{{ $bankOperation->bank_operation_type->getForeColor() }}">{{ $bankOperation->bank_operation_type->name }}</td>
+                                                        <td>{{ $bankOperation->amount }}</td>
+                                                        <td>{{ $bankOperation->created_at }}</td>
+                                                        <td>{{ $bankOperation->updated_at }}</td>
                                                         <td>
-                                                            {{ $bankOperation->bank->name }}
-                                                        </td>
-                                                        <td class="{{ $bankOperation->bank_operation_type->getForeColor() }}">
-                                                            {{ $bankOperation->bank_operation_type->name }}
-                                                        </td>
-                                                        <td>
-                                                            {{ $bankOperation->amount }}
-                                                        </td>
-                                                        <td>
-                                                            {{ $bankOperation->created_at }}
-                                                        </td>
-                                                        <td>
-                                                            {{ $bankOperation->updated_at }}
-                                                        </td>
-                                                        <td>
-
                                                             <a class="btn btn-info btn-xs"
                                                                 href="{{ route('bank_operation.show', $bankOperation) }}"
                                                                 title="Afficher"><i class="fa fa-eye"
@@ -79,9 +68,7 @@
                                                     </tr>
                                                 @empty
                                                 <tr>
-                                                    <td colspan="6">
-                                                        Pas d'enregistrements.
-                                                    </td>
+                                                    <td colspan="6">Pas d'enregistrements</td>
                                                 </tr>
                                                 @endforelse
                                             </tbody>

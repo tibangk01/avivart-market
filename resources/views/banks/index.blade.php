@@ -42,18 +42,10 @@
                                             <tbody>
                                                 @forelse($banks as $bank)
                                                     <tr>
-                                                        <td>
-                                                            {{ $bank->name }}
-                                                        </td>
-                                                        <td>
-                                                            {{ $bank->account }}
-                                                        </td>
-                                                        <td>
-                                                            {{ $bank->created_at }}
-                                                        </td>
-                                                        <td>
-                                                            {{ $bank->updated_at }}
-                                                        </td>
+                                                        <td>{{ $bank->name }}</td>
+                                                        <td>{{ $bank->account }}</td>
+                                                        <td>{{ $bank->created_at }}</td>
+                                                        <td>{{ $bank->updated_at }}</td>
                                                         <td>
                                                             <a class="btn btn-info btn-xs"
                                                                 href="{{ route('bank.show', $bank) }}"
@@ -61,19 +53,17 @@
                                                                     aria-hidden="true"></i></a>
                                                             <a class="btn btn-warning btn-xs"
                                                                 href="{{ route('bank.edit', $bank) }}"
-                                                                title="Afficher"><i class="fa fa-edit"
+                                                                title="Modifier"><i class="fa fa-edit"
                                                                     aria-hidden="true"></i></a>
                                                             <a class="btn btn-danger btn-xs"
                                                                 href="{{ route('bank.destroy', $bank) }}"
-                                                                title="Afficher"><i class="fa fa-trash"
+                                                                title="Supprimer"><i class="fa fa-trash"
                                                                     aria-hidden="true"></i></a>
                                                         </td>
                                                     </tr>
                                                 @empty
                                                     <tr>
-                                                        <td colspan="5">
-                                                            Pas d'enregistrements.
-                                                        </td>
+                                                        <td colspan="5">Pas d'enregistrements</td>
                                                     </tr>
                                                 @endforelse
                                             </tbody>

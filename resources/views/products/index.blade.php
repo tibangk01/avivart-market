@@ -48,45 +48,45 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                    @forelse ($products as $product)
-                                                        <tr>
-                                                            <td><x-library :library='$product->library' class="img25_25" /></td>
-                                                            <td>{{ $product->name }}</td>
-                                                            <td>{{ $product->product_type->name }}</td>
-                                                            <td>{{ $product->conversion->name }}</td>
-                                                            <td>{{ $product->purchase_price }}</td>
-                                                            <td>{{ $product->selling_price }}</td>
-                                                            <td>{{ $product->rental_price }}</td>
-                                                            <td>{{ $product->stock_quantity }}</td>
-                                                            <td>{{ $product->sold_quantity }}</td>
-                                                            <td>{{ $product->created_at }}</td>
-                                                            <td>{{ $product->updated_at }}</td>
-                                                            <td>
-                                                                <a class="btn btn-info btn-xs"
-                                                                    href="{{ route('product.show', $product) }}"
-                                                                    title="Afficher"><i class="fa fa-eye"
-                                                                        aria-hidden="true"></i></a>
-                                                                <a class="btn btn-warning btn-xs"
-                                                                    href="{{ route('product.edit', $product) }}"
-                                                                    title="Afficher"><i class="fa fa-edit"
-                                                                        aria-hidden="true"></i></a>
-                                                                <a class="btn btn-danger btn-xs"
-                                                                    href="{{ route('product.destroy', $product) }}"
-                                                                    title="Afficher"><i class="fa fa-trash"
-                                                                        aria-hidden="true"></i></a>
-                                                                <a class="btn btn-dark btn-xs" target="_blank" 
-                                                            href="{{ route('product.printing.one', $product) }}"
-                                                            title="Imprimer"><i class="fa fa-print"
+                                            @forelse ($products as $product)
+                                                <tr>
+                                                    <td><x-library :library='$product->library' class="img25_25" /></td>
+                                                    <td>{{ $product->name }}</td>
+                                                    <td>{{ $product->product_type->name }}</td>
+                                                    <td>{{ $product->conversion->name }}</td>
+                                                    <td>{{ $product->purchase_price }}</td>
+                                                    <td>{{ $product->selling_price }}</td>
+                                                    <td>{{ $product->rental_price }}</td>
+                                                    <td>{{ $product->stock_quantity }}</td>
+                                                    <td>{{ $product->sold_quantity }}</td>
+                                                    <td>{{ $product->created_at }}</td>
+                                                    <td>{{ $product->updated_at }}</td>
+                                                    <td>
+                                                        <a class="btn btn-info btn-xs"
+                                                            href="{{ route('product.show', $product) }}"
+                                                            title="Afficher"><i class="fa fa-eye"
                                                                 aria-hidden="true"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                    @empty
-                                                    <tr>
-                                                        <td colspan="12">
-                                                            Pas d'enregistrements.
-                                                        </td>
-                                                    </tr>
-                                                @endforelse
+                                                        <a class="btn btn-warning btn-xs"
+                                                            href="{{ route('product.edit', $product) }}"
+                                                            title="Modifier"><i class="fa fa-edit"
+                                                                aria-hidden="true"></i></a>
+                                                        <a class="btn btn-danger btn-xs"
+                                                            href="{{ route('product.destroy', $product) }}"
+                                                            title="Supprimer"><i class="fa fa-trash"
+                                                                aria-hidden="true"></i></a>
+                                                        <a class="btn btn-dark btn-xs" target="_blank" 
+                                                    href="{{ route('product.printing.one', $product) }}"
+                                                    title="Imprimer"><i class="fa fa-print"
+                                                        aria-hidden="true"></i></a>
+                                                    </td>
+                                                </tr>
+                                            @empty
+                                            <tr>
+                                                <td colspan="12">
+                                                    Pas d'enregistrements.
+                                                </td>
+                                            </tr>
+                                            @endforelse
                                             </tbody>
                                         </table>
                                     </div>

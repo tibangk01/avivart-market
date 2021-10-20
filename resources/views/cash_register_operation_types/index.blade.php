@@ -35,7 +35,6 @@
                                         <table class="table table-bordered table-hover datatable text-nowrap text-center">
                                             <thead class="thead-dark">
                                                 <tr>
-
                                                     <th>Dénomination</th>
                                                     <th>Date de création</th>
                                                     <th>Date de mise à jour</th>
@@ -45,17 +44,9 @@
                                             <tbody>
                                                 @forelse ($cashRegisterOperationTypes as $cashRegisterOperationType)
                                                 <tr>
-                                                    <td class="{{ $cashRegisterOperationType->getForeColor() }}">
-                                                        {{ $cashRegisterOperationType->name }}
-                                                    </td>
-
-                                                    <td>
-                                                        {{ $cashRegisterOperationType->created_at }}
-                                                    </td>
-
-                                                    <td>
-                                                        {{ $cashRegisterOperationType->updated_at }}
-                                                    </td>
+                                                    <td class="{{ $cashRegisterOperationType->getForeColor() }}">{{ $cashRegisterOperationType->name }}</td>
+                                                    <td>{{ $cashRegisterOperationType->created_at }}</td>
+                                                    <td>{{ $cashRegisterOperationType->updated_at }}</td>
                                                     <td>
                                                         <a class="btn btn-info btn-xs"
                                                             href="{{ route('cash_register_operation_type.show', $cashRegisterOperationType) }}"
@@ -73,9 +64,7 @@
                                                 </tr>
                                                 @empty
                                                     <tr>
-                                                        <td colspan="4">
-                                                            Pas d'enregistrements.
-                                                        </td>
+                                                        <td colspan="4">Pas d'enregistrements</td>
                                                     </tr>
                                                 @endforelse
                                             </tbody>

@@ -78,6 +78,10 @@
                                             href="{{ route('product_proforma.show', $product->pivot->id) }}"
                                             title="Afficher"><i class="fa fa-eye"
                                                 aria-hidden="true"></i></a>
+                                        <a class="btn btn-warning btn-xs"
+                                            href="{{ route('product_proforma.edit', $product->pivot->id) }}"
+                                            title="Editer"><i class="fa fa-edit"
+                                                aria-hidden="true"></i></a>
                                         <a class="btn btn-danger btn-xs"
                                             href="{{ route('product_proforma.destroy', $product->pivot->id) }}"
                                             title="Afficher"><i class="fa fa-trash"

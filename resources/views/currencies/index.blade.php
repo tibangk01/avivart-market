@@ -52,19 +52,17 @@
                                                                     title="Afficher"><i class="fa fa-eye"
                                                                         aria-hidden="true"></i></a>
                                                                 <a class="btn btn-warning btn-xs" href="{{ route('currency.edit', $currency) }}"
-                                                                    title="Afficher"><i class="fa fa-edit"
+                                                                    title="Modifier"><i class="fa fa-edit"
                                                                         aria-hidden="true"></i></a>
                                                                 <a class="btn btn-danger btn-xs" href="{{ route('currency.destroy',$currency) }}"
-                                                                    title="Afficher"><i class="fa fa-trash"
+                                                                    title="Supprimer"><i class="fa fa-trash"
                                                                         aria-hidden="true"></i></a>
                                                             </td>
                                                         </tr>
                                                     @endforeach
                                                 @else
                                                     <tr>
-                                                        <td colspan="4">
-                                                            Pas d'enregistrements.
-                                                        </td>
+                                                        <td colspan="4">Pas d'enregistrements</td>
                                                     </tr>
                                                 @endif
                                             </tbody>

@@ -44,35 +44,31 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @if ($exercises->count() > 0)
-                                                    @foreach ($exercises as $exercise)
-                                                        <tr>
-                                                            <td>{{ $exercise->currency->name }}</td>
-                                                            <td>{{ $exercise->title }}</td>
-                                                            <td>{{ $exercise->start_date }}</td>
-                                                            <td>{{ $exercise->end_date }}</td>
-                                                            <td>{{ $exercise->created_at }}</td>
-                                                            <td>{{ $exercise->created_at }}</td>
-                                                            <td>
-                                                                <a class="btn btn-info btn-xs" href="{{ route('exercise.show', $exercise) }}"
-                                                                    title="Afficher"><i class="fa fa-eye"
-                                                                        aria-hidden="true"></i></a>
-                                                                <a class="btn btn-warning btn-xs" href="{{ route('exercise.edit', $exercise) }}"
-                                                                    title="Afficher"><i class="fa fa-edit"
-                                                                        aria-hidden="true"></i></a>
-                                                                <a class="btn btn-danger btn-xs" href="{{ route('exercise.destroy',$exercise) }}"
-                                                                    title="Afficher"><i class="fa fa-trash"
-                                                                        aria-hidden="true"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                @else
+                                                @forelse ($exercises as $exercise)
+                                                <tr>
+                                                    <td>{{ $exercise->currency->name }}</td>
+                                                    <td>{{ $exercise->title }}</td>
+                                                    <td>{{ $exercise->start_date }}</td>
+                                                    <td>{{ $exercise->end_date }}</td>
+                                                    <td>{{ $exercise->created_at }}</td>
+                                                    <td>{{ $exercise->created_at }}</td>
+                                                    <td>
+                                                        <a class="btn btn-info btn-xs" href="{{ route('exercise.show', $exercise) }}"
+                                                            title="Afficher"><i class="fa fa-eye"
+                                                                aria-hidden="true"></i></a>
+                                                        <a class="btn btn-warning btn-xs" href="{{ route('exercise.edit', $exercise) }}"
+                                                            title="Modifier"><i class="fa fa-edit"
+                                                                aria-hidden="true"></i></a>
+                                                        <a class="btn btn-danger btn-xs" href="{{ route('exercise.destroy',$exercise) }}"
+                                                            title="Supprimer"><i class="fa fa-trash"
+                                                                aria-hidden="true"></i></a>
+                                                    </td>
+                                                </tr>
+                                                @empty
                                                     <tr>
-                                                        <td colspan="7">
-                                                            Pas d'enregistrements.
-                                                        </td>
+                                                        <td colspan="7">Pas d'enregistrements</td>
                                                     </tr>
-                                                @endif
+                                                @endforelse
                                             </tbody>
                                         </table>
                                     </div>

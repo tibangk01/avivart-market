@@ -35,4 +35,8 @@
     </tr>
 </table>
 
+<p>
+    <img src="data:image/png;base64,{{  DNS1D::getBarcodePNG('4', 'C39E+', 3 , 33, array(1,1,1), true) }}" alt="barcode" />
+</p>
+
 <div class="page-break"></div>

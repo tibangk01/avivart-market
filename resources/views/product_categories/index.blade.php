@@ -55,19 +55,17 @@
                                                                 aria-hidden="true"></i></a>
                                                         <a class="btn btn-warning btn-xs"
                                                             href="{{ route('product_category.edit', $productCategory) }}"
-                                                            title="Afficher"><i class="fa fa-edit"
+                                                            title="Modifier"><i class="fa fa-edit"
                                                                 aria-hidden="true"></i></a>
                                                         <a class="btn btn-danger btn-xs"
                                                             href="{{ route('product_category.destroy', $productCategory) }}"
-                                                            title="Afficher"><i class="fa fa-trash"
+                                                            title="Supprimer"><i class="fa fa-trash"
                                                                 aria-hidden="true"></i></a>
                                                     </td>
                                                 </tr>
                                             @empty
                                                 <tr>
-                                                    <td colspan="6">
-                                                        Pas d'enregistrements.
-                                                    </td>
+                                                    <td colspan="6">Pas d'enregistrements</td>
                                                 </tr>
                                             @endforelse
                                         </tbody>

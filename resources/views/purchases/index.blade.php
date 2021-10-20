@@ -58,9 +58,13 @@
                                                             href="{{ route('purchase.show', $purchase) }}"
                                                             title="Afficher"><i class="fa fa-eye"
                                                                 aria-hidden="true"></i></a>
+                                                        <a class="btn btn-warning btn-xs"
+                                                            href="{{ route('purchase.edit', $purchase) }}"
+                                                            title="Modifier"><i class="fa fa-edit"
+                                                                aria-hidden="true"></i></a>
                                                         <a class="btn btn-danger btn-xs"
                                                             href="{{ route('purchase.destroy', $purchase) }}"
-                                                            title="Afficher"><i class="fa fa-trash"
+                                                            title="Supprimer"><i class="fa fa-trash"
                                                                 aria-hidden="true"></i></a>
                                                         <a class="btn btn-dark btn-xs" target="_blank" 
                                                             href="{{ route('purchase.printing.one', $purchase) }}"
@@ -70,9 +74,7 @@
                                                 </tr>
                                             @empty
                                             <tr>
-                                                <td colspan="8">
-                                                    Pas d'enregistrements.
-                                                </td>
+                                                <td colspan="8">Pas d'enregistrements</td>
                                             </tr>
                                             @endforelse
                                         </tbody>

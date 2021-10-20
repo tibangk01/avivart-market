@@ -10,23 +10,25 @@
                     <table class="table table-bordered table-hover text-nowrap datatable text-center">
                         <thead class="thead-dark">
                             <tr>
-                                <th>Nom</th>
+                               <th>Nom</th>
                                 <th>Type</th>
                                 <th>Unité</th>
                                 <th>Prix d'Achat</th>
                                 <th>Prix de Vente</th>
                                 <th>Prix de Location</th>
-                                <th>Quantité en stock</th>
-                                <th>Quantité vendue</th>
-                                <th>Date de Création</th>
-                                <th>Date de modification</th>
+                                <th>Qté en stock</th>
+                                <th>Qté vendue</th>
+                                <th>Date de Créat</th>
+                                <th>Date de modif</th>
+                                <th>Qté Cmdée</th>
+                                <th>Qté Livrée</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($purchases as $purchase)
                             <tr class="table-primary">
-                                <th colspan="10">Bon de commande N° {{ $purchase->getNumber() }}</th>
+                                <th colspan="12">Bon de commande N° {{ $purchase->getNumber() }} addressé au Fournisseur {{ $purchase->provider->getName() }}</th>
                                 <td>
                                     @if($purchase->has_delivery_note)
                                     <strong class="badge badge-info">Fichier attaché</strong>
@@ -48,9 +50,11 @@
                                 <td>{{ $product->sold_quantity }}</td>
                                 <td>{{ $product->created_at }}</td>
                                 <td>{{ $product->updated_at }}</td>
+                                <td>{{ $product->pivot->ordered_quantity }}</td>
+                                <td>{{ $product->pivot->delivered_quantity }}</td>
                                 <td>
                                     @if(!is_null($product->pivot->comment))
-                                    <strong class="badge badge-success">Commentaire appliqué</strong>
+                                    <strong class="badge badge-success">{{ $product->pivot->comment }}</strong>
                                     @else
                                     {!! Form::open(['route' => 'purchase_delivery_note.store']) !!}
                                     <input type="hidden" name="product_purchase_id" value="{{ $product->pivot->id }}">
@@ -67,17 +71,13 @@
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="11">
-                                    Pas de produit.
-                                </td>
+                                <td colspan="13">Pas de produit</td>
                             </tr>
                             @endforelse
 
                             @empty
                             <tr>
-                                <td colspan="11">
-                                    Pas d'enregistrements.
-                                </td>
+                                <td colspan="13">Pas d'enregistrements</td>
                             </tr>
                             @endforelse
                         </tbody>

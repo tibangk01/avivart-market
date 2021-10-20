@@ -53,7 +53,7 @@
                                                                 aria-hidden="true"></i></a>
                                                         <a class="btn btn-danger btn-xs"
                                                             href="{{ route('purchase_delivery_note.destroy', $purchaseDeliveryNote) }}"
-                                                            title="Afficher"><i class="fa fa-trash"
+                                                            title="Supprimer"><i class="fa fa-trash"
                                                                 aria-hidden="true"></i></a>
                                                     </td>
                                                 </tr>

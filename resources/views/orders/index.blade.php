@@ -60,9 +60,13 @@
                                                             href="{{ route('order.show', $order) }}"
                                                             title="Afficher"><i class="fa fa-eye"
                                                                 aria-hidden="true"></i></a>
+                                                        <a class="btn btn-warning btn-xs"
+                                                            href="{{ route('order.edit', $order) }}"
+                                                            title="Modifier"><i class="fa fa-edit"
+                                                                aria-hidden="true"></i></a>
                                                         <a class="btn btn-danger btn-xs"
                                                             href="{{ route('order.destroy', $order) }}"
-                                                            title="Afficher"><i class="fa fa-trash"
+                                                            title="Supprimer"><i class="fa fa-trash"
                                                                 aria-hidden="true"></i></a>
                                                         <a class="btn btn-dark btn-xs" target="_blank" 
                                                             href="{{ route('order.printing.one', $order) }}"
@@ -72,9 +76,7 @@
                                                 </tr>
                                             @empty
                                             <tr>
-                                                <td colspan="9">
-                                                    Pas d'enregistrements.
-                                                </td>
+                                                <td colspan="9">Pas d'enregistrements</td>
                                             </tr>
                                             @endforelse
                                         </tbody>

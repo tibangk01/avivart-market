@@ -263,8 +263,6 @@ class StaffController extends Controller
         \WerneckbhQRCode::text('QR Code Generator for Laravel!')
         ->setOutfile(public_path('qrcodes/qrcode1.png'))
         ->png();
-        
-        //QrCode::format('png')->generate('Make me into a QrCode!', public_path('qrcodes/qrcode.png'));
 
         //array(0,0,567.00,283.80) a0...a10
         $pdf = PDF::loadView('staffs.printing.qrcode', compact('staff'));

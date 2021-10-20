@@ -41,32 +41,28 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @if ($works->count() > 0)
-                                                    @foreach ($works as $work)
-                                                        <tr>
-                                                            <td>{{ $work->name }}</td>
-                                                            <td>{{ $work->created_at }}</td>
-                                                            <td>{{ $work->created_at }}</td>
-                                                            <td>
-                                                                <a class="btn btn-info btn-xs" href="{{ route('work.show', $work) }}"
-                                                                    title="Afficher"><i class="fa fa-eye"
-                                                                        aria-hidden="true"></i></a>
-                                                                <a class="btn btn-warning btn-xs" href="{{ route('work.edit', $work) }}"
-                                                                    title="Afficher"><i class="fa fa-edit"
-                                                                        aria-hidden="true"></i></a>
-                                                                <a class="btn btn-danger btn-xs" href="{{ route('work.destroy',$work) }}"
-                                                                    title="Afficher"><i class="fa fa-trash"
-                                                                        aria-hidden="true"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                @else
+                                                @forelse ($works as $work)
                                                     <tr>
-                                                        <td colspan="4">
-                                                            Pas d'enregistrements.
+                                                        <td>{{ $work->name }}</td>
+                                                        <td>{{ $work->created_at }}</td>
+                                                        <td>{{ $work->created_at }}</td>
+                                                        <td>
+                                                            <a class="btn btn-info btn-xs" href="{{ route('work.show', $work) }}"
+                                                                title="Afficher"><i class="fa fa-eye"
+                                                                    aria-hidden="true"></i></a>
+                                                            <a class="btn btn-warning btn-xs" href="{{ route('work.edit', $work) }}"
+                                                                title="Modifier"><i class="fa fa-edit"
+                                                                    aria-hidden="true"></i></a>
+                                                            <a class="btn btn-danger btn-xs" href="{{ route('work.destroy',$work) }}"
+                                                                title="Supprimer"><i class="fa fa-trash"
+                                                                    aria-hidden="true"></i></a>
                                                         </td>
                                                     </tr>
-                                                @endif
+                                                @empty
+                                                    <tr>
+                                                        <td colspan="4">Pas d'enregistrements</td>
+                                                    </tr>
+                                                @endforelse
                                             </tbody>
                                         </table>
                                     </div>

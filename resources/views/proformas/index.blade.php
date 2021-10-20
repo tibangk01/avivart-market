@@ -45,34 +45,36 @@
                                         </thead>
                                         <tbody>
                                             @forelse ($proformas as $proforma)
-                                                <tr>
-                                                    <td>{{ $proforma->getNumber() }}</td>
-                                                    <td>{{ $proforma->customer->getName() }}</td>
-                                                    <td>{{ $proforma->vat->percentage }}</td>
-                                                    <td>{{ $proforma->discount->amount }}</td>
-                                                    <td>{{ $proforma->totalTTC() }}</td>
-                                                    <td>{{ $proforma->created_at }}</td>
-                                                    <td>{{ $proforma->updated_at }}</td>
-                                                    <td>
-                                                        <a class="btn btn-info btn-xs"
-                                                            href="{{ route('proforma.show', $proforma) }}"
-                                                            title="Afficher"><i class="fa fa-eye"
-                                                                aria-hidden="true"></i></a>
-                                                        <a class="btn btn-danger btn-xs"
-                                                            href="{{ route('proforma.destroy', $proforma) }}"
-                                                            title="Afficher"><i class="fa fa-trash"
-                                                                aria-hidden="true"></i></a>
-                                                        <a class="btn btn-dark btn-xs" target="_blank" 
-                                                            href="{{ route('proforma.printing.one', $proforma) }}"
-                                                            title="Imprimer"><i class="fa fa-print"
-                                                                aria-hidden="true"></i></a>
-                                                    </td>
-                                                </tr>
+                                            <tr>
+                                                <td>{{ $proforma->getNumber() }}</td>
+                                                <td>{{ $proforma->customer->getName() }}</td>
+                                                <td>{{ $proforma->vat->percentage }}</td>
+                                                <td>{{ $proforma->discount->amount }}</td>
+                                                <td>{{ $proforma->totalTTC() }}</td>
+                                                <td>{{ $proforma->created_at }}</td>
+                                                <td>{{ $proforma->updated_at }}</td>
+                                                <td>
+                                                    <a class="btn btn-info btn-xs"
+                                                        href="{{ route('proforma.show', $proforma) }}"
+                                                        title="Afficher"><i class="fa fa-eye"
+                                                            aria-hidden="true"></i></a>
+                                                    <a class="btn btn-warning btn-xs"
+                                                        href="{{ route('proforma.edit', $proforma) }}"
+                                                        title="Modifier"><i class="fa fa-edit"
+                                                            aria-hidden="true"></i></a>
+                                                    <a class="btn btn-danger btn-xs"
+                                                        href="{{ route('proforma.destroy', $proforma) }}"
+                                                        title="Supprimer"><i class="fa fa-trash"
+                                                            aria-hidden="true"></i></a>
+                                                    <a class="btn btn-dark btn-xs" target="_blank" 
+                                                        href="{{ route('proforma.printing.one', $proforma) }}"
+                                                        title="Imprimer"><i class="fa fa-print"
+                                                            aria-hidden="true"></i></a>
+                                                </td>
+                                            </tr>
                                             @empty
                                             <tr>
-                                                <td colspan="8">
-                                                    Pas d'enregistrements.
-                                                </td>
+                                                <td colspan="8">Pas d'enregistrements</td>
                                             </tr>
                                             @endforelse
                                         </tbody>

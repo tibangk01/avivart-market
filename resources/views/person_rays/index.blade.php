@@ -41,32 +41,28 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @if ($personRays->count() > 0)
-                                                    @foreach ($personRays as $personRay)
-                                                        <tr>
-                                                            <td>{{ $personRay->name }}</td>
-                                                            <td>{{ $personRay->created_at }}</td>
-                                                            <td>{{ $personRay->created_at }}</td>
-                                                            <td>
-                                                                <a class="btn btn-info btn-xs" href="{{ route('person_ray.show', $personRay) }}"
-                                                                    title="Afficher"><i class="fa fa-eye"
-                                                                        aria-hidden="true"></i></a>
-                                                                <a class="btn btn-warning btn-xs" href="{{ route('person_ray.edit', $personRay) }}"
-                                                                    title="Afficher"><i class="fa fa-edit"
-                                                                        aria-hidden="true"></i></a>
-                                                                <a class="btn btn-danger btn-xs" href="{{ route('person_ray.destroy',$personRay) }}"
-                                                                    title="Afficher"><i class="fa fa-trash"
-                                                                        aria-hidden="true"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                @else
-                                                    <tr>
-                                                        <td colspan="4">
-                                                            Pas d'enregistrements.
-                                                        </td>
-                                                    </tr>
-                                                @endif
+                                            @forelse ($personRays as $personRay)
+                                                <tr>
+                                                    <td>{{ $personRay->name }}</td>
+                                                    <td>{{ $personRay->created_at }}</td>
+                                                    <td>{{ $personRay->created_at }}</td>
+                                                    <td>
+                                                        <a class="btn btn-info btn-xs" href="{{ route('person_ray.show', $personRay) }}"
+                                                            title="Afficher"><i class="fa fa-eye"
+                                                                aria-hidden="true"></i></a>
+                                                        <a class="btn btn-warning btn-xs" href="{{ route('person_ray.edit', $personRay) }}"
+                                                            title="Modifier"><i class="fa fa-edit"
+                                                                aria-hidden="true"></i></a>
+                                                        <a class="btn btn-danger btn-xs" href="{{ route('person_ray.destroy',$personRay) }}"
+                                                            title="Supprimer"><i class="fa fa-trash"
+                                                                aria-hidden="true"></i></a>
+                                                    </td>
+                                                </tr>
+                                            @empty
+                                                <tr>
+                                                    <td colspan="4">Pas d'enregistrements</td>
+                                                </tr>
+                                            @endforelse
                                             </tbody>
                                         </table>
                                     </div>

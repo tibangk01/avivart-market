@@ -45,20 +45,11 @@
                                             <tbody>
                                                 @forelse ($cashRegisterOperations as $cashRegisterOperation)
                                                     <tr>
-                                                        <td class="{{ $cashRegisterOperation->cash_register_operation_type->getForeColor() }}">
-                                                            {{ $cashRegisterOperation->cash_register_operation_type->name }}
-                                                        </td>
+                                                        <td class="{{ $cashRegisterOperation->cash_register_operation_type->getForeColor() }}">{{ $cashRegisterOperation->cash_register_operation_type->name }}</td>
+                                                        <td>{{ $cashRegisterOperation->amount }}</td>
+                                                        <td>{{ $cashRegisterOperation->created_at }}</td>
+                                                        <td>{{ $cashRegisterOperation->updated_at }}</td>
                                                         <td>
-                                                            {{ $cashRegisterOperation->amount }}
-                                                        </td>
-                                                        <td>
-                                                            {{ $cashRegisterOperation->created_at }}
-                                                        </td>
-                                                        <td>
-                                                            {{ $cashRegisterOperation->updated_at }}
-                                                        </td>
-                                                        <td>
-
                                                             <a class="btn btn-info btn-xs"
                                                                 href="{{ route('cash_register_operation.show', $cashRegisterOperation) }}"
                                                                 title="Afficher"><i class="fa fa-eye"
@@ -75,9 +66,7 @@
                                                     </tr>
                                                 @empty
                                                     <tr>
-                                                        <td colspan="5">
-                                                            Pas d'enregistrements.
-                                                        </td>
+                                                        <td colspan="5">Pas d'enregistrements</td>
                                                     </tr>
                                                 @endforelse
                                             </tbody>

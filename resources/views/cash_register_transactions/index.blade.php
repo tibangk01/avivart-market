@@ -70,9 +70,7 @@
                                                 </tr>
                                                 @empty
                                                     <tr>
-                                                        <td colspan="7">
-                                                            Pas d'enregistrements.
-                                                        </td>
+                                                        <td colspan="7">Pas d'enregistrements</td>
                                                     </tr>
                                                 @endforelse
                                             </tbody>

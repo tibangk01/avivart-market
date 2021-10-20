@@ -41,32 +41,28 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @if ($discounts->count() > 0)
-                                                    @foreach ($discounts as $discount)
-                                                        <tr>
-                                                            <td>{{ $discount->amount }}</td>
-                                                            <td>{{ $discount->created_at }}</td>
-                                                            <td>{{ $discount->created_at }}</td>
-                                                            <td>
-                                                                <a class="btn btn-info btn-xs" href="{{ route('discount.show', $discount) }}"
-                                                                    title="Afficher"><i class="fa fa-eye"
-                                                                        aria-hidden="true"></i></a>
-                                                                <a class="btn btn-warning btn-xs" href="{{ route('discount.edit', $discount) }}"
-                                                                    title="Afficher"><i class="fa fa-edit"
-                                                                        aria-hidden="true"></i></a>
-                                                                <a class="btn btn-danger btn-xs" href="{{ route('discount.destroy',$discount) }}"
-                                                                    title="Afficher"><i class="fa fa-trash"
-                                                                        aria-hidden="true"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                @else
+                                                @forelse ($discounts as $discount)
+                                                <tr>
+                                                    <td>{{ $discount->amount }}</td>
+                                                    <td>{{ $discount->created_at }}</td>
+                                                    <td>{{ $discount->created_at }}</td>
+                                                    <td>
+                                                        <a class="btn btn-info btn-xs" href="{{ route('discount.show', $discount) }}"
+                                                            title="Afficher"><i class="fa fa-eye"
+                                                                aria-hidden="true"></i></a>
+                                                        <a class="btn btn-warning btn-xs" href="{{ route('discount.edit', $discount) }}"
+                                                            title="Modifier"><i class="fa fa-edit"
+                                                                aria-hidden="true"></i></a>
+                                                        <a class="btn btn-danger btn-xs" href="{{ route('discount.destroy',$discount) }}"
+                                                            title="Supprimer"><i class="fa fa-trash"
+                                                                aria-hidden="true"></i></a>
+                                                    </td>
+                                                </tr>
+                                                @empty
                                                     <tr>
-                                                        <td colspan="4">
-                                                            Pas d'enregistrements.
-                                                        </td>
+                                                        <td colspan="4">Pas d'enregistrements</td>
                                                     </tr>
-                                                @endif
+                                                @endforelse
                                             </tbody>
                                         </table>
                                     </div>

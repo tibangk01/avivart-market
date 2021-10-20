@@ -53,18 +53,16 @@
                                                                 title="Afficher"><i class="fa fa-eye"
                                                                     aria-hidden="true"></i></a>
                                                             <a class="btn btn-warning btn-xs" href="{{ route('product_ray.edit', $productRay) }}"
-                                                                title="Afficher"><i class="fa fa-edit"
+                                                                title="Modifier"><i class="fa fa-edit"
                                                                     aria-hidden="true"></i></a>
                                                             <a class="btn btn-danger btn-xs" href="{{ route('product_ray.destroy',$productRay) }}"
-                                                                title="Afficher"><i class="fa fa-trash"
+                                                                title="Supprimer"><i class="fa fa-trash"
                                                                     aria-hidden="true"></i></a>
                                                         </td>
                                                     </tr>
                                                 @empty
                                                     <tr>
-                                                        <td colspan="5">
-                                                            Pas d'enregistrements.
-                                                        </td>
+                                                        <td colspan="5">Pas d'enregistrements</td>
                                                     </tr>
                                                 @endforelse
                                             </tbody>

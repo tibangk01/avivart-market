@@ -169,6 +169,7 @@ return [
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
         LaravelQRCode\Providers\QRCodeServiceProvider::class,
+        Milon\Barcode\BarcodeServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -238,6 +239,8 @@ return [
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'NumConvert' => 'HnhDigital\LaravelNumberConverter\Facade',
         'WerneckbhQRCode' => LaravelQRCode\Facades\QRCode::class,
+        'DNS1D' => Milon\Barcode\Facades\DNS1DFacade::class,
+        'DNS2D' => Milon\Barcode\Facades\DNS2DFacade::class,
     ],
 
 ];

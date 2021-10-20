@@ -53,17 +53,19 @@
                                                             href="{{ route('supply.show', $supply) }}"
                                                             title="Afficher"><i class="fa fa-eye"
                                                                 aria-hidden="true"></i></a>
+                                                        <a class="btn btn-warning btn-xs"
+                                                            href="{{ route('supply.edit', $supply) }}"
+                                                            title="Modifier"><i class="fa fa-edit"
+                                                                aria-hidden="true"></i></a>
                                                         <a class="btn btn-danger btn-xs"
                                                             href="{{ route('supply.destroy', $supply) }}"
-                                                            title="Afficher"><i class="fa fa-trash"
+                                                            title="Supprimer"><i class="fa fa-trash"
                                                                 aria-hidden="true"></i></a>
                                                     </td>
                                                 </tr>
                                             @empty
                                             <tr>
-                                                <td colspan="7">
-                                                    Pas d'enregistrements.
-                                                </td>
+                                                <td colspan="7">Pas d'enregistrements.</td>
                                             </tr>
                                             @endforelse
                                         </tbody>
