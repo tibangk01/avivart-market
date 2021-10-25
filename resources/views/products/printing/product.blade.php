@@ -3,7 +3,7 @@
 @section('body')
 <h4 class="text-center text-dark"><u>{{ $product->name }}</u></h4>
 
-<p>
+<p class="my-2">
 <x-library :library='$product->library' class="img200_200" />
 </p>
 

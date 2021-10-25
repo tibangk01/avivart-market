@@ -24,7 +24,7 @@
                                                             href="{{ route('order.printing.all') }}"
                                                             title="Imprimer"><i class="fa fa-print"></i> Imprimer</a>
 
-                                        <a class="btn btn-flat btn-primary mb-1"
+                                        <a class="btn btn-flat btn-primary"
                                             href="{{ route('order.create') }}"><i class="fa fa-plus"></i>
                                             Ajouter</a>
                                     </div>
@@ -39,6 +39,7 @@
                                                 <th>TVA</th>
                                                 <th>Remise</th>
                                                 <th>Total TTC</th>
+                                                <th>Payement</th>
                                                 <th>Date de Création</th>
                                                 <th>Date de modification</th>
                                                 <th>Actions</th>
@@ -46,13 +47,14 @@
                                         </thead>
                                         <tbody>
                                             @forelse ($orders as $order)
-                                                <tr>
+                                                <tr class="{{ $order->getOrderStateStyle() }}">
                                                     <td>{{ $order->getNumber() }}</td>
                                                     <td>{{ $order->customer->getName() }}</td>
                                                     <td>{{ $order->order_state->name }}</td>
                                                     <td>{{ $order->vat->percentage }}</td>
                                                     <td>{{ $order->discount->amount }}</td>
                                                     <td>{{ $order->totalTTC() }}</td>
+                                                    <td>{{ $order->paid ? 'Oui' : 'Nom' }}</td>
                                                     <td>{{ $order->created_at }}</td>
                                                     <td>{{ $order->updated_at }}</td>
                                                     <td>
@@ -76,7 +78,7 @@
                                                 </tr>
                                             @empty
                                             <tr>
-                                                <td colspan="9">Pas d'enregistrements</td>
+                                                <td colspan="10">Pas d'enregistrements</td>
                                             </tr>
                                             @endforelse
                                         </tbody>

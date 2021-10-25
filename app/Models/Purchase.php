@@ -42,6 +42,7 @@ class Purchase extends Model
 		'vat_id',
 		'discount_id',
 		'has_delivery_note',
+		'paid',
 	];
 
 	public function provider()
@@ -101,4 +102,9 @@ class Purchase extends Model
 
 		return $totalHT;
 	}
+
+	public function __toString()
+    {
+        return $this->getNumber();
+    }
 }

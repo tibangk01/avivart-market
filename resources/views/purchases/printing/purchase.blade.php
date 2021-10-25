@@ -3,9 +3,12 @@
 @php($increment = 0)
 
 @section('body')
-<h4 class="text-center text-dark"><u>BON DE COMMANDE</u></h4>
+<h4 class="text-center text-dark text-uppercase"><u>Bon de commande</u></h4>
 
 <div class="text-right" style="margin-top: 1cm; margin-bottom: 1cm;">
+    <p class="m-0">
+        <x-library :library='$purchase->provider->getLibrary()' class="img100_100" />
+    </p>
     <h4 class="m-0 text-primary">{{ $purchase->provider->getName() }}</h4>
     <p class="m-0 fs-12">Tél : {{ $purchase->provider->getFullPhoneNumber() }}</p>
 </div>
@@ -42,6 +45,4 @@
         @endforelse
     </tbody>
 </table>
-
-<x-signature />
 @endsection

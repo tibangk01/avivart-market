@@ -3,6 +3,10 @@
 @section('body')
 <h4 class="text-center text-dark"><u>{{ $salePlace->enterprise->name }}</u></h4>
 
+<p class="my-2">
+<x-library :library='$salePlace->enterprise->library' class="img100_100" />
+</p>
+
 <table class="table table-bordered table-stripped table-sm">
     <thead class="thead-dark">
         <tr>

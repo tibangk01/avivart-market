@@ -94,7 +94,7 @@
 
      @elseif ($instance == 'order')
 
-     <div class="form-group">
+    <div class="form-group">
         <label for="order_state_id">Etat</label>
         <select required class="form-control" id="order_state_id" name="order_state_id">
             <option value="">Choisissez un état</option>

@@ -14,6 +14,10 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <tr class="{{ $order->getOrderStateStyle() }}">
+                                <th>Payement</th>
+                                <td>{{ $order->paid ? 'Oui' : 'Nom' }}</td>
+                            </tr>
                             <tr>
                                 <th>Numéro</th>
                                 <td>{{ $order->getNumber() }}</td>

@@ -83,7 +83,15 @@ class StaffController extends Controller
                 $code = Human::count()
                     ? Human::count() + 1
                     : 1;
-                $code = ($code < 10) ? '0000' . $code : '000' .$code;
+                if (strlen(strval($code)) == 1) {
+                    $code = '0000' . $code;
+                } elseif (strlen(strval($code)) == 2) {
+                    $code = '000' . $code;
+                } elseif (strlen(strval($code)) == 3) {
+                    $code = '00' . $code;
+                } elseif (strlen(strval($code)) == 4) {
+                    $code = '0' . $code;
+                }
 
                 $human = Human::create(
                     array_merge(

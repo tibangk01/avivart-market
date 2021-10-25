@@ -64,7 +64,11 @@ class AgencyController extends Controller
                 $code = Agency::with('enterprise')->where('enterprise.region_id', $region->id)->count()
                     ? Agency::with('enterprise')->where('enterprise.region_id', $region->id)->count() + 1
                     : 1;
-                $code = ($code < 10) ? '0' . $code : $code;
+                if (strlen(strval($code)) == 1) {
+                    $code = '00' . $code;
+                } elseif (strlen(strval($code)) == 2) {
+                    $code = '0' . $code;
+                }
 
                 $library = Library::create([
                     'library_type_id' => 1,
@@ -77,7 +81,7 @@ class AgencyController extends Controller
                     $request->all(),
                     [
                         'library_id' => $library->id,
-                        'code' => $region->code . '0' . $code,
+                        'code' => $region->code . $code,
                         'is_corporation' => false,
                     ]
                 ));
@@ -149,12 +153,16 @@ class AgencyController extends Controller
                 $code = Agency::with('enterprise')->where('enterprise.region_id', $region->id)->count()
                     ? Agency::with('enterprise')->where('enterprise.region_id', $region->id)->count() + 1
                     : 1;
-                $code = ($code < 10) ? '0' . $code : $code;
+                if (strlen(strval($code)) == 1) {
+                    $code = '00' . $code;
+                } elseif (strlen(strval($code)) == 2) {
+                    $code = '0' . $code;
+                }
 
                 $agency->enterprise->update(array_merge(
                     $request->all(),
                     [
-                        'code' => $region->code . '0' . $code,
+                        'code' => $region->code . $code,
                     ]
                 ));
 

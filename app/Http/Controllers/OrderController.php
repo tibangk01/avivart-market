@@ -79,7 +79,7 @@ class OrderController extends Controller
                     '+'
                 );
 
-                return redirect()->to(route('order.pdf', ['order' => $order]));    //to or away
+                return redirect()->to(route('order.printing.one', ['order' => $order]));    //to or away
             } catch (\Exception $ex) {
                 DB::rollback();
 

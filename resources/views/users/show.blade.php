@@ -1,4 +1,4 @@
- @extends('layouts.dashboard', ['title' => "Profil"])
+ @extends('layouts.dashboard', ['title' => auth()->user()->full_name])
 
 @section('body')
 <section class="content">

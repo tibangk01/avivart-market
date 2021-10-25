@@ -272,15 +272,15 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a data-attr="menu-open" data-class="active" href="{{ route('page.backups') }}" class="nav-link">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('purchase_payment.index') }}" class="nav-link">
                                 <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
-                                <p>Payements bons de commande</p>
+                                <p>Payements bon de commande</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a data-attr="menu-open" data-class="active" href="{{ route('page.backups') }}" class="nav-link">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('order_payment.index') }}" class="nav-link">
                                 <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
-                                <p>Payements factures</p>
+                                <p>Payements facture</p>
                             </a>
                         </li>
                     </ul>

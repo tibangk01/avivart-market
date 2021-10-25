@@ -25,11 +25,11 @@
             </tr>
             <tr>
                 <th>Date de création</th>
-                <td>{{ $provider->created_at->diffForHumans() }}</td>
+                <td>{{ $provider->created_at }}</td>
             </tr>
             <tr>
                 <th>Date de mise à jour</th>
-                <td>{{ $provider->updated_at->diffForHumans() }}</td>
+                <td>{{ $provider->updated_at }}</td>
             </tr>
             <tr class="table-light">
                 <th>Action</th>

@@ -71,7 +71,7 @@ class PurchaseController extends Controller
                     '-'
                 );
 
-                return redirect()->to(route('purchase.pdf', ['purchase' => $purchase]));    //to or away
+                return redirect()->to(route('purchase.printing.one', ['purchase' => $purchase]));    //to or away
             } catch (\Exception $ex) {
                 DB::rollback();
 

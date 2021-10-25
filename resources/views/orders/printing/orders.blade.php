@@ -1,7 +1,7 @@
 @extends('layouts.pdf', ['title' => "Liste des factures", 'watermark' => true, 'orientation' => 'landscape'])
 
 @section('body')
-<h4 class="text-center text-dark"><u>LISTE DES FACTURES</u></h4>
+<h4 class="text-center text-dark text-uppercase"><u>Factures</u></h4>
 
 <table class="table table-bordered table-sm">
     <thead class="thead-dark">
@@ -30,7 +30,7 @@
         </tr>
         @empty
         <tr>
-            <td colspan="8">Pas d'enregistrements.</td>
+            <td colspan="8">Pas d'enregistrements</td>
         </tr>
         @endforelse
     </tbody>

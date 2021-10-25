@@ -3,8 +3,8 @@
 @section('body')
 <h4 class="text-center text-dark"><u>{{ $transaction->user->full_name }}</u></h4>
 
-<p>
-<x-library :library='$transaction->user->library' class="img200_200" />
+<p class="my-2">
+<x-library :library='$transaction->user->library' class="img100_100" />
 </p>
 
 <table class="table table-bordered table-stripped table-sm">

@@ -86,6 +86,19 @@ class Customer extends Model
 		return ($this->person_type_id == 1) ? $this->corporation : $this->person;
 	}
 
+	public function getLibrary()
+	{
+		$library = null;
+
+		if (($customer = $this->getInstance()) instanceof Corporation) {
+			$library = $customer->enterprise->library;
+		} else {
+			$library = $customer->user->library;
+		}
+
+		return $library;
+	}
+
 	public function getName()
 	{
 		$name = null;

@@ -24,7 +24,7 @@
                                                             href="{{ route('purchase.printing.all') }}"
                                                             title="Imprimer"><i class="fa fa-print"></i> Imprimer</a>
 
-                                        <a class="btn btn-flat btn-primary mb-1"
+                                        <a class="btn btn-flat btn-primary"
                                             href="{{ route('purchase.create') }}"><i class="fa fa-plus"></i>
                                             Ajouter</a>
                                     </div>
@@ -45,7 +45,7 @@
                                         </thead>
                                         <tbody>
                                             @forelse ($purchases as $purchase)
-                                                <tr>
+                                                <tr class="{{ $purchase->paid ? 'table-success' : '' }}">
                                                     <td>{{ $purchase->getNumber() }}</td>
                                                     <td>{{ $purchase->provider->getName() }}</td>
                                                     <td>{{ $purchase->vat->percentage }}</td>

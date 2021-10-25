@@ -45,7 +45,7 @@
 
                         <div class="form-group">
                             {!! Form::label('signature', 'Signature numérique', ['class' => 'form-label']) !!}
-                            {!! Form::text('signature', null, ['class' => 'form-control']) !!}
+                            {!! Form::text('signature', null, ['class' => 'form-control', 'max' => 5]) !!}
                             <span class="help-text">5 caractères max</span>
                         </div>
                     </div>

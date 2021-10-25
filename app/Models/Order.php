@@ -46,6 +46,7 @@ class Order extends Model
 		'discount_id',
 		'order_state_id',
 		'has_delivery_note',
+		'paid',
 	];
 
 	public function customer()
@@ -73,6 +74,31 @@ class Order extends Model
 		return $this->belongsToMany(Product::class, 'product_order')
 					->withPivot('id', 'quantity', 'comment')
 					->withTimestamps();
+	}
+
+	public function getOrderStateStyle()
+	{
+		$bgColor = '';
+
+		switch (intval($this->order_state_id)) {
+			case 1:	//en entente
+				$bgColor = 'table-warning';
+				break;
+
+			case 2:	//en cours de livraison
+				$bgColor = 'table-white';
+				break;
+
+			case 3:	//livrée
+				$bgColor = 'table-success';
+				break;
+			
+			default:	//annulée
+				$bgColor = 'table-primary';
+				break;
+		}
+
+		return $bgColor;
 	}
 
 	public function getNumber()
@@ -110,4 +136,9 @@ class Order extends Model
 
 		return $totalHT;
 	}
+
+	public function __toString()
+    {
+        return $this->getNumber();
+    }
 }

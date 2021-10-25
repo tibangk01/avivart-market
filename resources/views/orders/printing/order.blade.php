@@ -3,9 +3,12 @@
 @php($increment = 0)
 
 @section('body')
-<h4 class="text-center text-dark"><u>FACTURE</u></h4>
+<h4 class="text-center text-dark text-uppercase"><u>Facture</u></h4>
 
 <div class="text-right" style="margin-top: 1cm; margin-bottom: 1cm;">
+    <p class="m-0">
+        <x-library :library='$order->customer->getLibrary()' class="img100_100" />
+    </p>
     <h4 class="m-0 text-primary">{{ $order->customer->getName() }}</h4>
     <p class="m-0 fs-12">Tél : {{ $order->customer->getFullPhoneNumber() }}</p>
 </div>
@@ -32,7 +35,7 @@
                 <td>{{ $product->mark }}</td>
                 <td>{{ $product->ref }}</td>
                 <td>{{ $product->pivot->quantity }}</td>
-                <td>{{ $product->purchase_price }}</td>
+                <td>{{ $product->selling_price }}</td>
                 <td>{{ $product->selling_price * $product->pivot->quantity }}</td>
             </tr>
         @empty
@@ -68,8 +71,4 @@
 </table>
 
 <p class="text-dark">Arrêté la présente facture à la somme de {{ numberTransformer($order->totalTTC()) }}</p>
-
-<x-signature />
-
-<p><em>Merci pour la confiance !</em></p>
 @endsection

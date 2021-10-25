@@ -77,6 +77,19 @@ class Provider extends Model
 		return ($this->person_type_id == 1) ? $this->corporation : $this->person;
 	}
 
+	public function getLibrary()
+	{
+		$library = null;
+
+		if (($provider = $this->getInstance()) instanceof Corporation) {
+			$library = $provider->enterprise->library;
+		} else {
+			$library = $provider->user->library;
+		}
+
+		return $library;
+	}
+
 	public function getName()
 	{
 		$name = null;

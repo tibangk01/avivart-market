@@ -14,6 +14,10 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <tr class="{{ $purchase->paid ? 'table-success' : '' }}">
+                                <th>Payement</th>
+                                <td>{{ $purchase->paid ? 'Oui' : 'Nom' }}</td>
+                            </tr>
                             <tr>
                                 <th>Numéro</th>
                                 <td>{{ $purchase->getNumber() }}</td>

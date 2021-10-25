@@ -48,6 +48,9 @@ use App\Http\Controllers\PurchaseDeliveryNoteController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\ContractTypeController;
 use App\Http\Controllers\StudyLevelController;
+use App\Http\Controllers\OrderPaymentController;
+use App\Http\Controllers\PurchasePaymentController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -250,6 +253,24 @@ Route::middleware(['auth', 'staff'])->group(function () {
     /** product types routes */
     Route::resource('product_type', ProductTypeController::class);
     /** End product types routes */
+
+    /** purchase payemnts routes */
+    Route::prefix('/purchase_payment/printing')->name('purchase_payment.printing.')->group(function() {
+        Route::get('/', [PurchasePaymentController::class, 'printingAll'])->name('all');
+        Route::get('/{purchase_payment}', [PurchasePaymentController::class, 'printingOne'])->name('one');
+    });
+
+    Route::resource('purchase_payment', PurchasePaymentController::class)->except('edit', 'update');
+    /** End purchase payemnts routes */
+
+    /** order payments routes */
+    Route::prefix('/order_payment/printing')->name('order_payment.printing.')->group(function() {
+        Route::get('/', [OrderPaymentController::class, 'printingAll'])->name('all');
+        Route::get('/{order_payment}', [OrderPaymentController::class, 'printingOne'])->name('one');
+    });
+
+    Route::resource('order_payment', OrderPaymentController::class)->except('edit', 'update');
+    /** End order payments routes */
 
     /** product categories routes */
     Route::resource('product_category', ProductCategoryController::class);

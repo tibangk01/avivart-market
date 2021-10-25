@@ -39,33 +39,31 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @if ($conversions->count() > 0)
-                                                    @foreach ($conversions as $conversion)
-                                                        <tr>
-                                                            <td>{{ $conversion->name }}</td>
-                                                            <td>{{ $conversion->created_at }}</td>
-                                                            <td>{{ $conversion->created_at }}</td>
-                                                            <td>
-                                                                <a class="btn btn-info btn-xs"
-                                                                    href="{{ route('conversion.show', $conversion) }}"
-                                                                    title="Afficher"><i class="fa fa-eye"
-                                                                        aria-hidden="true"></i></a>
-                                                                <a class="btn btn-warning btn-xs"
-                                                                    href="{{ route('conversion.edit', $conversion) }}"
-                                                                    title="Modifier"><i class="fa fa-edit"
-                                                                        aria-hidden="true"></i></a>
-                                                                <a class="btn btn-danger btn-xs"
-                                                                    href="{{ route('conversion.destroy', $conversion) }}"
-                                                                    title="Supprimer"><i class="fa fa-trash"
-                                                                        aria-hidden="true"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                @else
+                                                @forelse ($conversions as $conversion)
+                                                    <tr>
+                                                        <td>{{ $conversion->name }}</td>
+                                                        <td>{{ $conversion->created_at }}</td>
+                                                        <td>{{ $conversion->created_at }}</td>
+                                                        <td>
+                                                            <a class="btn btn-info btn-xs"
+                                                                href="{{ route('conversion.show', $conversion) }}"
+                                                                title="Afficher"><i class="fa fa-eye"
+                                                                    aria-hidden="true"></i></a>
+                                                            <a class="btn btn-warning btn-xs"
+                                                                href="{{ route('conversion.edit', $conversion) }}"
+                                                                title="Modifier"><i class="fa fa-edit"
+                                                                    aria-hidden="true"></i></a>
+                                                            <a class="btn btn-danger btn-xs"
+                                                                href="{{ route('conversion.destroy', $conversion) }}"
+                                                                title="Supprimer"><i class="fa fa-trash"
+                                                                    aria-hidden="true"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                @empty
                                                     <tr>
                                                         <td colspan="4">Pas d'enregistrements</td>
                                                     </tr>
-                                                @endif
+                                                @endforelse
                                             </tbody>
                                         </table>
                                     </div>
