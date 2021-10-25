@@ -72,12 +72,12 @@ class Purchase extends Model
 		return Carbon::parse($this->created_at)->format('dmYHis');
 	}
 
-	public function totalTTC()
+	public function totalTTC(): float
 	{
 		return ($this->totalHT() + $this->totalTVA()) - $this->discount->amount;
 	}
 
-	public function totalTVA()
+	public function totalTVA(): float
 	{
 		$totalTVA = 0;
 
@@ -90,7 +90,7 @@ class Purchase extends Model
 		return $totalTVA;
 	}
 
-	public function totalHT()
+	public function totalHT(): float
 	{
 		$totalHT = 0;
 
