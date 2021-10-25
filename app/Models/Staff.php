@@ -52,6 +52,11 @@ class Staff extends Model
 		return $this->belongsTo(StaffType::class);
 	}
 
+	public function cash_register_transactions()
+	{
+		return $this->hasMany(CashRegisterTransaction::class);
+	}
+
 	public function agencies()
 	{
 		return $this->belongsToMany(Agency::class)
@@ -59,21 +64,9 @@ class Staff extends Model
 					->withTimestamps();
 	}
 
-	public function cash_register_transactions()
-	{
-		return $this->hasMany(CashRegisterTransaction::class);
-	}
-
 	public function sale_places()
 	{
 		return $this->belongsToMany(SalePlace::class)
-					->withPivot('id')
-					->withTimestamps();
-	}
-
-	public function societies()
-	{
-		return $this->belongsToMany(Society::class)
 					->withPivot('id')
 					->withTimestamps();
 	}

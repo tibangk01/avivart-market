@@ -16,11 +16,6 @@
                     </div>
 
                     <div class="form-group">
-                        {!! Form::label('society_id', 'Société') !!}
-                        {!! Form::select('society_id', $societies, $agency->society_id, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Choisissez une société']) !!}
-                    </div>
-
-                    <div class="form-group">
                         {!! Form::label('region_id', 'Choisissez une région') !!}
                         {!! Form::select('region_id', $regions, $agency->enterprise->region_id, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisir une région']) !!}
                     </div>

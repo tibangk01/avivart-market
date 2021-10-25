@@ -86,10 +86,6 @@
                                 <th>Date de mise à jour</th>
                                 <td>{{ $society->updated_at }}</td>
                             </tr>
-                            <tr>
-                                <th>Nombre d'Agence</th>
-                                <td>{{ $society->agencies->count() }}</td>
-                            </tr>
                             <tr class="table-light">
                                 <th>Action</th>
                                 <td>

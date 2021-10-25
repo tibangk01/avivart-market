@@ -21,11 +21,11 @@
         </tr>
         <tr>
             <th>Téléphone</th>
-            <td><a href="tel:{{ str_replace(' ', '', $society->enterprise->getFullPhoneNumber()) }}">{{ $society->enterprise->getFullPhoneNumber() }}</a></td>
+            <td>{{ $society->enterprise->getFullPhoneNumber() }}</td>
         </tr>
         <tr>
             <th>Email</th>
-            <td><a href="mailto:{{ $society->enterprise->email }}">{{ $society->enterprise->email }}</a></td>
+            <td>{{ $society->enterprise->email }}</td>
         </tr>
         <tr>
             <th>Région</th>
@@ -53,7 +53,7 @@
         </tr>
         <tr>
             <th>Site web</th>
-            <td><a target="_blank" href="{{ $society->enterprise->website}}">{{ $society->enterprise->website }}</a></td>
+            <td>{{ $society->enterprise->website }}</td>
         </tr>
         <tr>
             <th>Code Fiscal</th>
@@ -70,10 +70,6 @@
         <tr>
             <th>Date de mise à jour</th>
             <td>{{ $society->updated_at }}</td>
-        </tr>
-        <tr>
-            <th>Nombre d'Agence</th>
-            <td>{{ $society->agencies->count() }}</td>
         </tr>
     </tbody>
 </table>

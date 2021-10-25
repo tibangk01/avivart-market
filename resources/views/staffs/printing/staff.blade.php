@@ -24,10 +24,6 @@
             <td>{{ $staff->human->user->country->name }}</td>
         </tr>
         <tr>
-            <th>Rôle</th>
-            <td>{{ $staff->human->role->name }}</td>
-        </tr>
-        <tr>
             <th>Civilité</th>
             <td>{{ $staff->human->user->civility->name }}</td>
         </tr>

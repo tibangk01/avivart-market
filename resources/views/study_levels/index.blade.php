@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => "Liste des caisses"])
+@extends('layouts.dashboard', ['title' => "Liste des niveaux d'étude"])
 
 @section('body')
     <div class="content">
@@ -22,7 +22,7 @@
                                     <div class="d-flex">
                                         <div class="ml-auto">
                                             <a class="btn btn-flat btn-primary mb-1"
-                                                href="{{ route('cash_register.create') }}"><i class="fa fa-plus"></i>
+                                                href="{{ route('study_level.create') }}"><i class="fa fa-plus"></i>
                                                 Ajouter</a>
                                         </div>
                                     </div>
@@ -37,22 +37,22 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @forelse ($cashRegisters as $cashRegister)
+                                                @forelse ($studyLevels as $studyLevel)
                                                     <tr>
-                                                        <td>{{ $cashRegister->name }}</td>
-                                                        <td>{{ $cashRegister->created_at }}</td>
-                                                        <td>{{ $cashRegister->updated_at }}</td>
+                                                        <td>{{ $studyLevel->name }}</td>
+                                                        <td>{{ $studyLevel->created_at }}</td>
+                                                        <td>{{ $studyLevel->updated_at }}</td>
                                                         <td>
                                                             <a class="btn btn-info btn-xs"
-                                                                href="{{ route('cash_register.show', $cashRegister) }}"
+                                                                href="{{ route('study_level.show', $studyLevel) }}"
                                                                 title="Afficher"><i class="fa fa-eye"
                                                                     aria-hidden="true"></i></a>
                                                             <a class="btn btn-warning btn-xs"
-                                                                href="{{ route('cash_register.edit', $cashRegister) }}"
+                                                                href="{{ route('study_level.edit', $studyLevel) }}"
                                                                 title="Modifier"><i class="fa fa-edit"
                                                                     aria-hidden="true"></i></a>
                                                             <a class="btn btn-danger btn-xs"
-                                                                href="{{ route('cash_register.destroy', $cashRegister) }}"
+                                                                href="{{ route('study_level.destroy', $studyLevel) }}"
                                                                 title="Supprimer"><i class="fa fa-trash"
                                                                     aria-hidden="true"></i></a>
                                                         </td>

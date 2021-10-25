@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $created
  * @property Carbon $modified
  * 
- * @property Collection|Human[] $humans
+ * @property Collection|User[] $users
  *
  * @package App\Models
  */
@@ -40,13 +40,10 @@ class Role extends Model
 		'modified'
 	];
 
-	public function humans()
+	public function users()
 	{
-		return $this->hasMany(Human::class);
+		return $this->belongsToMany(User::class)
+					->withPivot('id')
+					->withTimestamps();
 	}
-
-	public function __toString()
-    {
-        return $this->name;
-    }
 }

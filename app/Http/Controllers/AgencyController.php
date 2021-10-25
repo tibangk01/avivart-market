@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Agency;
 use App\Models\Region;
-use App\Models\Society;
 use App\Models\Enterprise;
 use App\Models\Country;
 use App\Models\Library;
@@ -38,11 +37,10 @@ class AgencyController extends Controller
      */
     public function create()
     {
-        $societies = Society::with('enterprise')->get()->pluck('enterprise.name', 'id');
         $regions = Region::all()->pluck(null, 'id');
         $countries = Country::all()->pluck(null, 'id');
 
-        return view('agencies.create', compact('societies', 'regions', 'countries'));
+        return view('agencies.create', compact('regions', 'countries'));
     }
 
     /**
@@ -61,12 +59,10 @@ class AgencyController extends Controller
 
                 DB::beginTransaction();
 
-                $society = Society::findOrFail($request->society_id);
-
                 $region = Region::findOrFail($request->region_id);
 
-                $code = $society->agencies->load('enterprise')->where('enterprise.region_id', $region->id)->count()
-                    ? $society->agencies->load('enterprise')->where('enterprise.region_id', $region->id)->count() + 1
+                $code = Agency::with('enterprise')->where('enterprise.region_id', $region->id)->count()
+                    ? Agency::with('enterprise')->where('enterprise.region_id', $region->id)->count() + 1
                     : 1;
                 $code = ($code < 10) ? '0' . $code : $code;
 
@@ -78,7 +74,7 @@ class AgencyController extends Controller
                 ]);
 
                 $enterprise = Enterprise::create(array_merge(
-                    $request->except('society_id'),
+                    $request->all(),
                     [
                         'library_id' => $library->id,
                         'code' => $region->code . '0' . $code,
@@ -88,7 +84,6 @@ class AgencyController extends Controller
 
                 $agency = Agency::create([
                     'enterprise_id' => $enterprise->id,
-                    'society_id' => $society->id,
                 ]);
 
                 DB::commit();
@@ -126,11 +121,10 @@ class AgencyController extends Controller
      */
     public function edit(Agency $agency)
     {
-        $societies = Society::with('enterprise')->get()->pluck('enterprise.name', 'id');
         $regions = Region::all()->pluck(null, 'id');
         $countries = Country::all()->pluck(null, 'id');
 
-        return view('agencies.edit', compact('societies', 'regions', 'countries', 'agency'));
+        return view('agencies.edit', compact('regions', 'countries', 'agency'));
     }
 
     /**
@@ -150,23 +144,19 @@ class AgencyController extends Controller
 
                 DB::beginTransaction();
 
-                $society = Society::findOrFail($request->society_id);
-
                 $region = Region::findOrFail($request->region_id);
 
-                $code = $society->agencies->load('enterprise')->where('enterprise.region_id', $region->id)->count()
-                    ? $society->agencies->load('enterprise')->where('enterprise.region_id', $region->id)->count() + 1
+                $code = Agency::with('enterprise')->where('enterprise.region_id', $region->id)->count()
+                    ? Agency::with('enterprise')->where('enterprise.region_id', $region->id)->count() + 1
                     : 1;
                 $code = ($code < 10) ? '0' . $code : $code;
 
                 $agency->enterprise->update(array_merge(
-                    $request->except('society_id'),
+                    $request->all(),
                     [
                         'code' => $region->code . '0' . $code,
                     ]
                 ));
-
-                $agency->update($request->only('society_id'));
 
                 DB::commit();
 

@@ -10,7 +10,6 @@ use App\Models\Library;
 use App\Models\Civility;
 use App\Models\StaffType;
 use App\Models\Work;
-use App\Models\Role;
 use App\Models\Country;
 use App\Models\ContractType;
 use App\Models\StudyLevel;
@@ -43,12 +42,11 @@ class StaffController extends Controller
         $civilities = Civility::all()->pluck(null, 'id');
         $staffTypes = StaffType::all()->pluck(null, 'id');
         $works = Work::all()->pluck(null, 'id');
-        $roles = Role::all()->pluck(null, 'id');
         $countries = Country::all()->pluck(null, 'id');
         $contractTypes = ContractType::all()->pluck(null, 'id');
         $studyLevels = StudyLevel::all()->pluck(null, 'id');
 
-        return view('staffs.create', compact('civilities', 'staffTypes', 'works', 'roles', 'countries', 'contractTypes', 'studyLevels'));
+        return view('staffs.create', compact('civilities', 'staffTypes', 'works', 'countries', 'contractTypes', 'studyLevels'));
     }
 
     /**
@@ -89,7 +87,7 @@ class StaffController extends Controller
 
                 $human = Human::create(
                     array_merge(
-                    $request->only('work_id', 'role_id', 'signature', 'username', 'contract_type_id', 'study_level_id', 'serial_number', 'date_of_birth', 'place_of_birth', 'hiring_date', 'contract_end_date'),
+                    $request->only('work_id', 'signature', 'username', 'contract_type_id', 'study_level_id', 'serial_number', 'date_of_birth', 'place_of_birth', 'hiring_date', 'contract_end_date'),
                     [
                         'serial_number' => $code,
                         'user_id' => $user->id,
@@ -141,12 +139,11 @@ class StaffController extends Controller
         $civilities = Civility::all()->pluck(null, 'id');
         $staffTypes = StaffType::all()->pluck(null, 'id');
         $works = Work::all()->pluck(null, 'id');
-        $roles = Role::all()->pluck(null, 'id');
         $countries = Country::all()->pluck(null, 'id');
         $contractTypes = ContractType::all()->pluck(null, 'id');
         $studyLevels = StudyLevel::all()->pluck(null, 'id');
 
-        return view('staffs.edit', compact('staff', 'civilities', 'staffTypes', 'works', 'roles', 'countries', 'contractTypes', 'studyLevels'));
+        return view('staffs.edit', compact('staff', 'civilities', 'staffTypes', 'works', 'countries', 'contractTypes', 'studyLevels'));
     }
 
     /**
@@ -168,7 +165,7 @@ class StaffController extends Controller
 
                 $staff->human->user->update($request->except('work_id', 'staff_type_id', 'signature'));
 
-                $staff->human->update($request->only('work_id', 'role_id', 'signature', 'contract_type_id', 'study_level_id', 'date_of_birth', 'place_of_birth', 'hiring_date', 'contract_end_date'));
+                $staff->human->update($request->only('work_id', 'signature', 'contract_type_id', 'study_level_id', 'date_of_birth', 'place_of_birth', 'hiring_date', 'contract_end_date'));
 
                 $staff->update($request->only('staff_type_id'));
 
@@ -213,7 +210,6 @@ class StaffController extends Controller
     {
         $formData = [
             'country_id' => ['required'],
-            'role_id' => ['required'],
             'civility_id' => ['required'],
             'work_id' => ['required'],
             'contract_type_id' => ['required'],

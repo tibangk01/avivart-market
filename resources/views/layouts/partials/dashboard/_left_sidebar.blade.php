@@ -9,31 +9,28 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
-          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-              <img src="{{ auth()->user()->library->remote }}" class="img-circle elevation-2" alt="{{ auth()->user()->library->description }}">
+                <x-library :library='auth()->user()->library' class="img-circle elevation-2" />
             </div>
             <div class="info">
               <a href="{{ route('user.show', auth()->id()) }}" class="d-block">{{ auth()->user()->full_name }}e</a>
             </div>
-          </div>
+        </div>
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column nav-flat nav-compact" data-widget="treeview"
                 role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-    with font-awesome or any other icon font library -->
+                
                 <li class="nav-item">
                     <a data-attr="menu-open" data-class="active" href="{{ route('page.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Tableau de bord
-                        </p>
+                        <p>Tableau de bord</p>
                     </a>
                 </li>
 
-                <li class="nav-item has-treeview">
+                <li class="nav-item has-treeview menu-open">
                     <a href="#" class="nav-link">
                       <i class="nav-icon fas fa-cog"></i>
                       <p>
@@ -45,138 +42,116 @@
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('society.show', [1]) }}" class="nav-link">
                                 <i class="nav-icon fas fa-building"></i>
-                                <p>
-                                    Société
-                                </p>
+                                <p>Société</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('staff_type.index') }}" class="nav-link">
                                 <i class=" nav-icon fas fa-list-alt" aria-hidden="true"></i>
-                                <p>
-                                    Types de staff
-                                </p>
+                                <p>Types de staff</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('conversion.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Unités de mesure
-                                </p>
+                                <p>Unités de mesure</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('study_level.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>Niveaux d'étude</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('contract_type.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>Types de contrat</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('currency.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-euro-sign    "></i>
-                                <p>
-                                    Devises
-                                </p>
+                                <p>Devises</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('vat.index') }}" class="nav-link">
+                                <i class="nav-icon fa fa-percent" aria-hidden="true"></i>
+                                <p>TVAs</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('discount.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-handshake"></i>
-                                <p>
-                                    Remises
-                                </p>
+                                <p>Remises</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('exercise.index') }}" class="nav-link">
 
                                 <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
-                                <p>
-                                    Exercices
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a data-attr="menu-open" data-class="active" href="{{ route('vat.index') }}" class="nav-link">
-                                <i class="nav-icon fa fa-percent" aria-hidden="true"></i>
-                                <p>
-                                    TVAs
-                                </p>
+                                <p>Exercices</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('work.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-suitcase"></i>
-                                <p>
-                                    Fonctions
-                                </p>
+                                <p>Fonctions</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('product_ray.index') }}" class="nav-link">
                                 <i class="nav-icon fa fa-list-ol"></i>
-
-                                <p>
-                                    Rayons de produit
-                                </p>
+                                <p>Rayons de produit</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('product_category.index') }}" class="nav-link">
                                 <i class="nav-icon fa fa-list-ol"></i>
-
-                                <p>
-                                    Catégories de produit
-                                </p>
+                                <p>Catégories de produit</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('product_type.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-list-ol"></i>
-                                <p>
-                                    Types de produit
-                                </p>
+                                <p>Types de produit</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('person_ray.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-list-alt"></i>
-                                <p>
-                                    Types de fournisseur/client
-                                </p>
+                                <p>Types de fournisseur/client</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('bank.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-file"></i>
-                                <p>
-                                    Banques
-                                </p>
+                                <p>Banques</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('cash_register.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
-                                <p>
-                                    Caisses
-                                </p>
+                                <p>Caisses</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('cash_register_operation_type.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
-                                <p>
-                                    Types d'opérations de caisse
-                                </p>
+                                <p>Types d'opérations de caisse</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('bank_operation_type.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
-                                <p>
-                                    Types d'opérations de banque
-                                </p>
+                                <p>Types d'opérations de banque</p>
                             </a>
                         </li>
                     </ul>
                 </li>
 
-                <li class="nav-item has-treeview menu-open">
+                <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                       <i class="nav-icon fas fa-list"></i>
                       <p>
@@ -188,132 +163,100 @@
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('agency.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-cubes"></i>
-                                <p>
-                                    Agences
-                                </p>
+                                <p>Agences</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('sale_place.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-sitemap"></i>
-                                <p>
-                                    Points de vente
-                                </p>
+                                <p>Points de vente</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('staff.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
-                                <p>
-                                    Staffs
-                                </p>
+                                <p>Staffs</p>
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('day_transaction.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-cubes"></i>
-                                <p>
-                                    Transactions de journée
-                                </p>
+                                <p>Transactions de journée</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('cash_register_transaction.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-cubes"></i>
-                                <p>
-                                    Transactions de caisse
-                                </p>
+                                <p>Transactions de caisse</p>
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('cash_register_operation.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
-                                <p>
-                                    Opérations de caisse
-                                </p>
+                                <p>Opérations de caisse</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('bank_operation.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
-                                <p>
-                                    Opérations de banque
-                                </p>
+                                <p>Opérations de banque</p>
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('provider.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-truck"></i>
-                                <p>
-                                    Fournisseurs
-                                </p>
+                                <p>Fournisseurs</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('customer.index') }}" class="nav-link">
                                 <i class="nav-icon fa fa-users" aria-hidden="true"></i>
-                                <p>
-                                    Clients
-                                </p>
+                                <p>Clients</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('product.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-file"></i>
-                                <p>
-                                    Produits
-                                </p>
+                                <p>Produits</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('purchase.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-file"></i>
-                                <p>
-                                    Bons de commande
-                                </p>
+                                <p>Bons de commande</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('supply.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-shopping-basket"></i>
-                                <p>
-                                    Approvisionnements
-                                </p>
+                                <p>Approvisionnements</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('proforma.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-file"></i>
-                                <p>
-                                    Proformas
-                                </p>
+                                <p>Proformas</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('order.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-shopping-bag"></i>
-                                <p>
-                                    Factures
-                                </p>
+                                <p>Factures</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('purchase_delivery_note.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-shopping-bag"></i>
-                                <p>
-                                    Bons de réception fournisseurs
-                                </p>
+                                <p>Bons de réception fournisseurs</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('order_delivery_note.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-shopping-bag"></i>
-                                <p>
-                                    Bons de livraison clients
-                                </p>
+                                <p>Bons de livraison clients</p>
                             </a>
                         </li>
                     </ul>

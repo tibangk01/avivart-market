@@ -51,11 +51,6 @@ class Discount extends Model
 		return $this->hasMany(Purchase::class);
 	}
 
-	/**
-     * toString
-     *
-     * @return string
-     */
     public function __toString()
     {
         return strval($this->amount);

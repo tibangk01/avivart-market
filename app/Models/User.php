@@ -8,7 +8,6 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -26,7 +25,6 @@ use Illuminate\Notifications\Notifiable;
  * @property string|null $email
  * @property string|null $phone_number
  * @property string|null $remember_token
- * @property string|null $deleted_at
  * @property Carbon $created_at
  * @property Carbon $updated_at
  *
@@ -40,7 +38,7 @@ use Illuminate\Notifications\Notifiable;
  */
 class User extends Authenticatable
 {
-	use SoftDeletes, HasFactory, Notifiable;
+	use HasFactory, Notifiable;
 
 	protected $table = 'users';
 

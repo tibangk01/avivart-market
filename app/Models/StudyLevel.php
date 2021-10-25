@@ -35,7 +35,7 @@ class StudyLevel extends Model
 		return $this->hasMany(Human::class);
 	}
 
-	public function __toString()
+    public function __toString()
     {
         return $this->name;
     }

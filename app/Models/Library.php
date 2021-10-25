@@ -19,10 +19,15 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $local
  * @property string|null $remote
  * @property string|null $description
+ * @property string|null $mimes_type
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * 
  * @property LibraryType $library_type
+ * @property Collection|Enterprise[] $enterprises
+ * @property Collection|OrderDeliveryNote[] $order_delivery_notes
+ * @property Collection|Product[] $products
+ * @property Collection|PurchaseDeliveryNote[] $purchase_delivery_notes
  * @property Collection|User[] $users
  *
  * @package App\Models
@@ -40,12 +45,33 @@ class Library extends Model
 		'folder',
 		'local',
 		'remote',
-		'description'
+		'description',
+		'mimes_type'
 	];
 
 	public function library_type()
 	{
 		return $this->belongsTo(LibraryType::class);
+	}
+
+	public function enterprises()
+	{
+		return $this->hasMany(Enterprise::class);
+	}
+
+	public function order_delivery_notes()
+	{
+		return $this->hasMany(OrderDeliveryNote::class);
+	}
+
+	public function products()
+	{
+		return $this->hasMany(Product::class);
+	}
+
+	public function purchase_delivery_notes()
+	{
+		return $this->hasMany(PurchaseDeliveryNote::class);
 	}
 
 	public function users()

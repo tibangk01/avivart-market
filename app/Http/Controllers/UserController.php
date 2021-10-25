@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function show(Request $request, User $user)
     {
-        $human = Human::with('user', 'work', 'role')->where('user_id', $user->id)->firstOrFail();
+        $human = Human::with('user', 'work')->where('user_id', $user->id)->firstOrFail();
 
         $staff = Staff::with('human', 'staff_type')->where('human_id', $human->id)->firstOrFail();
 
@@ -30,7 +30,7 @@ class UserController extends Controller
      */
     public function edit(Request $request, User $user)
     {
-        $human = Human::with('user', 'work', 'role')->where('user_id', $user->id)->firstOrFail();
+        $human = Human::with('user', 'work')->where('user_id', $user->id)->firstOrFail();
 
         $staff = Staff::with('human', 'staff_type')->where('human_id', $human->id)->firstOrFail();
 

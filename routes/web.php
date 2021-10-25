@@ -46,7 +46,8 @@ use App\Http\Controllers\CashRegisterTransactionController;
 use App\Http\Controllers\OrderDeliveryNoteController;
 use App\Http\Controllers\PurchaseDeliveryNoteController;
 use App\Http\Controllers\TransactionController;
-
+use App\Http\Controllers\ContractTypeController;
+use App\Http\Controllers\StudyLevelController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -261,6 +262,14 @@ Route::middleware(['auth', 'staff'])->group(function () {
     /** cash register routes */
     Route::resource('cash_register', CashRegisterController::class);
     /** End cash register routes */
+
+    /** contract type routes */
+    Route::resource('contract_type', ContractTypeController::class);
+    /** End contract type routes */
+
+    /** study level routes */
+    Route::resource('study_level', StudyLevelController::class);
+    /** End study level routes */
 
     /** cash register operations routes */
     Route::resource('cash_register_operation', CashRegisterOperationController::class);
