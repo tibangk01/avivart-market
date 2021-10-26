@@ -20,7 +20,7 @@ class PurchasePayment extends Component
     {
         $this->purchases = Purchase::where('paid', false)->get();
 
-        $this->paymentModes = PaymentMode::all()->pluck(null, 'id');
+        $this->paymentModes = PaymentMode::all();
     }
 
     public function render()

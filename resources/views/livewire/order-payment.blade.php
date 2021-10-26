@@ -26,8 +26,13 @@
     </div>
 
     <div class="form-group">
-        {!! Form::label('payment_mode_id', 'Mode de payement') !!}
-        {!! Form::select('payment_mode_id', $paymentModes, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez un mode de payement']) !!}
+        <label for="payment_mode_id">Mode de règlement</label>
+        <select required class="form-control" id="payment_mode_id" name="payment_mode_id">
+            <option value="">Choisissez un mode de règlement</option>
+            @foreach($paymentModes as $paymentMode)
+            <option value="{{ $paymentMode->id }}">{{ $paymentMode->name }}</option>
+            @endforeach
+        </select>
     </div>
 
     <div class="form-group text-right">

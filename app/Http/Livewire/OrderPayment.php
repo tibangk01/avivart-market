@@ -25,7 +25,7 @@ class OrderPayment extends Component
 
         $this->orders = Order::where('paid', false)->get();
 
-        $this->paymentModes = PaymentMode::all()->pluck(null, 'id');
+        $this->paymentModes = PaymentMode::all();
     }
 
     public function render()
