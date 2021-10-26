@@ -180,10 +180,20 @@ Route::middleware(['auth', 'staff'])->group(function () {
     /** End conversions routes */
 
     /** customers routes */
+    Route::prefix('/customer/printing')->name('customer.printing.')->group(function() {
+        Route::get('/', [CustomerController::class, 'printingAll'])->name('all');
+        Route::get('/{customer}', [CustomerController::class, 'printingOne'])->name('one');
+    });
+
     Route::resource('customer', CustomerController::class);
     /** End customers routes */
 
     /** providers routes */
+    Route::prefix('/provider/printing')->name('provider.printing.')->group(function() {
+        Route::get('/', [ProviderController::class, 'printingAll'])->name('all');
+        Route::get('/{provider}', [ProviderController::class, 'printingOne'])->name('one');
+    });
+    
     Route::resource('provider', ProviderController::class);
     /** End providers routes */
 

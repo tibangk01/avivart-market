@@ -26,8 +26,12 @@
                                 aria-labelledby="nav-first-tab">
 
                                 <div class="d-flex">
-                                    <div class="ml-auto">
-                                        <a class="btn btn-flat btn-primary mb-1"
+                                    <div class="ml-auto mb-1">
+                                            <a class="btn btn-flat btn-dark" target="_blank" 
+                                                            href="{{ route('provider.printing.all', ['printing' => 'corporation']) }}"
+                                                            title="Imprimer"><i class="fa fa-print"></i> Imprimer</a>
+
+                                        <a class="btn btn-flat btn-primary"
                                             href="{{ route('provider.create', ['create' => 'corporation']) }}"><i class="fa fa-plus"></i>
                                             Ajouter</a>
                                     </div>
@@ -40,8 +44,12 @@
                                 aria-labelledby="nav-second-tab">
 
                                 <div class="d-flex">
-                                    <div class="ml-auto">
-                                        <a class="btn btn-flat btn-primary mb-1"
+                                    <div class="ml-auto mb-1">
+                                            <a class="btn btn-flat btn-dark" target="_blank" 
+                                                            href="{{ route('provider.printing.all', ['printing' => 'person']) }}"
+                                                            title="Imprimer"><i class="fa fa-print"></i> Imprimer</a>
+
+                                        <a class="btn btn-flat btn-primary"
                                             href="{{ route('provider.create', ['create' => 'person']) }}"><i class="fa fa-plus"></i>
                                             Ajouter</a>
                                     </div>

@@ -19,17 +19,21 @@
                     <td>{{ $provider->person->user->email }}</td>
                     <td>
                         <a class="btn btn-info btn-xs"
-                            href="{{ route('provider.show', $provider) }}?show=person"
+                            href="{{ route('provider.show', $provider) }}"
                             title="Afficher"><i class="fa fa-eye"
                                 aria-hidden="true"></i></a>
                         <a class="btn btn-warning btn-xs"
-                            href="{{ route('provider.edit', $provider) }}?edit=person"
+                            href="{{ route('provider.edit', $provider) }}"
                             title="Modifier"><i class="fa fa-edit"
                                 aria-hidden="true"></i></a>
                         <a class="btn btn-danger btn-xs"
-                            href="{{ route('provider.destroy', $provider) }}?destroy=person"
+                            href="{{ route('provider.destroy', $provider) }}"
                             title="Supprimer"><i class="fa fa-trash"
                                 aria-hidden="true"></i></a>
+                        <a class="btn btn-dark btn-xs" target="_blank" 
+                                                    href="{{ route('provider.printing.one', $provider) }}"
+                                                    title="Imprimer"><i class="fa fa-print"
+                                                        aria-hidden="true"></i></a>
                     </td>
                 </tr>
             @empty

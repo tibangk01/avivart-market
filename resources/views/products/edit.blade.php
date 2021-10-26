@@ -84,6 +84,16 @@
                     {!! Form::date('expiration_date', $product->expiration_date, ['class' => 'form-control']) !!}
                 </div>
 
+                <div class="form-group">
+                    {!! Form::label('description', 'Description', ['class' => 'form-label']) !!}
+                    {!! Form::text('description', null, ['class' => 'form-control']) !!}
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('characteristics', 'Caractéristiques', ['class' => 'form-label']) !!}
+                    {!! Form::textarea('characteristics', null, ['class' => 'form-control']) !!}
+                </div>
+
                 <div class="btn-group pull-right">
                     {!! Form::submit('Modifier', ['class' => 'btn btn-success']) !!}
                 </div>

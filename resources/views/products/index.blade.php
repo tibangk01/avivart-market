@@ -37,6 +37,7 @@
                                                     <th>Nom</th>
                                                     <th>Type</th>
                                                     <th>Unité</th>
+                                                    <th>Fournisseur</th>
                                                     <th>PA</th>
                                                     <th>PV</th>
                                                     <th>PL</th>
@@ -54,6 +55,7 @@
                                                     <td>{{ $product->name }}</td>
                                                     <td>{{ $product->product_type->name }}</td>
                                                     <td>{{ $product->conversion->name }}</td>
+                                                    <td>{{ $product->provider->getName() }}</td>
                                                     <td>{{ $product->purchase_price }}</td>
                                                     <td>{{ $product->selling_price }}</td>
                                                     <td>{{ $product->rental_price }}</td>
@@ -82,7 +84,7 @@
                                                 </tr>
                                             @empty
                                             <tr>
-                                                <td colspan="12">
+                                                <td colspan="13">
                                                     Pas d'enregistrements.
                                                 </td>
                                             </tr>

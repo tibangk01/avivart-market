@@ -19,17 +19,21 @@
                     <td>{{ $customer->person->user->email }}</td>
                     <td>
                         <a class="btn btn-info btn-xs"
-                            href="{{ route('customer.show', $customer) }}?show=person"
+                            href="{{ route('customer.show', $customer) }}"
                             title="Afficher"><i class="fa fa-eye"
                                 aria-hidden="true"></i></a>
                         <a class="btn btn-warning btn-xs"
-                            href="{{ route('customer.edit', $customer) }}?edit=person"
+                            href="{{ route('customer.edit', $customer) }}"
                             title="Modifier"><i class="fa fa-edit"
                                 aria-hidden="true"></i></a>
                         <a class="btn btn-danger btn-xs"
-                            href="{{ route('customer.destroy', $customer) }}?destroy=person"
+                            href="{{ route('customer.destroy', $customer) }}"
                             title="Supprimer"><i class="fa fa-trash"
                                 aria-hidden="true"></i></a>
+                        <a class="btn btn-dark btn-xs" target="_blank" 
+                                                    href="{{ route('customer.printing.one', $customer) }}"
+                                                    title="Imprimer"><i class="fa fa-print"
+                                                        aria-hidden="true"></i></a>
                     </td>
                 </tr>
             @empty

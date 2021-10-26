@@ -10,6 +10,7 @@ use App\Models\Customer;
 use App\Models\Library;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use BarryvdhDomPDF as PDF;
 
 class CustomerController extends Controller
 {
@@ -308,5 +309,26 @@ class CustomerController extends Controller
         }
 
         $request->validate($formData);
+    }
+
+    public function printingAll(Request $request)
+    {
+        $customers = Customer::all();
+
+        $pdf = PDF::loadView('customers.printing.customers', compact('customers'));
+        //$pdf->setOptions(array('isRemoteEnabled' => true));
+        $pdf->setPaper('a4', 'landscape');
+        $pdf->save(public_path("libraries/docs/customers.pdf"));
+
+        return $pdf->stream('customers.pdf');
+    }
+
+    public function printingOne(Request $request, Customer $customer)
+    {
+        $pdf = PDF::loadView('customers.printing.customer', compact('customer'));
+        $pdf->setPaper('a4', 'portrait');
+        $pdf->save(public_path("libraries/docs/customer_{$customer->id}.pdf"));
+
+        return $pdf->stream('customer.pdf');
     }
 }

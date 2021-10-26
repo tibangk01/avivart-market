@@ -6,8 +6,7 @@
         <div class="row">
             <div class="col-lg-12">
 
-                @if(request()->has('show'))
-                    @if(request()->query('show') == 'corporation')
+                @if($provider->person_type_id == 1)
 
                     <div>
                         <x-library :library='$provider->corporation->enterprise->library' class="img200_200" />
@@ -16,7 +15,7 @@
 
                     <x-providers.show.corporation :provider="$provider" />
 
-                    @elseif(request()->query('show') == 'person')
+                @else
 
                     <div>
                         <x-library :library='$provider->person->user->library' class="img200_200" />
@@ -25,11 +24,6 @@
 
                     <x-providers.show.person :provider="$provider" />
 
-                    @else
-                    <p>Erreur de formulaire</p>
-                    @endif
-                @else
-                <p>Erreur interne</p>
                 @endif
                 
             </div>

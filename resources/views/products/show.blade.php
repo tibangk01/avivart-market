@@ -70,15 +70,15 @@
                                 </tr>
                                 <tr>
                                     <th>Numéro de série</th>
-                                    <td>{{ $product->serial_number ? $product->serial_number : '-' }}</td>
+                                    <td>{{ $product->serial_number }}</td>
                                 </tr>
                                 <tr>
                                     <th>Date de fabrication</th>
-                                    <td>{{ $product->manufacture_date ? $product->manufacture_date : '-' }}</td>
+                                    <td>{{ $product->manufacture_date }}</td>
                                 </tr>
                                 <tr>
                                     <th>Date d'expiration</th>
-                                    <td>{{ $product->expiration_date ? $product->expiration_date  : '-' }}</td>
+                                    <td>{{ $product->expiration_date }}</td>
                                 </tr>
                                 <tr>
                                     <th>Date de création</th>

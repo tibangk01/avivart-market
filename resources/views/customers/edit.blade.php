@@ -4,8 +4,7 @@
 <section class="content">
     <div class="container-fluid">
 
-        @if(request()->has('edit'))
-            @if(request()->query('edit') == 'corporation')
+        @if($customer->person_type_id == 1)
 
             <div class="row">
                 <div class="col-lg-6">
@@ -16,7 +15,7 @@
                 </div>
             </div>
 
-            @elseif(request()->query('edit') == 'person')
+        @else
 
             <div class="row">
                 <div class="col-lg-6">
@@ -27,23 +26,6 @@
                 </div>
             </div>
 
-            @else
-            
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Erreur interne</p>
-                </div>
-            </div>
-
-            @endif
-        @else
-
-        <div class="row">
-            <div class="col-lg-12">
-                <p>Erreur interne</p>
-            </div>
-        </div>
-        
         @endif
 
     </div>
