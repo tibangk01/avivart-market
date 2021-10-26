@@ -15,7 +15,12 @@
         <input type="number" class="form-control" name="amount" id="amount" wire:model="amount" readonly required step="any">
     </div>
 
-     <div class="form-group text-right">
+    <div class="form-group">
+        {!! Form::label('payment_mode_id', 'Mode de payement') !!}
+        {!! Form::select('payment_mode_id', $paymentModes, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez un mode de payement']) !!}
+    </div>
+
+    <div class="form-group text-right">
         {!! Form::submit('Ajouter', ['class' => 'btn btn-success']) !!}
     </div>
 

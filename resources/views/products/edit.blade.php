@@ -36,8 +36,13 @@
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('stock_quantity', 'Quantitée en stock', ['class' => 'form-label']) !!}
+                    {!! Form::label('stock_quantity', 'Quantité en stock', ['class' => 'form-label']) !!}
                     {!! Form::number('stock_quantity', null, ['class' => 'form-control', 'required' => true, 'min' => 1, 'step' => 1]) !!}
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('alert_quantity', 'Quantité alert') !!}
+                    {!! Form::number('alert_quantity', null, ['class' => 'form-control', 'required' => true, 'min' => 0, 'step' => 1]) !!}
                 </div>
 
                 <div class="form-group">

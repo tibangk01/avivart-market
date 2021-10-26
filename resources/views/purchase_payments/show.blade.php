@@ -23,6 +23,10 @@
                                 <td>{{ $purchasePayment->payment->amount }}</td>
                             </tr>
                             <tr>
+                                <th>Mode de payement</th>
+                                <td>{{ $purchasePayment->payment->payment_mode->name }}</td>
+                            </tr>
+                            <tr>
                                 <th>Date de création</th>
                                 <td>{{ $purchasePayment->created_at }}</td>
                             </tr>

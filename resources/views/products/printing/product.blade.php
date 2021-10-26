@@ -20,6 +20,10 @@
             <td>{{ $product->name }}</td>
         </tr>
         <tr>
+            <th>Description</th>
+            <td>{{ $product->description }}</td>
+        </tr>
+        <tr>
             <th>Fournisseur</th>
             <td>{{ $product->provider->getName() }}</td>
         </tr>
@@ -54,6 +58,10 @@
         <tr>
             <th>Quantité vendue</th>
             <td>{{ $product->sold_quantity }}</td>
+        </tr>
+        <tr>
+            <th>Quantité d'alert</th>
+            <td>{{ $product->alert_quantity }}</td>
         </tr>
         <tr>
             <th>Numéro de série</th>

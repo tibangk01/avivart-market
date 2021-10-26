@@ -23,6 +23,10 @@
                                 <td>{{ $orderPayment->payment->amount }}</td>
                             </tr>
                             <tr>
+                                <th>Mode de payement</th>
+                                <td>{{ $orderPayment->payment->payment_mode->name }}</td>
+                            </tr>
+                            <tr>
                                 <th>Date de création</th>
                                 <td>{{ $orderPayment->created_at }}</td>
                             </tr>

@@ -4,9 +4,12 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Purchase;
+use App\Models\PaymentMode;
 
 class PurchasePayment extends Component
 {
+    public $paymentModes;
+
     public $purchases;
 
     public $purchase;
@@ -16,6 +19,8 @@ class PurchasePayment extends Component
     public function mount()
     {
         $this->purchases = Purchase::where('paid', false)->get();
+
+        $this->paymentModes = PaymentMode::all()->pluck(null, 'id');
     }
 
     public function render()

@@ -43,6 +43,7 @@ class PurchasePaymentController extends Controller
     {
         if ($request->isMethod('POST')) {
             $request->validate([
+                'payment_mode_id' => ['required'],
                 'purchase_id' => ['required'],
                 'amount' => ['required'],
             ]);
@@ -53,7 +54,7 @@ class PurchasePaymentController extends Controller
 
                 $purchase = Purchase::findOrFail($request->purchase_id);
 
-                $payment = Payment::create($request->only('amount'));
+                $payment = Payment::create($request->except('purchase_id'));
 
                 $purchasePayment = PurchasePayment::create([
                     'purchase_id' => $purchase->id,

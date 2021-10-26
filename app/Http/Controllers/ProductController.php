@@ -166,6 +166,7 @@ class ProductController extends Controller
             'conversion_id' => ['required'],
             'name' => ['required', 'min:3', 'max:50'],
             'stock_quantity' => ['required', 'numeric'],
+            'alert_quantity' => ['required', 'numeric'],
             'purchase_price' => ['required'],
             'selling_price' => ['required'],
             'rental_price' => ['required'],
@@ -174,6 +175,8 @@ class ProductController extends Controller
             'expiration_date' => ['nullable'],
             'mark' => ['nullable'],
             'ref' => ['nullable'],
+            'description' => ['nullable'],
+            'characteristics' => ['nullable'],
         ]);
     }
 

@@ -38,6 +38,7 @@
                                                 <tr>
                                                     <th>Bon de commande</th>
                                                     <th>Montant</th>
+                                                    <th>Mode de payement</th>
                                                     <th>Date de Création</th>
                                                     <th>Date de modification</th>
                                                     <th>Actions</th>
@@ -48,6 +49,7 @@
                                                     <tr>
                                                         <td>{{ $purchasePayment->purchase->getNumber() }}</td>
                                                         <td>{{ $purchasePayment->payment->amount }}</td>
+                                                        <td>{{ $purchasePayment->payment->payment_mode->name }}</td>
                                                         <td>{{ $purchasePayment->created_at }}</td>
                                                         <td>{{ $purchasePayment->created_at }}</td>
                                                         <td>
@@ -68,7 +70,7 @@
                                                     </tr>
                                                 @empty
                                                     <tr>
-                                                        <td colspan="5">Pas d'enregistrements</td>
+                                                        <td colspan="6">Pas d'enregistrements</td>
                                                     </tr>
                                                 @endforelse
                                             </tbody>

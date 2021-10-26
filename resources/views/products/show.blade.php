@@ -10,6 +10,7 @@
                 </div>
 
                 <div class="col-lg-12">
+
                     <div class="table-responsive bg-white">
                         <table class="table table-bordered table-stripped table-hover mb-0">
                             <thead class="thead-dark">
@@ -22,6 +23,10 @@
                                 <tr>
                                     <th>Nom</th>
                                     <td>{{ $product->name }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Description</th>
+                                    <td>{{ $product->description }}</td>
                                 </tr>
                                 <tr>
                                     <th>Fournisseur</th>
@@ -60,6 +65,10 @@
                                     <td>{{ $product->sold_quantity }}</td>
                                 </tr>
                                 <tr>
+                                    <th>Quantité d'alert</th>
+                                    <td>{{ $product->alert_quantity }}</td>
+                                </tr>
+                                <tr>
                                     <th>Numéro de série</th>
                                     <td>{{ $product->serial_number ? $product->serial_number : '-' }}</td>
                                 </tr>
@@ -87,6 +96,11 @@
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+
+                    <h4>Caractéristiques</h4>
+                    <div>
+                        {!! nl2br($product->characteristics) !!}
                     </div>
                 </div>
             </div>

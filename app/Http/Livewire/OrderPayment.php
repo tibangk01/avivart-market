@@ -5,9 +5,12 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\OrderState;
 use App\Models\Order;
+use App\Models\PaymentMode;
 
 class OrderPayment extends Component
 {
+    public $paymentModes;
+    
     public $orderStates;
 
     public $orders;
@@ -21,6 +24,8 @@ class OrderPayment extends Component
         $this->orderStates = OrderState::all();
 
         $this->orders = Order::where('paid', false)->get();
+
+        $this->paymentModes = PaymentMode::all()->pluck(null, 'id');
     }
 
     public function render()

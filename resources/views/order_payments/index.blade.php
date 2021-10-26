@@ -38,6 +38,7 @@
                                                 <tr>
                                                     <th>Facture</th>
                                                     <th>Montant</th>
+                                                    <th>Mode de payement</th>
                                                     <th>Date de Création</th>
                                                     <th>Date de modification</th>
                                                     <th>Actions</th>
@@ -48,6 +49,7 @@
                                                     <tr>
                                                         <td>{{ $orderPayment->order->getNumber() }}</td>
                                                         <td>{{ $orderPayment->payment->amount }}</td>
+                                                        <td>{{ $orderPayment->payment->payment_mode->name }}</td>
                                                         <td>{{ $orderPayment->created_at }}</td>
                                                         <td>{{ $orderPayment->created_at }}</td>
                                                         <td>
@@ -68,7 +70,7 @@
                                                     </tr>
                                                 @empty
                                                     <tr>
-                                                        <td colspan="5">Pas d'enregistrements</td>
+                                                        <td colspan="6">Pas d'enregistrements</td>
                                                     </tr>
                                                 @endforelse
                                             </tbody>

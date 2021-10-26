@@ -14,10 +14,12 @@ use Illuminate\Database\Eloquent\Model;
  * Class Payment
  * 
  * @property int $id
+ * @property int $payment_mode_id
  * @property float $amount
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * 
+ * @property PaymentMode $payment_mode
  * @property Collection|Order[] $orders
  * @property Collection|Purchase[] $purchases
  *
@@ -28,12 +30,19 @@ class Payment extends Model
 	protected $table = 'payments';
 
 	protected $casts = [
+		'payment_mode_id' => 'int',
 		'amount' => 'float'
 	];
 
 	protected $fillable = [
+		'payment_mode_id',
 		'amount'
 	];
+
+	public function payment_mode()
+	{
+		return $this->belongsTo(PaymentMode::class);
+	}
 
 	public function orders()
 	{

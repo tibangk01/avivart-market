@@ -57,7 +57,8 @@ class Product extends Model implements Buyable
 		'selling_price' => 'float',
 		'rental_price' => 'float',
 		'stock_quantity' => 'int',
-		'sold_quantity' => 'int'
+		'sold_quantity' => 'int',
+		'alert_quantity' => 'int'
 	];
 
 	protected $dates = [
@@ -77,11 +78,14 @@ class Product extends Model implements Buyable
 		'rental_price',
 		'stock_quantity',
 		'sold_quantity',
+		'alert_quantity',
 		'serial_number',
 		'manufacture_date',
 		'expiration_date',
 		'mark',
 		'ref',
+		'description',
+		'characteristics',
 	];
 
 	public function provider()

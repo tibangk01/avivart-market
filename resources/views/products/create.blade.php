@@ -36,8 +36,13 @@
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('stock_quantity', 'Quantitée en stock') !!}
+                    {!! Form::label('stock_quantity', 'Quantité en stock') !!}
                     {!! Form::number('stock_quantity', null, ['class' => 'form-control', 'required' => true, 'min' => 1, 'step' => 1]) !!}
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('alert_quantity', 'Quantité alert') !!}
+                    {!! Form::number('alert_quantity', null, ['class' => 'form-control', 'required' => true, 'min' => 0, 'step' => 1]) !!}
                 </div>
 
                 <div class="form-group">
@@ -77,6 +82,16 @@
                 <div class="form-group">
                     {!! Form::label('expiration_date', "Date d'expiration", ['class' => 'form-label']) !!}
                     {!! Form::date('expiration_date', now(), ['class' => 'form-control']) !!}
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('description', 'Description', ['class' => 'form-label']) !!}
+                    {!! Form::text('description', null, ['class' => 'form-control']) !!}
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('characteristics', 'Caractéristiques', ['class' => 'form-label']) !!}
+                    {!! Form::textarea('characteristics', null, ['class' => 'form-control']) !!}
                 </div>
 
                 <div class="form-group text-right">
