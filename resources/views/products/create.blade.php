@@ -11,6 +11,11 @@
                 {!! Form::open(['method' => 'post', 'route' => 'product.store']) !!}
 
                 <div class="form-group">
+                    {!! Form::label('provider_id', 'Fournisseur') !!}
+                    {!! Form::select('provider_id', $providers, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez un fournisseur']) !!}
+                </div>
+
+                <div class="form-group">
                     {!! Form::label('product_type_id', 'Type') !!}
                     {!! Form::select('product_type_id', $product_types, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez un type de produit']) !!}
                 </div>

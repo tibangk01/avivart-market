@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Provider;
 use App\Models\Product;
 use App\Models\Conversion;
 use App\Models\Library;
@@ -40,9 +41,9 @@ class ProductController extends Controller
         $product_categories = ProductCategory::all()->pluck(null, 'id');
         $conversions = Conversion::all()->pluck(null, 'id');
         $product_types = ProductType::all()->pluck(null, 'id');
+        $providers = Provider::all()->pluck(null, 'id');
 
-
-        return view('products.create', compact('product_categories', 'conversions', 'product_types'));
+        return view('products.create', compact('providers', 'product_categories', 'conversions', 'product_types'));
     }
 
     /**
@@ -111,8 +112,9 @@ class ProductController extends Controller
         $product_categories = ProductCategory::all()->pluck(null, 'id');
         $conversions = Conversion::all()->pluck(null, 'id');
         $product_types = ProductType::all()->pluck(null, 'id');
+        $providers = Provider::all()->pluck(null, 'id');
 
-        return view('products.edit', compact('product', 'product_categories', 'conversions', 'product_types'));
+        return view('products.edit', compact('product', 'providers', 'product_categories', 'conversions', 'product_types'));
     }
 
     /**
@@ -158,6 +160,7 @@ class ProductController extends Controller
     private function _validateRequest($request)
     {
         $request->validate([
+            'provider_id' => ['required'],
             'product_type_id' => ['required'],
             'product_category_id' => ['required'],
             'conversion_id' => ['required'],

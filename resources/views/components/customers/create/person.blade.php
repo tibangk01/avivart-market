@@ -13,8 +13,8 @@
     </div>
 
     <div class="form-group">
-        {!! Form::label('person_ray_id', 'Rayon') !!}
-        {!! Form::select('person_ray_id', $personRays, null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Choisissez un rayon']) !!}
+        {!! Form::label('person_ray_id', 'Type de client') !!}
+        {!! Form::select('person_ray_id', $personRays, null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Choisissez un type de client']) !!}
     </div>
 
     <div class="form-group">

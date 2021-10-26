@@ -20,6 +20,10 @@
             <td>{{ $product->name }}</td>
         </tr>
         <tr>
+            <th>Fournisseur</th>
+            <td>{{ $product->provider->getName() }}</td>
+        </tr>
+        <tr>
             <th>Type</th>
             <td>{{ $product->product_type->name }}</td>
         </tr>

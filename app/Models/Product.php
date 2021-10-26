@@ -48,6 +48,7 @@ class Product extends Model implements Buyable
 	protected $table = 'products';
 
 	protected $casts = [
+		'provider_id' => 'int',
 		'product_type_id' => 'int',
 		'library_id' => 'int',
 		'product_category_id' => 'int',
@@ -65,6 +66,7 @@ class Product extends Model implements Buyable
 	];
 
 	protected $fillable = [
+		'provider_id',
 		'product_type_id',
 		'library_id',
 		'product_category_id',
@@ -81,6 +83,11 @@ class Product extends Model implements Buyable
 		'mark',
 		'ref',
 	];
+
+	public function provider()
+	{
+		return $this->belongsTo(Provider::class);
+	}
 
 	public function product_category()
 	{
