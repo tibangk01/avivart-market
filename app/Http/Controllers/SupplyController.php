@@ -45,24 +45,30 @@ class SupplyController extends Controller
     {
         if ($request->isMethod('POST')) {
 
+            $request->validate([
+                'delivered_quantity' => ['required'],
+            ]);
+
             $productPurchase = ProductPurchase::findOrFail($request->input('product_purchase_id'));
 
-            abort_if((($productPurchase->ordered_quantity - $productPurchase->delivered_quantity) == 0), 403, "Impossible de faire cet enregistrement");
+            $quantity = intval($request->input('delivered_quantity'));
+
+            abort_if($quantity > ($productPurchase->ordered_quantity - $productPurchase->delivered_quantity), 403, "Impossible de faire cet enregistrement");
 
             try {
                 DB::beginTransaction();
 
                 $productPurchase->update([
-                    'delivered_quantity' => $productPurchase->delivered_quantity + intval($request->input('delivered_quantity')),
+                    'delivered_quantity' => $productPurchase->delivered_quantity + $quantity,
                 ]);
 
                 $productPurchase->product->update([
-                    'stock_quantity' => $productPurchase->product->stock_quantity +  + intval($request->input('delivered_quantity')),
+                    'stock_quantity' => $productPurchase->product->stock_quantity +  + $quantity,
                 ]);
 
                 $supply = Supply::create([
                     'product_purchase_id' => $request->input('product_purchase_id'),
-                    'quantity' => $request->input('delivered_quantity'),
+                    'quantity' => $quantity,
                 ]);
 
                 DB::commit();
@@ -99,7 +105,7 @@ class SupplyController extends Controller
      */
     public function edit(Supply $supply)
     {
-        //
+        return view('supplies.edit', compact('supply'));
     }
 
     /**
@@ -111,7 +117,17 @@ class SupplyController extends Controller
      */
     public function update(Request $request, Supply $supply)
     {
-        //
+        if ($request->isMethod('PUT')) {
+            $request->validate([
+                'quantity' => ['required'],
+            ]);
+
+            $supply->update($request->all());
+
+            session()->flash('success', 'Donnée enregistrée.');
+        }
+
+        return back();
     }
 
     /**

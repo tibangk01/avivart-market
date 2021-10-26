@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $purchase_id
  * @property int $ordered_quantity
  * @property int $delivered_quantity
+ * @property string|null $comment
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * 
@@ -40,6 +41,8 @@ class ProductPurchase extends Model
 	];
 
 	protected $fillable = [
+		'product_id',
+		'purchase_id',
 		'ordered_quantity',
 		'delivered_quantity',
 		'comment',

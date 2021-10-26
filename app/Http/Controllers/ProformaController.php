@@ -7,6 +7,9 @@ use BarryvdhDomPDF as PDF;
 use Illuminate\Http\Request;
 use \Cart;
 use Illuminate\Support\Facades\DB;
+use App\Models\Customer;
+use App\Models\Vat;
+use App\Models\Discount;
 
 class ProformaController extends Controller
 {
@@ -41,6 +44,12 @@ class ProformaController extends Controller
     public function store(Request $request)
     {
         if ($request->isMethod('POST')) {
+            $request->validate([
+                'customer_id' => ['required'],
+                'vat_id' => ['required'],
+                'discount_id' => ['required'],
+            ]);
+
             $cartContent = Cart::instance($request->input('instance'))->content();
 
             try {
@@ -97,7 +106,13 @@ class ProformaController extends Controller
      */
     public function edit(Proforma $proforma)
     {
-        //
+        $customers = Customer::all()->pluck(null, 'id');
+
+        $vats = Vat::all()->pluck(null, 'id');
+
+        $discounts = Discount::all()->pluck(null, 'id');
+
+        return view('proformas.edit', compact('proforma', 'customers', 'vats', 'discounts'));
     }
 
     /**
@@ -109,7 +124,19 @@ class ProformaController extends Controller
      */
     public function update(Request $request, Proforma $proforma)
     {
-        //
+        if ($request->isMethod('PUT')) {
+            $request->validate([
+                'customer_id' => ['required'],
+                'vat_id' => ['required'],
+                'discount_id' => ['required'],
+            ]);
+
+            $proforma->update($request->all());
+
+            session()->flash('success', 'Donnée enregistrée.');
+        }
+
+        return back();
     }
 
     /**

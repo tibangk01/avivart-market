@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+use App\Models\Proforma;
 use App\Models\ProductProforma;
 use Illuminate\Http\Request;
 
@@ -46,7 +48,7 @@ class ProductProformaController extends Controller
      */
     public function show(ProductProforma $productProforma)
     {
-        //
+        return view('product_proforma.show', compact('productProforma'));
     }
 
     /**
@@ -57,7 +59,11 @@ class ProductProformaController extends Controller
      */
     public function edit(ProductProforma $productProforma)
     {
-        //
+        $products = Product::all()->pluck(null, 'id');
+
+        $proformas = Proforma::all()->pluck(null, 'id');
+
+        return view('product_proforma.edit', compact('productProforma', 'products', 'proformas'));
     }
 
     /**
@@ -69,7 +75,19 @@ class ProductProformaController extends Controller
      */
     public function update(Request $request, ProductProforma $productProforma)
     {
-        //
+        if ($request->isMethod('PUT')) {
+            $request->validate([
+                'product_id' => ['required'],
+                'proforma_id' => ['required'],
+                'quantity' => ['required'],
+            ]);
+
+            $productProforma->update($request->all());
+
+            session()->flash('success', 'Donnée enregistrée.');
+        }
+
+        return back();
     }
 
     /**

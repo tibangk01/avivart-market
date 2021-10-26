@@ -124,4 +124,9 @@ class Customer extends Model
 
 		return $phoneNumber;
 	}
+
+	public function __toString()
+	{
+		return $this->getName();
+	}
 }

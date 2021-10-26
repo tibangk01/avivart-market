@@ -36,7 +36,9 @@ class ProductProforma extends Model
 	];
 
 	protected $fillable = [
-		'quantity'
+		'product_id',
+		'proforma_id',
+		'quantity',
 	];
 
 	public function product()

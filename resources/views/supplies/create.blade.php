@@ -41,12 +41,12 @@
                                 <td>{{ $product->rental_price }}</td>
                                 <td>{{ $product->stock_quantity }}</td>
                                 <td>{{ $product->sold_quantity }}</td>
-                                <td>{{ $product->created_at }}</td>
-                                <td>{{ $product->updated_at }}</td>
+                                <td>{{ $product->pivot->created_at }}</td>
+                                <td>{{ $product->pivot->updated_at }}</td>
                                 <td>{{ $product->pivot->ordered_quantity }}</td>
                                 <td>{{ $product->pivot->delivered_quantity }}</td>
                                 <td>
-                                    @if(($product->pivot->ordered_quantity - $product->pivot->delivered_quantity) == 0)
+                                    @if($product->pivot->ordered_quantity == $product->pivot->delivered_quantity)
                                     <strong class="badge badge-success">Approvisionnement terminé</strong>
                                     @else
                                     {!! Form::open(['route' => 'supply.store']) !!}

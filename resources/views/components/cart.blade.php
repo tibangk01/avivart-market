@@ -71,47 +71,27 @@
     @if ($instance == 'purchase')
 
     <div class="form-group">
-        <label for="provider_id">Fournisseur</label>
-        <select required class="form-control" id="provider_id" name="provider_id">
-            <option value="">Choisissez un fournisseur</option>
-            @foreach($providers as $provider)
-            <option value="{{ $provider->id }}">{{ $provider->getName() }}</option>
-            @endforeach
-        </select>
+        {!! Form::label('provider_id', 'Fournisseur') !!}
+        {!! Form::select('provider_id', $providers, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez un fournisseur']) !!}
     </div>
 
     @elseif ($instance == 'proforma')
 
     <div class="form-group">
-        <label for="customer_id">Client</label>
-        <select required class="form-control" id="customer_id" name="customer_id">
-            <option value="">Choisissez un client</option>
-            @foreach($customers as $customer)
-            <option value="{{ $customer->id }}">{{ $customer->getName() }}</option>
-            @endforeach
-        </select>
+        {!! Form::label('customer_id', 'Client') !!}
+        {!! Form::select('customer_id', $customers, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez un client']) !!}
     </div>
 
      @elseif ($instance == 'order')
 
     <div class="form-group">
-        <label for="order_state_id">Etat</label>
-        <select required class="form-control" id="order_state_id" name="order_state_id">
-            <option value="">Choisissez un état</option>
-            @foreach($orderStates as $orderState)
-            <option value="{{ $orderState->id }}">{{ $orderState->name }}</option>
-            @endforeach
-        </select>
+        {!! Form::label('order_state_id', 'Etat') !!}
+        {!! Form::select('order_state_id', $orderStates, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez un état']) !!}
     </div>
 
     <div class="form-group">
-        <label for="customer_id">Client</label>
-        <select required class="form-control" id="customer_id" name="customer_id">
-            <option value="">Choisissez un client</option>
-            @foreach($customers as $customer)
-            <option value="{{ $customer->id }}" {{ (session()->has('loadedProforma') && (session('loadedProforma')->customer_id == $customer->id)) ? 'selected' : '' }}>{{ $customer->getName() }}</option>
-            @endforeach
-        </select>
+        {!! Form::label('customer_id', 'Client') !!}
+        {!! Form::select('customer_id', $customers, session()->has('loadedProforma') ? session('loadedProforma')->customer_id : null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez un client']) !!}
     </div>
 
     @endif

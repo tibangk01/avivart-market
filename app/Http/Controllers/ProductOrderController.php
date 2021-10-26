@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+use App\Models\Order;
 use App\Models\ProductOrder;
 use Illuminate\Http\Request;
 
@@ -46,7 +48,7 @@ class ProductOrderController extends Controller
      */
     public function show(ProductOrder $productOrder)
     {
-        //
+        return view('product_order.show', compact('productOrder'));
     }
 
     /**
@@ -57,7 +59,11 @@ class ProductOrderController extends Controller
      */
     public function edit(ProductOrder $productOrder)
     {
-        //
+        $products = Product::all()->pluck(null, 'id');
+
+        $orders = Order::all()->pluck(null, 'id');
+
+        return view('product_order.edit', compact('productOrder', 'products', 'orders'));
     }
 
     /**
@@ -69,7 +75,20 @@ class ProductOrderController extends Controller
      */
     public function update(Request $request, ProductOrder $productOrder)
     {
-        //
+        if ($request->isMethod('PUT')) {
+            $request->validate([
+                'product_id' => ['required'],
+                'order_id' => ['required'],
+                'quantity' => ['required'],
+                'comment' => ['nullable'],
+            ]);
+
+            $productOrder->update($request->all());
+
+            session()->flash('success', 'Donnée enregistrée.');
+        }
+
+        return back();
     }
 
     /**

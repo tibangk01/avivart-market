@@ -53,6 +53,8 @@
                                                             href="{{ route('supply.show', $supply) }}"
                                                             title="Afficher"><i class="fa fa-eye"
                                                                 aria-hidden="true"></i></a>
+
+                                                        @if($supply->product_purchase->ordered_quantity != $supply->product_purchase->delivered_quantity)
                                                         <a class="btn btn-warning btn-xs"
                                                             href="{{ route('supply.edit', $supply) }}"
                                                             title="Modifier"><i class="fa fa-edit"
@@ -61,6 +63,7 @@
                                                             href="{{ route('supply.destroy', $supply) }}"
                                                             title="Supprimer"><i class="fa fa-trash"
                                                                 aria-hidden="true"></i></a>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                             @empty

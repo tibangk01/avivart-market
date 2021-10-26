@@ -34,4 +34,9 @@ class OrderState extends Model
 	{
 		return $this->hasMany(Order::class);
 	}
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

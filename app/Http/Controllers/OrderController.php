@@ -8,6 +8,10 @@ use BarryvdhDomPDF as PDF;
 use Illuminate\Http\Request;
 use \Cart;
 use Illuminate\Support\Facades\DB;
+use App\Models\Customer;
+use App\Models\Vat;
+use App\Models\Discount;
+use App\Models\OrderState;
 
 class OrderController extends Controller
 {
@@ -49,6 +53,13 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         if ($request->isMethod('POST')) {
+            $request->validate([
+                'customer_id' => ['required'],
+                'vat_id' => ['required'],
+                'discount_id' => ['required'],
+                'order_state_id' => ['required'],
+            ]);
+            
             $cartContent = Cart::instance($request->input('instance'))->content();
 
             try {
@@ -111,7 +122,15 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        //
+        $customers = Customer::all()->pluck(null, 'id');
+
+        $vats = Vat::all()->pluck(null, 'id');
+
+        $discounts = Discount::all()->pluck(null, 'id');
+
+        $orderStates = OrderState::all()->pluck(null, 'id');
+
+        return view('orders.edit', compact('order', 'customers', 'vats', 'discounts', 'orderStates'));
     }
 
     /**
@@ -123,7 +142,20 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        if ($request->isMethod('PUT')) {
+            $request->validate([
+                'customer_id' => ['required'],
+                'vat_id' => ['required'],
+                'discount_id' => ['required'],
+                'order_state_id' => ['required'],
+            ]);
+
+            $order->update($request->all());
+
+            session()->flash('success', 'Donnée enregistrée.');
+        }
+
+        return back();
     }
 
     /**

@@ -86,6 +86,8 @@
                                             href="{{ route('product_order.show', $product->pivot->id) }}"
                                             title="Afficher"><i class="fa fa-eye"
                                                 aria-hidden="true"></i></a>
+
+                                        @if(!$order->paid)
                                         <a class="btn btn-warning btn-xs"
                                             href="{{ route('product_order.edit', $product->pivot->id) }}"
                                             title="Editer"><i class="fa fa-edit"
@@ -94,6 +96,7 @@
                                             href="{{ route('product_order.destroy', $product->pivot->id) }}"
                                             title="Afficher"><i class="fa fa-trash"
                                                 aria-hidden="true"></i></a>
+                                        @endif
                                     </td>
                                 </tr>
                             @empty

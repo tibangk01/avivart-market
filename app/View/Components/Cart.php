@@ -34,9 +34,9 @@ class Cart extends Component
     {
         $this->instance = $instance;
 
-        $this->providers = Provider::all();
+        $this->providers = Provider::all()->pluck(null, 'id');
 
-        $this->customers = Customer::all();
+        $this->customers = Customer::all()->pluck(null, 'id');
 
         $this->vats = Vat::all()->pluck(null, 'id');
 

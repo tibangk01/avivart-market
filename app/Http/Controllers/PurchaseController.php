@@ -6,6 +6,9 @@ use App\Models\Purchase;
 use BarryvdhDomPDF as PDF;
 use Illuminate\Http\Request;
 use \Cart;
+use App\Models\Provider;
+use App\Models\Vat;
+use App\Models\Discount;
 use Illuminate\Support\Facades\DB;
 use App\Models\Society;
 
@@ -42,6 +45,12 @@ class PurchaseController extends Controller
     public function store(Request $request)
     {
         if ($request->isMethod('POST')) {
+            $request->validate([
+                'provider_id' => ['required'],
+                'vat_id' => ['required'],
+                'discount_id' => ['required'],
+            ]);
+
             $cartContent = Cart::instance($request->input('instance'))->content();
 
             try {
@@ -103,7 +112,13 @@ class PurchaseController extends Controller
      */
     public function edit(Purchase $purchase)
     {
-        //
+        $providers = Provider::all()->pluck(null, 'id');
+
+        $vats = Vat::all()->pluck(null, 'id');
+
+        $discounts = Discount::all()->pluck(null, 'id');
+
+        return view('purchases.edit', compact('purchase', 'providers', 'vats', 'discounts'));
     }
 
     /**
@@ -115,7 +130,19 @@ class PurchaseController extends Controller
      */
     public function update(Request $request, Purchase $purchase)
     {
-        //
+        if ($request->isMethod('PUT')) {
+            $request->validate([
+                'provider_id' => ['required'],
+                'vat_id' => ['required'],
+                'discount_id' => ['required'],
+            ]);
+
+            $purchase->update($request->all());
+
+            session()->flash('success', 'Donnée enregistrée.');
+        }
+
+        return back();
     }
 
     /**

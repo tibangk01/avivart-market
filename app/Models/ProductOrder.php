@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $product_id
  * @property int $order_id
  * @property int $quantity
+ * @property string|null $comment
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * 
@@ -36,6 +37,8 @@ class ProductOrder extends Model
 	];
 
 	protected $fillable = [
+		'product_id',
+		'order_id',
 		'quantity',
 		'comment',
 	];

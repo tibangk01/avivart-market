@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+use App\Models\Purchase;
 use App\Models\ProductPurchase;
 use Illuminate\Http\Request;
 
@@ -46,7 +48,7 @@ class ProductPurchaseController extends Controller
      */
     public function show(ProductPurchase $productPurchase)
     {
-        //
+        return view('product_purchase.show', compact('productPurchase'));
     }
 
     /**
@@ -57,7 +59,11 @@ class ProductPurchaseController extends Controller
      */
     public function edit(ProductPurchase $productPurchase)
     {
-        //
+        $products = Product::all()->pluck(null, 'id');
+
+        $purchases = Purchase::all()->pluck(null, 'id');
+
+        return view('product_purchase.edit', compact('productPurchase', 'products', 'purchases'));
     }
 
     /**
@@ -69,7 +75,20 @@ class ProductPurchaseController extends Controller
      */
     public function update(Request $request, ProductPurchase $productPurchase)
     {
-        //
+        if ($request->isMethod('PUT')) {
+            $request->validate([
+                'product_id' => ['required'],
+                'purchase_id' => ['required'],
+                'ordered_quantity' => ['required'],
+                'comment' => ['nullable'],
+            ]);
+
+            $productPurchase->update($request->all());
+
+            session()->flash('success', 'Donnée enregistrée.');
+        }
+
+        return back();
     }
 
     /**

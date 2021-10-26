@@ -121,7 +121,7 @@ Route::middleware(['auth', 'staff'])->group(function () {
     });
 
     Route::resource('society', SocietyController::class)
-        ->only(['show', 'edit', 'update']);
+        ->only(['index', 'show', 'edit', 'update']);
     /** End Societies routes */
 
     /** Agencies routes */
@@ -349,7 +349,7 @@ Route::middleware(['auth', 'staff'])->group(function () {
     });
 
      Route::prefix('/user')->name('user.')->group(function() {
-        Route::get('/{user}/show', [UserController::class, 'show'])->name('show');
+        Route::get('/{user}', [UserController::class, 'show'])->name('show');
         Route::get('/{user}/edit', [UserController::class, 'edit'])->name('edit');
     });
 

@@ -40,7 +40,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a data-attr="menu-open" data-class="active" href="{{ route('society.show', [1]) }}" class="nav-link">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('society.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-building"></i>
                                 <p>Société</p>
                             </a>

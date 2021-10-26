@@ -15,6 +15,13 @@ class SocietyController extends Controller
     {
         parent::__construct();
     }
+
+    public function index()
+    {
+        $societies = Society::all();
+
+        return view('societies.index', compact('societies'));
+    }
     
     /**
      * Display the specified resource.
