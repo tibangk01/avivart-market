@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="table-responsive bg-white">
-                    <table class="table table-bordered table-stripped table-hover mb-0">
+                    <table class="table table-bordered table-striped table-hover mb-0">
                         <thead class="thead-dark">
                             <tr>
                                 <th>Clé</th>
@@ -56,7 +56,7 @@
             </div>
             <div class="col-lg-6">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-hover text-nowrap datatable text-center">
+                    <table class="table table-bordered table-hover table-striped text-nowrap datatable text-center">
                         <thead class="thead-dark">
                             <tr>
                                 <th>Produit</th>
@@ -90,9 +90,7 @@
                                 </tr>
                             @empty
                             <tr>
-                                <td colspan="5">
-                                    Pas d'enregistrements.
-                                </td>
+                                <td colspan="5">Pas d'enregistrements</td>
                             </tr>
                             @endforelse
                         </tbody>

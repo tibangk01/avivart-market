@@ -1,7 +1,7 @@
-@extends('layouts.pdf', ['title' => "Liste des bons de commande", 'watermark' => true, 'orientation' => 'landscape'])
+@extends('layouts.pdf', ['title' => "Liste des reçus bons de commande", 'watermark' => true, 'orientation' => 'landscape'])
 
 @section('body')
-<h4 class="text-center text-dark text-uppercase"><u>Bons de commande</u></h4>
+<h4 class="text-center text-dark text-uppercase"><u>Liste des reçus bons de commande</u></h4>
 
 <table class="table table-bordered table-sm">
     <thead class="thead-dark">

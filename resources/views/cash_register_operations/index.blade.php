@@ -32,7 +32,7 @@
                                     </div>
 
                                     <div class="table-responsive">
-                                        <table class="table table-bordered table-hover datatable text-nowrap text-center">
+                                        <table class="table table-bordered table-hover table-striped datatable text-nowrap text-center">
                                             <thead class="thead-dark">
                                                 <tr>
                                                     <th>Type d'opération</th>
@@ -44,8 +44,8 @@
                                             </thead>
                                             <tbody>
                                                 @forelse ($cashRegisterOperations as $cashRegisterOperation)
-                                                    <tr>
-                                                        <td class="{{ $cashRegisterOperation->cash_register_operation_type->getForeColor() }}">{{ $cashRegisterOperation->cash_register_operation_type->name }}</td>
+                                                    <tr class="{{ $cashRegisterOperation->cash_register_operation_type->getBgColor() }}">
+                                                        <td>{{ $cashRegisterOperation->cash_register_operation_type->name }}</td>
                                                         <td>{{ $cashRegisterOperation->amount }}</td>
                                                         <td>{{ $cashRegisterOperation->created_at }}</td>
                                                         <td>{{ $cashRegisterOperation->updated_at }}</td>

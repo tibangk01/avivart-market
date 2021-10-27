@@ -46,6 +46,11 @@ class BankOperationType extends Model
         return $this->state ? 'text-success' : 'text-danger';
     }
 
+    public function getBgColor()
+    {
+        return $this->state ? 'table-success' : 'table-danger';
+    }
+
     public function __toString()
     {
         return $this->name;

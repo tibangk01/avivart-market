@@ -11,10 +11,10 @@
             </div>
             <div class="row">
                 <div class="col-lg-6">
-                    <h4>Mes informations</h4>
+                    <h4>Informations</h4>
 
                     <div class="table-responsive bg-white">
-                        <table class="table table-bordered table-stripped table-hover mb-0">
+                        <table class="table table-bordered table-striped table-hover mb-0">
                             <thead class="thead-dark">
                                 <tr>
                                     <th>Clé</th>
@@ -102,10 +102,10 @@
                 </div>
 
                 <div class="col-lg-6">
-                    <h4>Mes Transactions de Caisse Journalière (TCJ)</h4>
+                    <h4>Transactions de Caisse Journalière (TCJ)</h4>
 
                     <div class="table-responsive bg-white">
-                        <table class="table table-bordered table-stripped table-hover mb-0">
+                        <table class="table table-bordered table-striped table-hover table-striped mb-0">
                             <thead class="thead-dark">
                                 <tr>
                                     <th>Journée</th>

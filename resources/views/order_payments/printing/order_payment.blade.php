@@ -1,9 +1,9 @@
-@extends('layouts.pdf', ['title' => "Facture", 'watermark' => true, 'orientation' => 'portrait'])
+@extends('layouts.pdf', ['title' => "Reçu", 'watermark' => true, 'orientation' => 'portrait'])
 
 @php($increment = 0)
 
 @section('body')
-<h4 class="text-center text-dark text-uppercase"><u>Facture</u></h4>
+<h4 class="text-center text-dark text-uppercase"><u>Reçu</u></h4>
 
 <div class="text-right" style="margin-top: 1cm; margin-bottom: 1cm;">
     <p class="m-0">

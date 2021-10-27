@@ -1,4 +1,4 @@
- @extends('layouts.dashboard', ['title' => "Liste des factures"])
+ @extends('layouts.dashboard', ['title' => "Liste des commandes client"])
 
 @section('body')
 <section class="content">
@@ -30,7 +30,7 @@
                                     </div>
                                 </div>
                                 <div class="table-responsive">
-                                    <table class="table table-bordered table-hover text-nowrap datatable text-center">
+                                    <table class="table table-bordered table-hover table-striped text-nowrap datatable text-center">
                                         <thead class="thead-dark">
                                             <tr>
                                                 <th>Numéro</th>
@@ -54,7 +54,7 @@
                                                     <td>{{ $order->vat->percentage }}</td>
                                                     <td>{{ $order->discount->amount }}</td>
                                                     <td>{{ $order->totalTTC() }}</td>
-                                                    <td>{{ $order->paid ? 'Oui' : 'Nom' }}</td>
+                                                    <td>{{ $order->paid ? 'Oui' : 'Non' }}</td>
                                                     <td>{{ $order->created_at }}</td>
                                                     <td>{{ $order->updated_at }}</td>
                                                     <td>

@@ -29,6 +29,7 @@ class BankOperationController extends Controller
     public function create()
     {
         $banks = Bank::all()->pluck(null, 'id');
+
         $bankOperationTypes = BankOperationType::all()->pluck(null, 'id');
 
         return view('bank_operations.create', compact('banks', 'bankOperationTypes'));
@@ -51,7 +52,7 @@ class BankOperationController extends Controller
 
             $this->updateStaffStatusBarInfo(
                 (float) $request->input('amount'),
-                (string) ($bankOperation->bank_operation_type->state == 1) ? '+' : '-'
+                ($bankOperation->bank_operation_type->state == 1) ? '+' : '-'
             );
 
             if ($bankOperation) {
@@ -86,6 +87,7 @@ class BankOperationController extends Controller
     public function edit(BankOperation $bankOperation)
     {
         $banks = Bank::all()->pluck(null, 'id');
+        
         $bankOperationTypes = BankOperationType::all()->pluck(null, 'id');
 
         return view('bank_operations.edit', compact('bankOperation', 'banks', 'bankOperationTypes'));

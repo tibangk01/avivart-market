@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="table-responsive bg-white">
-                        <table class="table table-bordered table-stripped table-hover mb-0">
+                        <table class="table table-bordered table-striped table-hover mb-0">
                             <thead class="thead-dark">
                                 <tr>
                                     <th>Clé</th>
@@ -14,9 +14,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr class="{{ $cashRegisterOperation->cash_register_operation_type->getBgColor() }}">
                                     <td>Type</td>
-                                    <td class="{{ $cashRegisterOperation->cash_register_operation_type->getForeColor() }}">
+                                    <td>
                                         {{ $cashRegisterOperation->cash_register_operation_type->name }}
                                     </td>
                                 </tr>

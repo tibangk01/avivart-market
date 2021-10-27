@@ -37,21 +37,26 @@
                             {!! Form::label('study_level_id', "Niveau d'étude") !!}
                             {!! Form::select('study_level_id', $studyLevels, $staff->human->study_level_id, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisir un niveau d'étude"]) !!}
                         </div>
-                    </div>
-                    <div class="col-lg-6">
+
+                        <div class="form-group">
+                            {!! Form::label('username', "Nom d'utilisateur", ['class' => 'form-label']) !!}
+                            {!! Form::text('username', $staff->human->username, ['class' => 'form-control']) !!}
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('signature', 'Signature numérique (5 caractères max)', ['class' => 'form-label']) !!}
+                            {!! Form::text('signature', $staff->human->signature, ['class' => 'form-control', 'maxlength' => 5]) !!}
+                        </div>
+
                         <div class="form-group">
                             {!! Form::label('last_name', 'Nom', ['class' => 'form-label']) !!}
                             {!! Form::text('last_name', $staff->human->user->last_name , ['class' => 'form-control', 'required' => true]) !!}
                         </div>
-
+                    </div>
+                    <div class="col-lg-6">
                         <div class="form-group">
-                            {!! Form::label('first_name', 'Prénom', ['class' => 'form-label']) !!}
+                            {!! Form::label('first_name', 'Prénoms', ['class' => 'form-label']) !!}
                             {!! Form::text('first_name', $staff->human->user->first_name, ['class' => 'form-control', 'required' => true]) !!}
-                        </div>
-
-                        <div class="form-group">
-                            {!! Form::label('phone_number', 'Téléphone', ['class' => 'form-label']) !!}
-                            {!! Form::text('phone_number', $staff->human->user->phone_number, ['class' => 'form-control']) !!}
                         </div>
 
                         <div class="form-group">
@@ -60,13 +65,18 @@
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('address', "Adresse", ['class' => 'form-label']) !!}
-                            {!! Form::text('address', $staff->human->user->address, ['class' => 'form-control']) !!}
+                            {!! Form::label('phone_number', 'Téléphone', ['class' => 'form-label']) !!}
+                            {!! Form::text('phone_number', $staff->human->user->phone_number, ['class' => 'form-control']) !!}
                         </div>
 
                         <div class="form-group">
                             {!! Form::label('city', "Ville", ['class' => 'form-label']) !!}
                             {!! Form::text('city', $staff->human->user->city, ['class' => 'form-control']) !!}
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('address', "Adresse", ['class' => 'form-label']) !!}
+                            {!! Form::text('address', $staff->human->user->address, ['class' => 'form-control']) !!}
                         </div>
 
                         <div class="form-group">

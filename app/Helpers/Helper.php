@@ -21,4 +21,9 @@ class Helper
     {
         return ($useNumerics) ? mb_substr(str_shuffle(self::$alphas.''.self::$numerics), 0, $length) : mb_substr(str_shuffle(self::$alphas), 0, $length);
     }
+
+    public static function defaultPassword()
+    {
+        return 'roottoor';
+    }
 }

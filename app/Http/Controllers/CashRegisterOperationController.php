@@ -49,7 +49,7 @@ class CashRegisterOperationController extends Controller
 
             $this->updateStaffStatusBarInfo(
                 (float) $request->input('amount'),
-                (string) ($cashRegisterOperation->cash_register_operation_type->state == 1) ? '+' : '-'
+                ($cashRegisterOperation->cash_register_operation_type->state == 1) ? '+' : '-'
             );
 
             if ($cashRegisterOperation) {

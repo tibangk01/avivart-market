@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => "Liste des payements bon de commande"])
+@extends('layouts.dashboard', ['title' => "Liste des payements bon de réception"])
 
 @section('body')
     <div class="content">
@@ -33,7 +33,7 @@
                                     </div>
 
                                     <div class="table-responsive">
-                                        <table class="table table-bordered table-hover datatable text-nowrap text-center">
+                                        <table class="table table-bordered table-hover table-striped datatable text-nowrap text-center">
                                             <thead class="thead-dark">
                                                 <tr>
                                                     <th>Bon de commande</th>

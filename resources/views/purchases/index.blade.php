@@ -30,7 +30,7 @@
                                     </div>
                                 </div>
                                 <div class="table-responsive">
-                                    <table class="table table-bordered table-hover text-nowrap datatable text-center">
+                                    <table class="table table-bordered table-hover table-striped text-nowrap datatable text-center">
                                         <thead class="thead-dark">
                                             <tr>
                                                 <th>Numéro</th>
@@ -38,6 +38,7 @@
                                                 <th>TVA</th>
                                                 <th>Remise</th>
                                                 <th>Total TTC</th>
+                                                <th>Payement</th>
                                                 <th>Date de Création</th>
                                                 <th>Date de modification</th>
                                                 <th>Actions</th>
@@ -45,12 +46,13 @@
                                         </thead>
                                         <tbody>
                                             @forelse ($purchases as $purchase)
-                                                <tr class="{{ $purchase->paid ? 'table-success' : '' }}">
+                                                <tr class="{{ $purchase->getBgColor() }}">
                                                     <td>{{ $purchase->getNumber() }}</td>
                                                     <td>{{ $purchase->provider->getName() }}</td>
                                                     <td>{{ $purchase->vat->percentage }}</td>
                                                     <td>{{ $purchase->discount->amount }}</td>
                                                     <td>{{ $purchase->totalTTC() }}</td>
+                                                    <td>{{ $purchase->paid ? 'Oui' : 'Non' }}</td>
                                                     <td>{{ $purchase->created_at }}</td>
                                                     <td>{{ $purchase->updated_at }}</td>
                                                     <td>
@@ -74,7 +76,7 @@
                                                 </tr>
                                             @empty
                                             <tr>
-                                                <td colspan="8">Pas d'enregistrements</td>
+                                                <td colspan="9">Pas d'enregistrements</td>
                                             </tr>
                                             @endforelse
                                         </tbody>

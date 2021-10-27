@@ -22,7 +22,7 @@
 
                 <div class="form-group">
                     {!! Form::label('comment', 'Commentaire') !!}
-                    {!! Form::textarea('comment', null, ['class' => 'form-control', 'required' => true]) !!}
+                    {!! Form::textarea('comment', null, ['class' => 'form-control']) !!}
                 </div>
 
                 <div class="form-group text-right">

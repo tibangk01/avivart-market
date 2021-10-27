@@ -14,7 +14,7 @@
                 <x-library :library='auth()->user()->library' class="img-circle elevation-2" />
             </div>
             <div class="info">
-              <a href="{{ route('user.show', auth()->id()) }}" class="d-block">{{ auth()->user()->full_name }}e</a>
+              <a href="{{ route('user.show', auth()->id()) }}" class="d-block">{{ auth()->user()->full_name }}</a>
             </div>
         </div>
 
@@ -244,19 +244,19 @@
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('order.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-shopping-bag"></i>
-                                <p>Factures</p>
+                                <p>Commandes</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('purchase_delivery_note.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-shopping-bag"></i>
-                                <p>Bons de réception fournisseurs</p>
+                                <p>Réception fournisseur</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('order_delivery_note.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-shopping-bag"></i>
-                                <p>Bons de livraison clients</p>
+                                <p>Livraison client</p>
                             </a>
                         </li>
                     </ul>
@@ -274,13 +274,13 @@
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('purchase_payment.index') }}" class="nav-link">
                                 <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
-                                <p>Payements bon de commande</p>
+                                <p>Payements fournisseur</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('order_payment.index') }}" class="nav-link">
                                 <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
-                                <p>Payements facture</p>
+                                <p>Payements client</p>
                             </a>
                         </li>
                     </ul>

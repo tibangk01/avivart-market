@@ -99,8 +99,7 @@ class StaffController extends Controller
                     [
                         'serial_number' => $code,
                         'user_id' => $user->id,
-                        #'username' => Helper::randomAlphaNumeric(false),
-                        'password' => bcrypt(Helper::randomAlphaNumeric(true)),
+                        'password' => ($request->input('username') != null) ? bcrypt(Helper::defaultPassword()) : null,
                     ]
                 ));
 
@@ -173,7 +172,7 @@ class StaffController extends Controller
 
                 $staff->human->user->update($request->except('work_id', 'staff_type_id', 'signature'));
 
-                $staff->human->update($request->only('work_id', 'signature', 'contract_type_id', 'study_level_id', 'date_of_birth', 'place_of_birth', 'hiring_date', 'contract_end_date'));
+                $staff->human->update($request->only('work_id', 'username', 'signature', 'contract_type_id', 'study_level_id', 'date_of_birth', 'place_of_birth', 'hiring_date', 'contract_end_date'));
 
                 $staff->update($request->only('staff_type_id'));
 
@@ -233,8 +232,8 @@ class StaffController extends Controller
 
         if(mb_strtolower($method) == 'post'){
             $formData += [
-                'username' => ['unique:humans', 'max:25'],
-                'signature' => ['unique:humans', 'max:5'],
+                'username' => ['unique:humans', 'max:25', 'nullable'],
+                'signature' => ['unique:humans', 'max:5', 'nullable'],
             ];
         }
 

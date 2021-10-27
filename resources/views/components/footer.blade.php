@@ -1,4 +1,4 @@
-<footer class="main-footer pb-0">
+<footer class="main-footer">
     @if(!is_null($staffStatusBarInfo))
     <strong class="text-dark">Période en cours : </strong>{{ $staffStatusBarInfo->day_transaction->exercise->getPeriod() }} |
     <strong class="text-danger">Journée en cours ({{ $staffStatusBarInfo->day_transaction->getState() }}) : </strong>{{ $staffStatusBarInfo->day_transaction->getDay() }} |

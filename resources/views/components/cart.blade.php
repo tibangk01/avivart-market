@@ -4,7 +4,7 @@
     @if(Cart::instance($instance)->count())
 
     <div class="table-responsive bg-white p-2">
-        <table class="mb-0 table table-bordered table-hover text-nowrap datatable text-center">
+        <table class="mb-0 table table-bordered table-hover table-striped text-nowrap datatable text-center">
             <thead class="thead-dark">
                 <tr>
                     <th>Produit</th>

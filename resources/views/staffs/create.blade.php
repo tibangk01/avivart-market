@@ -44,20 +44,24 @@
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('signature', 'Signature numérique', ['class' => 'form-label']) !!}
-                            {!! Form::text('signature', null, ['class' => 'form-control', 'max' => 5]) !!}
-                            <span class="help-text">5 caractères max</span>
+                            {!! Form::label('signature', 'Signature numérique (5 caractères max)', ['class' => 'form-label']) !!}
+                            {!! Form::text('signature', null, ['class' => 'form-control', 'maxlength' => 5]) !!}
                         </div>
-                    </div>
-                    <div class="col-lg-6">
+
                         <div class="form-group">
                             {!! Form::label('last_name', 'Nom', ['class' => 'form-label']) !!}
                             {!! Form::text('last_name', null, ['class' => 'form-control', 'required' => true]) !!}
                         </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            {!! Form::label('first_name', 'Prénoms', ['class' => 'form-label']) !!}
+                            {!! Form::text('first_name', null, ['class' => 'form-control', 'required' => true]) !!}
+                        </div>
 
                         <div class="form-group">
-                            {!! Form::label('first_name', 'Prénom', ['class' => 'form-label']) !!}
-                            {!! Form::text('first_name', null, ['class' => 'form-control', 'required' => true]) !!}
+                            {!! Form::label('email', 'Email', ['class' => 'form-label']) !!}
+                            {!! Form::email('email', null, ['class' => 'form-control']) !!}
                         </div>
 
                         <div class="form-group">
@@ -66,8 +70,8 @@
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('email', 'Email', ['class' => 'form-label']) !!}
-                            {!! Form::email('email', null, ['class' => 'form-control']) !!}
+                            {!! Form::label('city', "Ville", ['class' => 'form-label']) !!}
+                            {!! Form::text('city', null, ['class' => 'form-control']) !!}
                         </div>
                         
                         <div class="form-group">
@@ -76,13 +80,8 @@
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('city', "Ville", ['class' => 'form-label']) !!}
-                            {!! Form::text('city', null, ['class' => 'form-control']) !!}
-                        </div>
-
-                        <div class="form-group">
                             {!! Form::label('date_of_birth', "Date de naissance", ['class' => 'form-label']) !!}
-                            {!! Form::date('date_of_birth', now(), ['class' => 'form-control']) !!}
+                            {!! Form::date('date_of_birth', null, ['class' => 'form-control']) !!}
                         </div>
 
                         <div class="form-group">
@@ -92,12 +91,12 @@
 
                         <div class="form-group">
                             {!! Form::label('hiring_date', "Date d'embauche", ['class' => 'form-label']) !!}
-                            {!! Form::date('hiring_date', now(), ['class' => 'form-control']) !!}
+                            {!! Form::date('hiring_date', null, ['class' => 'form-control']) !!}
                         </div>
 
                         <div class="form-group">
                             {!! Form::label('contract_end_date', 'Date de fin de contrat', ['class' => 'form-label']) !!}
-                            {!! Form::date('contract_end_date', now(), ['class' => 'form-control']) !!}
+                            {!! Form::date('contract_end_date', null, ['class' => 'form-control']) !!}
                         </div>
 
                         <div class="form-group text-right">

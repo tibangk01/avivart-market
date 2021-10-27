@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="table-responsive bg-white">
-                    <table class="table table-bordered table-stripped table-hover mb-0">
+                    <table class="table table-bordered table-striped table-hover mb-0">
                         <thead class="thead-dark">
                             <tr>
                                 <th>Clé</th>
@@ -14,9 +14,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="{{ $purchase->paid ? 'table-success' : '' }}">
+                            <tr class="{{ $purchase->getBgColor() }}">
                                 <th>Payement</th>
-                                <td>{{ $purchase->paid ? 'Oui' : 'Nom' }}</td>
+                                <td>{{ $purchase->paid ? 'Oui' : 'Non' }}</td>
                             </tr>
                             <tr>
                                 <th>Numéro</th>
@@ -60,7 +60,7 @@
             </div>
             <div class="col-lg-6">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-hover text-nowrap datatable text-center">
+                    <table class="table table-bordered table-hover table-striped text-nowrap datatable text-center">
                         <thead class="thead-dark">
                             <tr>
                                 <th>Produit</th>

@@ -67,6 +67,11 @@ class Purchase extends Model
 					->withTimestamps();
 	}
 
+	public function getBgColor()
+    {
+        return $this->paid ? 'table-success' : 'table-danger';
+    }
+
 	public function getNumber()
 	{
 		return Carbon::parse($this->created_at)->format('dmYHis');

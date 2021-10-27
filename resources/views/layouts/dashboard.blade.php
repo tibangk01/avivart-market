@@ -145,12 +145,12 @@
     <script src="{{ asset('vendors/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
     <script src="{{ asset('vendors/custom/js/datatable.js') }}"></script>
     <!-- ChartJS -->
-    // <script src="{{ asset('vendors/plugins/chart.js/Chart.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/chart.js/Chart.min.js') }}"></script>
     <!-- Sparkline -->
     <script src="{{ asset('vendors/plugins/sparklines/sparkline.js') }}"></script>
     <!-- JQVMap -->
-    {{-- <script src="{{ asset('vendors/plugins/jqvmap/jquery.vmap.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('vendors/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script> --}}
+    <script src="{{ asset('vendors/plugins/jqvmap/jquery.vmap.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
     <!-- jQuery Knob Chart -->
     <script src="{{ asset('vendors/plugins/jquery-knob/jquery.knob.min.js') }}"></script>
     <!-- daterangepicker -->
@@ -167,8 +167,6 @@
     <script src="{{ asset('vendors/dist/js/adminlte.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('vendors/dist/js/demo.js') }}"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    {{-- <script src="{{ asset('vendors/dist/js/pages/dashboard.js') }}"></script> --}}
     <!-- Page specific script -->
     <script type="text/javascript" src="https://avivart.net/ecosoft/libs/js/jquery-active-page.js"></script>
     <script type="text/javascript">
