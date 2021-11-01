@@ -38,6 +38,7 @@
                                                     <th>Titre</th>
                                                     <th>Date de Début</th>
                                                     <th>Date de Fin</th>
+                                                    <th>Vente Réelle</th>
                                                     <th>Date de Création</th>
                                                     <th>Date de modification</th>
                                                     <th>Actions</th>
@@ -50,6 +51,7 @@
                                                     <td>{{ $exercise->title }}</td>
                                                     <td>{{ $exercise->start_date }}</td>
                                                     <td>{{ $exercise->end_date }}</td>
+                                                    <td>{{ $exercise->real_sale }}</td>
                                                     <td>{{ $exercise->created_at }}</td>
                                                     <td>{{ $exercise->created_at }}</td>
                                                     <td>
@@ -66,7 +68,7 @@
                                                 </tr>
                                                 @empty
                                                     <tr>
-                                                        <td colspan="7">Pas d'enregistrements</td>
+                                                        <td colspan="8">Pas d'enregistrements</td>
                                                     </tr>
                                                 @endforelse
                                             </tbody>

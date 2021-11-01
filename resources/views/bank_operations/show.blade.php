@@ -15,6 +15,10 @@
                             </thead>
                             <tbody>
                                 <tr>
+                                    <td>Numéro</td>
+                                    <td>{{ $bankOperation->getNumber() }}</td>
+                                </tr>
+                                <tr>
                                     <td>Bnaque</td>
                                     <td>{{ $bankOperation->bank->name }}</td>
                                 </tr>

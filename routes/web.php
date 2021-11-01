@@ -50,6 +50,10 @@ use App\Http\Controllers\ContractTypeController;
 use App\Http\Controllers\StudyLevelController;
 use App\Http\Controllers\OrderPaymentController;
 use App\Http\Controllers\PurchasePaymentController;
+use App\Http\Controllers\AgencyStaffController;
+use App\Http\Controllers\SalePlaceStaffController;
+use App\Http\Controllers\RoleUserController;
+use App\Http\Controllers\ExerciseProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -270,7 +274,7 @@ Route::middleware(['auth', 'staff'])->group(function () {
         Route::get('/{purchase_payment}', [PurchasePaymentController::class, 'printingOne'])->name('one');
     });
 
-    Route::resource('purchase_payment', PurchasePaymentController::class)->except('edit', 'update');
+    Route::resource('purchase_payment', PurchasePaymentController::class);
     /** End purchase payemnts routes */
 
     /** order payments routes */
@@ -279,7 +283,7 @@ Route::middleware(['auth', 'staff'])->group(function () {
         Route::get('/{order_payment}', [OrderPaymentController::class, 'printingOne'])->name('one');
     });
 
-    Route::resource('order_payment', OrderPaymentController::class)->except('edit', 'update');
+    Route::resource('order_payment', OrderPaymentController::class);
     /** End order payments routes */
 
     /** product categories routes */
@@ -344,6 +348,22 @@ Route::middleware(['auth', 'staff'])->group(function () {
     /** day transactions routes */
     Route::resource('day_transaction', DayTransactionController::class);
     /** End day transactions routes */
+
+    /** agency staff routes */
+    Route::resource('agency_staff', AgencyStaffController::class);
+    /** End agency staff routes */
+
+    /** sale_place staff routes */
+    Route::resource('sale_place_staff', SalePlaceStaffController::class);
+    /** End sale_place staff routes */
+
+    /** role user routes */
+    Route::resource('role_user', RoleUserController::class);
+    /** End role user routes */
+
+    /** exercise product routes */
+    Route::resource('exercise_product', ExerciseProductController::class);
+    /** End exercise product routes */
 
     Route::prefix('/cart')->name('cart.')->group(function() {
         Route::get('/{product}/add', [CartController::class, 'add'])->name('add');

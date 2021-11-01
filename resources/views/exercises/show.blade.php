@@ -31,6 +31,10 @@
                                 <td>{{ $exercise->end_date }}</td>
                             </tr>
                             <tr>
+                                <th>Vente Réelle</th>
+                                <td>{{ $exercise->real_sale }}</td>
+                            </tr>
+                            <tr>
                                 <th>Date de création</th>
                                 <td>{{ $exercise->created_at }}</td>
                             </tr>

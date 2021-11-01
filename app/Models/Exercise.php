@@ -43,7 +43,8 @@ class Exercise extends Model
 		'currency_id',
 		'title',
 		'start_date',
-		'end_date'
+		'end_date',
+		'real_sale',
 	];
 
 	public function currency()

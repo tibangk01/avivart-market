@@ -25,6 +25,10 @@
                                     <td>{{ $product->name }}</td>
                                 </tr>
                                 <tr>
+                                    <th>Nombre d'Elément</th>
+                                    <td>{{ $product->items }}</td>
+                                </tr>
+                                <tr>
                                     <th>Description</th>
                                     <td>{{ $product->description }}</td>
                                 </tr>
@@ -45,27 +49,39 @@
                                     <td>{{ $product->conversion->name }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Prix d'Achat</th>
+                                    <th>Prix d'Achat Global</th>
+                                    <td>{{ $product->global_purchase_price }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Prix d'Achat Unitaire</th>
                                     <td>{{ $product->purchase_price }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Prix de Vente</th>
+                                    <th>Prix de Vente Global</th>
+                                    <td>{{ $product->global_selling_price }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Prix de Vente Unitaire</th>
                                     <td>{{ $product->selling_price }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Prix de Location</th>
+                                    <th>Prix de Location Global</th>
+                                    <td>{{ $product->global_rental_price }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Prix de Location Unitaire</th>
                                     <td>{{ $product->rental_price }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Quantité en stock</th>
+                                    <th>Quantité en Stock</th>
                                     <td>{{ $product->stock_quantity }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Quantité vendue</th>
+                                    <th>Quantité Vendue</th>
                                     <td>{{ $product->sold_quantity }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Quantité d'alert</th>
+                                    <th>Quantité d'Alert</th>
                                     <td>{{ $product->alert_quantity }}</td>
                                 </tr>
                                 <tr>

@@ -20,6 +20,7 @@ use Gloudemans\Shoppingcart\Contracts\Buyable;
  * @property int $product_category_id
  * @property int $conversion_id
  * @property string $name
+ * @property int $items
  * @property float $purchase_price
  * @property float $selling_price
  * @property float $rental_price
@@ -73,8 +74,12 @@ class Product extends Model implements Buyable
 		'product_category_id',
 		'conversion_id',
 		'name',
+		'items',
+		'global_purchase_price',
 		'purchase_price',
+		'global_selling_price',
 		'selling_price',
+		'global_rental_price',
 		'rental_price',
 		'stock_quantity',
 		'sold_quantity',

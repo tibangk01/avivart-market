@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\OrderState;
+use App\Models\PaymentMode;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Models\OrderPayment;
@@ -71,7 +73,7 @@ class OrderPaymentController extends Controller
                 session()->flash('success', 'Donnée enregistrée.');
 
                 $this->updateStaffStatusBarInfo(
-                    (float) $request->input('amount'),
+                    $payment->amount,
                     '+'
                 );
 
@@ -108,7 +110,13 @@ class OrderPaymentController extends Controller
      */
     public function edit(OrderPayment $orderPayment)
     {
-        //
+        $orderStates = OrderState::all()->pluck(null, 'id');
+
+        $orders = Order::where('paid', true)->get()->pluck(null, 'id');
+
+        $paymentModes = PaymentMode::all()->pluck(null, 'id');
+
+        return view('order_payments.edit', compact('orderPayment', 'orderStates', 'orders', 'paymentModes'));
     }
 
     /**
@@ -120,7 +128,11 @@ class OrderPaymentController extends Controller
      */
     public function update(Request $request, OrderPayment $orderPayment)
     {
-        //
+        if ($request->isMethod('PUT')) {
+            // code...
+        }
+
+        return  back();
     }
 
     /**

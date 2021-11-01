@@ -41,4 +41,9 @@ class CashRegisterOperation extends Model
 	{
 		return $this->belongsTo(CashRegisterOperationType::class);
 	}
+
+	public function getNumber()
+	{
+		return Carbon::parse($this->created_at)->format('dmYHis');
+	}
 }

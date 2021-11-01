@@ -35,6 +35,7 @@
                                         <table class="table table-bordered table-hover table-striped datatable text-nowrap text-center">
                                             <thead class="thead-dark">
                                                 <tr>
+                                                    <th>Number</th>
                                                     <th>Type d'opération</th>
                                                     <th>Montant</th>
                                                     <th>Date de création</th>
@@ -45,6 +46,7 @@
                                             <tbody>
                                                 @forelse ($cashRegisterOperations as $cashRegisterOperation)
                                                     <tr class="{{ $cashRegisterOperation->cash_register_operation_type->getBgColor() }}">
+                                                        <td>{{ $cashRegisterOperation->getNumber() }}</td>
                                                         <td>{{ $cashRegisterOperation->cash_register_operation_type->name }}</td>
                                                         <td>{{ $cashRegisterOperation->amount }}</td>
                                                         <td>{{ $cashRegisterOperation->created_at }}</td>
@@ -66,7 +68,7 @@
                                                     </tr>
                                                 @empty
                                                     <tr>
-                                                        <td colspan="5">Pas d'enregistrements</td>
+                                                        <td colspan="6">Pas d'enregistrements</td>
                                                     </tr>
                                                 @endforelse
                                             </tbody>

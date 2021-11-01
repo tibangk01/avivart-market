@@ -178,6 +178,30 @@
                                 <p>Staffs</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('agency_staff.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>Agences & Staffs</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('sale_place_staff.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>Points de vente & Staffs</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('role_user.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>Rôles & Utilisateurs</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('exercise_product.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>Exercices & Produits</p>
+                            </a>
+                        </li>
 
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('day_transaction.index') }}" class="nav-link">

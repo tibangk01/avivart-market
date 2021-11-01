@@ -48,15 +48,13 @@ class CashRegisterOperationController extends Controller
             $cashRegisterOperation = CashRegisterOperation::create($request->all());
 
             $this->updateStaffStatusBarInfo(
-                (float) $request->input('amount'),
+                $cashRegisterOperation->amount,
                 ($cashRegisterOperation->cash_register_operation_type->state == 1) ? '+' : '-'
             );
 
             if ($cashRegisterOperation) {
-
                 session()->flash('success', "Donnée enregistrée");
             } else {
-
                 session()->flash('error', "Une erreur s'est produite");
             }
         }
@@ -102,7 +100,17 @@ class CashRegisterOperationController extends Controller
 
             $this->_validateRequest($request);
 
-            $cashRegisterOperation->update($request->all());
+            /*$this->updateStaffStatusBarInfo(
+                $cashRegisterOperation->amount,
+                ($cashRegisterOperation->cash_register_operation_type->state == 1) ? '-' : '+'
+            );*/
+
+            $cashRegisterOperation->update($request->only('comment'));
+
+            /*$this->updateStaffStatusBarInfo(
+                $cashRegisterOperation->amount,
+                ($cashRegisterOperation->cash_register_operation_type->state == 1) ? '+' : '-'
+            );*/
 
             session()->flash('success', 'Modification réussi');
         }
@@ -134,6 +142,7 @@ class CashRegisterOperationController extends Controller
         $request->validate([
             'cash_register_operation_type_id' => ['required'],
             'amount' => ['required'],
+            'comment' => ['nullable'],
         ]);
     }
 }

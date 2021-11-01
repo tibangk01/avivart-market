@@ -57,11 +57,17 @@
                                                                 href="{{ route('order_payment.show', $orderPayment) }}"
                                                                 title="Afficher"><i class="fa fa-eye"
                                                                     aria-hidden="true"></i></a>
+
+                                                            <a class="btn btn-warning btn-xs"
+                                                                href="{{ route('order_payment.edit', $orderPayment) }}"
+                                                                title="Modifier"><i class="fa fa-edit"
+                                                                    aria-hidden="true"></i></a>
                                                             
                                                             <a class="btn btn-danger btn-xs"
                                                                 href="{{ route('order_payment.destroy', $orderPayment) }}"
                                                                 title="Supprimer"><i class="fa fa-trash"
                                                                     aria-hidden="true"></i></a>
+
                                                             <a class="btn btn-dark btn-xs" target="_blank" 
                                                             href="{{ route('order_payment.printing.one', $orderPayment) }}"
                                                             title="Imprimer"><i class="fa fa-print"

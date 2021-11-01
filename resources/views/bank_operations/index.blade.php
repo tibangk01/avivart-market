@@ -35,6 +35,7 @@
                                         <table class="table table-bordered table-hover table-striped datatable text-nowrap text-center">
                                             <thead class="thead-dark">
                                                 <tr>
+                                                    <th>Numéro</th>
                                                     <th>Banque</th>
                                                     <th>Type d'opération</th>
                                                     <th>Montant</th>
@@ -46,6 +47,7 @@
                                             <tbody>
                                                 @forelse ($bankOperations as $bankOperation)
                                                     <tr class="{{ $bankOperation->bank_operation_type->getBgColor() }}">
+                                                        <td>{{ $bankOperation->getNumber() }}</td>
                                                         <td>{{ $bankOperation->bank->name }}</td>
                                                         <td>{{ $bankOperation->bank_operation_type->name }}</td>
                                                         <td>{{ $bankOperation->amount }}</td>
@@ -68,7 +70,7 @@
                                                     </tr>
                                                 @empty
                                                 <tr>
-                                                    <td colspan="6">Pas d'enregistrements</td>
+                                                    <td colspan="7">Pas d'enregistrements</td>
                                                 </tr>
                                                 @endforelse
                                             </tbody>

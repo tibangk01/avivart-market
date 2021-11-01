@@ -51,15 +51,13 @@ class BankOperationController extends Controller
             $bankOperation = BankOperation::create($request->all());
 
             $this->updateStaffStatusBarInfo(
-                (float) $request->input('amount'),
+                $bankOperation->amount,
                 ($bankOperation->bank_operation_type->state == 1) ? '+' : '-'
             );
 
             if ($bankOperation) {
-
                 session()->flash('success', "Donnée enregistrée");
             } else {
-
                 session()->flash('error', "Une erreur s'est produite");
             }
         }
@@ -107,7 +105,17 @@ class BankOperationController extends Controller
 
             $this->_validateRequest($request);
 
-            $bankOperation->update($request->all());
+            /*$this->updateStaffStatusBarInfo(
+                $bankOperation->amount,
+                ($bankOperation->bank_operation_type->state == 1) ? '-' : '+'
+            );*/
+
+            $bankOperation->update($request->only('bank_id', 'comment'));
+
+            /*$this->updateStaffStatusBarInfo(
+                $bankOperation->amount,
+                ($bankOperation->bank_operation_type->state == 1) ? '+' : '-'
+            );*/
 
             session()->flash('success', 'Modification réussi');
         }
@@ -140,6 +148,7 @@ class BankOperationController extends Controller
             'bank_operation_type_id' => ['required'],
             'bank_id' => ['required'],
             'amount' => ['required'],
+            'comment' => ['nullable'],
         ]);
     }
 }

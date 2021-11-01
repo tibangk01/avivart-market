@@ -12,12 +12,12 @@
 
                 <div class="form-group">
                     {!! Form::label('cash_register_operation_type_id', "Type d'opération de caisse") !!}
-                    {!! Form::select('cash_register_operation_type_id', $cashRegisterOperationTypes , null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez un type d'opération de caisse"]) !!}
+                    {!! Form::select('cash_register_operation_type_id', $cashRegisterOperationTypes , null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez un type d'opération de caisse", 'readonly' => true]) !!}
                 </div>
 
                 <div class="form-group">
                     {!! Form::label('amount', 'Montant') !!}
-                    {!! Form::number('amount', null, ['class' => 'form-control', 'required' => true, 'step' => 'any']) !!}
+                    {!! Form::number('amount', null, ['class' => 'form-control', 'required' => true, 'step' => 'any', 'readonly' => true]) !!}
                 </div>
 
                 <div class="form-group">

@@ -36,27 +36,47 @@
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('stock_quantity', 'Quantité en stock', ['class' => 'form-label']) !!}
+                    {!! Form::label('items', "Nombre d'élément") !!}
+                    {!! Form::number('items', null, ['class' => 'form-control', 'required' => true, 'min' => 1, 'step' => 1]) !!}
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('stock_quantity', 'Quantité en Stock', ['class' => 'form-label']) !!}
                     {!! Form::number('stock_quantity', null, ['class' => 'form-control', 'required' => true, 'min' => 1, 'step' => 1]) !!}
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('alert_quantity', 'Quantité alert') !!}
+                    {!! Form::label('alert_quantity', "Quantité d'Alert") !!}
                     {!! Form::number('alert_quantity', null, ['class' => 'form-control', 'required' => true, 'min' => 0, 'step' => 1]) !!}
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('purchase_price', "Prix d'Achat") !!}
+                    {!! Form::label('global_purchase_price', "Prix d'Achat Global") !!}
+                    {!! Form::number('global_purchase_price', null, ['class' => 'form-control', 'required' => true, 'step' => 'any']) !!}
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('purchase_price', "Prix d'Achat Unitaire") !!}
                     {!! Form::number('purchase_price', null, ['class' => 'form-control', 'required' => true, 'step' => 'any']) !!}
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('selling_price', "Prix de Vente") !!}
+                    {!! Form::label('global_selling_price', "Prix de Vente Global") !!}
+                    {!! Form::number('global_selling_price', null, ['class' => 'form-control', 'required' => true, 'step' => 'any']) !!}
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('selling_price', "Prix de Vente Unitaire") !!}
                     {!! Form::number('selling_price', null, ['class' => 'form-control', 'required' => true, 'step' => 'any']) !!}
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('rental_price', "Prix de Location") !!}
+                    {!! Form::label('global_rental_price', "Prix de Location Global") !!}
+                    {!! Form::number('global_rental_price', null, ['class' => 'form-control', 'required' => true, 'step' => 'any']) !!}
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('rental_price', "Prix de Location Unitaire") !!}
                     {!! Form::number('rental_price', null, ['class' => 'form-control', 'required' => true, 'step' => 'any']) !!}
                 </div>
 
@@ -76,12 +96,12 @@
 
                 <div class="form-group">
                     {!! Form::label('manufacture_date', 'Date de fabrication', ['class' => 'form-label']) !!}
-                    {!! Form::date('manufacture_date', $product->manufacture_date, ['class' => 'form-control']) !!}
+                    {!! Form::date('manufacture_date', null, ['class' => 'form-control']) !!}
                 </div>
 
                 <div class="form-group">
                     {!! Form::label('expiration_date', "Date d'expiration", ['class' => 'form-label']) !!}
-                    {!! Form::date('expiration_date', $product->expiration_date, ['class' => 'form-control']) !!}
+                    {!! Form::date('expiration_date', null, ['class' => 'form-control']) !!}
                 </div>
 
                 <div class="form-group">

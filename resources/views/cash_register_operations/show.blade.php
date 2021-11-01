@@ -14,6 +14,10 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <tr>
+                                    <td>Numéro</td>
+                                    <td>{{ $cashRegisterOperation->getNumber() }}</td>
+                                </tr>
                                 <tr class="{{ $cashRegisterOperation->cash_register_operation_type->getBgColor() }}">
                                     <td>Type</td>
                                     <td>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PaymentMode;
 use App\Models\Purchase;
 use App\Models\Payment;
 use App\Models\PurchasePayment;
@@ -70,7 +71,7 @@ class PurchasePaymentController extends Controller
                 session()->flash('success', 'Donnée enregistrée.');
 
                 $this->updateStaffStatusBarInfo(
-                    (float) $request->input('amount'),
+                    $payment->amount,
                     '-'
                 );
 
@@ -107,7 +108,11 @@ class PurchasePaymentController extends Controller
      */
     public function edit(PurchasePayment $purchasePayment)
     {
-        //
+        $purchases = Purchase::where('paid', true)->get()->pluck(null, 'id');
+
+        $paymentModes = PaymentMode::all()->pluck(null, 'id');
+
+        return view('purchase_payments.edit', compact('purchasePayment', 'purchases', 'paymentModes'));
     }
 
     /**
@@ -119,7 +124,11 @@ class PurchasePaymentController extends Controller
      */
     public function update(Request $request, PurchasePayment $purchasePayment)
     {
-        //
+        if ($request->isMethod('PUT')) {
+            // code...
+        }
+
+        return  back();
     }
 
     /**

@@ -51,4 +51,9 @@ class BankOperation extends Model
 	{
 		return $this->belongsTo(Bank::class);
 	}
+
+	public function getNumber()
+	{
+		return Carbon::parse($this->created_at)->format('dmYHis');
+	}
 }
