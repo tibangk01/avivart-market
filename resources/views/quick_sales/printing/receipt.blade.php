@@ -14,7 +14,7 @@
     </thead>
     <tbody>
         <tr>
-            <td>Product</td>
+            <td>Produit</td>
             <td>{{ $quickSale->product->name }}</td>
         </tr>
         <tr>

@@ -250,7 +250,7 @@
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('purchase.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-file"></i>
-                                <p>Bons de commande</p>
+                                <p>Commandes fournisseur</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -268,19 +268,19 @@
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('order.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-shopping-bag"></i>
-                                <p>Commandes</p>
+                                <p>Commandes client</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('purchase_delivery_note.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-shopping-bag"></i>
-                                <p>Réception fournisseur</p>
+                                <p>Réceptions fournisseur</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('order_delivery_note.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-shopping-bag"></i>
-                                <p>Livraison client</p>
+                                <p>Livraisons client</p>
                             </a>
                         </li>
                     </ul>
