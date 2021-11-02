@@ -26,7 +26,6 @@ use Illuminate\Database\Eloquent\Model;
 class SalePlaceStaff extends Model
 {
 	protected $table = 'sale_place_staff';
-	public $incrementing = false;
 
 	protected $casts = [
 		'id' => 'int',
@@ -35,7 +34,8 @@ class SalePlaceStaff extends Model
 	];
 
 	protected $fillable = [
-		'id'
+		'sale_place_id',
+		'staff_id',
 	];
 
 	public function sale_place()

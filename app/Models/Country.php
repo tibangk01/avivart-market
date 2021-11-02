@@ -21,8 +21,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property int|null $numcode
  * @property int $phonecode
  * @property string|null $nationality
- * @property Carbon $created
- * @property Carbon $modified
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  * 
  * @property Collection|Enterprise[] $enterprises
  * @property Collection|User[] $users
@@ -32,16 +32,10 @@ use Illuminate\Database\Eloquent\Model;
 class Country extends Model
 {
 	protected $table = 'countries';
-	public $timestamps = false;
 
 	protected $casts = [
 		'numcode' => 'int',
 		'phonecode' => 'int'
-	];
-
-	protected $dates = [
-		'created',
-		'modified'
 	];
 
 	protected $fillable = [
@@ -51,9 +45,7 @@ class Country extends Model
 		'iso3',
 		'numcode',
 		'phonecode',
-		'nationality',
-		'created',
-		'modified'
+		'nationality'
 	];
 
 	public function enterprises()

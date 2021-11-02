@@ -35,7 +35,6 @@ use Illuminate\Database\Eloquent\Model;
 class ExerciseProduct extends Model
 {
 	protected $table = 'exercise_product';
-	public $incrementing = false;
 
 	protected $casts = [
 		'id' => 'int',
@@ -53,7 +52,8 @@ class ExerciseProduct extends Model
 	];
 
 	protected $fillable = [
-		'id',
+		'exercise_id',
+		'product_id',
 		'initial_stock',
 		'final_stock',
 		'global_purchase_price',

@@ -26,7 +26,6 @@ use Illuminate\Database\Eloquent\Model;
 class RoleUser extends Model
 {
 	protected $table = 'role_user';
-	public $incrementing = false;
 
 	protected $casts = [
 		'id' => 'int',
@@ -35,7 +34,8 @@ class RoleUser extends Model
 	];
 
 	protected $fillable = [
-		'id'
+		'role_id',
+		'user_id',
 	];
 
 	public function role()

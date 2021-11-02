@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Currency;
 use App\Models\Exercise;
+use App\Models\Product;
+use App\Models\ExerciseProduct;
 use Illuminate\Http\Request;
+use BarryvdhDomPDF as PDF;
 
 class ExerciseController extends Controller
 {
@@ -126,5 +129,14 @@ class ExerciseController extends Controller
     public function destroy(Exercise $exercise)
     {
         //
+    }
+
+    public function inventory(Request $request, Exercise $exercise)
+    {
+        $pdf = PDF::loadView('exercises.printing.inventory', compact('exercise'));
+        $pdf->setPaper('a4', 'landscape');
+        $pdf->save(public_path("libraries/docs/inventory_{$exercise->id}.pdf"));
+
+        return $pdf->stream('inventory.pdf');
     }
 }

@@ -47,6 +47,13 @@ class Exercise extends Model
 		'real_sale',
 	];
 
+	public function products()
+	{
+		return $this->belongsToMany(Product::class, 'exercise_product')
+					->withPivot('id', 'initial_stock', 'final_stock', 'global_purchase_price', 'purchase_price', 'global_selling_price', 'selling_price', 'global_rental_price', 'rental_price', 'loss')
+					->withTimestamps();
+	}
+
 	public function currency()
 	{
 		return $this->belongsTo(Currency::class);

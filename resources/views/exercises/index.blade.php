@@ -64,6 +64,11 @@
                                                         <a class="btn btn-danger btn-xs" href="{{ route('exercise.destroy',$exercise) }}"
                                                             title="Supprimer"><i class="fa fa-trash"
                                                                 aria-hidden="true"></i></a>
+
+                                                        <a class="btn btn-dark btn-xs" target="_blank" 
+                                                    href="{{ route('exercise.printing.inventory', $exercise) }}"
+                                                    title="Inventaire"><i class="fa fa-print"
+                                                        aria-hidden="true"></i></a>
                                                     </td>
                                                 </tr>
                                                 @empty

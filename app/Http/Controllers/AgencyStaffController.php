@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Agency;
+use App\Models\Staff;
 use App\Models\AgencyStaff;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,9 @@ class AgencyStaffController extends Controller
      */
     public function index()
     {
-        return view('agencies_staffs.index');
+        $agencyStaffs = AgencyStaff::all();
+
+        return view('agencies_staffs.index', compact('agencyStaffs'));
     }
 
     /**
@@ -24,7 +28,10 @@ class AgencyStaffController extends Controller
      */
     public function create()
     {
-        return view('agencies_staffs.create');
+        $agencies = Agency::with('enterprise')->get()->pluck('enterprise.name', 'id');
+        $staffs = Staff::with('human.user')->get()->pluck('human.user.full_name', 'id');
+
+        return view('agencies_staffs.create', compact('agencies', 'staffs'));
     }
 
     /**
@@ -35,7 +42,18 @@ class AgencyStaffController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->isMethod('POST')) {
+            $request->validate([
+                'agency_id' => ['required'],
+                'staff_id' => ['required'],
+            ]);
+
+            $agencyStaff = AgencyStaff::create($request->all());
+
+            session()->flash('success', "Donnée enregistrée");
+        }
+
+        return back();
     }
 
     /**
@@ -57,7 +75,10 @@ class AgencyStaffController extends Controller
      */
     public function edit(AgencyStaff $agencyStaff)
     {
-        return view('agencies_staffs.edit', compact('agencyStaff'));
+        $agencies = Agency::with('enterprise')->get()->pluck('enterprise.name', 'id');
+        $staffs = Staff::with('human.user')->get()->pluck('human.user.full_name', 'id');
+
+        return view('agencies_staffs.edit', compact('agencyStaff', 'agencies', 'staffs'));
     }
 
     /**
@@ -69,7 +90,18 @@ class AgencyStaffController extends Controller
      */
     public function update(Request $request, AgencyStaff $agencyStaff)
     {
-        //
+        if ($request->isMethod('PUT')) {
+            $request->validate([
+                'agency_id' => ['required'],
+                'staff_id' => ['required'],
+            ]);
+
+            $agencyStaff->update($request->all());
+
+            session()->flash('success', "Donnée enregistrée");
+        }
+
+        return back();
     }
 
     /**

@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property string $activity
  * @property Carbon $created_at
- * @property Carbon $modified_at
+ * @property Carbon $updated_at
  * @property int $transaction_type_id
  * @property int $user_id
  * 
@@ -27,20 +27,14 @@ use Illuminate\Database\Eloquent\Model;
 class Transaction extends Model
 {
 	protected $table = 'transactions';
-	public $timestamps = false;
 
 	protected $casts = [
 		'transaction_type_id' => 'int',
 		'user_id' => 'int'
 	];
 
-	protected $dates = [
-		'modified_at'
-	];
-
 	protected $fillable = [
 		'activity',
-		'modified_at',
 		'transaction_type_id',
 		'user_id'
 	];

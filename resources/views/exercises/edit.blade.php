@@ -22,12 +22,12 @@
 
                 <div class="form-group">
                     {!! Form::label('start_date', "Date de Début") !!}
-                    {!! Form::date('start_date', null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Date de Début"]) !!}
+                    {!! Form::date('start_date', $exercise->start_date, ['class' => 'form-control', 'required' => true, 'placeholder' => "Date de Début"]) !!}
                 </div>
 
                 <div class="form-group">
                     {!! Form::label('end_date', "Date de Fin") !!}
-                    {!! Form::date('end_date', null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Date de Fin"]) !!}
+                    {!! Form::date('end_date', $exercise->end_date, ['class' => 'form-control', 'required' => true, 'placeholder' => "Date de Fin"]) !!}
                 </div>
 
                  <div class="form-group text-right">

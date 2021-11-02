@@ -26,7 +26,10 @@ class ProductPurchaseController extends Controller
      */
     public function create()
     {
-        //
+        $products = Product::all()->pluck(null, 'id');
+        $purchases = Purchase::all()->pluck(null, 'id');
+
+        return view('product_purchase.create', compact('products', 'purchases'));
     }
 
     /**
@@ -37,7 +40,20 @@ class ProductPurchaseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->isMethod('POST')) {
+            $request->validate([
+                'product_id' => ['required'],
+                'purchase_id' => ['required'],
+                'ordered_quantity' => ['required'],
+                'comment' => ['nullable'],
+            ]);
+
+            $productPurchase = ProductPurchase::create($request->all());
+
+            session()->flash('success', 'Donnée enregistrée.');
+        }
+
+        return back();
     }
 
     /**

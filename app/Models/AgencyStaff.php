@@ -35,7 +35,8 @@ class AgencyStaff extends Model
 	];
 
 	protected $fillable = [
-		'id'
+		'agency_id',
+		'staff_id',
 	];
 
 	public function agency()

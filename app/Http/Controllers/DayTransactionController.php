@@ -116,7 +116,9 @@ class DayTransactionController extends Controller
                 'state' => ['required'],
             ]);
 
-            dd($request->all());
+            $dayTransaction->update($request->all());
+
+            session()->flash('info', "Transaction de journée fermée");
         }
 
         return back();

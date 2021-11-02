@@ -131,7 +131,9 @@ class CashRegisterTransactionController extends Controller
                 'state' => ['required'],
             ]);
 
-            dd($request->all());
+            $cashRegisterTransaction->update($request->all());
+
+            session()->flash('info', "Transaction de caisse fermée");
         }
 
         return back();

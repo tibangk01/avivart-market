@@ -26,7 +26,10 @@ class ProductOrderController extends Controller
      */
     public function create()
     {
-        //
+        $products = Product::all()->pluck(null, 'id');
+        $orders = Order::all()->pluck(null, 'id');
+
+        return view('product_order.create', compact('products', 'orders'));
     }
 
     /**
@@ -37,7 +40,20 @@ class ProductOrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->isMethod('POST')) {
+            $request->validate([
+                'product_id' => ['required'],
+                'order_id' => ['required'],
+                'quantity' => ['required'],
+                'comment' => ['nullable'],
+            ]);
+
+            $productOrder = ProductOrder::create($request->all());
+
+            session()->flash('success', 'Donnée enregistrée.');
+        }
+
+        return back();
     }
 
     /**

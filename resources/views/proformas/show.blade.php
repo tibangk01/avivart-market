@@ -55,6 +55,11 @@
                 </div>
             </div>
             <div class="col-lg-6">
+                <div class="text-right py-1">
+                    <a class="btn btn-flat btn-primary" href="{{ route('product_proforma.create') }}">
+                        <i class="fa fa-plus"></i> Ajouter
+                    </a>
+                </div>
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover table-striped text-nowrap datatable text-center">
                         <thead class="thead-dark">

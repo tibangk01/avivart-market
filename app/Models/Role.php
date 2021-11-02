@@ -16,8 +16,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property string $name
  * @property string $about
- * @property Carbon $created
- * @property Carbon $modified
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  * 
  * @property Collection|User[] $users
  *
@@ -26,18 +26,10 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends Model
 {
 	protected $table = 'roles';
-	public $timestamps = false;
-
-	protected $dates = [
-		'created',
-		'modified'
-	];
 
 	protected $fillable = [
 		'name',
-		'about',
-		'created',
-		'modified'
+		'about'
 	];
 
 	public function users()
@@ -46,4 +38,9 @@ class Role extends Model
 					->withPivot('id')
 					->withTimestamps();
 	}
+
+	public function __toString()
+    {
+        return $this->name;
+    }
 }

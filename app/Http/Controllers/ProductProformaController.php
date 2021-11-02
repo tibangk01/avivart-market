@@ -26,7 +26,10 @@ class ProductProformaController extends Controller
      */
     public function create()
     {
-        //
+        $products = Product::all()->pluck(null, 'id');
+        $proformas = Proforma::all()->pluck(null, 'id');
+
+        return view('product_proforma.create', compact('products', 'proformas'));
     }
 
     /**
@@ -37,7 +40,19 @@ class ProductProformaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->isMethod('POST')) {
+            $request->validate([
+                'product_id' => ['required'],
+                'proforma_id' => ['required'],
+                'quantity' => ['required'],
+            ]);
+
+            $productProforma = ProductProforma::create($request->all());
+
+            session()->flash('success', 'Donnée enregistrée.');
+        }
+
+        return back();
     }
 
     /**

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
+use App\Models\User;
 use App\Models\RoleUser;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,9 @@ class RoleUserController extends Controller
      */
     public function index()
     {
-        return view('roles_users.index');
+        $roleUsers = RoleUser::all();
+
+        return view('roles_users.index', compact('roleUsers'));
     }
 
     /**
@@ -24,7 +28,10 @@ class RoleUserController extends Controller
      */
     public function create()
     {
-        return view('roles_users.create');
+        $roles = Role::all()->pluck(null, 'id');
+        $users = User::where('user_type_id', 2)->get()->pluck(null, 'id');
+
+        return view('roles_users.create', compact('roles', 'users'));
     }
 
     /**
@@ -35,7 +42,18 @@ class RoleUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->isMethod('POST')) {
+            $request->validate([
+                'role_id' => ['required'],
+                'user_id' => ['required'],
+            ]);
+
+            $roleUser = RoleUser::create($request->all());
+
+            session()->flash('success', "Donnée enregistrée");
+        }
+
+        return back();
     }
 
     /**
@@ -57,7 +75,10 @@ class RoleUserController extends Controller
      */
     public function edit(RoleUser $roleUser)
     {
-        return view('roles_users.edit', compact('roleUser'));
+        $roles = Role::all()->pluck(null, 'id');
+        $users = User::where('user_type_id', 2)->get()->pluck(null, 'id');
+
+        return view('roles_users.edit', compact('roleUser', 'roles', 'users'));
     }
 
     /**
@@ -69,7 +90,18 @@ class RoleUserController extends Controller
      */
     public function update(Request $request, RoleUser $roleUser)
     {
-        //
+        if ($request->isMethod('PUT')) {
+            $request->validate([
+                'role_id' => ['required'],
+                'user_id' => ['required'],
+            ]);
+
+            $roleUser->update($request->all());
+
+            session()->flash('success', "Donnée enregistrée");
+        }
+
+        return back();
     }
 
     /**

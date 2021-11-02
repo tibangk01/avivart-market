@@ -202,6 +202,10 @@ Route::middleware(['auth', 'staff'])->group(function () {
     /** End providers routes */
 
     /** exercises routes */
+    Route::prefix('/exercise/printing')->name('exercise.printing.')->group(function() {
+        Route::get('/{exercise}/inventory', [ExerciseController::class, 'inventory'])->name('inventory');
+    });
+
     Route::resource('exercise', ExerciseController::class);
     /** End exercises routes */
 

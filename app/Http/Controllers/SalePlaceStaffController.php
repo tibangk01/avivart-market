@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SalePlace;
+use App\Models\Staff;
 use App\Models\SalePlaceStaff;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,9 @@ class SalePlaceStaffController extends Controller
      */
     public function index()
     {
-        return view('sale_places_staffs.index');
+        $salePlaceStaffs = SalePlaceStaff::all();
+
+        return view('sale_places_staffs.index', compact('salePlaceStaffs'));
     }
 
     /**
@@ -24,7 +28,10 @@ class SalePlaceStaffController extends Controller
      */
     public function create()
     {
-        return view('sale_places_staffs.create');
+        $salePlaces = SalePlace::with('enterprise')->get()->pluck('enterprise.name', 'id');
+        $staffs = Staff::with('human.user')->get()->pluck('human.user.full_name', 'id');
+
+        return view('sale_places_staffs.create', compact('salePlaces', 'staffs'));
     }
 
     /**
@@ -35,7 +42,18 @@ class SalePlaceStaffController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->isMethod('POST')) {
+            $request->validate([
+                'sale_place_id' => ['required'],
+                'staff_id' => ['required'],
+            ]);
+
+            $salePlaceStaff = SalePlaceStaff::create($request->all());
+
+            session()->flash('success', "Donnée enregistrée");
+        }
+
+        return back();
     }
 
     /**
@@ -57,7 +75,10 @@ class SalePlaceStaffController extends Controller
      */
     public function edit(SalePlaceStaff $salePlaceStaff)
     {
-        return view('sale_places_staffs.edit', compact('salePlaceStaff'));
+        $salePlaces = SalePlace::with('enterprise')->get()->pluck('enterprise.name', 'id');
+        $staffs = Staff::with('human.user')->get()->pluck('human.user.full_name', 'id');
+
+        return view('sale_places_staffs.edit', compact('salePlaceStaff', 'salePlaces', 'staffs'));
     }
 
     /**
@@ -69,7 +90,18 @@ class SalePlaceStaffController extends Controller
      */
     public function update(Request $request, SalePlaceStaff $salePlaceStaff)
     {
-        //
+        if ($request->isMethod('PUT')) {
+            $request->validate([
+                'sale_place_id' => ['required'],
+                'staff_id' => ['required'],
+            ]);
+
+            $salePlaceStaff->update($request->all());
+
+            session()->flash('success', "Donnée enregistrée");
+        }
+
+        return back();
     }
 
     /**

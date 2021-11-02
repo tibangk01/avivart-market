@@ -1,4 +1,4 @@
- @extends('layouts.dashboard', ['title' => "Agences & Staffs"])
+ @extends('layouts.dashboard', ['title' => "Exercices & Produits"])
 
 @section('body')
 <section class="content">
@@ -22,7 +22,7 @@
                                 <div class="d-flex">
                                     <div class="ml-auto">
 
-                                        <a class="btn btn-flat btn-primary mb-1" href="{{ route('agency_staff.create') }}"><i
+                                        <a class="btn btn-flat btn-primary mb-1" href="{{ route('exercise_product.create') }}"><i
                                                 class="fa fa-plus"></i>
                                             Ajouter</a>
                                     </div>
@@ -32,38 +32,44 @@
                                     <table class="table table-bordered table-hover table-striped datatable text-nowrap text-center">
                                         <thead class="thead-dark">
                                             <tr>
-                                                <th>Agence</th>
-                                                <th>Staff</th>
+                                                <th>Exercice</th>
+                                                <th>Produit</th>
+                                                <th>Stock Initial</th>
+                                                <th>Stock Final</th>
+                                                <th>Perte</th>
                                                 <th>Date de création</th>
                                                 <th>Date de mise à jour</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse($agencyStaffs as $agencyStaff)
+                                            @forelse($exerciseProducts as $exerciseProduct)
                                                 <tr>
-                                                    <td>{{ $agencyStaff->agency->enterprise->name }}</td>
-                                                    <td>{{ $agencyStaff->staff->human->user->full_name }}</td>
-                                                    <td>{{ $agencyStaff->created_at }}</td>
-                                                    <td>{{ $agencyStaff->updated_at }}</td>
+                                                    <td>{{ $exerciseProduct->exercise->getPeriod() }}</td>
+                                                    <td>{{ $exerciseProduct->product->name }}</td>
+                                                    <td>{{ $exerciseProduct->initial_stock }}</td>
+                                                    <td>{{ $exerciseProduct->final_stock }}</td>
+                                                    <td>{{ $exerciseProduct->loss }}</td>
+                                                    <td>{{ $exerciseProduct->created_at }}</td>
+                                                    <td>{{ $exerciseProduct->updated_at }}</td>
                                                     <td>
                                                         <a class="btn btn-info btn-xs"
-                                                            href="{{ route('agency_staff.show', $agencyStaff) }}"
+                                                            href="{{ route('exercise_product.show', $exerciseProduct) }}"
                                                             title="Afficher"><i class="fa fa-eye"
                                                                 aria-hidden="true"></i></a>
                                                         <a class="btn btn-warning btn-xs"
-                                                            href="{{ route('agency_staff.edit', $agencyStaff) }}"
+                                                            href="{{ route('exercise_product.edit', $exerciseProduct) }}"
                                                             title="Modifier"><i class="fa fa-edit"
                                                                 aria-hidden="true"></i></a>
                                                         <a class="btn btn-danger btn-xs"
-                                                            href="{{ route('agency_staff.destroy', $agencyStaff) }}"
+                                                            href="{{ route('exercise_product.destroy', $exerciseProduct) }}"
                                                             title="Supprimer"><i class="fa fa-trash"
                                                                 aria-hidden="true"></i></a>
                                                     </td>
                                                 </tr>
                                             @empty
                                                 <tr>
-                                                    <td colspan="5">Pas d'enregistrements</td>
+                                                    <td colspan="8">Pas d'enregistrements</td>
                                                 </tr>
                                             @endforelse
                                         </tbody>

@@ -45,10 +45,8 @@ class BankController extends Controller
             $bank = Bank::create($request->all());
 
             if ($bank) {
-
                 session()->flash('success', "Donnée enregistrée");
             } else {
-
                 session()->flash('error', "Une erreur s'est produite");
             }
         }
