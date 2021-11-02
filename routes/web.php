@@ -54,6 +54,7 @@ use App\Http\Controllers\AgencyStaffController;
 use App\Http\Controllers\SalePlaceStaffController;
 use App\Http\Controllers\RoleUserController;
 use App\Http\Controllers\ExerciseProductController;
+use App\Http\Controllers\QuickSaleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -221,6 +222,16 @@ Route::middleware(['auth', 'staff'])->group(function () {
     /** supplies routes */
     Route::resource('supply', SupplyController::class);
     /** End supplies routes */
+
+    /** quick sales routes */
+    Route::prefix('/quick_sale/printing')->name('quick_sale.printing.')->group(function() {
+        Route::get('/', [QuickSaleController::class, 'printingAll'])->name('all');
+        Route::get('/{quick_sale}', [QuickSaleController::class, 'printingOne'])->name('one');
+        Route::get('/{quick_sale}/receipt', [QuickSaleController::class, 'receipt'])->name('receipt');
+    });
+    
+    Route::resource('quick_sale', QuickSaleController::class);
+    /** End quick sales routes */
 
     /** order delivery notes routes */
     Route::resource('order_delivery_note', OrderDeliveryNoteController::class);

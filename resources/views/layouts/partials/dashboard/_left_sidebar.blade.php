@@ -296,6 +296,12 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('quick_sale.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-shopping-bag"></i>
+                                <p>Ventes rapide</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('purchase_payment.index') }}" class="nav-link">
                                 <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
                                 <p>Payements fournisseur</p>
