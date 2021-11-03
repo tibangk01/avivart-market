@@ -5,13 +5,11 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-6">
-                </div>
-                <div class="col-lg-6">
                     {!! Form::model($quickSale, ['method' => 'put', 'route' => ['quick_sale.update', $quickSale]]) !!}
 
                     <div class="form-group">
                     {!! Form::label('product_id', 'Produit') !!}
-                        {!! Form::select('product_id', $products, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez']) !!}
+                        {!! Form::select('product_id', $products, request('product_id'), ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez']) !!}
                     </div>
 
                     <div class="form-group">
@@ -34,6 +32,38 @@
                     </div>
                     
                     {!! Form::close() !!}
+                </div>
+                <div class="col-lg-6">
+                    <div class="table-responsive bg-white p-2">
+                        <table class="mb-0 table table-bordered table-hover table-striped text-nowrap datatable text-center">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Action</th>
+                                    <th>Nom</th>
+                                    <th>PAU</th>
+                                    <th>PVU</th>
+                                    <th>Qté Restante</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($products as $product)
+                                <tr>
+                                    <td>
+                                        <a title="Prendre" href="{{ route('quick_sale.edit', ['quick_sale' => $quickSale, 'product_id' => $product->id]) }}"><i class="fa fa-arrow-circle-left"></i></a>
+                                    </td>
+                                    <td>{{ $product->name }}</td>
+                                    <td>{{ $product->purchase_price }}</td>
+                                    <td>{{ $product->selling_price }}</td>
+                                    <td>{{ $product->stock_quantity - $product->sold_quantity }}</td>
+                                </tr>
+                                @empty
+                                <tr>
+                                    <td colspan="5">Pas d'enregistrements</td>
+                                </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

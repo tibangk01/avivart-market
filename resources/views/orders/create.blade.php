@@ -28,6 +28,12 @@
                         </select>
                     </div>
 
+                    @if(session()->has('loadedProforma'))
+                    <div class="text-danger">
+                        Vous avez charger le proforma n° {{ session('loadedProforma')->getNumber() }}
+                    </div>
+                    @endif
+
                     <div class="form-group text-right">
                         <button type="submit" class="btn btn-success">Charger</button>
                     </div>

@@ -174,6 +174,8 @@
     </script>
 
     @livewireScripts
+
+    @include('flashy::message')
 </body>
 
 </html>

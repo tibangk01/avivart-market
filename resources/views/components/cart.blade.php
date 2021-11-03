@@ -8,10 +8,9 @@
             <thead class="thead-dark">
                 <tr>
                     <th>Produit</th>
-                    <th>Prix d'Achat</th>
-                    <th>Prix de Vente</th>
-                    <th>Prix de Location</th>
-                    <th>Quantité</th>
+                    <th>PAU</th>
+                    <th>PVU</th>
+                    <th>Qté à Commandée</th>
                     <th>Total</th>
                     <th>Action</th>
                 </tr>
@@ -22,7 +21,6 @@
                     <td>{{ $row->model->name }}</td>
                     <td>{{ $row->model->purchase_price }}</td>
                     <td>{{ $row->model->selling_price }}</td>
-                    <td>{{ $row->model->rental_price }}</td>
                     <td>
                         <form method="get" action="{{ route('cart.update', ['row' => $row->rowId]) }}" accept-charset="utf-8" autocomplete="off">
                             <input type="hidden" name="instance" value="{{ $instance }}">
@@ -55,7 +53,7 @@
             <tfoot>
                 <tr>
                     <th>Total</th>
-                    <th colspan="6">{{ $subtotal }}</th>
+                    <th colspan="5">{{ $subtotal }}</th>
                 </tr>
             </tfoot>
         </table>

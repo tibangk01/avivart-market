@@ -63,6 +63,10 @@ class CartController extends Controller
     {
     	Cart::instance($request->query('instance'))->destroy();
 
+        if (session()->has('loadedProforma')) {
+            session()->forget('loadedProforma');
+        }
+
         flashy()->error("Panier vidé");
 
         return back();
