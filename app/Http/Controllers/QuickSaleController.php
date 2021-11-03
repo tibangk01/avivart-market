@@ -141,8 +141,8 @@ class QuickSaleController extends Controller
     {
         $request->validate([
             'product_id' => ['required'],
-            'vat_id' => ['required'],
-            'discount_id' => ['required'],
+            'vat_id' => ['nullable'],
+            'discount_id' => ['nullable'],
             'quantity' => ['required'],
         ]);
     }

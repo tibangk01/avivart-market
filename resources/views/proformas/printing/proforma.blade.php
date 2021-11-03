@@ -6,9 +6,6 @@
 <h4 class="text-center text-dark"><u>PROFORMA</u></h4>
 
 <div class="text-right" style="margin-top: 1cm; margin-bottom: 1cm;">
-    <p class="m-0">
-        <x-library :library='$proforma->customer->getLibrary()' class="img100_100" />
-    </p>
     <h4 class="m-0 text-primary">{{ $proforma->customer->getName() }}</h4>
     <p class="m-0 fs-12">Tél : {{ $proforma->customer->getFullPhoneNumber() }}</p>
 </div>

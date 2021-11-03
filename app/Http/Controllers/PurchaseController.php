@@ -11,6 +11,7 @@ use App\Models\Vat;
 use App\Models\Discount;
 use Illuminate\Support\Facades\DB;
 use App\Models\Society;
+use App\Models\Product;
 
 class PurchaseController extends Controller
 {
@@ -45,11 +46,8 @@ class PurchaseController extends Controller
     public function store(Request $request)
     {
         if ($request->isMethod('POST')) {
-            $request->validate([
-                'provider_id' => ['required'],
-                'vat_id' => ['required'],
-                'discount_id' => ['required'],
-            ]);
+            
+            $this->_validateRequest($request);
 
             $cartContent = Cart::instance($request->input('instance'))->content();
 
@@ -57,15 +55,19 @@ class PurchaseController extends Controller
                 DB::beginTransaction();
 
                 $purchase = Purchase::create([
-                    'provider_id' => $request->input('provider_id'),
-                    'vat_id' => $request->input('vat_id'),
-                    'discount_id' => $request->input('discount_id'),
+                    'provider_id' => $request->provider_id,
+                    'vat_id' => $request->vat_id,
+                    'discount_id' => $request->discount_id,
                 ]);
 
                 foreach ($cartContent as $row) {
+                    $product = Product::findOrFail($row->id);
+
                     $purchase->products()->attach($purchase->id, [
-                        'product_id' => $row->id,
+                        'product_id' => $product->id,
                         'ordered_quantity' => $row->qty,
+                        'global_purchase_price' => $product->global_purchase_price,
+                        'purchase_price' => $product->purchase_price,
                     ]);
                 }  
 
@@ -74,11 +76,6 @@ class PurchaseController extends Controller
                 Cart::instance($request->input('instance'))->destroy();
 
                 session()->flash('success', 'Donnée enregistrée.');
-
-                $this->updateStaffStatusBarInfo(
-                    (float) $purchase->totalTTC(),
-                    '-'
-                );
 
                 return redirect()->to(route('purchase.printing.one', ['purchase' => $purchase]));    //to or away
             } catch (\Exception $ex) {
@@ -131,11 +128,8 @@ class PurchaseController extends Controller
     public function update(Request $request, Purchase $purchase)
     {
         if ($request->isMethod('PUT')) {
-            $request->validate([
-                'provider_id' => ['required'],
-                'vat_id' => ['required'],
-                'discount_id' => ['required'],
-            ]);
+            
+            $this->_validateRequest($request);
 
             $purchase->update($request->all());
 
@@ -154,6 +148,23 @@ class PurchaseController extends Controller
     public function destroy(Purchase $purchase)
     {
         //
+    }
+
+    /**
+     * validateRequest
+     *
+     * Validate creation and edition incomming data
+     *
+     * @param mixed $request
+     * @return void
+     */
+    private function _validateRequest($request)
+    {
+        $request->validate([
+            'provider_id' => ['required'],
+            'vat_id' => ['nullable'],
+            'discount_id' => ['nullable'],
+        ]);
     }
 
     public function printingAll(Request $request)

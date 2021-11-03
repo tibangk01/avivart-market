@@ -5,21 +5,19 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
+
                 @if($purchases->count())
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover text-nowrap datatable text-center">
                         <thead class="thead-dark">
                             <tr>
-                               <th>Nom</th>
+                                <th>Nom</th>
                                 <th>Type</th>
                                 <th>Unité</th>
-                                <th>Prix d'Achat</th>
-                                <th>Prix de Vente</th>
-                                <th>Prix de Location</th>
-                                <th>Qté en stock</th>
-                                <th>Qté vendue</th>
-                                <th>Date de Créat</th>
-                                <th>Date de modif</th>
+                                <th>Qté en Stock</th>
+                                <th>Qté Vendue</th>
+                                <th>PAG</th>
+                                <th>PAU</th>
                                 <th>Qté Cmdée</th>
                                 <th>Qté Livrée</th>
                                 <th>Actions</th>
@@ -28,7 +26,7 @@
                         <tbody>
                             @forelse ($purchases as $purchase)
                             <tr class="table-primary">
-                                <th colspan="12">Bon de commande N° {{ $purchase->getNumber() }} addressé au Fournisseur {{ $purchase->provider->getName() }}</th>
+                                <th colspan="9">Bon de commande N° {{ $purchase->getNumber() }} addressé au Fournisseur {{ $purchase->provider->getName() }}</th>
                                 <td>
                                     @if($purchase->has_delivery_note)
                                     <strong class="badge badge-info">Fichier attaché</strong>
@@ -43,13 +41,10 @@
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->product_type->name }}</td>
                                 <td>{{ $product->conversion->name }}</td>
-                                <td>{{ $product->purchase_price }}</td>
-                                <td>{{ $product->selling_price }}</td>
-                                <td>{{ $product->rental_price }}</td>
                                 <td>{{ $product->stock_quantity }}</td>
                                 <td>{{ $product->sold_quantity }}</td>
-                                <td>{{ $product->created_at }}</td>
-                                <td>{{ $product->updated_at }}</td>
+                                <td>{{ $product->pivot->global_purchase_price }}</td>
+                                <td>{{ $product->pivot->purchase_price }}</td>
                                 <td>{{ $product->pivot->ordered_quantity }}</td>
                                 <td>{{ $product->pivot->delivered_quantity }}</td>
                                 <td>
@@ -71,13 +66,13 @@
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="13">Pas de produit</td>
+                                <td colspan="10">Pas de produit</td>
                             </tr>
                             @endforelse
 
                             @empty
                             <tr>
-                                <td colspan="13">Pas d'enregistrements</td>
+                                <td colspan="10">Pas d'enregistrements</td>
                             </tr>
                             @endforelse
                         </tbody>
@@ -85,6 +80,9 @@
                 </div>
 
                 @else
+
+                <p>Vide</p>
+
                 @endif
             </div>
         </div>

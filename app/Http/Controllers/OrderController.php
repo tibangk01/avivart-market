@@ -12,6 +12,7 @@ use App\Models\Customer;
 use App\Models\Vat;
 use App\Models\Discount;
 use App\Models\OrderState;
+use App\Models\Product;
 
 class OrderController extends Controller
 {
@@ -53,12 +54,8 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         if ($request->isMethod('POST')) {
-            $request->validate([
-                'customer_id' => ['required'],
-                'vat_id' => ['required'],
-                'discount_id' => ['required'],
-                'order_state_id' => ['required'],
-            ]);
+
+            $this->_validateRequest($request);
             
             $cartContent = Cart::instance($request->input('instance'))->content();
 
@@ -66,16 +63,22 @@ class OrderController extends Controller
                 DB::beginTransaction();
 
                 $order = Order::create([
-                    'customer_id' => $request->input('customer_id'),
-                    'vat_id' => $request->input('vat_id'),
-                    'discount_id' => $request->input('discount_id'),
-                    'order_state_id' => $request->input('order_state_id'),
+                    'customer_id' => $request->customer_id,
+                    'vat_id' => $request->vat_id,
+                    'discount_id' => $request->discount_id,
+                    'order_state_id' => $request->order_state_id,
                 ]);
 
                 foreach ($cartContent as $row) {
+                    $product = Product::findOrFail($row->id);
+
                     $order->products()->attach($order->id, [
-                        'product_id' => $row->id,
+                        'product_id' => $product->id,
                         'quantity' => $row->qty,
+                        'global_selling_price' => $product->global_selling_price,
+                        'selling_price' => $product->selling_price,
+                        'global_rental_price' => $product->global_rental_price,
+                        'rental_price' => $product->rental_price,
                     ]);
                 }  
 
@@ -84,11 +87,6 @@ class OrderController extends Controller
                 Cart::instance($request->input('instance'))->destroy();
 
                 session()->flash('success', 'Donnée enregistrée.');
-
-                $this->updateStaffStatusBarInfo(
-                    (float) $order->totalTTC(),
-                    '+'
-                );
 
                 return redirect()->to(route('order.printing.one', ['order' => $order]));    //to or away
             } catch (\Exception $ex) {
@@ -143,12 +141,8 @@ class OrderController extends Controller
     public function update(Request $request, Order $order)
     {
         if ($request->isMethod('PUT')) {
-            $request->validate([
-                'customer_id' => ['required'],
-                'vat_id' => ['required'],
-                'discount_id' => ['required'],
-                'order_state_id' => ['required'],
-            ]);
+
+            $this->_validateRequest($request);
 
             $order->update($request->all());
 
@@ -167,6 +161,24 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         //
+    }
+
+    /**
+     * validateRequest
+     *
+     * Validate creation and edition incomming data
+     *
+     * @param mixed $request
+     * @return void
+     */
+    private function _validateRequest($request)
+    {
+        $request->validate([
+            'customer_id' => ['required'],
+            'vat_id' => ['nullable'],
+            'discount_id' => ['nullable'],
+            'order_state_id' => ['required'],
+        ]);
     }
 
     public function printingAll(Request $request)

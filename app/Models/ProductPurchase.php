@@ -18,6 +18,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $purchase_id
  * @property int $ordered_quantity
  * @property int $delivered_quantity
+ * @property float $global_purchase_price
+ * @property float $purchase_price
  * @property string|null $comment
  * @property Carbon $created_at
  * @property Carbon $updated_at
@@ -37,15 +39,17 @@ class ProductPurchase extends Model
 		'product_id' => 'int',
 		'purchase_id' => 'int',
 		'ordered_quantity' => 'int',
-		'delivered_quantity' => 'int'
+		'delivered_quantity' => 'int',
+		'global_purchase_price' => 'float',
+		'purchase_price' => 'float'
 	];
 
 	protected $fillable = [
-		'product_id',
-		'purchase_id',
 		'ordered_quantity',
 		'delivered_quantity',
-		'comment',
+		'global_purchase_price',
+		'purchase_price',
+		'comment'
 	];
 
 	public function product()

@@ -98,12 +98,12 @@
 
     <div class="form-group">
         {!! Form::label('vat_id', 'TVA') !!}
-        {!! Form::select('vat_id', $vats, session()->has('loadedProforma') ? session('loadedProforma')->vat_id : null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez une TVA']) !!}
+        {!! Form::select('vat_id', $vats, session()->has('loadedProforma') ? session('loadedProforma')->vat_id : null, ['class' => 'form-control', 'placeholder' => 'Choisissez une TVA']) !!}
     </div>
 
     <div class="form-group">
         {!! Form::label('discount_id', 'Remise') !!}
-        {!! Form::select('discount_id', $discounts, session()->has('loadedProforma') ? session('loadedProforma')->discount_id : null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez une remise']) !!}
+        {!! Form::select('discount_id', $discounts, session()->has('loadedProforma') ? session('loadedProforma')->discount_id : null, ['class' => 'form-control', 'placeholder' => 'Choisissez une remise']) !!}
     </div>
 
     <div class="form-group text-right">

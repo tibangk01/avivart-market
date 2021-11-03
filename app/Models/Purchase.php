@@ -63,7 +63,7 @@ class Purchase extends Model
 	public function products()
 	{
 		return $this->belongsToMany(Product::class, 'product_purchase')
-					->withPivot('id', 'ordered_quantity', 'delivered_quantity', 'comment')
+					->withPivot('id', 'ordered_quantity', 'delivered_quantity', 'global_purchase_price', 'purchase_price', 'comment')
 					->withTimestamps();
 	}
 
@@ -79,7 +79,9 @@ class Purchase extends Model
 
 	public function totalTTC(): float
 	{
-		return ($this->totalHT() + $this->totalTVA()) - $this->discount->amount;
+		return ($this->discount !== null)
+			? ($this->totalHT() + $this->totalTVA()) - $this->discount->amount
+			: $this->totalHT() + $this->totalTVA();
 	}
 
 	public function totalTVA(): float
@@ -88,7 +90,9 @@ class Purchase extends Model
 
 		if ($this->products->count()) {
 			foreach ($this->products as $product) {
-				$totalTVA += $product->purchase_price * $this->vat->percentage;
+				$totalTVA += ($this->vat !== null)
+					? $product->pivot->purchase_price * $this->vat->percentage
+					: $product->pivot->purchase_price;
 			}
 		}
 
@@ -101,7 +105,7 @@ class Purchase extends Model
 
 		if ($this->products->count()) {
 			foreach ($this->products as $product) {
-				$totalHT += $product->purchase_price * $product->pivot->ordered_quantity;
+				$totalHT += $product->pivot->purchase_price * $product->pivot->ordered_quantity;
 			}
 		}
 

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Customer;
 use App\Models\Vat;
 use App\Models\Discount;
+use App\Models\Product;
 
 class ProformaController extends Controller
 {
@@ -44,11 +45,8 @@ class ProformaController extends Controller
     public function store(Request $request)
     {
         if ($request->isMethod('POST')) {
-            $request->validate([
-                'customer_id' => ['required'],
-                'vat_id' => ['required'],
-                'discount_id' => ['required'],
-            ]);
+
+            $this->_validateRequest($request);
 
             $cartContent = Cart::instance($request->input('instance'))->content();
 
@@ -56,15 +54,21 @@ class ProformaController extends Controller
                 DB::beginTransaction();
 
                 $proforma = Proforma::create([
-                    'customer_id' => $request->input('customer_id'),
-                    'vat_id' => $request->input('vat_id'),
-                    'discount_id' => $request->input('discount_id'),
+                    'customer_id' => $request->customer_id,
+                    'vat_id' => $request->vat_id,
+                    'discount_id' => $request->discount_id,
                 ]);
 
                 foreach ($cartContent as $row) {
+                    $product = Product::findOrFail($row->id);
+
                     $proforma->products()->attach($proforma->id, [
-                        'product_id' => $row->id,
+                        'product_id' => $product->id,
                         'quantity' => $row->qty,
+                        'global_selling_price' => $product->global_selling_price,
+                        'selling_price' => $product->selling_price,
+                        'global_rental_price' => $product->global_rental_price,
+                        'rental_price' => $product->rental_price,
                     ]);
                 }  
 
@@ -125,11 +129,8 @@ class ProformaController extends Controller
     public function update(Request $request, Proforma $proforma)
     {
         if ($request->isMethod('PUT')) {
-            $request->validate([
-                'customer_id' => ['required'],
-                'vat_id' => ['required'],
-                'discount_id' => ['required'],
-            ]);
+
+            $this->_validateRequest($request);
 
             $proforma->update($request->all());
 
@@ -148,6 +149,23 @@ class ProformaController extends Controller
     public function destroy(Proforma $proforma)
     {
         //
+    }
+
+    /**
+     * validateRequest
+     *
+     * Validate creation and edition incomming data
+     *
+     * @param mixed $request
+     * @return void
+     */
+    private function _validateRequest($request)
+    {
+        $request->validate([
+            'customer_id' => ['required'],
+            'vat_id' => ['nullable'],
+            'discount_id' => ['nullable'],
+        ]);
     }
 
     public function printingAll(Request $request)
