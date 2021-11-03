@@ -51,10 +51,10 @@
                                                     <tr>
                                                         <td>{{ $quickSale->getNumber() }}</td>
                                                         <td>{{ $quickSale->product->name }}</td>
-                                                        <td>{{ $quickSale->vat->percentage }}</td>
-                                                        <td>{{ $quickSale->discount->amount }}</td>
+                                                        <td>{{ $quickSale->getVat() }}</td>
+                                                        <td>{{ $quickSale->getDiscount() }}</td>
                                                         <td>{{ $quickSale->quantity }}</td>
-                                                        <td>{{ $quickSale->product->selling_price }}</td>
+                                                        <td>{{ $quickSale->selling_price }}</td>
                                                         <td>{{ $quickSale->totalHT() }}</td>
                                                         <td>{{ $quickSale->totalTVA() }}</td>
                                                         <td>{{ $quickSale->totalTTC() }}</td>

@@ -20,11 +20,11 @@
                                 </tr>
                                 <tr>
                                     <td>TVA</td>
-                                    <td>{{ $quickSale->vat->percentage }}</td>
+                                    <td>{{ $quickSale->getVat() }}</td>
                                 </tr>
                                 <tr>
                                     <td>Remise</td>
-                                    <td>{{ $quickSale->discount->amount }}</td>
+                                    <td>{{ $quickSale->getDiscount() }}</td>
                                 </tr>
                                 <tr>
                                     <td>Quantité</td>
@@ -32,7 +32,7 @@
                                 </tr>
                                 <tr>
                                     <td>PVU</td>
-                                    <td>{{ $quickSale->product->selling_price }}</td>
+                                    <td>{{ $quickSale->selling_price }}</td>
                                 </tr>
                                 <tr>
                                     <td>Total HT</td>

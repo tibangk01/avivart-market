@@ -32,25 +32,23 @@
                 <td>{{ $product->mark }}</td>
                 <td>{{ $product->ref }}</td>
                 <td>{{ $product->pivot->quantity }}</td>
-                <td>{{ $product->selling_price }}</td>
-                <td>{{ $product->selling_price * $product->pivot->quantity }}</td>
+                <td>{{ $product->pivot->selling_price }}</td>
+                <td>{{ $product->pivot->selling_price * $product->pivot->quantity }}</td>
             </tr>
         @empty
         <tr>
-            <td colspan="7">
-                Pas d'enregistrements.
-            </td>
+            <td colspan="7">Pas d'enregistrements</td>
         </tr>
         @endforelse
     </tbody>
     <tfoot>
         <tr class="table-info">
             <th colspan="4">TVA</th>
-            <td colspan="3">{{ $proforma->vat->percentage }}</td>
+            <td colspan="3">{{ $proforma->getVat() }}</td>
         </tr>
         <tr>
             <th colspan="4">Remise</th>
-            <td colspan="3">{{ $proforma->discount->amount }}</td>
+            <td colspan="3">{{ $proforma->getDiscount() }}</td>
         </tr>
         <tr class="table-success">
             <th colspan="4">Total HT</th>

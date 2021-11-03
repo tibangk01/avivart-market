@@ -6,9 +6,6 @@
 <h4 class="text-center text-dark text-uppercase"><u>Reçu</u></h4>
 
 <div class="text-right" style="margin-top: 1cm; margin-bottom: 1cm;">
-    <p class="m-0">
-        <x-library :library='$orderPayment->order->customer->getLibrary()' class="img100_100" />
-    </p>
     <h4 class="m-0 text-primary">{{ $orderPayment->order->customer->getName() }}</h4>
     <p class="m-0 fs-12">Tél : {{ $orderPayment->order->customer->getFullPhoneNumber() }}</p>
 </div>
@@ -35,8 +32,8 @@
                 <td>{{ $product->mark }}</td>
                 <td>{{ $product->ref }}</td>
                 <td>{{ $product->pivot->quantity }}</td>
-                <td>{{ $product->selling_price }}</td>
-                <td>{{ $product->selling_price * $product->pivot->quantity }}</td>
+                <td>{{ $product->pivot->selling_price }}</td>
+                <td>{{ $product->pivot->selling_price * $product->pivot->quantity }}</td>
             </tr>
         @empty
         <tr>
@@ -47,11 +44,11 @@
     <tfoot>
         <tr class="table-info">
             <th colspan="4">TVA</th>
-            <td colspan="3">{{ $orderPayment->order->vat->percentage }}</td>
+            <td colspan="3">{{ $orderPayment->order->getVat() }}</td>
         </tr>
         <tr>
             <th colspan="4">Remise</th>
-            <td colspan="3">{{ $orderPayment->order->discount->amount }}</td>
+            <td colspan="3">{{ $orderPayment->order->getDiscount() }}</td>
         </tr>
         <tr class="table-success">
             <th colspan="4">Total HT</th>

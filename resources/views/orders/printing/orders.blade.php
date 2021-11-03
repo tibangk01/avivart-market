@@ -22,8 +22,8 @@
             <td>{{ $order->getNumber() }}</td>
             <td>{{ $order->customer->getName() }}</td>
             <td>{{ $order->order_state->name }}</td>
-            <td>{{ $order->vat->percentage }}</td>
-            <td>{{ $order->discount->amount }}</td>
+            <td>{{ $order->getVat() }}</td>
+            <td>{{ $order->getDiscount() }}</td>
             <td>{{ $order->totalTTC() }}</td>
             <td>{{ $order->created_at }}</td>
             <td>{{ $order->updated_at }}</td>

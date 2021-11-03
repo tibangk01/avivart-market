@@ -16,7 +16,7 @@
                         <tbody>
                             <tr class="{{ $purchase->getBgColor() }}">
                                 <th>Payement</th>
-                                <td>{{ $purchase->paid ? 'Oui' : 'Non' }}</td>
+                                <td>{{ $purchase->getPaid() }}</td>
                             </tr>
                             <tr>
                                 <th>Numéro</th>
@@ -28,11 +28,11 @@
                             </tr>
                             <tr>
                                 <th>TVA</th>
-                                <td>{{ $purchase->vat->percentage }}</td>
+                                <td>{{ $purchase->getVat() }}</td>
                             </tr>
                             <tr>
                                 <th>Remise</th>
-                                <td>{{ $purchase->discount->amount }}</td>
+                                <td>{{ $purchase->getDiscount() }}</td>
                             </tr>
                             <tr>
                                 <th>Total HT</th>

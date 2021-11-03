@@ -20,8 +20,8 @@
         <tr>
             <td>{{ $purchasePayment->purchase->getNumber() }}</td>
             <td>{{ $purchasePayment->purchase->provider->getName() }}</td>
-            <td>{{ $purchasePayment->purchase->vat->percentage }}</td>
-            <td>{{ $purchasePayment->purchase->discount->amount }}</td>
+            <td>{{ $purchasePayment->purchase->getVat() }}</td>
+            <td>{{ $purchasePayment->purchase->getDiscount() }}</td>
             <td>{{ $purchasePayment->purchase->totalTTC() }}</td>
             <td>{{ $purchasePayment->purchase->created_at }}</td>
             <td>{{ $purchasePayment->purchase->updated_at }}</td>

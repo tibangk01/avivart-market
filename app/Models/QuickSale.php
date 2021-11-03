@@ -62,6 +62,16 @@ class QuickSale extends Model
 		return $this->belongsTo(Discount::class);
 	}
 
+	public function getVat()
+    {
+        return ($this->vat !== null) ? $this->vat->percentage : 0;
+    }
+
+    public function getDiscount()
+    {
+        return ($this->discount !== null) ? $this->discount->amount : 0;
+    }
+
 	public function getNumber()
 	{
 		return Carbon::parse($this->created_at)->format('dmYHis');

@@ -20,15 +20,15 @@
         <tr>
             <td>{{ $proforma->getNumber() }}</td>
             <td>{{ $proforma->customer->getName() }}</td>
-            <td>{{ $proforma->vat->percentage }}</td>
-            <td>{{ $proforma->discount->amount }}</td>
+            <td>{{ $proforma->getVat() }}</td>
+            <td>{{ $proforma->getDiscount() }}</td>
             <td>{{ $proforma->totalTTC() }}</td>
             <td>{{ $proforma->created_at }}</td>
             <td>{{ $proforma->updated_at }}</td>
         </tr>
         @empty
         <tr>
-            <td colspan="7">Pas d'enregistrements.</td>
+            <td colspan="7">Pas d'enregistrements</td>
         </tr>
         @endforelse
     </tbody>

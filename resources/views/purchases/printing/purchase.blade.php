@@ -35,9 +35,7 @@
             </tr>
         @empty
         <tr>
-            <td colspan="6">
-                Pas d'enregistrements.
-            </td>
+            <td colspan="6">Pas d'enregistrements</td>
         </tr>
         @endforelse
     </tbody>

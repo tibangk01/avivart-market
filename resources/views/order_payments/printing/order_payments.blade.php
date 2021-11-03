@@ -22,8 +22,8 @@
             <td>{{ $orderPayment->order->getNumber() }}</td>
             <td>{{ $orderPayment->order->customer->getName() }}</td>
             <td>{{ $orderPayment->order->order_state->name }}</td>
-            <td>{{ $orderPayment->order->vat->percentage }}</td>
-            <td>{{ $orderPayment->order->discount->amount }}</td>
+            <td>{{ $orderPayment->order->getVat() }}</td>
+            <td>{{ $orderPayment->order->getDiscount() }}</td>
             <td>{{ $orderPayment->order->totalTTC() }}</td>
             <td>{{ $orderPayment->order->created_at }}</td>
             <td>{{ $orderPayment->order->updated_at }}</td>

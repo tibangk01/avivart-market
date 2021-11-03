@@ -16,7 +16,7 @@
                         <tbody>
                             <tr class="{{ $order->getBgColor() }}">
                                 <th>Payement</th>
-                                <td>{{ $order->paid ? 'Oui' : 'Non' }}</td>
+                                <td>{{ $order->getPaid() }}</td>
                             </tr>
                             <tr>
                                 <th>Numéro</th>
@@ -32,11 +32,11 @@
                             </tr>
                             <tr>
                                 <th>TVA</th>
-                                <td>{{ $order->vat->percentage }}</td>
+                                <td>{{ $order->getVat() }}</td>
                             </tr>
                             <tr>
                                 <th>Remise</th>
-                                <td>{{ $order->discount->amount }}</td>
+                                <td>{{ $order->getDiscount() }}</td>
                             </tr>
                             <tr>
                                 <th>Total HT</th>

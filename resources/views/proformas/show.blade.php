@@ -23,12 +23,12 @@
                                 <td>{{ $proforma->customer->getName() }}</td>
                             </tr>
                             <tr>
-                                <th>TVA</th>
-                                <td>{{ $proforma->vat->percentage }}</td>
+                                <td>TVA</td>
+                                <td>{{ $proforma->getVat() }}</td>
                             </tr>
                             <tr>
-                                <th>Remise</th>
-                                <td>{{ $proforma->discount->amount }}</td>
+                                <td>Remise</td>
+                                <td>{{ $proforma->getDiscount() }}</td>
                             </tr>
                             <tr>
                                 <th>Total HT</th>

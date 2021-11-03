@@ -49,10 +49,10 @@
                                                 <tr class="{{ $purchase->getBgColor() }}">
                                                     <td>{{ $purchase->getNumber() }}</td>
                                                     <td>{{ $purchase->provider->getName() }}</td>
-                                                    <td>{{ $purchase->vat->percentage }}</td>
-                                                    <td>{{ $purchase->discount->amount }}</td>
+                                                    <td>{{ $purchase->getVat() }}</td>
+                                                    <td>{{ $purchase->getDiscount() }}</td>
                                                     <td>{{ $purchase->totalTTC() }}</td>
-                                                    <td>{{ $purchase->paid ? 'Oui' : 'Non' }}</td>
+                                                    <td>{{ $purchase->getPaid() }}</td>
                                                     <td>{{ $purchase->created_at }}</td>
                                                     <td>{{ $purchase->updated_at }}</td>
                                                     <td>

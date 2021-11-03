@@ -6,9 +6,6 @@
 <h4 class="text-center text-dark text-uppercase"><u>Reçu bon de commande</u></h4>
 
 <div class="text-right" style="margin-top: 1cm; margin-bottom: 1cm;">
-    <p class="m-0">
-        <x-library :library='$purchasePayment->purchase->provider->getLibrary()' class="img100_100" />
-    </p>
     <h4 class="m-0 text-primary">{{ $purchasePayment->purchase->provider->getName() }}</h4>
     <p class="m-0 fs-12">Tél : {{ $purchasePayment->purchase->provider->getFullPhoneNumber() }}</p>
 </div>
