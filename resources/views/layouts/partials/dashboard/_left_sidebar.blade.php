@@ -139,13 +139,13 @@
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('cash_register_operation_type.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
-                                <p>Types d'opérations de caisse</p>
+                                <p>Types d'opération de caisse</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('bank_operation_type.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
-                                <p>Types d'opérations de banque</p>
+                                <p>Types d'opération de banque</p>
                             </a>
                         </li>
                     </ul>

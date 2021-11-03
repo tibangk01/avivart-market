@@ -1,7 +1,7 @@
-@extends('layouts.pdf', ['title' => "Liste des proformas", 'watermark' => true, 'orientation' => 'landscape'])
+@extends('layouts.pdf', ['title' => "Proformas", 'watermark' => true, 'orientation' => 'landscape'])
 
 @section('body')
-<h4 class="text-center text-dark"><u>LISTE DES PROFORMAS</u></h4>
+<h4 class="text-center text-dark text-uppercase"><u>Proformas</u></h4>
 
 <table class="table table-bordered table-sm">
     <thead class="thead-dark">

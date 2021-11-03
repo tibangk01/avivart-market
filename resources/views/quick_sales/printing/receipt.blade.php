@@ -1,9 +1,15 @@
-@extends('layouts.pdf', ['title' => 'Reçu de Vente', 'watermark' => true, 'orientation' => 'portrait'])
+@extends('layouts.pdf', ['title' => 'Reçu de vente', 'watermark' => true, 'orientation' => 'portrait'])
 
 @section('body')
-<h4 class="text-center text-dark"><u>Reçu de Vente</u></h4>
+<h4 class="text-center text-dark text-uppercase"><u>Reçu de vente</u></h4>
 
-<p>REF : {{ $quickSale->getNumber() }}</p>
+<div class="text-right" style="margin-top: 1cm; margin-bottom: 1cm;">
+    
+</div>
+
+<p class="text-right">Fait à {{ session('sessionSociety')->enterprise->city }} le {{ $quickSale->created_at->format('d M Y') }}</p>
+
+<h6 class="text-uppercase">REF : {{ $quickSale->getNumber() }} | {{ session('sessionSociety')->enterprise->city }}-{{ session('sessionSociety')->enterprise->country->name }}, Date : {{ $quickSale->created_at->format('d/m/Y') }}.</h6>
 
 <table class="table table-bordered table-stripped table-sm">
     <thead class="thead-dark">
@@ -51,4 +57,10 @@
         </tr>
     </tbody>
 </table>
+
+<p class="text-dark">Arrêté le présent reçu à la somme de {{ numberTransformer($quickSale->totalTTC()) }}</p>
+
+<x-signature />
+
+<p><em>Merci pour la confiance !</em></p>
 @endsection

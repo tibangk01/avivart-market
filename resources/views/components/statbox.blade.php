@@ -35,7 +35,7 @@
         <div class="inner">
         <h3>{{ $purchasesCount }}</h3>
 
-        <p>Bons de commande</p>
+        <p>Commandes fournisseur</p>
         </div>
         <div class="icon">
         <i class="ion ion-person-add"></i>
@@ -50,7 +50,7 @@
         <div class="inner">
         <h3>{{ $ordersCount }}</h3>
 
-        <p>Factures</p>
+        <p>Commandes client</p>
         </div>
         <div class="icon">
         <i class="ion ion-pie-graph"></i>

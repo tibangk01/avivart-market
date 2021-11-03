@@ -3,7 +3,7 @@
 @php($increment = 0)
 
 @section('body')
-<h4 class="text-center text-dark"><u>PROFORMA</u></h4>
+<h4 class="text-center text-dark text-uppercase"><u>Proforma</u></h4>
 
 <div class="text-right" style="margin-top: 1cm; margin-bottom: 1cm;">
     <h4 class="m-0 text-primary">{{ $proforma->customer->getName() }}</h4>

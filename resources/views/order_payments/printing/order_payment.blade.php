@@ -1,16 +1,18 @@
-@extends('layouts.pdf', ['title' => "Reçu", 'watermark' => true, 'orientation' => 'portrait'])
+@extends('layouts.pdf', ['title' => "Reçu de payement client", 'watermark' => true, 'orientation' => 'portrait'])
 
 @php($increment = 0)
 
 @section('body')
-<h4 class="text-center text-dark text-uppercase"><u>Reçu</u></h4>
+<h4 class="text-center text-dark text-uppercase"><u>Reçu de payement client</u></h4>
 
 <div class="text-right" style="margin-top: 1cm; margin-bottom: 1cm;">
     <h4 class="m-0 text-primary">{{ $orderPayment->order->customer->getName() }}</h4>
     <p class="m-0 fs-12">Tél : {{ $orderPayment->order->customer->getFullPhoneNumber() }}</p>
 </div>
 
-<h6 class="text-uppercase">REF : {{ $orderPayment->order->getNumber() }}, Date : {{ $orderPayment->order->created_at->format('d/m/Y') }}.</h6>
+<p class="text-right">Fait à {{ session('sessionSociety')->enterprise->city }} le {{ $orderPayment->created_at->format('d M Y') }}</p>
+
+<h6 class="text-uppercase">REF : {{ $orderPayment->order->getNumber() }} | {{ session('sessionSociety')->enterprise->city }}-{{ session('sessionSociety')->enterprise->country->name }}, Date : {{ $orderPayment->created_at->format('d/m/Y') }}.</h6>
 
 <table class="table table-bordered table-sm">
     <thead class="thead-dark">
@@ -65,7 +67,7 @@
     </tfoot>
 </table>
 
-<p class="text-dark">Arrêté la présente facture à la somme de {{ numberTransformer($orderPayment->order->totalTTC()) }}</p>
+<p class="text-dark">Arrêté le présent reçu à la somme de {{ numberTransformer($orderPayment->order->totalTTC()) }}</p>
 
 <x-signature />
 
