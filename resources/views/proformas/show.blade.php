@@ -1,4 +1,4 @@
- @extends('layouts.dashboard', ['title' => "Proforma et sa liste de produits"])
+ @extends('layouts.dashboard', ['title' => "Proforma"])
 
 @section('body')
 <section class="content">

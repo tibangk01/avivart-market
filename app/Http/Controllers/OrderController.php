@@ -59,6 +59,21 @@ class OrderController extends Controller
             
             $cartContent = Cart::instance($request->input('instance'))->content();
 
+            $canSave = true;
+
+            foreach ($cartContent as $row) {
+                $product = Product::findOrFail($row->id);
+
+                if (($product->stock_quantity - intval($row->qty)) < 0) {
+                    $canSave = false;
+                    break;
+                }
+            }
+
+            if (!$canSave) {
+                return back()->withWarning('Stock insuffisant');
+            }
+
             try {
                 DB::beginTransaction();
 
@@ -79,6 +94,10 @@ class OrderController extends Controller
                         'selling_price' => $product->selling_price,
                         'global_rental_price' => $product->global_rental_price,
                         'rental_price' => $product->rental_price,
+                    ]);
+
+                    $product->update([
+                        'stock_quantity' => $product->stock_quantity - $row->qty,
                     ]);
                 }  
 

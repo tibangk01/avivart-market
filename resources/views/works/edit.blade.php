@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => "Editer la fonction"])
+@extends('layouts.dashboard', ['title' => "Fonction"])
 
 @section('body')
 <section class="content">

@@ -30,7 +30,7 @@ class QuickSaleController extends Controller
      */
     public function create()
     {
-        $products = Product::all()->pluck(null, 'id');
+        $products = Product::where('stock_quantity', '>', 0)->get()->pluck(null, 'id');
         $vats = Vat::all()->pluck(null, 'id');
         $discounts = Discount::all()->pluck(null, 'id');
 
@@ -51,12 +51,20 @@ class QuickSaleController extends Controller
 
             $product = Product::findOrFail($request->product_id);
 
+            if (($product->stock_quantity - intval($request->quantity)) < 0) {
+                return back()->withWarning('Stock insuffisant');
+            }
+
             $quickSale = quickSale::create(array_merge(
                 $request->all(),
                 [
                     'selling_price' => $product->selling_price,
                 ]
             ));
+
+            $product->update([
+                'stock_quantity' => $product->stock_quantity - $quickSale->quantity,
+            ]);
 
             $this->updateStaffStatusBarInfo(
                 $quickSale->totalTTC(),
@@ -90,7 +98,7 @@ class QuickSaleController extends Controller
      */
     public function edit(QuickSale $quickSale)
     {
-        $products = Product::all()->pluck(null, 'id');
+        $products = Product::where('stock_quantity', '>', 0)->get()->pluck(null, 'id');
         $vats = Vat::all()->pluck(null, 'id');
         $discounts = Discount::all()->pluck(null, 'id');
 
@@ -110,7 +118,31 @@ class QuickSaleController extends Controller
 
             $this->_validateRequest($request);
 
+            $product = Product::findOrFail($quickSale->product_id);
+
+            if (($product->stock_quantity - intval($request->quantity)) < 0) {
+                return back()->withWarning('Stock insuffisant');
+            }
+
+            $product->update([
+                'stock_quantity' => $product->stock_quantity + $quickSale->quantity,
+            ]);
+
+            $this->updateStaffStatusBarInfo(
+                $quickSale->totalTTC(),
+                '-'
+            );
+
             $quickSale->update($request->all());
+
+            $product->update([
+                'stock_quantity' => $product->stock_quantity - $quickSale->quantity,
+            ]);
+
+            $this->updateStaffStatusBarInfo(
+                $quickSale->totalTTC(),
+                '+'
+            );
 
             session()->flash('success', "Donnée enregistrée");
         }

@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => "Ajouter un niveau d'étude"])
+@extends('layouts.dashboard', ['title' => "Niveau d'étude"])
 
 @section('body')
     <section class="content">

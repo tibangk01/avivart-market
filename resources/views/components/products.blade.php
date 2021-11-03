@@ -6,7 +6,7 @@
                     <th>Nom</th>
                     <th>PAU</th>
                     <th>PVU</th>
-                    <th>Qté Restante</th>
+                    <th>Qté en Stock</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -16,7 +16,7 @@
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->purchase_price }}</td>
                     <td>{{ $product->selling_price }}</td>
-                    <td>{{ $product->stock_quantity - $product->sold_quantity }}</td>
+                    <td>{{ $product->stock_quantity }}</td>
                     <td>
                         <a class="btn btn-success btn-xs" href="{{ route('cart.add', ['product' => $product->id, 'instance' => $instance]) }}" title="Ajouter au panier"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
                     </td>

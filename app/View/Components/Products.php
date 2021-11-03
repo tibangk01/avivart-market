@@ -18,7 +18,7 @@ class Products extends Component
      */
     public function __construct($instance)
     {
-        $this->products = Product::all();
+        $this->products = Product::where('stock_quantity', '>', 0)->get();
 
         $this->instance = $instance;
     }

@@ -1,4 +1,4 @@
- @extends('layouts.dashboard', ['title' => "Liste des sociétés"])
+ @extends('layouts.dashboard', ['title' => "Sociétés"])
 
 @section('body')
 <div class="content">

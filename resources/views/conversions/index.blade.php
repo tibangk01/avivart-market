@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => "Liste des unités"])
+@extends('layouts.dashboard', ['title' => "Unités de mesure"])
 
 @section('body')
     <div class="content">

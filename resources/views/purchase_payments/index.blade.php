@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => "Liste des payements bon de réception"])
+@extends('layouts.dashboard', ['title' => "Payements fournisseur"])
 
 @section('body')
     <div class="content">

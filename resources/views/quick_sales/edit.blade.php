@@ -42,19 +42,19 @@
                                     <th>Nom</th>
                                     <th>PAU</th>
                                     <th>PVU</th>
-                                    <th>Qté Restante</th>
+                                    <th>Qté en Stock</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse ($products as $product)
                                 <tr>
                                     <td>
-                                        <a title="Prendre" href="{{ route('quick_sale.edit', ['quick_sale' => $quickSale, 'product_id' => $product->id]) }}"><i class="fa fa-arrow-circle-left"></i></a>
+                                        <a class="btn btn-info btn-xs" title="Prendre" href="{{ route('quick_sale.edit', ['quick_sale' => $quickSale, 'product_id' => $product->id]) }}"><i class="fa fa-arrow-circle-left"></i></a>
                                     </td>
                                     <td>{{ $product->name }}</td>
                                     <td>{{ $product->purchase_price }}</td>
                                     <td>{{ $product->selling_price }}</td>
-                                    <td>{{ $product->stock_quantity - $product->sold_quantity }}</td>
+                                    <td>{{ $product->stock_quantity }}</td>
                                 </tr>
                                 @empty
                                 <tr>

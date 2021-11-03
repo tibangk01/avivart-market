@@ -1,4 +1,4 @@
- @extends('layouts.dashboard', ['title' => "Enregistrement d'un proforma"])
+ @extends('layouts.dashboard', ['title' => "Proforma"])
 
 @section('body')
 <section class="content">

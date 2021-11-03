@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => "Détails de la devise"])
+@extends('layouts.dashboard', ['title' => "Device"])
 
 @section('body')
 <section class="content">

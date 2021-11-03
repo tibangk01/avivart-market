@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => "Ajouter un type de fournisseur/client"])
+@extends('layouts.dashboard', ['title' => "Type de fournisseur/client"])
 
 @section('body')
 <section class="content">

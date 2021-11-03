@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => "Détails de la tva"])
+@extends('layouts.dashboard', ['title' => "TVA"])
 
 @section('body')
 <section class="content">

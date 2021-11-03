@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => $staff->human->user->full_name])
+@extends('layouts.dashboard', ['title' => "Staff"])
 
 @section('body')
     <section class="content">

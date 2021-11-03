@@ -1,4 +1,4 @@
- @extends('layouts.dashboard', ['title' => "Edition du bon de livraison client"])
+ @extends('layouts.dashboard', ['title' => "Livraison client"])
 
 @section('body')
 <section class="content">

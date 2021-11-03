@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => "Liste des types de contrat"])
+@extends('layouts.dashboard', ['title' => "Types de contrat"])
 
 @section('body')
     <div class="content">
