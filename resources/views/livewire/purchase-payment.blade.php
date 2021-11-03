@@ -1,5 +1,5 @@
 <div>
-    {!! Form::open(['method' => 'POST', 'route' => 'purchase_payment.store']) !!}
+    {!! Form::open(['method' => 'POST', 'route' => 'purchase_payment.store', 'target' => '_blank']) !!}
 
     <div class="form-group">
         <label for="purchase_id">Choisissez un bon de commande</label>
