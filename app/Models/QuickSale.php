@@ -87,8 +87,8 @@ class QuickSale extends Model
 	public function totalTVA(): float
 	{
 		return ($this->vat !== null)
-			? $this->totalHT() * $this->vat->percentage
-			: $this->totalHT();
+			? $this->totalHT() - ($this->totalHT() * $this->vat->percentage)
+			: 0;
 	}
 
 	public function totalHT(): float

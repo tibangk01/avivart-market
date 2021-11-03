@@ -100,8 +100,8 @@ class Proforma extends Model
 		if ($this->products->count()) {
 			foreach ($this->products as $product) {
 				$totalTVA += ($this->vat !== null)
-					? $product->pivot->selling_price * $this->vat->percentage
-					: $product->pivot->selling_price;
+					? $product->pivot->selling_price - ($product->pivot->selling_price * $this->vat->percentage)
+					: 0;
 			}
 		}
 

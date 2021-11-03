@@ -106,8 +106,8 @@ class Purchase extends Model
 		if ($this->products->count()) {
 			foreach ($this->products as $product) {
 				$totalTVA += ($this->vat !== null)
-					? $product->pivot->purchase_price * $this->vat->percentage
-					: $product->pivot->purchase_price;
+					? $product->pivot->purchase_price - ($product->pivot->purchase_price * $this->vat->percentage)
+					: 0;
 			}
 		}
 
