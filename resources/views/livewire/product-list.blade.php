@@ -44,10 +44,12 @@
         </table>
     </div>
 
+    @if(count($ids) > 0)
     <p class="my-2">
         <a href="" wire:click.prevent="addProducts()" class="btn btn-info"><i class="fa fa-plus mr-2"></i> Ajouter les sélections</a>
         <a href="" wire:click.prevent="truncateProducts()" class="btn btn-warning"><i class="fa fa-times mr-2"></i> Vider les sélections</a>
     </p>
+    @endif
 
     <p>Page : {{ $products->currentPage() }} | Nombre : {{ $products->count() }} | Total : {{ $products->total() }} | Par page : {{ $products->perPage() }}</p>
 

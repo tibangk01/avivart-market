@@ -13,7 +13,7 @@ class ProductList extends Component
 
     public string $instance;
 
-    public $search;
+    public string $search;
 
     public array $ids;
 

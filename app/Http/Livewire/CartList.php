@@ -42,6 +42,11 @@ class CartList extends Component
 
         $this->orderStates = OrderState::all();
 
+        $this->setRouteName();
+    }
+
+    public function setRouteName()
+    {
         switch ($this->instance) {
             case 'purchase':
                 $this->routeName = 'purchase.store';
