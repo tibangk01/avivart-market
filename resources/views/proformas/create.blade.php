@@ -7,12 +7,12 @@
             <div class="col-lg-6">
                 <h6>Liste des produits</h6>
 
-                <x-products instance="proforma" />
+                <livewire:product-list instance="proforma" />
             </div>
             <div class="col-lg-6">
                 <h6>Panier de produits</h6>
                 
-                <x-cart instance="proforma" />
+                <livewire:cart-list instance="proforma" />
             </div>
         </div>
     </div>  

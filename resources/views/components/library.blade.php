@@ -3,7 +3,7 @@
 
         @case(1)
 
-            <img {{ $attributes }} src="{{ $library->remote }}" alt="{{ $library->description }}" {{ $attributes }}>
+            <img {{ $attributes }} src="{{ $library->remote }}" alt="{{ $library->description }}">
 
             @break
 

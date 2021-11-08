@@ -33,7 +33,7 @@
                                     </div>
 
                                     <div class="table-responsive">
-                                        <table class="table table-bordered table-hover table-striped datatable text-center">
+                                        <table class="table table-bordered table-hover table-striped datatable">
                                             <thead class="thead-dark">
                                                 <tr>
                                                     <th></th>

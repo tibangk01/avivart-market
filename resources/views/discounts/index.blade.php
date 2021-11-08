@@ -31,7 +31,7 @@
 
                                 <div class="table-responsive">
                                         <table
-                                            class="table table-bordered table-hover table-striped datatable text-nowrap text-center">
+                                            class="table table-bordered table-hover table-striped datatable">
                                             <thead class="thead-dark">
                                                 <tr>
                                                     <th>Montant</th>

@@ -7,7 +7,7 @@
             <div class="col-lg-6">
                 <h6>Liste des produits</h6>
 
-                <x-products instance="order" />
+                <livewire:product-list instance="order" />
             </div>
             <div class="col-lg-6">
                 <h6>Panier de produits</h6>
@@ -40,7 +40,7 @@
                     {!! Form::close() !!}
                 </div>
                 
-                <x-cart instance="order" />
+                <livewire:cart-list instance="order" />
             </div>
         </div>
     </div>  
