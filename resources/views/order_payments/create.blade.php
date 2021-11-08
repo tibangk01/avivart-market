@@ -8,7 +8,7 @@
                 <h4>Text</h4>
             </div>
             <div class="col-lg-6">
-
+                <livewire:order-payment />
             </div>
         </div>
     </div>

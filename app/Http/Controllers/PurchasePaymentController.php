@@ -125,7 +125,15 @@ class PurchasePaymentController extends Controller
     public function update(Request $request, PurchasePayment $purchasePayment)
     {
         if ($request->isMethod('PUT')) {
-            // code...
+            $request->validate([
+                'payment_mode_id' => ['required'],
+                'purchase_id' => ['required'],
+                'amount' => ['required'],
+            ]);
+
+            $purchasePayment->payment->update($request->only('payment_mode_id'));
+
+            session()->flash('success', 'Donnée enregistrée.');
         }
 
         return  back();

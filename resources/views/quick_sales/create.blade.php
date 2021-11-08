@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-6">
-                    {!! Form::open(['method' => 'POST', 'route' => 'quick_sale.store', 'target' => '_blank']) !!}
+                    {!! Form::open(['method' => 'POST', 'route' => 'quick_sale.store']) !!}
 
                     <div class="form-group">
                         {!! Form::label('product_id', 'Produit') !!}

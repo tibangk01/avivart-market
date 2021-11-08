@@ -46,6 +46,7 @@ class OrderPaymentController extends Controller
         if ($request->isMethod('POST')) {
             $request->validate([
                 'payment_mode_id' => ['required'],
+                'order_state_id' => ['required'],
                 'order_id' => ['required'],
                 'amount' => ['required'],
             ]);
@@ -129,7 +130,18 @@ class OrderPaymentController extends Controller
     public function update(Request $request, OrderPayment $orderPayment)
     {
         if ($request->isMethod('PUT')) {
-            // code...
+            $request->validate([
+                'payment_mode_id' => ['required'],
+                'order_state_id' => ['required'],
+                'order_id' => ['required'],
+                'amount' => ['required'],
+            ]);
+            
+            $orderPayment->order->update($request->only('order_state_id'));
+
+            $orderPayment->payment->update($request->only('payment_mode_id'));
+
+            session()->flash('success', 'Donnée enregistrée.');
         }
 
         return  back();

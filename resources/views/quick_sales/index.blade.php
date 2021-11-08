@@ -22,7 +22,7 @@
                                     <div class="d-flex">
                                         <div class="ml-auto">
 
-                                            <a class="btn btn-flat btn-primary mb-1" href="{{ route('quick_sale.create') }}"><i
+                                            <a class="btn btn-flat btn-primary mb-1" href="{{ route('quick_sale.create') }}" target="_blank"><i
                                                     class="fa fa-plus"></i>
                                                 Ajouter</a>
                                         </div>

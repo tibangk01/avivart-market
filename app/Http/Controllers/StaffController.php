@@ -113,9 +113,10 @@ class StaffController extends Controller
                 session()->flash('success', 'Donnée enregistrée.');
 
                 return redirect()->route('staff.show', ['staff' => $staff]);
-            } catch (\Throwable $th) {
-
+            } catch (\Exception $ex) {
                 DB::rollBack();
+
+                dd($ex);
 
                 session()->flash('error', "Une erreur s'est produite");
             }
@@ -177,15 +178,12 @@ class StaffController extends Controller
                 $staff->update($request->only('staff_type_id'));
 
                 DB::commit();
-            } catch (\Throwable $th) {
-
+            } catch (\Exception $ex) {
                 DB::rollBack();
 
-                dd($th);
+                dd($ex);
 
                 session()->flash('error', "Une erreur s'est produite");
-
-                return back();
             }
 
             session()->flash('success', 'Modification réussi');

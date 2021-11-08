@@ -39,13 +39,8 @@
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('username', "Nom d'utilisateur", ['class' => 'form-label']) !!}
-                            {!! Form::text('username', $staff->human->username, ['class' => 'form-control']) !!}
-                        </div>
-
-                        <div class="form-group">
-                            {!! Form::label('signature', 'Signature numérique (5 caractères max)', ['class' => 'form-label']) !!}
-                            {!! Form::text('signature', $staff->human->signature, ['class' => 'form-control', 'maxlength' => 5]) !!}
+                            {!! Form::label('hiring_date', "Date d'embauche", ['class' => 'form-label']) !!}
+                            {!! Form::date('hiring_date', $staff->human->hiring_date, ['class' => 'form-control']) !!}
                         </div>
 
                         <div class="form-group">
@@ -87,11 +82,6 @@
                         <div class="form-group">
                             {!! Form::label('place_of_birth', "Lieu de naissance", ['class' => 'form-label']) !!}
                             {!! Form::text('place_of_birth', $staff->human->place_of_birth, ['class' => 'form-control']) !!}
-                        </div>
-
-                        <div class="form-group">
-                            {!! Form::label('hiring_date', "Date d'embauche", ['class' => 'form-label']) !!}
-                            {!! Form::date('hiring_date', $staff->human->hiring_date, ['class' => 'form-control']) !!}
                         </div>
 
                         <div class="form-group">

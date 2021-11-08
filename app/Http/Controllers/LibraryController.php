@@ -43,13 +43,6 @@ class LibraryController extends Controller
                         if ($request->hasFile('image') && $request->file('image')->isValid()) {
 
                             $fileName = time() . '.' . $request->file('image')->extension();
-                            $storePath = $request->file('image')->storeAs(mb_strtolower($library->library_type->name) . '/' . $library->folder, $fileName,  ['disk' => 'public_dir']);
-
-                            $library->update([
-                                'description' => $request->description,
-                                'local' => $fileName,
-                                'remote' => env('UPLOADS_PATH') . $storePath,
-                            ]);
 
                             if(session()->has('purchase')) {
 
@@ -57,6 +50,8 @@ class LibraryController extends Controller
     
                                 try {
                                     DB::beginTransaction();
+
+                                    $storePath = $request->file('image')->storeAs('images/purchase_delivery_notes', $fileName,  ['disk' => 'public_dir']);
     
                                     $library = Library::create([
                                         'library_type_id' => 1,
@@ -92,6 +87,8 @@ class LibraryController extends Controller
     
                                 try {
                                     DB::beginTransaction();
+
+                                    $storePath = $request->file('image')->storeAs('images/order_delivery_notes', $fileName,  ['disk' => 'public_dir']);
     
                                     $library = Library::create([
                                         'library_type_id' => 1,
@@ -164,7 +161,6 @@ class LibraryController extends Controller
 
                                 session()->flash('error', "Une erreur s'est produite");
                             }
-
                         } elseif (session()->has('order')) {
 
                             $order = Order::findOrFail(session('order'));

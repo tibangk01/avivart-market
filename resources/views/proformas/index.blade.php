@@ -25,7 +25,7 @@
                                                             title="Imprimer"><i class="fa fa-print"></i> Imprimer</a>
 
                                         <a class="btn btn-flat btn-primary mb-1"
-                                            href="{{ route('proforma.create') }}"><i class="fa fa-plus"></i>
+                                            href="{{ route('proforma.create') }}" target="_blank"><i class="fa fa-plus"></i>
                                             Ajouter</a>
                                     </div>
                                 </div>

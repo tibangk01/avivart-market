@@ -62,8 +62,10 @@ class SalePlaceController extends Controller
 
                 $agency = Agency::findOrFail($request->agency_id);
 
-                $code = $agency->sale_places->load('enterprise')->where('enterprise.region_id', $agency->enterprise->region_id)->count()
-                    ? $agency->sale_places->load('enterprise')->where('enterprise.region_id', $agency->enterprise->region_id)->count() + 1
+                $queryModel = $agency->sale_places->load('enterprise')->where('enterprise.region_id', $agency->enterprise->region_id);
+
+                $code = $queryModel->count()
+                    ? $queryModel->count() + 1
                     : 1;
                 $code = ($code < 10) ? '0' . $code : $code;
 
@@ -149,8 +151,10 @@ class SalePlaceController extends Controller
 
                 $agency = Agency::findOrFail($request->agency_id);
 
-                $code = $agency->sale_places->load('enterprise')->where('enterprise.region_id', $agency->enterprise->region_id)->count()
-                    ? $agency->sale_places->load('enterprise')->where('enterprise.region_id', $agency->enterprise->region_id)->count() + 1
+                $queryModel = $agency->sale_places->load('enterprise')->where('enterprise.region_id', $agency->enterprise->region_id);
+
+                $code = $queryModel->count()
+                    ? $queryModel->count() + 1
                     : 1;
                 $code = ($code < 10) ? '0' . $code : $code;
 

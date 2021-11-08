@@ -61,8 +61,12 @@ class AgencyController extends Controller
 
                 $region = Region::findOrFail($request->region_id);
 
-                $code = Agency::with('enterprise')->where('enterprise.region_id', $region->id)->count()
-                    ? Agency::with('enterprise')->where('enterprise.region_id', $region->id)->count() + 1
+                $queryModel = Agency::whereHas('enterprise', function ($query) use ($region) {
+                    $query->where('region_id', $region->id);
+                });
+
+                $code = $queryModel->count()
+                    ? $queryModel->count() + 1
                     : 1;
                 if (strlen(strval($code)) == 1) {
                     $code = '00' . $code;
@@ -150,8 +154,12 @@ class AgencyController extends Controller
 
                 $region = Region::findOrFail($request->region_id);
 
-                $code = Agency::with('enterprise')->where('enterprise.region_id', $region->id)->count()
-                    ? Agency::with('enterprise')->where('enterprise.region_id', $region->id)->count() + 1
+                $queryModel = Agency::whereHas('enterprise', function ($query) use ($region) {
+                    $query->where('region_id', $region->id);
+                });
+
+                $code = $queryModel->count()
+                    ? $queryModel->count() + 1
                     : 1;
                 if (strlen(strval($code)) == 1) {
                     $code = '00' . $code;

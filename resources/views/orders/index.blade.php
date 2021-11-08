@@ -25,7 +25,7 @@
                                                             title="Imprimer"><i class="fa fa-print"></i> Imprimer</a>
 
                                         <a class="btn btn-flat btn-primary"
-                                            href="{{ route('order.create') }}"><i class="fa fa-plus"></i>
+                                            href="{{ route('order.create') }}" target="_blank"><i class="fa fa-plus"></i>
                                             Ajouter</a>
                                     </div>
                                 </div>

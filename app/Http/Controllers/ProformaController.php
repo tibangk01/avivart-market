@@ -78,7 +78,7 @@ class ProformaController extends Controller
 
                 session()->flash('success', 'Donnée enregistrée.');
 
-                return redirect()->to(route('proforma.pdf', ['proforma' => $proforma]));    //to or away
+                return redirect()->to(route('proforma.printing.one', ['proforma' => $proforma]));    //to or away
             } catch (\Exception $ex) {
                 DB::rollback();
 
