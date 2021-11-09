@@ -136,4 +136,9 @@ class User extends Authenticatable
     {
     	return $this->getFullNameAttribute();
     }
+
+    public function getFullPhoneNumber()
+	{
+		return '+' . $this->country->phonecode . ' ' . $this->phone_number;
+	}
 }

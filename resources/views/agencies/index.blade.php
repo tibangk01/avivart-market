@@ -52,7 +52,7 @@
                                                         <td><x-library :library='$agency->enterprise->library' class="img25_25" /></td>
                                                         <td>{{ $agency->enterprise->code }}</td>
                                                         <td>{{ $agency->enterprise->name }}</td>
-                                                        <td>{{ $agency->enterprise->phone_number }}</td>
+                                                        <td>{{ $agency->enterprise->getFullPhoneNumber() }}</td>
                                                         <td>{{ $agency->enterprise->email }}</td>
                                                         <td>{{ $agency->enterprise->region->name }}</td>
                                                         <td>{{ $agency->sale_places->count() }}</td>

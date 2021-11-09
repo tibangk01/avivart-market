@@ -15,7 +15,7 @@
                 <tr>
                     <td><x-library :library='$customer->person->user->library' class="img25_25" /></td>
                     <td>{{ $customer->person->user->full_name }}</td>
-                    <td>{{ $customer->person->user->phone_number }}</td>
+                    <td>{{ $customer->person->user->getFullPhoneNumber() }}</td>
                     <td>{{ $customer->person->user->email }}</td>
                     <td>
                         <a class="btn btn-info btn-xs"

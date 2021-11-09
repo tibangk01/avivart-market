@@ -7,6 +7,9 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use App\Models\Transaction;
+use App\Models\ExerciseProduct;
+use App\Models\Exercise;
+use App\Models\Product;
 use Illuminate\Support\Str;
 
 class Controller extends BaseController
@@ -52,7 +55,64 @@ class Controller extends BaseController
                 'activity' => $activity,
             ]);
         } catch (\Exception $ex) {
-            //throw $th;
+            //
+        }
+    }
+
+    protected function saveInventory(Exercise $exercise, Product $product, string $model = 'QuickSale')
+    {
+        try {
+            switch ($model) {
+                case 'Purchase':
+                    ExerciseProduct::create([
+                        'exercise_id' => $exercise->id,
+                        'product_id' => $product->id,
+                        'initial_stock' => 0,
+                        'final_stock' => $product->stock_quantity,
+                        'global_purchase_price' => $product->pivot->global_purchase_price,
+                        'purchase_price' => $product->pivot->purchase_price,
+                        'global_selling_price' => 0,
+                        'selling_price' => 0,
+                        'global_rental_price' => 0,
+                        'rental_price' => 0,
+                        'loss' => 0,
+                    ]);
+                    break;
+
+                case 'Order':
+                    ExerciseProduct::create([
+                        'exercise_id' => $exercise->id,
+                        'product_id' => $product->id,
+                        'initial_stock' => 0,
+                        'final_stock' => $product->stock_quantity,
+                        'global_purchase_price' => 0,
+                        'purchase_price' => 0,
+                        'global_selling_price' => $product->pivot->global_selling_price,
+                        'selling_price' => $product->pivot->selling_price,
+                        'global_rental_price' => $product->pivot->global_rental_price,
+                        'rental_price' => $product->pivot->rental_price,
+                        'loss' => 0,
+                    ]);
+                    break;
+                
+                default:
+                    ExerciseProduct::create([
+                        'exercise_id' => $exercise->id,
+                        'product_id' => $product->id,
+                        'initial_stock' => 0,
+                        'final_stock' => $product->stock_quantity,
+                        'global_purchase_price' => $product->global_purchase_price,
+                        'purchase_price' => $product->purchase_price,
+                        'global_selling_price' => $product->global_selling_price,
+                        'selling_price' => $product->selling_price,
+                        'global_rental_price' => $product->global_rental_price,
+                        'rental_price' => $product->rental_price,
+                        'loss' => 0,
+                    ]);
+                    break;
+            }
+        } catch (\Exception $e) {
+            //
         }
     }
 

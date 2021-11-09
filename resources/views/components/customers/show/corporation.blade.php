@@ -17,7 +17,7 @@
             </tr>
             <tr>
                 <th>Téléphone</th>
-                <td>{{ $customer->corporation->enterprise->phone_number}}</td>
+                <td>{{ $customer->corporation->enterprise->getFullPhoneNumber() }}</td>
             </tr>
             <tr>
                 <th>Email</th>
@@ -25,11 +25,11 @@
             </tr>
             <tr>
                 <th>Adresse</th>
-                <td>{{ $customer->corporation->enterprise->address}}</td>
+                <td>{{ $customer->corporation->enterprise->address }}</td>
             </tr>
             <tr>
                 <th>Site web</th>
-                <td><a target="_blank" href="{{ $customer->corporation->enterprise->website}}">{{ $customer->corporation->enterprise->website}}</a></td>
+                <td><a target="_blank" href="{{ $customer->corporation->enterprise->website}}">{{ $customer->corporation->enterprise->website }}</a></td>
             </tr>
             <tr>
                 <th>Code Fiscal</th>

@@ -17,7 +17,7 @@
             </tr>
             <tr>
                 <th>Téléphone</th>
-                <td>{{ $provider->person->user->phone_number}}</td>
+                <td>{{ $provider->person->user->getFullPhoneNumber() }}</td>
             </tr>
             <tr>
                 <th>Email</th>

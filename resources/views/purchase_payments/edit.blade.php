@@ -12,8 +12,8 @@
                 {!! Form::model($purchasePayment, ['method' => 'PUT', 'route' => ['purchase_payment.update', $purchasePayment]]) !!}
 
                 <div class="form-group">
-                    {!! Form::label('purchase_id', "Bon de commande") !!}
-                    {!! Form::select('purchase_id', $purchases, null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez un bon de commande", 'readonly' => true]) !!}
+                    {!! Form::label('purchase_id', "Commande fournisseur") !!}
+                    {!! Form::select('purchase_id', $purchases, null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez une commande fournisseur", 'readonly' => true]) !!}
                 </div>
 
                 <div class="form-group">

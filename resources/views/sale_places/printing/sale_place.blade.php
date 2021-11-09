@@ -25,7 +25,7 @@
         </tr>
         <tr>
             <th>Téléphone</th>
-            <td>{{ $salePlace->enterprise->phone_number }}</td>
+            <td>{{ $salePlace->enterprise->getFullPhoneNumber() }}</td>
         </tr>
         <tr>
             <th>Email</th>

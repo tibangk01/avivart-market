@@ -1,4 +1,4 @@
- @extends('layouts.dashboard', ['title' => "Exercice & Produit"])
+ @extends('layouts.dashboard', ['title' => "Régul Inventaire"])
 
 @section('body')
 <section class="content">
@@ -62,6 +62,11 @@
                 <div class="form-group">
                     {!! Form::label('loss', 'Perte') !!}
                     {!! Form::number('loss', null, ['class' => 'form-control', 'required' => true, 'min' => 0, 'step' => 1]) !!}
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('loss_comment', 'Perte commentaire') !!}
+                    {!! Form::text('loss_comment', null, ['class' => 'form-control', 'placeholder' => "Perte commentaire"]) !!}
                 </div>
 
                 <div class="form-group text-right">

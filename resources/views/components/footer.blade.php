@@ -6,7 +6,7 @@
     <strong class="text-success">Montant de la caisse : </strong>{{ amountConverter($staffStatusBarInfo->amount) }} |
     <em class="text-warning">Devise : </em>{{ $staffStatusBarInfo->day_transaction->exercise->currency->name }}
     @else
-    <strong>Copyright &copy; 2021-{{ date('Y') }} <a href="https://avivart.net" target="_blank">AVIV'ART</a>.</strong>
+    <strong>Copyright &copy; 2021-{{ date('Y') }} <a href="https://www.avivart.net" target="_blank">AVIV'ART</a>.</strong>
     Tous Droits Réservés.
     @endif
 

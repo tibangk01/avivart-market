@@ -6,8 +6,10 @@ use App\Models\Product;
 use App\Models\Vat;
 use App\Models\Discount;
 use App\Models\QuickSale;
+use App\Models\ExerciseProduct;
 use Illuminate\Http\Request;
 use BarryvdhDomPDF as PDF;
+use Illuminate\Support\Facades\DB;
 
 class QuickSaleController extends Controller
 {
@@ -30,6 +32,8 @@ class QuickSaleController extends Controller
      */
     public function create()
     {
+        abort_if((session('staffStatusBarInfo') === null), 403, "Veuillez ouvrir votre caisse");
+
         $products = Product::where('stock_quantity', '>', 0)->get()->pluck(null, 'id');
         $vats = Vat::all()->pluck(null, 'id');
         $discounts = Discount::all()->pluck(null, 'id');
@@ -51,29 +55,47 @@ class QuickSaleController extends Controller
 
             $product = Product::findOrFail($request->product_id);
 
+            $exercise = session('staffStatusBarInfo')->day_transaction->exercise;
+
             if (($product->stock_quantity - intval($request->quantity)) < 0) {
                 return back()->withWarning('Stock insuffisant');
             }
 
-            $quickSale = quickSale::create(array_merge(
-                $request->all(),
-                [
-                    'selling_price' => $product->selling_price,
-                ]
-            ));
+            try {
 
-            $product->update([
-                'stock_quantity' => $product->stock_quantity - $quickSale->quantity,
-            ]);
+                DB::beginTransaction();
 
-            $this->updateStaffStatusBarInfo(
-                $quickSale->totalTTC(),
-                '+'
-            );
+                $quickSale = quickSale::create(array_merge(
+                    $request->all(),
+                    [
+                        'selling_price' => $product->selling_price,
+                    ]
+                ));
 
-            session()->flash('success', "Donnée enregistrée");
+                $product->update([
+                    'stock_quantity' => $product->stock_quantity - $quickSale->quantity,
+                ]);
 
-            return redirect()->to(route('quick_sale.printing.receipt', ['quick_sale' => $quickSale]));    //to or away
+                $this->saveInventory($exercise, $product);
+
+                DB::commit();
+
+                $this->updateStaffStatusBarInfo(
+                    $quickSale->totalTTC(),
+                    '+'
+                );
+
+                session()->flash('success', "Donnée enregistrée");
+
+                return redirect()->to(route('quick_sale.printing.receipt', ['quick_sale' => $quickSale]));    //to or away
+
+            } catch (\Exception $ex) {
+                DB::rollBack();
+
+                dd($ex);
+
+                session()->flash('error', "Une erreur s'est produite");
+            }
         }
 
         return back();
@@ -98,6 +120,8 @@ class QuickSaleController extends Controller
      */
     public function edit(QuickSale $quickSale)
     {
+        abort_if((session('staffStatusBarInfo') === null), 403, "Veuillez ouvrir votre caisse");
+
         $products = Product::where('stock_quantity', '>', 0)->get()->pluck(null, 'id');
         $vats = Vat::all()->pluck(null, 'id');
         $discounts = Discount::all()->pluck(null, 'id');
@@ -124,27 +148,41 @@ class QuickSaleController extends Controller
                 return back()->withWarning('Stock insuffisant');
             }
 
-            $product->update([
-                'stock_quantity' => $product->stock_quantity + $quickSale->quantity,
-            ]);
+            try {
 
-            $this->updateStaffStatusBarInfo(
-                $quickSale->totalTTC(),
-                '-'
-            );
+                DB::beginTransaction();
 
-            $quickSale->update($request->all());
+                $product->update([
+                    'stock_quantity' => $product->stock_quantity + $quickSale->quantity,
+                ]);
 
-            $product->update([
-                'stock_quantity' => $product->stock_quantity - $quickSale->quantity,
-            ]);
+                $this->updateStaffStatusBarInfo(
+                    $quickSale->totalTTC(),
+                    '-'
+                );
 
-            $this->updateStaffStatusBarInfo(
-                $quickSale->totalTTC(),
-                '+'
-            );
+                $quickSale->update($request->all());
 
-            session()->flash('success', "Donnée enregistrée");
+                $product->update([
+                    'stock_quantity' => $product->stock_quantity - $quickSale->quantity,
+                ]);
+
+                DB::commit();
+
+                $this->updateStaffStatusBarInfo(
+                    $quickSale->totalTTC(),
+                    '+'
+                );
+
+                session()->flash('success', "Donnée enregistrée");
+
+            } catch (\Exception $ex) {
+                DB::rollBack();
+
+                dd($ex);
+
+                session()->flash('error', "Une erreur s'est produite");
+            }
         }
 
         return back();

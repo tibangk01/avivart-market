@@ -6,6 +6,7 @@ use App\Models\PaymentMode;
 use App\Models\Purchase;
 use App\Models\Payment;
 use App\Models\PurchasePayment;
+use App\Models\ExerciseProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use BarryvdhDomPDF as PDF;
@@ -31,6 +32,8 @@ class PurchasePaymentController extends Controller
      */
     public function create()
     {
+        abort_if((session('staffStatusBarInfo') === null), 403, "Veuillez ouvrir votre caisse");
+
         return view('purchase_payments.create');
     }
 
@@ -55,6 +58,8 @@ class PurchasePaymentController extends Controller
 
                 $purchase = Purchase::findOrFail($request->purchase_id);
 
+                $exercise = session('staffStatusBarInfo')->day_transaction->exercise;
+
                 $payment = Payment::create($request->except('purchase_id'));
 
                 $purchasePayment = PurchasePayment::create([
@@ -65,6 +70,10 @@ class PurchasePaymentController extends Controller
                 $purchase->update([
                     'paid' => true,
                 ]);
+
+                foreach ($purchase->products as $product) {
+                    $this->saveInventory($exercise, $product, 'Purchase');
+                }
 
                 DB::commit();
 

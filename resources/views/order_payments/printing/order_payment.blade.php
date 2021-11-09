@@ -16,7 +16,7 @@
 
 <table class="table table-bordered table-sm">
     <thead class="thead-dark">
-        <tr>
+        <tr class="text-center">
             <th>N°</th>
             <th>Désignation</th>
             <th>Marque</th>

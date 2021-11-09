@@ -19,7 +19,7 @@
                     <td><x-library :library='$customer->corporation->enterprise->library' class="img25_25" /></td>
                     <td>{{ $customer->corporation->enterprise->code }}</td>
                     <td>{{ $customer->corporation->enterprise->name }}</td>
-                    <td>{{ $customer->corporation->enterprise->phone_number }}</td>
+                    <td>{{ $customer->corporation->enterprise->getFullPhoneNumber() }}</td>
                     <td>{{ $customer->corporation->enterprise->email }}</td>
                     <td>{{ $customer->corporation->enterprise->address }}</td>
                     <td>{{ $customer->corporation->enterprise->website }}</td>

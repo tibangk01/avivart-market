@@ -30,7 +30,7 @@
                                 </tr>
                                 <tr>
                                     <th>Téléphone</th>
-                                    <td>{{ $agency->enterprise->phone_number }}</td>
+                                    <td>{{ $agency->enterprise->getFullPhoneNumber() }}</td>
                                 </tr>
                                 <tr>
                                     <th>Email</th>

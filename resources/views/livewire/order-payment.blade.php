@@ -2,7 +2,7 @@
     {!! Form::open(['method' => 'POST', 'route' => 'order_payment.store']) !!}
 
     <div class="form-group">
-        <label for="order_id">Choisissez une facture</label>
+        <label for="order_id">Choisissez une commande client</label>
         <select class="form-control" name="order_id" id="order_id" required wire:change="setAmount($event.target.value)">
             @foreach($orders as $order)
             <option value="{{ $order->id }}">{{ $order->getNumber() }}</option>

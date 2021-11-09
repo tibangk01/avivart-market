@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property float $global_rental_price
  * @property float $rental_price
  * @property int $loss
+ * @property string $loss_comment
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * 
@@ -62,7 +63,8 @@ class ExerciseProduct extends Model
 		'selling_price',
 		'global_rental_price',
 		'rental_price',
-		'loss'
+		'loss',
+		'loss_comment',
 	];
 
 	public function exercise()

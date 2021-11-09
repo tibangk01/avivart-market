@@ -7,6 +7,7 @@ use App\Models\PaymentMode;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Models\OrderPayment;
+use App\Models\ExerciseProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use BarryvdhDomPDF as PDF;
@@ -32,6 +33,8 @@ class OrderPaymentController extends Controller
      */
     public function create()
     {
+        abort_if((session('staffStatusBarInfo') === null), 403, "Veuillez ouvrir votre caisse");
+
         return view('order_payments.create');
     }
 
@@ -57,6 +60,8 @@ class OrderPaymentController extends Controller
 
                 $order = Order::findOrFail($request->order_id);
 
+                $exercise = session('staffStatusBarInfo')->day_transaction->exercise;
+
                 $payment = Payment::create($request->except('order_id'));
 
                 $orderPayment = OrderPayment::create([
@@ -68,6 +73,10 @@ class OrderPaymentController extends Controller
                     'order_state_id' => $request->input('order_state_id'),
                     'paid' => true,
                 ]);
+
+                foreach ($order->products as $product) {
+                    $this->saveInventory($exercise, $product, 'Order');
+                }
 
                 DB::commit();
 

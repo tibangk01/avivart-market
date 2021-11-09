@@ -17,7 +17,12 @@
 
                 <div class="form-group">
                     {!! Form::label('title', 'Titre') !!}
-                    {!! Form::text('title', null, ['class' => 'form-control', 'required' => true]) !!}
+                    {!! Form::text('title', null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Titre"]) !!}
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('real_sale', "Vente réelle") !!}
+                    {!! Form::number('real_sale', null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Vente Réelle", 'step' => 'any']) !!}
                 </div>
 
                 <div class="form-group">
@@ -30,7 +35,12 @@
                     {!! Form::date('end_date', now(), ['class' => 'form-control', 'required' => true, 'placeholder' => "Date de Fin"]) !!}
                 </div>
 
-                 <div class="form-group text-right">
+                <div class="form-group">
+                    {!! Form::label('created_at', "Date") !!}
+                    {!! Form::date('created_at', now(), ['class' => 'form-control', 'required' => true, 'placeholder' => "Date"]) !!}
+                </div>
+
+                <div class="form-group text-right">
                     {!! Form::submit('Ajouter', ['class' => 'btn btn-success']) !!}
                 </div>
 

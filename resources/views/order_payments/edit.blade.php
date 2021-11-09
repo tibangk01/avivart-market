@@ -12,8 +12,8 @@
                 {!! Form::model($orderPayment, ['method' => 'PUT', 'route' => ['order_payment.update', $orderPayment]]) !!}
 
                 <div class="form-group">
-                    {!! Form::label('order_id', "Facture") !!}
-                    {!! Form::select('order_id', $orders, null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez une facture", 'readonly' => true]) !!}
+                    {!! Form::label('order_id', "Commande client") !!}
+                    {!! Form::select('order_id', $orders, null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez une commande client", 'readonly' => true]) !!}
                 </div>
 
                 <div class="form-group">

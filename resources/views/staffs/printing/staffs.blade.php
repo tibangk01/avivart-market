@@ -23,7 +23,7 @@
                 <td>{{ $staff->human->signature }}</td>
                 <td>{{ $staff->human->work->name }}</td>
                 <td>{{ $staff->staff_type->name }}</td>
-                <td>{{ $staff->human->user->phone_number }}</td>
+                <td>{{ $staff->human->user->getFullPhoneNumber() }}</td>
                 <td>{{ $staff->created_at }}</td>
             </tr>
         @empty

@@ -33,7 +33,7 @@
         </tr>
         <tr>
             <th>Téléphone</th>
-            <td>{{ $staff->human->user->phone_number }}</td>
+            <td>{{ $staff->human->user->getFullPhoneNumber() }}</td>
         </tr>
         <tr>
             <th>Signature numérique</th>
