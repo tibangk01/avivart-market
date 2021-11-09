@@ -1,11 +1,11 @@
 <section>
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-8">
             <h4>Sélection : {{ count($ids) }}</h4>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <input type="search" name="search" id="search" class="form-control"
-                    placeholder="Recherche..." wire:model="search" required>
+                    placeholder="Rechercher..." wire:model="search" required>
         </div>
     </div>
 

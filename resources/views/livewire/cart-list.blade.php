@@ -117,7 +117,7 @@
 
     <div class="form-group">
         <label for="vat_id">TVA</label>
-        <select required class="form-control" id="vat_id" name="vat_id">
+        <select class="form-control" id="vat_id" name="vat_id">
             <option value="">Choisissez</option>
             @foreach($vats as $vat)
             <option value="{{ $vat->id }}" {{ session()->has('loadedProforma') ? session('loadedProforma')->vat_id : null }}>{{ $vat->percentage }}</option>
@@ -127,7 +127,7 @@
 
     <div class="form-group">
         <label for="discount_id">Remise</label>
-        <select required class="form-control" id="discount_id" name="discount_id">
+        <select class="form-control" id="discount_id" name="discount_id">
             <option value="">Choisissez</option>
             @foreach($discounts as $discount)
             <option value="{{ $discount->id }}" {{ session()->has('loadedProforma') ? session('loadedProforma')->discount_id : null }}>{{ $discount->amount }}</option>

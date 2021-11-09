@@ -19,7 +19,7 @@
             <th>Désignation</th>
             <th>Marque</th>
             <th>Modèle</th>
-            <th>Unité</th>
+            <th>Qté</th>
             <th>Commnentaire</th>
         </tr>
     </thead>
