@@ -197,7 +197,7 @@ class QuickSaleController extends Controller
         $pdf->setPaper('a4', 'portrait');
         $pdf->save(public_path("libraries/docs/quick_sale_{$quickSale->id}.pdf"));
 
-        return $pdf->stream('quick_sale.pdf');
+        return $pdf->stream("quick_sale_{$quickSale->id}.pdf");
     }
 
     public function receipt(Request $request, QuickSale $quickSale)
@@ -206,6 +206,6 @@ class QuickSaleController extends Controller
         $pdf->setPaper('a4', 'portrait');
         $pdf->save(public_path("libraries/docs/receipt_{$quickSale->id}.pdf"));
 
-        return $pdf->stream('receipt.pdf');
+        return $pdf->stream("receipt_{$quickSale->id}.pdf");
     }
 }

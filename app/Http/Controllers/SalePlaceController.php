@@ -242,6 +242,6 @@ class SalePlaceController extends Controller
         $pdf->setPaper('a4', 'portrait');
         $pdf->save(public_path("libraries/docs/sale_place_{$salePlace->id}.pdf"));
 
-        return $pdf->stream('sale_place.pdf');
+        return $pdf->stream("sale_place_{$salePlace->id}.pdf");
     }
 }

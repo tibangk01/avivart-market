@@ -128,6 +128,6 @@ class SocietyController extends Controller
         $pdf->setPaper('a4', 'portrait');
         $pdf->save(public_path("libraries/docs/society_{$society->id}.pdf"));
 
-        return $pdf->stream('society.pdf');
+        return $pdf->stream("society_{$society->id}.pdf");
     }
 }

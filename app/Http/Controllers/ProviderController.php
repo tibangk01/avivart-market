@@ -328,6 +328,6 @@ class ProviderController extends Controller
         $pdf->setPaper('a4', 'portrait');
         $pdf->save(public_path("libraries/docs/provider_{$provider->id}.pdf"));
 
-        return $pdf->stream('provider.pdf');
+        return $pdf->stream("provider_{$provider->id}.pdf");
     }
 }

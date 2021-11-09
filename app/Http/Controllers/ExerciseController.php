@@ -137,6 +137,6 @@ class ExerciseController extends Controller
         $pdf->setPaper('a4', 'landscape');
         $pdf->save(public_path("libraries/docs/inventory_{$exercise->id}.pdf"));
 
-        return $pdf->stream('inventory.pdf');
+        return $pdf->stream("inventory_{$exercise->id}.pdf");
     }
 }

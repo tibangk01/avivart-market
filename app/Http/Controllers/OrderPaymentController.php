@@ -175,6 +175,6 @@ class OrderPaymentController extends Controller
         $pdf->setPaper('a4', 'portrait');
         $pdf->save(public_path("libraries/docs/order_payment_{$orderPayment->id}.pdf"));
 
-        return $pdf->stream('order_payment.pdf');
+        return $pdf->stream("order_payment_{$orderPayment->id}.pdf");
     }
 }

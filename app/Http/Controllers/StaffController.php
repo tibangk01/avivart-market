@@ -256,7 +256,7 @@ class StaffController extends Controller
         $pdf->setPaper('a4', 'portrait');
         $pdf->save(public_path("libraries/docs/staff_{$staff->id}.pdf"));
 
-        return $pdf->stream('staff.pdf');
+        return $pdf->stream("staff_{$staff->id}.pdf");
     }
 
     public function qrcode(Request $request, Staff $staff)
@@ -270,6 +270,6 @@ class StaffController extends Controller
         $pdf->setPaper('a7', 'landscape');
         $pdf->save(public_path("libraries/docs/staff_qrcode_{$staff->id}.pdf"));
 
-        return $pdf->stream('staff_qrcode.pdf');
+        return $pdf->stream("staff_qrcode_{$staff->id}.pdf");
     }
 }

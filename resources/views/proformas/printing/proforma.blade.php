@@ -20,8 +20,8 @@
             <th>Marque</th>
             <th>Modèle</th>
             <th>Qté</th>
-            <th>PU HT</th>
-            <th>PT HT</th>
+            <th>PVU HT</th>
+            <th>PVT HT</th>
         </tr>
     </thead>
     <tbody>

@@ -12,7 +12,7 @@
 
                 <div class="form-group">
                     {!! Form::label('amount', "Montant") !!}
-                    {!! Form::number('amount', null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Montant"]) !!}
+                    {!! Form::number('amount', null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Montant", 'step' => 'any']) !!}
                 </div>
 
                  <div class="form-group text-right">

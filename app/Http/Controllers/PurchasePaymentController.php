@@ -165,8 +165,8 @@ class PurchasePaymentController extends Controller
     {
         $pdf = PDF::loadView('purchase_payments.printing.purchase_payment', compact('purchasePayment'));
         $pdf->setPaper('a4', 'portrait');
-        $pdf->save(public_path("libraries/docs/purchase_payments_{$purchasePayment->id}.pdf"));
+        $pdf->save(public_path("libraries/docs/purchase_payment_{$purchasePayment->id}.pdf"));
 
-        return $pdf->stream('purchase_payments.pdf');
+        return $pdf->stream("purchase_payment_{$purchasePayment->id}.pdf");
     }
 }

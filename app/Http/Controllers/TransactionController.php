@@ -104,6 +104,6 @@ class TransactionController extends Controller
         $pdf->setPaper('a4', 'portrait');
         $pdf->save(public_path("libraries/docs/transaction_{$transaction->id}.pdf"));
 
-        return $pdf->stream('transaction.pdf');
+        return $pdf->stream("transaction_{$transaction->id}.pdf");
     }
 }

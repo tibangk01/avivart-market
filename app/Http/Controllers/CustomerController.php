@@ -329,6 +329,6 @@ class CustomerController extends Controller
         $pdf->setPaper('a4', 'portrait');
         $pdf->save(public_path("libraries/docs/customer_{$customer->id}.pdf"));
 
-        return $pdf->stream('customer.pdf');
+        return $pdf->stream("customer_{$customer->id}.pdf");
     }
 }

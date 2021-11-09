@@ -7,7 +7,7 @@
 
     <div class="text-center fs-11">
         {{ session('sessionSociety')->enterprise->address }},
-        <span>BP : {{ session('sessionSociety')->enterprise->postal_code }} - Email : {{ session('sessionSociety')->enterprise->email }} - Tél : {{ session('sessionSociety')->enterprise->getFullPhoneNumber() }} - Site Web : {{ session('sessionSociety')->enterprise->website }}</span>
+        <span>BP : {{ session('sessionSociety')->enterprise->postal_code }} - Email : <a href="mailto:{{ session('sessionSociety')->enterprise->email }}">{{ session('sessionSociety')->enterprise->email }}</a> - Tél : {{ session('sessionSociety')->enterprise->getFullPhoneNumber() }} - Site Web : <a href="{{ session('sessionSociety')->enterprise->website }}">{{ session('sessionSociety')->enterprise->website }}</a></span>
         <br>
         <span>RCCM : {{ session('sessionSociety')->tppcr }} - NIF : {{ session('sessionSociety')->fiscal_code }}</span>
         <br>

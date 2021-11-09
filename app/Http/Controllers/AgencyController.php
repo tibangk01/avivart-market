@@ -248,6 +248,6 @@ class AgencyController extends Controller
         $pdf->setPaper('a4', 'portrait');
         $pdf->save(public_path("libraries/docs/agency_{$agency->id}.pdf"));
 
-        return $pdf->stream('agency.pdf');
+        return $pdf->stream("agency_{$agency->id}.pdf");
     }
 }

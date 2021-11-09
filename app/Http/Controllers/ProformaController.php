@@ -185,6 +185,6 @@ class ProformaController extends Controller
         $pdf->setPaper('a4', 'portrait');
         $pdf->save(public_path("libraries/docs/proforma_{$proforma->id}.pdf"));
 
-        return $pdf->stream('proforma.pdf');
+        return $pdf->stream("proforma_{$proforma->id}.pdf");
     }
 }

@@ -184,6 +184,6 @@ class PurchaseController extends Controller
         $pdf->setPaper('a4', 'portrait');
         $pdf->save(public_path("libraries/docs/purchase_{$purchase->id}.pdf"));
 
-        return $pdf->stream('purchase.pdf');
+        return $pdf->stream("purchase_{$purchase->id}.pdf");
     }
 }

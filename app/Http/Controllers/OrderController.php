@@ -217,6 +217,6 @@ class OrderController extends Controller
         $pdf->setPaper('a4', 'portrait');
         $pdf->save(public_path("libraries/docs/order_{$order->id}.pdf"));
 
-        return $pdf->stream('order.pdf');
+        return $pdf->stream("order_{$order->id}.pdf");
     }
 }
