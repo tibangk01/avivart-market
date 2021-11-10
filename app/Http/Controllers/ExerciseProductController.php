@@ -47,9 +47,29 @@ class ExerciseProductController extends Controller
             
             $this->_validateRequest($request);
 
-            $exerciseProduct = ExerciseProduct::create($request->all());
+            $product = Product::findOrFail($request->product_id);
 
-            session()->flash('success', "Donnée enregistrée");
+            try {
+
+                DB::beginTransaction();
+
+                $exerciseProduct = ExerciseProduct::create($request->all());
+
+                $product->update([
+                    'stock_quantity' => $product->stock_quantity - $exerciseProduct->loss,
+                ]);
+
+                DB::commit();
+
+                session()->flash('success', "Donnée enregistrée");
+
+            } catch (\Exception $ex) {
+                DB::rollBack();
+
+                dd($ex);
+
+                session()->flash('error', "Une erreur s'est produite");
+            }
         }
 
         return back();
@@ -93,9 +113,33 @@ class ExerciseProductController extends Controller
 
             $this->_validateRequest($request);
 
-            $exerciseProduct->update($request->all());
+            $product = Product::findOrFail($request->product_id);
 
-            session()->flash('success', "Donnée enregistrée");
+            try {
+
+                DB::beginTransaction();
+
+                $product->update([
+                    'stock_quantity' => $product->stock_quantity + $exerciseProduct->loss,
+                ]);
+
+                $exerciseProduct->update($request->all());
+
+                $product->update([
+                    'stock_quantity' => $product->stock_quantity - $exerciseProduct->loss,
+                ]);
+
+                DB::commit();
+
+                session()->flash('success', "Donnée enregistrée");
+
+            } catch (\Exception $ex) {
+                DB::rollBack();
+
+                dd($ex);
+
+                session()->flash('error', "Une erreur s'est produite");
+            }
         }
 
         return back();

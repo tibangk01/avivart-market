@@ -60,8 +60,6 @@ class OrderPaymentController extends Controller
 
                 $order = Order::findOrFail($request->order_id);
 
-                $exercise = session('staffStatusBarInfo')->day_transaction->exercise;
-
                 $payment = Payment::create($request->except('order_id'));
 
                 $orderPayment = OrderPayment::create([
@@ -73,10 +71,6 @@ class OrderPaymentController extends Controller
                     'order_state_id' => $request->input('order_state_id'),
                     'paid' => true,
                 ]);
-
-                foreach ($order->products as $product) {
-                    $this->saveInventory($exercise, $product, 'Order');
-                }
 
                 DB::commit();
 

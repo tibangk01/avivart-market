@@ -34,6 +34,8 @@ class PurchaseController extends Controller
      */
     public function create()
     {
+        abort_if((session('staffStatusBarInfo') === null), 403, "Veuillez ouvrir votre caisse");
+
         return view('purchases.create');
     }
 
@@ -50,6 +52,8 @@ class PurchaseController extends Controller
             $this->_validateRequest($request);
 
             $cartContent = Cart::instance($request->input('instance'))->content();
+
+            $exercise = session('staffStatusBarInfo')->day_transaction->exercise;
 
             try {
                 DB::beginTransaction();
@@ -69,6 +73,8 @@ class PurchaseController extends Controller
                         'global_purchase_price' => $product->global_purchase_price,
                         'purchase_price' => $product->purchase_price,
                     ]);
+
+                    $this->saveInventory($exercise, $product);
                 }  
 
                 DB::commit();

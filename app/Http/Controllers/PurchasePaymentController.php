@@ -58,8 +58,6 @@ class PurchasePaymentController extends Controller
 
                 $purchase = Purchase::findOrFail($request->purchase_id);
 
-                $exercise = session('staffStatusBarInfo')->day_transaction->exercise;
-
                 $payment = Payment::create($request->except('purchase_id'));
 
                 $purchasePayment = PurchasePayment::create([
@@ -70,10 +68,6 @@ class PurchasePaymentController extends Controller
                 $purchase->update([
                     'paid' => true,
                 ]);
-
-                foreach ($purchase->products as $product) {
-                    $this->saveInventory($exercise, $product, 'Purchase');
-                }
 
                 DB::commit();
 

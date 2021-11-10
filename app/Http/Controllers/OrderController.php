@@ -40,6 +40,8 @@ class OrderController extends Controller
      */
     public function create()
     {
+        abort_if((session('staffStatusBarInfo') === null), 403, "Veuillez ouvrir votre caisse");
+
         $proformas = Proforma::all();
 
         return view('orders.create', compact('proformas'));
@@ -58,6 +60,8 @@ class OrderController extends Controller
             $this->_validateRequest($request);
             
             $cartContent = Cart::instance($request->input('instance'))->content();
+
+            $exercise = session('staffStatusBarInfo')->day_transaction->exercise;
 
             $canSave = true;
 
@@ -99,6 +103,8 @@ class OrderController extends Controller
                     $product->update([
                         'stock_quantity' => $product->stock_quantity - $row->qty,
                     ]);
+
+                    $this->saveInventory($exercise, $product);
                 }  
 
                 DB::commit();
