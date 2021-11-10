@@ -8,7 +8,7 @@
                 
                 @if($purchases->count())
                 <div class="table-responsive">
-                    <table class="table table-bordered table-hover text-nowrap datatable text-center">
+                    <table class="table table-bordered table-hover datatable">
                         <thead class="thead-dark">
                             <tr>
                                 <th>Nom</th>

@@ -11,12 +11,12 @@
                 {!! Form::open(['method' => 'POST', 'route' => 'agency_staff.store']) !!}
                 <div class="form-group">
                     {!! Form::label('agency_id', "Agence") !!}
-                    {!! Form::select('agency_id', $agencies, null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez une agence"]) !!}
+                    {!! Form::select('agency_id', $agencies, null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez"]) !!}
                 </div>
 
                 <div class="form-group">
                     {!! Form::label('staff_id', "Staff") !!}
-                    {!! Form::select('staff_id', $staffs, null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez un staff"]) !!}
+                    {!! Form::select('staff_id', $staffs, null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez"]) !!}
                 </div>
 
                 <div class="form-group text-right">
