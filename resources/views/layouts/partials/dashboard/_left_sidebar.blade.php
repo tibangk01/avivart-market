@@ -1,7 +1,7 @@
 <aside class="main-sidebar {{ session('sidebarLeftTheme', 'sidebar-dark-danger elevation-4') }}">
     <!-- Brand Logo -->
     <a href="{{ route('page.index') }}" class="brand-link">
-        <img src="{{ asset('vendors/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
+        <img src="{{ asset('vendors/dist/img/AdminLTELogo.png') }}" alt="{{ config('app.name') }}"
             class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">{{ config('app.name') }}</span>
     </a>
@@ -24,13 +24,13 @@
                 role="menu" data-accordion="false">
                 
                 <li class="nav-item">
-                    <a data-attr="menu-open" data-class="active" href="{{ route('page.index') }}" class="nav-link">
+                    <a href="{{ route('page.index') }}" class="nav-link {{ Str::of(request()->path())->startsWith('/') ? 'menu-open active' : '' }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>Tableau de bord</p>
                     </a>
                 </li>
 
-                <li class="nav-item has-treeview menu-open">
+                <li class="nav-item has-treeview {{ Str::of(request()->path())->startsWith('parameters') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
                       <i class="nav-icon fas fa-cog"></i>
                       <p>
@@ -151,7 +151,7 @@
                     </ul>
                 </li>
 
-                <li class="nav-item has-treeview">
+                <li class="nav-item has-treeview {{ Str::of(request()->path())->startsWith('activities') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
                       <i class="nav-icon fas fa-list"></i>
                       <p>
@@ -199,7 +199,7 @@
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('exercise_product.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
-                                <p>Inventaires</p>
+                                <p>Régul Inventaires</p>
                             </a>
                         </li>
 
@@ -286,7 +286,7 @@
                     </ul>
                 </li>
 
-                <li class="nav-item has-treeview">
+                <li class="nav-item has-treeview {{ Str::of(request()->path())->startsWith('cash_registers') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
                       <i class="nav-icon fas fa-user"></i>
                       <p>
@@ -316,7 +316,7 @@
                     </ul>
                 </li>
 
-                <li class="nav-item has-treeview">
+                <li class="nav-item has-treeview {{ Str::of(request()->path())->startsWith('utilities') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
                       <i class="nav-icon fas fa-database"></i>
                       <p>
@@ -341,7 +341,7 @@
                     </ul>
                 </li>
 
-                <li class="nav-item has-treeview">
+                <li class="nav-item has-treeview {{ Str::of(request()->path())->startsWith('tools') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
                       <i class="nav-icon fas fa-list-alt"></i>
                       <p>
@@ -359,7 +359,7 @@
                     </ul>
                 </li>
 
-                <li class="nav-item has-treeview">
+                <li class="nav-item has-treeview {{ Str::of(request()->path())->startsWith('help') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
                       <i class="nav-icon fas fa-info-circle"></i>
                       <p>

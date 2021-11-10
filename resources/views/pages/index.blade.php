@@ -6,8 +6,6 @@
             <!-- Small boxes (Stat box) -->
             <x-statbox />
             <!-- /.row -->
-
-            <!-- /.row (main row) -->
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
 @endsection

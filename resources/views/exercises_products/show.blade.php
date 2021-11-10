@@ -15,7 +15,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th>Exercice</th>
+                                <th>Période d'inventaire</th>
                                 <td>{{ $exerciseProduct->exercise->getPeriod() }}</td>
                             </tr>
                             <tr>

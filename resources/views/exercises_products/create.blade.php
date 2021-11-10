@@ -10,13 +10,13 @@
                 
                 {!! Form::open(['method' => 'POST', 'route' => 'exercise_product.store']) !!}
                 <div class="form-group">
-                    {!! Form::label('exercise_id', "Exercice") !!}
-                    {!! Form::select('exercise_id', $exercises, null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez un exercice"]) !!}
+                    {!! Form::label('exercise_id', "Période d'inventaire") !!}
+                    {!! Form::select('exercise_id', $exercises, null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez"]) !!}
                 </div>
 
                 <div class="form-group">
                     {!! Form::label('product_id', "Produit") !!}
-                    {!! Form::select('product_id', $products, null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez un produit"]) !!}
+                    {!! Form::select('product_id', $products, null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez"]) !!}
                 </div>
 
                 <div class="form-group">

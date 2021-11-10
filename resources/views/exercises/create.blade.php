@@ -21,7 +21,7 @@
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('real_sale', "Vente réelle") !!}
+                    {!! Form::label('real_sale', "Vente Réelle") !!}
                     {!! Form::number('real_sale', null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Vente Réelle", 'step' => 'any']) !!}
                 </div>
 
