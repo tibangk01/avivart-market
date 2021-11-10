@@ -19,7 +19,7 @@
                                 <td>{{ $supply->getNumber() }}</td>
                             </tr>
                             <tr>
-                                <th>Bon de commande</th>
+                                <th>Commande fournisseur</th>
                                 <td>{{ $supply->product_purchase->purchase->getNumber() }}</td>
                             </tr>
                             <tr>
@@ -31,11 +31,11 @@
                                 <td>{{ $supply->quantity }}</td>
                             </tr>
                             <tr>
-                                <th>Date de création</th>
+                                <th>Date de Création</th>
                                 <td>{{ $supply->created_at }}</td>
                             </tr>
                             <tr>
-                                <th>Date de mise à jour</th>
+                                <th>Date de Modification</th>
                                 <td>{{ $supply->updated_at }}</td>
                             </tr>
                         </tbody>
@@ -51,7 +51,7 @@
                                 <th>Qté Comdée</th>
                                 <th>Qté Livrée</th>
                                 <th>DC</th>
-                                <th>DJ</th>
+                                <th>DM</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>

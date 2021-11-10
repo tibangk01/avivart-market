@@ -12,8 +12,8 @@
             <th>Email</th>
             <th>Région</th>
             <th>Agence</th>
-            <th>Date de création</th>
-            <th>Date de modification</th>
+            <th>Date de Création</th>
+            <th>Date de Modification</th>
         </tr>
     </thead>
     <tbody>

@@ -15,7 +15,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Période</td>
+                                    <td>Période d'inventaire</td>
                                     <td>{{ $dayTransaction->exercise->getPeriod() }}</td>
                                 </tr>
                                 <tr>

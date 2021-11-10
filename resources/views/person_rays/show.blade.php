@@ -19,11 +19,11 @@
                                 <td>{{ $personRay->name }}</td>
                             </tr>
                             <tr>
-                                <th>Date de création</th>
+                                <th>Date de Création</th>
                                 <td>{{ $personRay->created_at }}</td>
                             </tr>
                             <tr>
-                                <th>Date de mise à jour</th>
+                                <th>Date de Modification</th>
                                 <td>{{ $personRay->updated_at }}</td>
                             </tr>
                             <tr class="table-light">

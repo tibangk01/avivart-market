@@ -9,16 +9,16 @@
 
                 <div class="form-group">
                     {!! Form::label('product_id', 'Produit') !!}
-                    {!! Form::select('product_id', $products, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez un produit']) !!}
+                    {!! Form::select('product_id', $products, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez']) !!}
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('purchase_id', 'Bon de commande') !!}
-                    {!! Form::select('purchase_id', $purchases, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez un bon de commande']) !!}
+                    {!! Form::label('purchase_id', 'Commande fournisseur') !!}
+                    {!! Form::select('purchase_id', $purchases, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez']) !!}
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('ordered_quantity', 'Quantité Commandée') !!}
+                    {!! Form::label('ordered_quantity', 'Quantité') !!}
                     {!! Form::number('ordered_quantity', null, ['class' => 'form-control', 'required' => true, 'min' => 1, 'step' => 1]) !!}
                 </div>
 

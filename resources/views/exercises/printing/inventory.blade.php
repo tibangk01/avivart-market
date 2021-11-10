@@ -6,8 +6,8 @@
 
 <table class="table table-bordered table-sm">
     <tr>
-        <th>Période : {{ $exercise->getPeriod() }}</th>
-        <th>Date : {{ $exercise->created_at->format('d/m/Y H:i:s') }}</th>
+        <th>Période d'inventaire : {{ $exercise->getPeriod() }}</th>
+        <th>Date de Création : {{ $exercise->created_at->format('d/m/Y H:i:s') }}</th>
     </tr>
 </table>
 
@@ -35,10 +35,10 @@
             <td>{{ $product->name }}</td>
             <td>{{ $product->product_type->name }}</td>
             <td>{{ $product->pivot->initial_stock }}</td>
-            <td>0</td>
+            <td>{{ $product->countSupplies() }}</td>
             <td>{{ $product->pivot->final_stock }}</td>
             <td>{{ $product->pivot->loss }}</td>
-            <td>0</td>
+            <td>{{ $product->countSales() }}</td>
             <td>{{ $product->pivot->purchase_price }}</td>
             <td>{{ $product->pivot->selling_price }}</td>
             <td>0</td>
@@ -52,6 +52,13 @@
         </tr>
         @endforelse
     </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3">Vente Réelle : {{ $exercise->real_sale }}</td>
+            <td colspan="5">Vente Théorique : 0</td>
+            <td colspan="5">Surplus/Manque : 0</td>
+        </tr>
+    </tfoot>
 </table>
 
 <h6 class="text-danger"><u>Légende :</u></h6>

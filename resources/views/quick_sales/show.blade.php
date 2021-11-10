@@ -47,11 +47,11 @@
                                     <td>{{ $quickSale->totalTTC() }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Date de création</td>
+                                    <td>Date de Création</td>
                                     <td>{{ $quickSale->created_at }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Date de mis à jour</td>
+                                    <td>Date de Modification</td>
                                     <td>{{ $quickSale->updated_at }}</td>
                                 </tr>
                             </tbody>

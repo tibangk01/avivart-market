@@ -19,11 +19,11 @@
                                 <td>{{ $staffType->name }}</td>
                             </tr>
                             <tr>
-                                <th>Date de création</th>
+                                <th>Date de Création</th>
                                 <td>{{ $staffType->created_at }}</td>
                             </tr>
                             <tr>
-                                <th>Date de mise à jour</th>
+                                <th>Date de Modification</th>
                                 <td>{{ $staffType->updated_at }}</td>
                             </tr>
                             <tr class="table-light">

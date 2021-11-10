@@ -34,9 +34,9 @@
                                             class="table table-bordered table-hover table-striped datatable">
                                             <thead class="thead-dark">
                                                 <tr>
-                                                    <th>Dénomination</th>
+                                                    <th>Nom</th>
                                                     <th>Date de Création</th>
-                                                    <th>Date de modification</th>
+                                                    <th>Date de Modification</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>

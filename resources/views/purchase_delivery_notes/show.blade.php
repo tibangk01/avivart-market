@@ -25,15 +25,15 @@
                                 <td>{{ $purchaseDeliveryNote->getNumber() }}</td>
                             </tr>
                             <tr>
-                                <th>Bon de commande</th>
+                                <th>Commande fournisseur</th>
                                 <td>{{ $purchaseDeliveryNote->purchase->getNumber() }}</td>
                             </tr>
                             <tr>
-                                <th>Date de création</th>
+                                <th>Date de Création</th>
                                 <td>{{ $purchaseDeliveryNote->created_at }}</td>
                             </tr>
                             <tr>
-                                <th>Date de mise à jour</th>
+                                <th>Date de Modification</th>
                                 <td>{{ $purchaseDeliveryNote->updated_at }}</td>
                             </tr>
                         </tbody>
@@ -49,7 +49,7 @@
                                 <th>Qté Comdée</th>
                                 <th>Qté Livrée</th>
                                 <th>DC</th>
-                                <th>DJ</th>
+                                <th>DM</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>

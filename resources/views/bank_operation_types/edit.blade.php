@@ -12,7 +12,7 @@
                     {!! Form::model($bankOperationType, ['method' => 'put', 'route' => ['bank_operation_type.update', $bankOperationType]]) !!}
 
                     <div class="form-group">
-                        {!! Form::label('name', 'Dénomination', ['class' => 'form-label']) !!}
+                        {!! Form::label('name', 'Nom', ['class' => 'form-label']) !!}
                         {!! Form::text('name', null, ['class' => 'form-control', 'required' => true]) !!}
                     </div>
 

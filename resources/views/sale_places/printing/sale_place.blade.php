@@ -56,11 +56,11 @@
             <td>{{ $salePlace->agency->enterprise->name }}</td>
         </tr>
         <tr>
-            <th>Date de création</th>
+            <th>Date de Création</th>
             <td>{{ $salePlace->created_at }}</td>
         </tr>
         <tr>
-            <th>Date de modification</th>
+            <th>Date de Modification</th>
             <td>{{ $salePlace->updated_at }}</td>
         </tr>
     </tbody>

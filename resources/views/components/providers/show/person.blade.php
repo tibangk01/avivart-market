@@ -24,11 +24,11 @@
                 <td>{{ $provider->person->user->email }}</td>
             </tr>
             <tr>
-                <th>Date de création</th>
+                <th>Date de Création</th>
                 <td>{{ $provider->created_at }}</td>
             </tr>
             <tr>
-                <th>Date de mise à jour</th>
+                <th>Date de Modification</th>
                 <td>{{ $provider->updated_at }}</td>
             </tr>
             <tr class="table-light">

@@ -11,12 +11,12 @@
                 {!! Form::open(['method' => 'POST', 'route' => 'role_user.store']) !!}
                 <div class="form-group">
                     {!! Form::label('role_id', "Rôle") !!}
-                    {!! Form::select('role_id', $roles, null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez un rôle"]) !!}
+                    {!! Form::select('role_id', $roles, null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez"]) !!}
                 </div>
 
                 <div class="form-group">
                     {!! Form::label('user_id', "Utilisateur") !!}
-                    {!! Form::select('user_id', $users, null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez un utilisateur"]) !!}
+                    {!! Form::select('user_id', $users, null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez"]) !!}
                 </div>
 
                 <div class="form-group text-right">

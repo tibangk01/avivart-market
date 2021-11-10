@@ -40,15 +40,15 @@
             <td>{{ $product->conversion->name }}</td>
         </tr>
         <tr>
-            <th>Prix d'Achat</th>
+            <th>Prix d'Achat Unitaire</th>
             <td>{{ $product->purchase_price }}</td>
         </tr>
         <tr>
-            <th>Prix de Vente</th>
+            <th>Prix de Vente Unitaire</th>
             <td>{{ $product->selling_price }}</td>
         </tr>
         <tr>
-            <th>Prix de Location</th>
+            <th>Prix de Location Unitaire</th>
             <td>{{ $product->rental_price }}</td>
         </tr>
         <tr>
@@ -56,11 +56,11 @@
             <td>{{ $product->stock_quantity }}</td>
         </tr>
         <tr>
-            <th>Quantité vendue</th>
+            <th>Quantité Vendue</th>
             <td>{{ $product->sold_quantity }}</td>
         </tr>
         <tr>
-            <th>Quantité d'alert</th>
+            <th>Quantité d'Alert</th>
             <td>{{ $product->alert_quantity }}</td>
         </tr>
         <tr>
@@ -76,11 +76,11 @@
             <td>{{ $product->expiration_date }}</td>
         </tr>
         <tr>
-            <th>Date de création</th>
+            <th>Date de Création</th>
             <td>{{ $product->created_at }}</td>
         </tr>
         <tr>
-            <th>Date de modification</th>
+            <th>Date de Modification</th>
             <td>{{ $product->updated_at }}</td>
         </tr>
     </tbody>

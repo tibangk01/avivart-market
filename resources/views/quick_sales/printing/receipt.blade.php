@@ -52,7 +52,7 @@
             <td>{{ $quickSale->totalTTC() }}</td>
         </tr>
         <tr>
-            <td>Date</td>
+            <td>Date de Création</td>
             <td>{{ $quickSale->created_at }}</td>
         </tr>
     </tbody>

@@ -12,7 +12,7 @@
                     {!! Form::model($cashRegisterOperationType, ['method' => 'put', 'route' => ['cash_register_operation_type.update', $cashRegisterOperationType]]) !!}
 
                     <div class="form-group">
-                        {!! Form::label('name', 'Dénomination', ['class' => 'form-label']) !!}
+                        {!! Form::label('name', 'Nom', ['class' => 'form-label']) !!}
                         {!! Form::text('name', null, ['class' => 'form-control', 'required' => true]) !!}
                     </div>
 

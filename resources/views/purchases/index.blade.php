@@ -40,7 +40,7 @@
                                                 <th>Total TTC</th>
                                                 <th>Payement</th>
                                                 <th>Date de Création</th>
-                                                <th>Date de modification</th>
+                                                <th>Date de Modification</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>

@@ -35,7 +35,7 @@
                                         <table class="table table-bordered table-hover table-striped datatable">
                                             <thead class="thead-dark">
                                                 <tr>
-                                                    <th>Exercice</th>
+                                                    <th>Période d'inventaire</th>
                                                     <th>Journée</th>
                                                     <th>Etat</th>
                                                     <th>Actions</th>

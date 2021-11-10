@@ -16,15 +16,15 @@
                             </thead>
                             <tbody>
                                 <tr class="{{ $bankOperationType->getBgColor() }}">
-                                    <td>Dénomination</td>
+                                    <td>Nom</td>
                                     <td>{{ $bankOperationType->name }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Date de création</td>
+                                    <td>Date de Création</td>
                                     <td>{{ $bankOperationType->created_at }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Date de mis à jour</td>
+                                    <td>Date de Modification</td>
                                     <td>{{ $bankOperationType->updated_at }}</td>
                                 </tr>
                                 <tr class="table-light">

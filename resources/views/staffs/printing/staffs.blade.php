@@ -12,7 +12,7 @@
             <th>Fonction</th>
             <th>Type de staff</th>
             <th>Téléphone</th>
-            <th>Date de création</th>
+            <th>Date de Création</th>
         </tr>
     </thead>
     <tbody>

@@ -16,15 +16,15 @@
                             </thead>
                             <tbody>
                                 <tr class="{{ $cashRegisterOperationType->getBgColor() }}">
-                                    <td>Dénomination</td>
+                                    <td>Nom</td>
                                     <td>{{ $cashRegisterOperationType->name }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Date de création</td>
+                                    <td>Date de Création</td>
                                     <td>{{ $cashRegisterOperationType->created_at }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Date de mis à jour</td>
+                                    <td>Date de Modification</td>
                                     <td>{{ $cashRegisterOperationType->updated_at }}</td>
                                 </tr>
                                 <tr class="table-light">

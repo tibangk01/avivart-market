@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => "Exercice"])
+@extends('layouts.dashboard', ['title' => "Période d'inventaire"])
 
 @section('body')
 <section class="content">
@@ -35,11 +35,11 @@
                                 <td>{{ $exercise->real_sale }}</td>
                             </tr>
                             <tr>
-                                <th>Date de création</th>
+                                <th>Date de Création</th>
                                 <td>{{ $exercise->created_at }}</td>
                             </tr>
                             <tr>
-                                <th>Date de mise à jour</th>
+                                <th>Date de Modification</th>
                                 <td>{{ $exercise->updated_at }}</td>
                             </tr>
                             <tr class="table-light">

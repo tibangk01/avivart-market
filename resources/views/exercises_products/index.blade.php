@@ -1,4 +1,4 @@
- @extends('layouts.dashboard', ['title' => "Régul Inventaires"])
+ @extends('layouts.dashboard', ['title' => "Inventaires"])
 
 @section('body')
 <section class="content">

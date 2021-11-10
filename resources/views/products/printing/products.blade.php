@@ -9,13 +9,13 @@
             <th>Nom</th>
             <th>Type</th>
             <th>Unité</th>
-            <th>PA</th>
-            <th>PV</th>
-            <th>PL</th>
+            <th>PAU</th>
+            <th>PVU</th>
+            <th>PLU</th>
             <th>Qté en Stock</th>
             <th>Qté Vendue</th>
-            <th>Date d'Insertion</th>
-            <th>Date d'Edition</th>
+            <th>Date de Création</th>
+            <th>Date de Modification</th>
         </tr>
     </thead>
     <tbody>

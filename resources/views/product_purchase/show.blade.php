@@ -28,11 +28,11 @@
                                 <td>{{ $productPurchase->delivered_quantity }}</td>
                             </tr>
                             <tr>
-                                <th>Date de création</th>
+                                <th>Date de Création</th>
                                 <td>{{ $productPurchase->created_at }}</td>
                             </tr>
                             <tr>
-                                <th>Date de modififaction</th>
+                                <th>Date de Modififaction</th>
                                 <td>{{ $productPurchase->updated_at }}</td>
                             </tr>
                         </tbody>

@@ -15,7 +15,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th>Facture</th>
+                                <th>Commande fournisseur</th>
                                 <td>{{ $purchasePayment->purchase->getNumber() }}</td>
                             </tr>
                             <tr>
@@ -27,11 +27,11 @@
                                 <td>{{ $purchasePayment->payment->payment_mode->name }}</td>
                             </tr>
                             <tr>
-                                <th>Date de création</th>
+                                <th>Date de Création</th>
                                 <td>{{ $purchasePayment->created_at }}</td>
                             </tr>
                             <tr>
-                                <th>Date de mise à jour</th>
+                                <th>Date de Modification</th>
                                 <td>{{ $purchasePayment->updated_at }}</td>
                             </tr>
                         </tbody>

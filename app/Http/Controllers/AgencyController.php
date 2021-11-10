@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreAgencyRequest;
+use App\Http\Requests\UpdateAgencyRequest;
 use App\Models\Agency;
 use App\Models\Region;
 use App\Models\Enterprise;
@@ -49,11 +51,9 @@ class AgencyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreAgencyRequest $request)
     {
         if ($request->isMethod('POST')) {
-
-            $this->_validateRequest($request, 'post');
 
             try {
 
@@ -142,11 +142,9 @@ class AgencyController extends Controller
      * @param  \App\Models\Agency  $agency
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Agency $agency)
+    public function update(UpdateAgencyRequest $request, Agency $agency)
     {
         if ($request->isMethod('PUT')) {
-
-            $this->_validateRequest($request, 'put');
 
             try {
 
@@ -199,35 +197,6 @@ class AgencyController extends Controller
     public function destroy(Agency $agency)
     {
         //
-    }
-
-    /**
-     * validateRequest
-     *
-     * Validate creation and edition incomming data
-     *
-     * @param mixed $request
-     * @return void
-     */
-    private function _validateRequest(Request $request, string $method)
-    {
-        $formData = [
-            'country_id' => ['required'],
-            'region_id' => ['required'],
-            'name' => ['required', 'min:3', 'max:50'],
-            'phone_number' => ['required', 'min:8'],
-            'email' => ['required', 'email', 'max:40'],
-            'website' => ['nullable', 'max:50'],
-            'address' => ['nullable', 'max:50'],
-            'postal_code' => ['nullable', 'max:10'],
-        ];
-
-        if(mb_strtolower($method) == 'post'){
-            $formData += [
-            ];
-        }
-
-        $request->validate($formData);
     }
 
     public function printingAll(Request $request)

@@ -64,17 +64,19 @@ class Controller extends BaseController
     protected function saveInventory(Exercise $exercise, Product $product): void
     {
         try {
-            $exercise->products()->attach($exercise->id, [
-                'product_id' => $product->id,
-                'initial_stock' => 0,
-                'final_stock' => $product->stock_quantity,
-                'global_purchase_price' => $product->global_purchase_price,
-                'purchase_price' => $product->purchase_price,
-                'global_selling_price' => $product->global_selling_price,
-                'selling_price' => $product->selling_price,
-                'global_rental_price' => $product->global_rental_price,
-                'rental_price' => $product->rental_price,
-                'loss' => 0,
+            $exercise->products()->sync([
+                $exercise->id => [
+                    'product_id' => $product->id,
+                    'initial_stock' => 0,
+                    'final_stock' => $product->stock_quantity,
+                    'global_purchase_price' => $product->global_purchase_price,
+                    'purchase_price' => $product->purchase_price,
+                    'global_selling_price' => $product->global_selling_price,
+                    'selling_price' => $product->selling_price,
+                    'global_rental_price' => $product->global_rental_price,
+                    'rental_price' => $product->rental_price,
+                    'loss' => 0,
+                ]
             ]);
         } catch (\Exception $e) {
             //

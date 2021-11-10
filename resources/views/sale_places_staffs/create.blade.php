@@ -11,12 +11,12 @@
                 {!! Form::open(['method' => 'POST', 'route' => 'sale_place_staff.store']) !!}
                 <div class="form-group">
                     {!! Form::label('sale_place_id', "Point de vente") !!}
-                    {!! Form::select('sale_place_id', $salePlaces, null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez un point de vente"]) !!}
+                    {!! Form::select('sale_place_id', $salePlaces, null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez"]) !!}
                 </div>
 
                 <div class="form-group">
                     {!! Form::label('staff_id', "Staff") !!}
-                    {!! Form::select('staff_id', $staffs, null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez un staff"]) !!}
+                    {!! Form::select('staff_id', $staffs, null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez"]) !!}
                 </div>
 
                 <div class="form-group text-right">

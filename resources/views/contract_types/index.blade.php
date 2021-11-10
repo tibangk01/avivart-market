@@ -31,8 +31,8 @@
                                             <thead class="thead-dark">
                                                 <tr>
                                                     <th>Nom</th>
-                                                    <th>Date de création</th>
-                                                    <th>Date de mis à jour</th>
+                                                    <th>Date de Création</th>
+                                                    <th>Date de Modification</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>

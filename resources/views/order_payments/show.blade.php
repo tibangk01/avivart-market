@@ -15,7 +15,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th>Facture</th>
+                                <th>Commande client</th>
                                 <td>{{ $orderPayment->order->getNumber() }}</td>
                             </tr>
                             <tr>
@@ -27,11 +27,11 @@
                                 <td>{{ $orderPayment->payment->payment_mode->name }}</td>
                             </tr>
                             <tr>
-                                <th>Date de création</th>
+                                <th>Date de Création</th>
                                 <td>{{ $orderPayment->created_at }}</td>
                             </tr>
                             <tr>
-                                <th>Date de mise à jour</th>
+                                <th>Date de Modification</th>
                                 <td>{{ $orderPayment->updated_at }}</td>
                             </tr>
                         </tbody>

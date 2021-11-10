@@ -23,11 +23,11 @@
                                 <td>{{ $productCategory->product_ray->name }}</td>
                             </tr>
                             <tr>
-                                <th>Date de création</th>
+                                <th>Date de Création</th>
                                 <td>{{ $productCategory->created_at }}</td>
                             </tr>
                             <tr>
-                                <th>Date de mise à jour</th>
+                                <th>Date de Modification</th>
                                 <td>{{ $productCategory->updated_at }}</td>
                             </tr>
                             <tr class="table-light">

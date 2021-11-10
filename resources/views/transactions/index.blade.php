@@ -33,7 +33,7 @@
                                                     <th>Utilisateur</th>
                                                     <th>Type de transaction</th>
                                                     <th>Activité</th>
-                                                    <th>Date de création</th>
+                                                    <th>Date de Création</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>

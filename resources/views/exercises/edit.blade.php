@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => "Exercice"])
+@extends('layouts.dashboard', ['title' => "Période d'inventaire"])
 
 @section('body')
 <section class="content">
@@ -11,7 +11,7 @@
                 {!! Form::model($exercise, ['method' => 'PUT', 'route' => ['exercise.update',  $exercise]]) !!}
 
                 <div class="form-group">
-                    {!! Form::label('currency_id', 'Devises') !!}
+                    {!! Form::label('currency_id', 'Devise') !!}
                     {!! Form::select('currency_id', $currencies, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez une devise']) !!}
                 </div>
 
@@ -36,8 +36,8 @@
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('created_at', "Date") !!}
-                    {!! Form::date('created_at', $exercise->created_at, ['class' => 'form-control', 'required' => true, 'placeholder' => "Date"]) !!}
+                    {!! Form::label('created_at', "Date de Création") !!}
+                    {!! Form::date('created_at', $exercise->created_at, ['class' => 'form-control', 'required' => true, 'placeholder' => "Date de Création"]) !!}
                 </div>
 
                 <div class="form-group text-right">

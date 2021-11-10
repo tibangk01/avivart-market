@@ -24,11 +24,11 @@
                                 <td>{{ $productProforma->quantity }}</td>
                             </tr>
                             <tr>
-                                <th>Date de création</th>
+                                <th>Date de Création</th>
                                 <td>{{ $productProforma->created_at }}</td>
                             </tr>
                             <tr>
-                                <th>Date de modififaction</th>
+                                <th>Date de Modififaction</th>
                                 <td>{{ $productProforma->updated_at }}</td>
                             </tr>
                         </tbody>

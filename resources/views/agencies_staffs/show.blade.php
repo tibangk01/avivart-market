@@ -23,11 +23,11 @@
                                 <td>{{ $agencyStaff->staff->human->user->full_name }}</td>
                             </tr>
                             <tr>
-                                <td>Date de création</td>
+                                <td>Date de Création</td>
                                 <td>{{ $agencyStaff->created_at }}</td>
                             </tr>
                             <tr>
-                                <td>Date de mis à jour</td>
+                                <td>Date de Modification</td>
                                 <td>{{ $agencyStaff->updated_at }}</td>
                             </tr>
                             <tr class="table-light">

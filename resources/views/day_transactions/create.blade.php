@@ -11,7 +11,7 @@
 
                     {!! Form::open(['method' => 'POST', 'route' => 'day_transaction.store']) !!}
                     <div class="form-group">
-                        {!! Form::label('exercise_id', 'Période') !!}
+                        {!! Form::label('exercise_id', "Période d'inventaire") !!}
                         {!! Form::select('exercise_id', $exercises, null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Choisissez une période']) !!}
                     </div>
 

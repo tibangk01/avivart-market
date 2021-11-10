@@ -47,11 +47,11 @@
                                 <td>{{ $purchase->totalTTC() }}</td>
                             </tr>
                             <tr>
-                                <th>Date de création</th>
+                                <th>Date de Création</th>
                                 <td>{{ $purchase->created_at }}</td>
                             </tr>
                             <tr>
-                                <th>Date de mise à jour</th>
+                                <th>Date de Modification</th>
                                 <td>{{ $purchase->updated_at }}</td>
                             </tr>
                         </tbody>
@@ -72,7 +72,7 @@
                                 <th>Qté Comdée</th>
                                 <th>Qté Livrée</th>
                                 <th>DC</th>
-                                <th>DJ</th>
+                                <th>DM</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>

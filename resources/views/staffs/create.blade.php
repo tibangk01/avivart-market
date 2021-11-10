@@ -10,32 +10,32 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             {!! Form::label('country_id', 'Pays') !!}
-                            {!! Form::select('country_id', $countries, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisir un pays']) !!}
+                            {!! Form::select('country_id', $countries, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez']) !!}
                         </div>
 
                         <div class="form-group">
                             {!! Form::label('civility_id', 'Civilité') !!}
-                            {!! Form::select('civility_id', $civilities, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisir une civilité']) !!}
+                            {!! Form::select('civility_id', $civilities, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez']) !!}
                         </div>
 
                         <div class="form-group">
                             {!! Form::label('work_id', "Fonction") !!}
-                            {!! Form::select('work_id', $works, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisir une fonction']) !!}
+                            {!! Form::select('work_id', $works, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez']) !!}
                         </div>
 
                         <div class="form-group">
                             {!! Form::label('staff_type_id', "Type de staff") !!}
-                            {!! Form::select('staff_type_id', $staffTypes, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisir un type']) !!}
+                            {!! Form::select('staff_type_id', $staffTypes, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez']) !!}
                         </div>
 
                         <div class="form-group">
                             {!! Form::label('contract_type_id', "Type de contrat") !!}
-                            {!! Form::select('contract_type_id', $contractTypes, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisir un type de contrat']) !!}
+                            {!! Form::select('contract_type_id', $contractTypes, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez']) !!}
                         </div>
 
                         <div class="form-group">
                             {!! Form::label('study_level_id', "Niveau d'étude") !!}
-                            {!! Form::select('study_level_id', $studyLevels, null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisir un niveau d'étude"]) !!}
+                            {!! Form::select('study_level_id', $studyLevels, null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez"]) !!}
                         </div>
 
                         <div class="form-group">

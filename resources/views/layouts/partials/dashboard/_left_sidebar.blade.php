@@ -91,7 +91,7 @@
                             <a data-attr="menu-open" data-class="active" href="{{ route('exercise.index') }}" class="nav-link">
 
                                 <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
-                                <p>Exercices</p>
+                                <p>Périodes d'inventaire</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -199,7 +199,7 @@
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('exercise_product.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
-                                <p>Régul Inventaires</p>
+                                <p>Inventaires</p>
                             </a>
                         </li>
 

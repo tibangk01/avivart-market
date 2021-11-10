@@ -97,11 +97,11 @@
                                     <td>{{ $product->expiration_date }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Date de création</th>
+                                    <th>Date de Création</th>
                                     <td>{{ $product->created_at }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Date de modification</th>
+                                    <th>Date de Modification</th>
                                     <td>{{ $product->updated_at }}</td>
                                 </tr>
                                 <tr class="table-light">

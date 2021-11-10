@@ -51,11 +51,11 @@
                                 <td>{{ $order->totalTTC() }}</td>
                             </tr>
                             <tr>
-                                <th>Date de création</th>
+                                <th>Date de Création</th>
                                 <td>{{ $order->created_at }}</td>
                             </tr>
                             <tr>
-                                <th>Date de mise à jour</th>
+                                <th>Date de Modification</th>
                                 <td>{{ $order->updated_at }}</td>
                             </tr>
                         </tbody>
@@ -75,7 +75,7 @@
                                 <th>Produit</th>
                                 <th>Qté</th>
                                 <th>DC</th>
-                                <th>DJ</th>
+                                <th>DM</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>

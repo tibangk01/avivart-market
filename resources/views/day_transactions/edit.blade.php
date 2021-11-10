@@ -11,7 +11,7 @@
                     {!! Form::model($dayTransaction, ['method' => 'put', 'route' => ['day_transaction.update', $dayTransaction]]) !!}
 
                     <div class="form-group">
-                        {!! Form::label('exercise_id', 'Période') !!}
+                        {!! Form::label('exercise_id', "Période d'inventaire") !!}
                         {!! Form::select('exercise_id', $exercises, null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Choisissez une période']) !!}
                     </div>
 

@@ -56,7 +56,7 @@
             <td>{{ $agency->created_at }}</td>
         </tr>
         <tr>
-            <th>Date de mis à jour</th>
+            <th>Date de Modification</th>
             <td>{{ $agency->updated_at }}</td>
         </tr>
     </tbody>

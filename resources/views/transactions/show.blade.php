@@ -27,7 +27,7 @@
                                 <td>{{ $transaction->activity }}</td>
                             </tr>
                             <tr>
-                                <th>Date de création</th>
+                                <th>Date de Création</th>
                                 <td>{{ $transaction->created_at }}</td>
                             </tr>
                         </tbody>

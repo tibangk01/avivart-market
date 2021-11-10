@@ -31,11 +31,11 @@
                                         <thead class="thead-dark">
                                             <tr>
                                                 <th>Numéro</th>
-                                                <th>Bon de commande</th>
+                                                <th>Commande fournisseur</th>
                                                 <th>Produit</th>
                                                 <th>Quantité</th>
                                                 <th>Date de Création</th>
-                                                <th>Date de modification</th>
+                                                <th>Date de Modification</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>

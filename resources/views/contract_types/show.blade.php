@@ -16,15 +16,15 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Dénomination</td>
+                                    <td>Nom</td>
                                     <td>{{ $contractType->name }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Date de création</td>
+                                    <td>Date de Création</td>
                                     <td>{{ $contractType->created_at }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Date de mis à jour</td>
+                                    <td>Date de Modification</td>
                                     <td>{{ $contractType->updated_at }}</td>
                                 </tr>
                                 <tr class="table-light">

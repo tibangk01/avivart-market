@@ -76,11 +76,11 @@
             <td>{{ $staff->human->contract_end_date }}</td>
         </tr>
         <tr>
-            <th>Date de création</th>
+            <th>Date de Création</th>
             <td>{{ $staff->created_at }}</td>
         </tr>
         <tr>
-            <th>Date de modification</th>
+            <th>Date de Modification</th>
             <td>{{ $staff->updated_at }}</td>
         </tr>
     </tbody>

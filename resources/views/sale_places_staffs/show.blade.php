@@ -15,7 +15,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Point de Vente</td>
+                                <td>Point de vente</td>
                                 <td>{{ $salePlaceStaff->sale_place->enterprise->name }}</td>
                             </tr>
                             <tr>
@@ -23,11 +23,11 @@
                                 <td>{{ $salePlaceStaff->staff->human->user->full_name }}</td>
                             </tr>
                             <tr>
-                                <td>Date de création</td>
+                                <td>Date de Création</td>
                                 <td>{{ $salePlaceStaff->created_at }}</td>
                             </tr>
                             <tr>
-                                <td>Date de mis à jour</td>
+                                <td>Date de Modification</td>
                                 <td>{{ $salePlaceStaff->updated_at }}</td>
                             </tr>
                             <tr class="table-light">

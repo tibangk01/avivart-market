@@ -34,8 +34,8 @@
                                                 <tr>
                                                     <th>Nom</th>
                                                     <th>N° de compte</th>
-                                                    <th>Date de création</th>
-                                                    <th>Date de mise à jour</th>
+                                                    <th>Date de Création</th>
+                                                    <th>Date de Modification</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>

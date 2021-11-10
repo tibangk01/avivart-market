@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => "Exercices"])
+@extends('layouts.dashboard', ['title' => "Périodes d'inventaitre"])
 
 @section('body')
 <div class="content">
@@ -40,7 +40,7 @@
                                                     <th>Date de Fin</th>
                                                     <th>Vente Réelle</th>
                                                     <th>Date de Création</th>
-                                                    <th>Date de modification</th>
+                                                    <th>Date de Modification</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>

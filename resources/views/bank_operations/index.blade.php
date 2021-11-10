@@ -39,8 +39,8 @@
                                                     <th>Banque</th>
                                                     <th>Type d'opération</th>
                                                     <th>Montant</th>
-                                                    <th>Date de création</th>
-                                                    <th>Date de mise à jour</th>
+                                                    <th>Date de Création</th>
+                                                    <th>Date de Modification</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>

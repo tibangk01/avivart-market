@@ -12,12 +12,12 @@
 
                 <div class="form-group">
                     {!! Form::label('country_id', 'Pays') !!}
-                    {!! Form::select('country_id', $countries, $society->enterprise->country_id, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisir un pays']) !!}
+                    {!! Form::select('country_id', $countries, $society->enterprise->country_id, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez']) !!}
                 </div>
 
                 <div class="form-group">
                     {!! Form::label('region_id', 'Région') !!}
-                    {!! Form::select('region_id', $regions, $society->enterprise->region_id, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Choisissez une région']) !!}
+                    {!! Form::select('region_id', $regions, $society->enterprise->region_id, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Choisissez']) !!}
                 </div>
 
                 <div class="form-group">

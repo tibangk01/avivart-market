@@ -20,11 +20,11 @@
                                     <td>{{ $cashRegister->name }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Date de création</td>
+                                    <td>Date de Création</td>
                                     <td>{{ $cashRegister->created_at }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Date de mis à jour</td>
+                                    <td>Date de Modification</td>
                                     <td>{{ $cashRegister->updated_at }}</td>
                                 </tr>
                                 <tr class="table-light">

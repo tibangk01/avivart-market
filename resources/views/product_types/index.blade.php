@@ -34,7 +34,7 @@
                                             <tr>
                                                 <th>Nom</th>
                                                 <th>Date de Création</th>
-                                                <th>Date de modification</th>
+                                                <th>Date de Modification</th>
                                                 <th>Nombre de Produits</th>
                                                 <th>Actions</th>
                                             </tr>

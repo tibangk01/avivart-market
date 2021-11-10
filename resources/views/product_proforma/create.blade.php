@@ -9,12 +9,12 @@
 
                 <div class="form-group">
                     {!! Form::label('product_id', 'Produit') !!}
-                    {!! Form::select('product_id', $products, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez un produit']) !!}
+                    {!! Form::select('product_id', $products, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez']) !!}
                 </div>
 
                 <div class="form-group">
                     {!! Form::label('proforma_id', 'Proforma') !!}
-                    {!! Form::select('proforma_id', $proformas, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez un proforma']) !!}
+                    {!! Form::select('proforma_id', $proformas, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez']) !!}
                 </div>
 
                 <div class="form-group">
