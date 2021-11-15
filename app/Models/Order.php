@@ -90,7 +90,7 @@ class Order extends Model
 				break;
 
 			case 3:	//livrée
-				$bgColor = 'table-success';
+				$bgColor = $this->paid ? 'table-success' : 'table-danger';
 				break;
 			
 			default:	//annulée
@@ -103,7 +103,7 @@ class Order extends Model
 
 	public function getPaid()
     {
-        return $this->paid ? 'Oui' : 'Non';
+        return $this->paid ? 'Payer' : 'Non payer';
     }
 
     public function getVat()

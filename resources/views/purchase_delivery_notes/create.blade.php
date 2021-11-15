@@ -26,7 +26,7 @@
                         <tbody>
                             @forelse ($purchases as $purchase)
                             <tr class="table-primary">
-                                <th colspan="9">Bon de commande N° {{ $purchase->getNumber() }} addressé au Fournisseur {{ $purchase->provider->getName() }}</th>
+                                <th colspan="9">Commande fournisseur N° {{ $purchase->getNumber() }} addressé au Fournisseur {{ $purchase->provider->getName() }}</th>
                                 <td>
                                     @if($purchase->has_delivery_note)
                                     <strong class="badge badge-info">Fichier attaché</strong>

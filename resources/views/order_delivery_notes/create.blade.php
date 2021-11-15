@@ -27,7 +27,7 @@
                         <tbody>
                             @forelse ($orders as $order)
                             <tr class="table-primary">
-                                <th colspan="10">Facture N° {{ $order->getNumber() }} addressée au client {{ $order->customer->getName() }}</th>
+                                <th colspan="10">Commande client N° {{ $order->getNumber() }} addressée au client {{ $order->customer->getName() }}</th>
                                 <td>
                                     @if($order->has_delivery_note)
                                     <strong class="badge badge-info">Fichier attaché</strong>

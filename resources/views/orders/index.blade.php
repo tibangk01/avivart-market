@@ -36,10 +36,10 @@
                                                 <th>Numéro</th>
                                                 <th>Client</th>
                                                 <th>Etat</th>
+                                                <th>Statut</th>
                                                 <th>TVA</th>
                                                 <th>Remise</th>
                                                 <th>Total TTC</th>
-                                                <th>Payement</th>
                                                 <th>Date de Création</th>
                                                 <th>Date de Modification</th>
                                                 <th>Actions</th>
@@ -51,10 +51,10 @@
                                                     <td>{{ $order->getNumber() }}</td>
                                                     <td>{{ $order->customer->getName() }}</td>
                                                     <td>{{ $order->order_state->name }}</td>
+                                                    <td><span class="{{ $order->paid ? 'badge badge-success' : 'badge badge-danger' }}">{{ $order->getPaid() }}</span></td>
                                                     <td>{{ $order->getVat() }}</td>
                                                     <td>{{ $order->getDiscount() }}</td>
                                                     <td>{{ $order->totalTTC() }}</td>
-                                                    <td>{{ $order->getPaid() }}</td>
                                                     <td>{{ $order->created_at }}</td>
                                                     <td>{{ $order->updated_at }}</td>
                                                     <td>

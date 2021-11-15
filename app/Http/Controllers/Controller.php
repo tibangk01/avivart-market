@@ -64,9 +64,9 @@ class Controller extends BaseController
     protected function saveInventory(Exercise $exercise, Product $product): void
     {
         try {
-            $exercise->products()->sync([
-                $exercise->id => [
-                    'product_id' => $product->id,
+            $product->exercises()->sync([
+                $product->id => [
+                    'exercise_id' => $exercise->id,
                     'initial_stock' => 0,
                     'final_stock' => $product->stock_quantity,
                     'global_purchase_price' => $product->global_purchase_price,

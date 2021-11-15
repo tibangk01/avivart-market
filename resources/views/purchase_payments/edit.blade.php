@@ -13,7 +13,7 @@
 
                 <div class="form-group">
                     {!! Form::label('purchase_id', "Commande fournisseur") !!}
-                    {!! Form::select('purchase_id', $purchases, null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez une commande fournisseur", 'readonly' => true]) !!}
+                    {!! Form::select('purchase_id', $purchases, null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez", 'readonly' => true]) !!}
                 </div>
 
                 <div class="form-group">
@@ -23,7 +23,7 @@
 
                 <div class="form-group">
                     {!! Form::label('payment_mode_id', "Mode de règlement") !!}
-                    {!! Form::select('payment_mode_id', $paymentModes, $purchasePayment->payment->payment_mode_id, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez un bon de commande"]) !!}
+                    {!! Form::select('payment_mode_id', $paymentModes, $purchasePayment->payment->payment_mode_id, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez"]) !!}
                 </div>
 
                 <div class="form-group text-right">

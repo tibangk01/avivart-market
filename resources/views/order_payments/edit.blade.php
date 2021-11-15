@@ -13,7 +13,7 @@
 
                 <div class="form-group">
                     {!! Form::label('order_id', "Commande client") !!}
-                    {!! Form::select('order_id', $orders, null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez une commande client", 'readonly' => true]) !!}
+                    {!! Form::select('order_id', $orders, null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez", 'readonly' => true]) !!}
                 </div>
 
                 <div class="form-group">
@@ -23,12 +23,12 @@
 
                 <div class="form-group">
                     {!! Form::label('order_state_id', "Etat") !!}
-                    {!! Form::select('order_state_id', $orderStates, $orderPayment->order->order_state_id, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez un état"]) !!}
+                    {!! Form::select('order_state_id', $orderStates, $orderPayment->order->order_state_id, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez"]) !!}
                 </div>
 
                 <div class="form-group">
                     {!! Form::label('payment_mode_id', "Mode de règlement") !!}
-                    {!! Form::select('payment_mode_id', $paymentModes, $orderPayment->payment->payment_mode_id, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez un bon de commande"]) !!}
+                    {!! Form::select('payment_mode_id', $paymentModes, $orderPayment->payment->payment_mode_id, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez"]) !!}
                 </div>
 
                 <div class="form-group text-right">

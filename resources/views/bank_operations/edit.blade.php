@@ -12,12 +12,12 @@
 
                 <div class="form-group">
                     {!! Form::label('bank_id', "Banque") !!}
-                    {!! Form::select('bank_id', $banks, null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez une banque"]) !!}
+                    {!! Form::select('bank_id', $banks, null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez"]) !!}
                 </div>
 
                 <div class="form-group">
                     {!! Form::label('bank_operation_type_id', "Type d'opération de banque") !!}
-                    {!! Form::select('bank_operation_type_id', $bankOperationTypes, null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez un type d'opération de banque", 'readonly' => true]) !!}
+                    {!! Form::select('bank_operation_type_id', $bankOperationTypes, null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez", 'readonly' => true]) !!}
                 </div>
 
                 <div class="form-group">

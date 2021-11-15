@@ -34,7 +34,6 @@
                                             <tr>
                                                 <th>Période d'inventaire</th>
                                                 <th>Produit</th>
-                                                <th>Vente Réelle</th>
                                                 <th>Stock Initial</th>
                                                 <th>Stock Final</th>
                                                 <th>Perte</th>
@@ -48,7 +47,6 @@
                                                 <tr>
                                                     <td>{{ $exerciseProduct->exercise->getPeriod() }}</td>
                                                     <td>{{ $exerciseProduct->product->name }}</td>
-                                                    <td>{{ $exerciseProduct->exercise->real_sale }}</td>
                                                     <td>{{ $exerciseProduct->initial_stock }}</td>
                                                     <td>{{ $exerciseProduct->final_stock }}</td>
                                                     <td>{{ $exerciseProduct->loss }}</td>
@@ -71,7 +69,7 @@
                                                 </tr>
                                             @empty
                                                 <tr>
-                                                    <td colspan="9">Pas d'enregistrements</td>
+                                                    <td colspan="8">Pas d'enregistrements</td>
                                                 </tr>
                                             @endforelse
                                         </tbody>

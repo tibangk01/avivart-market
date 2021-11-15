@@ -12,7 +12,7 @@
 
                 <div class="form-group">
                     {!! Form::label('currency_id', 'Devise') !!}
-                    {!! Form::select('currency_id', $currencies, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez une devise']) !!}
+                    {!! Form::select('currency_id', $currencies, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez']) !!}
                 </div>
 
                 <div class="form-group">

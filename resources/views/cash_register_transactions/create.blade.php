@@ -12,17 +12,17 @@
                     {!! Form::open(['method' => 'POST', 'route' => 'cash_register_transaction.store']) !!}
                     <div class="form-group">
                         {!! Form::label('day_transaction_id', 'Transaction de journée') !!}
-                        {!! Form::select('day_transaction_id', $dayTransactions, null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Choisissez une transaction de journée']) !!}
+                        {!! Form::select('day_transaction_id', $dayTransactions, null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Choisissez']) !!}
                     </div>
 
                     <div class="form-group">
                         {!! Form::label('staff_id', 'Staff') !!}
-                        {!! Form::select('staff_id', $staffs, null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Choisissez un staff']) !!}
+                        {!! Form::select('staff_id', $staffs, null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Choisissez']) !!}
                     </div>
 
                     <div class="form-group">
                         {!! Form::label('cash_register_id', 'Caisse') !!}
-                        {!! Form::select('cash_register_id', $cashRegisters, null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Choisissez une caisse']) !!}
+                        {!! Form::select('cash_register_id', $cashRegisters, null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Choisissez']) !!}
                     </div>
 
                     <div class="form-group">

@@ -26,7 +26,7 @@
                         <tbody>
                             @forelse ($purchases as $purchase)
                             <tr class="table-info">
-                                <th colspan="10">Bon de commande N° {{ $purchase->getNumber() }} addressé au Fournisseur {{ $purchase->provider->getName() }}</th>
+                                <th colspan="10">Commande fournisseur N° {{ $purchase->getNumber() }} addressé au Fournisseur {{ $purchase->provider->getName() }}</th>
                             </tr>
 
                             @forelse($purchase->products as $product)

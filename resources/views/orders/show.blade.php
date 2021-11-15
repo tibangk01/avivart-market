@@ -15,7 +15,7 @@
                         </thead>
                         <tbody>
                             <tr class="{{ $order->getBgColor() }}">
-                                <th>Payement</th>
+                                <th>Statut</th>
                                 <td>{{ $order->getPaid() }}</td>
                             </tr>
                             <tr>

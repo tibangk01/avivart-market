@@ -11,12 +11,12 @@
                 {!! Form::open(['method' => 'POST', 'route' => 'agency.store']) !!}
                 <div class="form-group">
                     {!! Form::label('country_id', 'Pays') !!}
-                    {!! Form::select('country_id', $countries, null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Choisissez un pays']) !!}
+                    {!! Form::select('country_id', $countries, null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Choisissez']) !!}
                 </div>
 
                 <div class="form-group">
                     {!! Form::label('region_id', 'Région') !!}
-                    {!! Form::select('region_id', $regions, null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Choisissez une région']) !!}
+                    {!! Form::select('region_id', $regions, null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Choisissez']) !!}
                 </div>
 
                 <div class="form-group">

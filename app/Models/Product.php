@@ -139,6 +139,13 @@ class Product extends Model implements Buyable
 					->withTimestamps();
 	}
 
+	public function exercises()
+	{
+		return $this->belongsToMany(Exercise::class, 'exercise_product')
+					->withPivot('id', 'initial_stock', 'final_stock', 'global_purchase_price', 'purchase_price', 'global_selling_price', 'selling_price', 'global_rental_price', 'rental_price', 'loss')
+					->withTimestamps();
+	}
+
 	public function getBuyableIdentifier($options = null) {
         return $this->id;
     }

@@ -9,22 +9,22 @@
 
                 <div class="form-group">
                     {!! Form::label('customer_id', 'Client') !!}
-                    {!! Form::select('customer_id', $customers, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez un client']) !!}
+                    {!! Form::select('customer_id', $customers, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez']) !!}
                 </div>
 
                 <div class="form-group">
                     {!! Form::label('vat_id', 'TVA') !!}
-                    {!! Form::select('vat_id', $vats, null, ['class' => 'form-control', 'placeholder' => 'Choisissez une TVA']) !!}
+                    {!! Form::select('vat_id', $vats, null, ['class' => 'form-control', 'placeholder' => 'Choisissez']) !!}
                 </div>
 
                 <div class="form-group">
                     {!! Form::label('discount_id', 'Remise') !!}
-                    {!! Form::select('discount_id', $discounts, null, ['class' => 'form-control', 'placeholder' => 'Choisissez une remise']) !!}
+                    {!! Form::select('discount_id', $discounts, null, ['class' => 'form-control', 'placeholder' => 'Choisissez']) !!}
                 </div>
 
                 <div class="form-group">
                     {!! Form::label('order_state_id', 'Etat') !!}
-                    {!! Form::select('order_state_id', $orderStates, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez un état']) !!}
+                    {!! Form::select('order_state_id', $orderStates, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez']) !!}
                 </div>
 
                 <div class="form-group text-right">
