@@ -51,8 +51,13 @@ class CashRegisterOperationType extends Model
         return $this->state ? 'table-success' : 'table-danger';
     }
 
+    public function getStateText()
+    {
+        return $this->state ? 'Entrée' : 'Sortie';
+    }
+
     public function __toString()
     {
-        return $this->name;
+        return $this->name . ' (' . $this->getStateText() . ')';
     }
 }

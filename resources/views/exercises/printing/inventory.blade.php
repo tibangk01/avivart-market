@@ -74,13 +74,13 @@
             <th colspan="5" class="table-danger">Vente Théorique : {{ $vt }}</th>
             <th colspan="3" class="table-success">Vente Réelle : {{ $exercise->real_sale }}</th>
             <th colspan="5" class="table-warning">
-                Remarque : {{ $vt - $exercise->real_sale }}
+                Remarque :
                 @if($vt > $exercise->real_sale)
-                    (Manque)
+                    {{ $vt - $exercise->real_sale }} (Manque)
                 @elseif($vt < $exercise->real_sale)
-                    (Surplus)
+                    {{ $exercise->real_sale - $vt }} (Surplus)
                 @else
-                    (Juste)
+                    {{ $vt - $exercise->real_sale }} (Juste)
                 @endif
             </th>
         </tr>

@@ -69,7 +69,7 @@ class Purchase extends Model
 
 	public function getPaid()
     {
-        return $this->paid ? 'Oui' : 'Non';
+        return $this->paid ? 'Payer' : 'Non payer';
     }
 
     public function getVat()

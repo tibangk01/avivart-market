@@ -3,12 +3,11 @@
     <!-- small box -->
     <div class="small-box bg-info">
         <div class="inner">
-        <h3>{{ $agenciesCount }}</h3>
-
-        <p>Agences</p>
+            <h3>{{ $agenciesCount }}</h3>
+            <p>Agences</p>
         </div>
         <div class="icon">
-        <i class="ion ion-bag"></i>
+            <i class="ion ion-bag"></i>
         </div>
         <a href="{{ route('agency.index') }}" class="small-box-footer">Plus d'informations <i class="fas fa-arrow-circle-right"></i></a>
     </div>
@@ -18,12 +17,11 @@
     <!-- small box -->
     <div class="small-box bg-success">
         <div class="inner">
-        <h3>{{ $salePlacesCount }}</h3>
-
-        <p>Points de vente</p>
+            <h3>{{ $salePlacesCount }}</h3>
+            <p>Points de vente</p>
         </div>
         <div class="icon">
-        <i class="ion ion-stats-bars"></i>
+            <i class="ion ion-stats-bars"></i>
         </div>
         <a href="{{ route('sale_place.index') }}" class="small-box-footer">Plus d'informations <i class="fas fa-arrow-circle-right"></i></a>
     </div>
@@ -33,12 +31,11 @@
     <!-- small box -->
     <div class="small-box bg-warning">
         <div class="inner">
-        <h3>{{ $purchasesCount }}</h3>
-
-        <p>Commandes fournisseur</p>
+            <h3>{{ $purchasesCount }}</h3>
+            <p>Commandes fournisseur (Payées : {{ $purchasesPaidCount }}, Impayées : {{ $purchasesUnpaidCount }})</p>
         </div>
         <div class="icon">
-        <i class="ion ion-person-add"></i>
+            <i class="ion ion-person-add"></i>
         </div>
         <a href="{{ route('purchase.index') }}" class="small-box-footer">Plus d'informations <i class="fas fa-arrow-circle-right"></i></a>
     </div>
@@ -48,12 +45,11 @@
     <!-- small box -->
     <div class="small-box bg-danger">
         <div class="inner">
-        <h3>{{ $ordersCount }}</h3>
-
-        <p>Commandes client</p>
+            <h3>{{ $ordersCount }}</h3>
+            <p>Commandes client (Payées : {{ $ordersPaidCount }}, Impayées : {{ $ordersUnpaidCount }})</p>
         </div>
         <div class="icon">
-        <i class="ion ion-pie-graph"></i>
+            <i class="ion ion-pie-graph"></i>
         </div>
         <a href="{{ route('order.index') }}" class="small-box-footer">Plus d'informations <i class="fas fa-arrow-circle-right"></i></a>
     </div>

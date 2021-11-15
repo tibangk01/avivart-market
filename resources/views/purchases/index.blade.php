@@ -38,7 +38,7 @@
                                                 <th>TVA</th>
                                                 <th>Remise</th>
                                                 <th>Total TTC</th>
-                                                <th>Payement</th>
+                                                <th>Statut</th>
                                                 <th>Date de Création</th>
                                                 <th>Date de Modification</th>
                                                 <th>Actions</th>
@@ -52,7 +52,7 @@
                                                     <td>{{ $purchase->getVat() }}</td>
                                                     <td>{{ $purchase->getDiscount() }}</td>
                                                     <td>{{ $purchase->totalTTC() }}</td>
-                                                    <td>{{ $purchase->getPaid() }}</td>
+                                                    <td><span class="{{ $purchase->paid ? 'badge badge-success' : 'badge badge-danger' }}">{{ $purchase->getPaid() }}</span></td>
                                                     <td>{{ $purchase->created_at }}</td>
                                                     <td>{{ $purchase->updated_at }}</td>
                                                     <td>

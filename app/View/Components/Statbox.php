@@ -18,6 +18,14 @@ class Statbox extends Component
 
     public $ordersCount;
 
+    public $purchasesPaidCount;
+
+    public $purchasesUnpaidCount;
+
+    public $ordersPaidCount;
+
+    public $ordersUnpaidCount;
+
     /**
      * Create a new component instance.
      *
@@ -31,7 +39,15 @@ class Statbox extends Component
 
         $this->purchasesCount = Purchase::count();
 
+        $this->purchasesPaidCount = Purchase::where('paid', true)->count();
+
+        $this->purchasesUnpaidCount = Purchase::where('paid', false)->count();
+
         $this->ordersCount = Order::count();
+
+        $this->ordersPaidCount = Order::where('paid', true)->count();
+
+        $this->ordersUnpaidCount = Order::where('paid', false)->count();
     }
 
     /**
