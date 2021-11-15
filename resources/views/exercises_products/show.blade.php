@@ -59,11 +59,11 @@
                                 <td>{{ $exerciseProduct->loss }}</td>
                             </tr>
                             <tr>
-                                <th>Date de création</th>
+                                <th>Date de Création</th>
                                 <td>{{ $exerciseProduct->created_at }}</td>
                             </tr>
                             <tr>
-                                <th>Date de mis à jour</th>
+                                <th>Date de Modification</th>
                                 <td>{{ $exerciseProduct->updated_at }}</td>
                             </tr>
                             <tr class="table-light">

@@ -155,14 +155,4 @@ class Product extends Model implements Buyable
     {
         return $this->name;
     }
-
-    public function countSupplies()
-    {
-    	return 0;
-    }
-
-    public function countSales()
-    {
-    	return 0;
-    }
 }
