@@ -83,7 +83,9 @@ class TransactionController extends Controller
      */
     public function destroy(Transaction $transaction)
     {
-        //
+        //$transaction->delete();
+
+        return back()->withDanger('Donnée supprimée');
     }
 
     public function printingAll(Request $request)

@@ -19,11 +19,8 @@
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
                                 aria-labelledby="nav-home-tab">
                                 <div class="d-flex">
-                                    <div class="ml-auto">
-
-                                        <a class="btn btn-flat btn-primary mb-1"
-                                            href="{{ route('purchase_delivery_note.create') }}"><i class="fa fa-plus"></i>
-                                            Ajouter</a>
+                                    <div class="ml-auto mb-1">
+                                        <x-create-record routeName="purchase_delivery_note.create" />
                                     </div>
                                 </div>
                                 <div class="table-responsive">
@@ -46,15 +43,10 @@
                                                     <td>{{ $purchaseDeliveryNote->purchase->getNumber() }}</td>
                                                     <td>{{ $purchaseDeliveryNote->created_at }}</td>
                                                     <td>{{ $purchaseDeliveryNote->updated_at }}</td>
-                                                    <td>
-                                                        <a class="btn btn-info btn-xs"
-                                                            href="{{ route('purchase_delivery_note.show', $purchaseDeliveryNote) }}"
-                                                            title="Afficher"><i class="fa fa-eye"
-                                                                aria-hidden="true"></i></a>
-                                                        <a class="btn btn-danger btn-xs"
-                                                            href="{{ route('purchase_delivery_note.destroy', $purchaseDeliveryNote) }}"
-                                                            title="Supprimer"><i class="fa fa-trash"
-                                                                aria-hidden="true"></i></a>
+                                                    <td class="d-flex flex-row justify-content-around align-items-center">
+                                                        <x-show-record routeName="purchase_delivery_note.show" :routeParam="$purchaseDeliveryNote->id" />
+
+                                                        <x-destroy-record routeName="purchase_delivery_note.destroy" :routeParam="$purchaseDeliveryNote->id" />
                                                     </td>
                                                 </tr>
                                             @empty

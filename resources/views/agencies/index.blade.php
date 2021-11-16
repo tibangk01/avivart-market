@@ -22,13 +22,9 @@
 
                                     <div class="d-flex">
                                         <div class="ml-auto mb-1">
-                                            <a class="btn btn-flat btn-dark" target="_blank" 
-                                                            href="{{ route('agency.printing.all') }}"
-                                                            title="Imprimer"><i class="fa fa-print"></i> Imprimer</a>
-
-                                            <a class="btn btn-flat btn-primary"
-                                                href="{{ route('agency.create') }}"><i class="fa fa-plus"></i>
-                                                Ajouter</a>
+                                            <x-print-all-record routeName="agency.printing.all" />
+                                            
+                                            <x-create-record routeName="agency.create" />
                                         </div>
                                     </div>
 
@@ -56,23 +52,14 @@
                                                         <td>{{ $agency->enterprise->email }}</td>
                                                         <td>{{ $agency->enterprise->region->name }}</td>
                                                         <td>{{ $agency->sale_places->count() }}</td>
-                                                        <td>
-                                                            <a class="btn btn-info btn-xs"
-                                                                href="{{ route('agency.show', $agency) }}"
-                                                                title="Afficher"><i class="fa fa-eye"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a class="btn btn-warning btn-xs"
-                                                                href="{{ route('agency.edit', $agency) }}"
-                                                                title="Modifier"><i class="fa fa-edit"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a class="btn btn-danger btn-xs"
-                                                                href="{{ route('agency.destroy', $agency) }}"
-                                                                title="Supprimer"><i class="fa fa-trash"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a class="btn btn-dark btn-xs" target="_blank" 
-                                                            href="{{ route('agency.printing.one', $agency) }}"
-                                                            title="Imprimer"><i class="fa fa-print"
-                                                                aria-hidden="true"></i></a>
+                                                        <td class="d-flex flex-row justify-content-around align-items-center">
+                                                            <x-show-record routeName="agency.show" :routeParam="$agency->id" />
+                                                            
+                                                            <x-edit-record routeName="agency.edit" :routeParam="$agency->id" />
+
+                                                            <x-destroy-record routeName="agency.destroy" :routeParam="$agency->id" />
+
+                                                            <x-print-one-record routeName="agency.printing.one" :routeParam="$agency->id" />
                                                         </td>
                                                     </tr>
                                                 @empty

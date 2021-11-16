@@ -114,6 +114,8 @@ class VatController extends Controller
      */
     public function destroy(Vat $vat)
     {
-        //
+        $vat->delete();
+
+        return back()->withDanger('Donnée supprimée');
     }
 }

@@ -22,10 +22,8 @@
                                 aria-labelledby="nav-home-tab">
 
                                 <div class="d-flex">
-                                    <div class="ml-auto">
-                                        <a class="btn btn-flat btn-primary mb-1"
-                                            href="{{ route('product_ray.create') }}"><i class="fa fa-plus"></i>
-                                            Ajouter</a>
+                                    <div class="ml-auto mb-1">
+                                        <x-create-record routeName="product_ray.create" />
                                     </div>
                                 </div>
 
@@ -48,16 +46,12 @@
                                                         <td>{{ $productRay->created_at }}</td>
                                                         <td>{{ $productRay->updated_at }}</td>
                                                         <td>{{ $productRay->product_categories->count() }}</td>
-                                                        <td>
-                                                            <a class="btn btn-info btn-xs" href="{{ route('product_ray.show', $productRay) }}"
-                                                                title="Afficher"><i class="fa fa-eye"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a class="btn btn-warning btn-xs" href="{{ route('product_ray.edit', $productRay) }}"
-                                                                title="Modifier"><i class="fa fa-edit"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a class="btn btn-danger btn-xs" href="{{ route('product_ray.destroy',$productRay) }}"
-                                                                title="Supprimer"><i class="fa fa-trash"
-                                                                    aria-hidden="true"></i></a>
+                                                        <td class="d-flex flex-row justify-content-around align-items-center">
+                                                            <x-show-record routeName="product_ray.show" :routeParam="$productRay->id" />
+                                                            
+                                                            <x-edit-record routeName="product_ray.edit" :routeParam="$productRay->id" />
+
+                                                            <x-destroy-record routeName="product_ray.destroy" :routeParam="$productRay->id" />
                                                         </td>
                                                     </tr>
                                                 @empty

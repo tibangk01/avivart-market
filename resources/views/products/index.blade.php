@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => "Produits"])
+@extends('layouts.dashboard', ['title' => "Produits & Services"])
 
 @section('body')
     <div class="content">
@@ -20,13 +20,9 @@
                                     aria-labelledby="nav-home-tab">
                                     <div class="d-flex">
                                         <div class="ml-auto mb-1">
-                                            <a class="btn btn-flat btn-dark" target="_blank" 
-                                                            href="{{ route('product.printing.all') }}"
-                                                            title="Imprimer"><i class="fa fa-print"></i> Imprimer</a>
-
-                                            <a class="btn btn-flat btn-primary"
-                                                href="{{ route('product.create') }}"><i class="fa fa-plus"></i>
-                                                Ajouter</a>
+                                            <x-print-all-record routeName="product.printing.all" />
+                                            
+                                            <x-create-record routeName="product.create" />
                                         </div>
                                     </div>
                                     <div class="table-responsive">
@@ -63,23 +59,14 @@
                                                     <td>{{ $product->sold_quantity }}</td>
                                                     <td>{{ $product->created_at }}</td>
                                                     <td>{{ $product->updated_at }}</td>
-                                                    <td>
-                                                        <a class="btn btn-info btn-xs"
-                                                            href="{{ route('product.show', $product) }}"
-                                                            title="Afficher"><i class="fa fa-eye"
-                                                                aria-hidden="true"></i></a>
-                                                        <a class="btn btn-warning btn-xs"
-                                                            href="{{ route('product.edit', $product) }}"
-                                                            title="Modifier"><i class="fa fa-edit"
-                                                                aria-hidden="true"></i></a>
-                                                        <a class="btn btn-danger btn-xs"
-                                                            href="{{ route('product.destroy', $product) }}"
-                                                            title="Supprimer"><i class="fa fa-trash"
-                                                                aria-hidden="true"></i></a>
-                                                        <a class="btn btn-dark btn-xs" target="_blank" 
-                                                    href="{{ route('product.printing.one', $product) }}"
-                                                    title="Imprimer"><i class="fa fa-print"
-                                                        aria-hidden="true"></i></a>
+                                                    <td class="d-flex flex-row justify-content-around align-items-center">
+                                                        <x-show-record routeName="product.show" :routeParam="$product->id" />
+                                                        
+                                                        <x-edit-record routeName="product.edit" :routeParam="$product->id" />
+
+                                                        <x-destroy-record routeName="product.destroy" :routeParam="$product->id" />
+
+                                                        <x-print-one-record routeName="product.printing.one" :routeParam="$product->id" />
                                                     </td>
                                                 </tr>
                                             @empty

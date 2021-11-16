@@ -22,10 +22,8 @@
                                 aria-labelledby="nav-home-tab">
 
                                 <div class="d-flex">
-                                    <div class="ml-auto">
-                                        <a class="btn btn-flat btn-primary mb-1"
-                                            href="{{ route('exercise.create') }}"><i class="fa fa-plus"></i>
-                                            Ajouter</a>
+                                    <div class="ml-auto mb-1">
+                                        <x-create-record routeName="exercise.create" />
                                     </div>
                                 </div>
 
@@ -54,21 +52,14 @@
                                                     <td>{{ $exercise->real_sale }}</td>
                                                     <td>{{ $exercise->created_at }}</td>
                                                     <td>{{ $exercise->created_at }}</td>
-                                                    <td>
-                                                        <a class="btn btn-info btn-xs" href="{{ route('exercise.show', $exercise) }}"
-                                                            title="Afficher"><i class="fa fa-eye"
-                                                                aria-hidden="true"></i></a>
-                                                        <a class="btn btn-warning btn-xs" href="{{ route('exercise.edit', $exercise) }}"
-                                                            title="Modifier"><i class="fa fa-edit"
-                                                                aria-hidden="true"></i></a>
-                                                        <a class="btn btn-danger btn-xs" href="{{ route('exercise.destroy',$exercise) }}"
-                                                            title="Supprimer"><i class="fa fa-trash"
-                                                                aria-hidden="true"></i></a>
+                                                    <td class="d-flex flex-row justify-content-around align-items-center">
+                                                        <x-show-record routeName="exercise.show" :routeParam="$exercise->id" />
+                                                        
+                                                        <x-edit-record routeName="exercise.edit" :routeParam="$exercise->id" />
 
-                                                        <a class="btn btn-dark btn-xs" target="_blank" 
-                                                    href="{{ route('exercise.printing.inventory', $exercise) }}"
-                                                    title="Inventaire"><i class="fa fa-print"
-                                                        aria-hidden="true"></i></a>
+                                                        <x-destroy-record routeName="exercise.destroy" :routeParam="$exercise->id" />
+
+                                                        <x-print-one-record routeName="exercise.printing.inventory" :routeParam="$exercise->id" />
                                                     </td>
                                                 </tr>
                                                 @empty

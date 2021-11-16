@@ -148,7 +148,9 @@ class ProformaController extends Controller
      */
     public function destroy(Proforma $proforma)
     {
-        //
+        //$proforma->delete();
+
+        return back()->withDanger('Donnée supprimée');
     }
 
     /**

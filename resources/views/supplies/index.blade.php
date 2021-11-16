@@ -19,11 +19,8 @@
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
                                 aria-labelledby="nav-home-tab">
                                 <div class="d-flex">
-                                    <div class="ml-auto">
-
-                                        <a class="btn btn-flat btn-primary mb-1"
-                                            href="{{ route('supply.create') }}"><i class="fa fa-plus"></i>
-                                            Ajouter</a>
+                                    <div class="ml-auto mb-1">
+                                        <x-create-record routeName="supply.create" />
                                     </div>
                                 </div>
                                 <div class="table-responsive">
@@ -48,21 +45,13 @@
                                                     <td>{{ $supply->quantity }}</td>
                                                     <td>{{ $supply->created_at }}</td>
                                                     <td>{{ $supply->updated_at }}</td>
-                                                    <td>
-                                                        <a class="btn btn-info btn-xs"
-                                                            href="{{ route('supply.show', $supply) }}"
-                                                            title="Afficher"><i class="fa fa-eye"
-                                                                aria-hidden="true"></i></a>
+                                                    <td class="d-flex flex-row justify-content-around align-items-center">
+                                                        <x-show-record routeName="supply.show" :routeParam="$supply->id" />
 
                                                         @if($supply->product_purchase->ordered_quantity != $supply->product_purchase->delivered_quantity)
-                                                        <a class="btn btn-warning btn-xs"
-                                                            href="{{ route('supply.edit', $supply) }}"
-                                                            title="Modifier"><i class="fa fa-edit"
-                                                                aria-hidden="true"></i></a>
-                                                        <a class="btn btn-danger btn-xs"
-                                                            href="{{ route('supply.destroy', $supply) }}"
-                                                            title="Supprimer"><i class="fa fa-trash"
-                                                                aria-hidden="true"></i></a>
+                                                        <x-edit-record routeName="supply.edit" :routeParam="$supply->id" />
+
+                                                        <x-destroy-record routeName="supply.destroy" :routeParam="$supply->id" />
                                                         @endif
                                                     </td>
                                                 </tr>

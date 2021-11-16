@@ -128,7 +128,9 @@ class ExerciseController extends Controller
      */
     public function destroy(Exercise $exercise)
     {
-        //
+        $exercise->delete();
+
+        return back()->withDanger('Donnée supprimée');
     }
 
     public function inventory(Request $request, Exercise $exercise)

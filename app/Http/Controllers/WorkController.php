@@ -114,6 +114,8 @@ class WorkController extends Controller
      */
     public function destroy(Work $work)
     {
-        //
+        $work->delete();
+
+        return back()->withDanger('Donnée supprimée');
     }
 }

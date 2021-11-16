@@ -22,10 +22,8 @@
                                 aria-labelledby="nav-home-tab">
 
                                 <div class="d-flex">
-                                    <div class="ml-auto">
-                                        <a class="btn btn-flat btn-primary mb-1"
-                                            href="{{ route('currency.create') }}"><i class="fa fa-plus"></i>
-                                            Ajouter</a>
+                                    <div class="ml-auto mb-1">
+                                        <x-create-record routeName="currency.create" />
                                     </div>
                                 </div>
 
@@ -47,16 +45,12 @@
                                                             <td>{{ $currency->name }}</td>
                                                             <td>{{ $currency->created_at }}</td>
                                                             <td>{{ $currency->created_at }}</td>
-                                                            <td>
-                                                                <a class="btn btn-info btn-xs" href="{{ route('currency.show', $currency) }}"
-                                                                    title="Afficher"><i class="fa fa-eye"
-                                                                        aria-hidden="true"></i></a>
-                                                                <a class="btn btn-warning btn-xs" href="{{ route('currency.edit', $currency) }}"
-                                                                    title="Modifier"><i class="fa fa-edit"
-                                                                        aria-hidden="true"></i></a>
-                                                                <a class="btn btn-danger btn-xs" href="{{ route('currency.destroy',$currency) }}"
-                                                                    title="Supprimer"><i class="fa fa-trash"
-                                                                        aria-hidden="true"></i></a>
+                                                            <td class="d-flex flex-row justify-content-around align-items-center">
+                                                                <x-show-record routeName="currency.show" :routeParam="$currency->id" />
+                                                                
+                                                                <x-edit-record routeName="currency.edit" :routeParam="$currency->id" />
+
+                                                                <x-destroy-record routeName="currency.destroy" :routeParam="$currency->id" />
                                                             </td>
                                                         </tr>
                                                     @endforeach

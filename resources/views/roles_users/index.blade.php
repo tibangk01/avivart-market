@@ -20,11 +20,8 @@
                                 aria-labelledby="nav-home-tab">
 
                                 <div class="d-flex">
-                                    <div class="ml-auto">
-
-                                        <a class="btn btn-flat btn-primary mb-1" href="{{ route('role_user.create') }}"><i
-                                                class="fa fa-plus"></i>
-                                            Ajouter</a>
+                                    <div class="ml-auto mb-1">
+                                        <x-create-record routeName="role_user.create" />
                                     </div>
                                 </div>
 
@@ -46,19 +43,12 @@
                                                     <td>{{ $roleUser->user->full_name }}</td>
                                                     <td>{{ $roleUser->created_at }}</td>
                                                     <td>{{ $roleUser->updated_at }}</td>
-                                                    <td>
-                                                        <a class="btn btn-info btn-xs"
-                                                            href="{{ route('role_user.show', $roleUser) }}"
-                                                            title="Afficher"><i class="fa fa-eye"
-                                                                aria-hidden="true"></i></a>
-                                                        <a class="btn btn-warning btn-xs"
-                                                            href="{{ route('role_user.edit', $roleUser) }}"
-                                                            title="Modifier"><i class="fa fa-edit"
-                                                                aria-hidden="true"></i></a>
-                                                        <a class="btn btn-danger btn-xs"
-                                                            href="{{ route('role_user.destroy', $roleUser) }}"
-                                                            title="Supprimer"><i class="fa fa-trash"
-                                                                aria-hidden="true"></i></a>
+                                                    <td class="d-flex flex-row justify-content-around align-items-center">
+                                                        <x-show-record routeName="role_user.show" :routeParam="$roleUser->id" />
+                                                        
+                                                        <x-edit-record routeName="role_user.edit" :routeParam="$roleUser->id" />
+
+                                                        <x-destroy-record routeName="role_user.destroy" :routeParam="$roleUser->id" />
                                                     </td>
                                                 </tr>
                                             @empty

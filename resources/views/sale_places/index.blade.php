@@ -22,13 +22,9 @@
 
                                     <div class="d-flex">
                                         <div class="ml-auto mb-1">
-                                            <a class="btn btn-flat btn-dark" target="_blank" 
-                                                            href="{{ route('sale_place.printing.all') }}"
-                                                            title="Imprimer"><i class="fa fa-print"></i> Imprimer</a>
-
-                                            <a class="btn btn-flat btn-primary"
-                                                href="{{ route('sale_place.create') }}"><i class="fa fa-plus"></i>
-                                                Ajouter</a>
+                                            <x-print-all-record routeName="sale_place.printing.all" />
+                                            
+                                            <x-create-record routeName="sale_place.create" />
                                         </div>
                                     </div>
 
@@ -60,23 +56,14 @@
                                                         <td>{{ $salePlace->agency->enterprise->name }}</td>
                                                         <td>{{ $salePlace->created_at }}</td>
                                                         <td>{{ $salePlace->updated_at }}</td>
-                                                        <td>
-                                                            <a class="btn btn-info btn-xs"
-                                                            href="{{ route('sale_place.show', $salePlace) }}"
-                                                            title="Afficher"><i class="fa fa-eye"
-                                                                aria-hidden="true"></i></a>
-                                                        <a class="btn btn-warning btn-xs"
-                                                            href="{{ route('sale_place.edit', $salePlace) }}"
-                                                            title="Modifier"><i class="fa fa-edit"
-                                                                aria-hidden="true"></i></a>
-                                                        <a class="btn btn-danger btn-xs"
-                                                            href="{{ route('sale_place.destroy', $salePlace) }}"
-                                                            title="Supprimer"><i class="fa fa-trash"
-                                                                aria-hidden="true"></i></a>
-                                                        <a class="btn btn-dark btn-xs" target="_blank" 
-                                                            href="{{ route('sale_place.printing.one', $salePlace) }}"
-                                                            title="Imprimer"><i class="fa fa-print"
-                                                                aria-hidden="true"></i></a>
+                                                        <td class="d-flex flex-row justify-content-around align-items-center">
+                                                            <x-show-record routeName="sale_place.show" :routeParam="$salePlace->id" />
+                                                            
+                                                            <x-edit-record routeName="sale_place.edit" :routeParam="$salePlace->id" />
+
+                                                            <x-destroy-record routeName="sale_place.destroy" :routeParam="$salePlace->id" />
+
+                                                            <x-print-one-record routeName="sale_place.printing.one" :routeParam="$salePlace->id" />
                                                         </td>
                                                     </tr>
                                                 @empty

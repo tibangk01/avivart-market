@@ -20,13 +20,9 @@
                                     aria-labelledby="nav-home-tab">
                                     <div class="d-flex">
                                         <div class="ml-auto mb-1">
-                                            <a class="btn btn-flat btn-dark" target="_blank" 
-                                                            href="{{ route('staff.printing.all') }}"
-                                                            title="Imprimer"><i class="fa fa-print"></i> Imprimer</a>
-                                                            
-                                            <a class="btn btn-flat btn-primary" href="{{ route('staff.create') }}"><i
-                                                    class="fa fa-plus"></i>
-                                                Ajouter</a>
+                                            <x-print-all-record routeName="staff.printing.all" />
+                                            
+                                            <x-create-record routeName="staff.create" />
                                         </div>
                                     </div>
                                     <div class="table-responsive">
@@ -57,27 +53,16 @@
                                                 <td>{{ $staff->staff_type->name }}</td>
                                                 <td>{{ $staff->human->user->getFullPhoneNumber() }}</td>
                                                 <td>{{ $staff->created_at }}</td>
-                                                <td>
-                                                    <a class="btn btn-info btn-xs"
-                                                        href="{{ route('staff.show', $staff) }}"
-                                                        title="Afficher"><i class="fa fa-eye"
-                                                            aria-hidden="true"></i></a>
-                                                    <a class="btn btn-warning btn-xs"
-                                                        href="{{ route('staff.edit', $staff) }}"
-                                                        title="Modifier"><i class="fa fa-edit"
-                                                            aria-hidden="true"></i></a>
-                                                    <a class="btn btn-danger btn-xs"
-                                                        href="{{ route('staff.destroy', $staff) }}"
-                                                        title="Supprimer"><i class="fa fa-trash"
-                                                            aria-hidden="true"></i></a>
-                                                    <a class="btn btn-dark btn-xs" target="_blank" 
-                                                            href="{{ route('staff.printing.one', $staff) }}"
-                                                            title="Imprimer"><i class="fa fa-print"
-                                                                aria-hidden="true"></i></a>
-                                                    <a class="btn btn-success btn-xs" target="_blank" 
-                                                            href="{{ route('staff.printing.qrcode', $staff) }}"
-                                                            title="QR CODE"><i class="fa fa-qrcode"
-                                                                aria-hidden="true"></i></a>
+                                                <td class="d-flex flex-row justify-content-around align-items-center">
+                                                    <x-show-record routeName="staff.show" :routeParam="$staff->id" />
+                                                    
+                                                    <x-edit-record routeName="staff.edit" :routeParam="$staff->id" />
+
+                                                    <x-destroy-record routeName="staff.destroy" :routeParam="$staff->id" />
+
+                                                    <x-print-one-record routeName="staff.printing.one" :routeParam="$staff->id" />
+
+                                                    <x-print-badge-record routeName="staff.printing.badge" :routeParam="$staff->id" />
                                                 </td>
                                             </tr>
                                             @empty

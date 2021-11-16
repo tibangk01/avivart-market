@@ -30,7 +30,7 @@
             <div>{{ $staff->staff_type->name }}</div>
         </td>
         <td>
-            <img src="{{ asset('qrcodes/qrcode1.png') }}" alt="qrcode" class="img50_50" />
+            <img src="{{ asset('badges/qrcode1.png') }}" alt="badge" class="img50_50" />
         </td>
     </tr>
 </table>

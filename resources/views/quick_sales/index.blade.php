@@ -20,11 +20,8 @@
                                     aria-labelledby="nav-home-tab">
 
                                     <div class="d-flex">
-                                        <div class="ml-auto">
-
-                                            <a class="btn btn-flat btn-primary mb-1" href="{{ route('quick_sale.create') }}" target="_blank"><i
-                                                    class="fa fa-plus"></i>
-                                                Ajouter</a>
+                                        <div class="ml-auto mb-1">
+                                            <x-create-record routeName="quick_sale.create" />
                                         </div>
                                     </div>
 
@@ -60,23 +57,14 @@
                                                         <td>{{ $quickSale->totalTTC() }}</td>
                                                         <td>{{ $quickSale->created_at }}</td>
                                                         <td>{{ $quickSale->updated_at }}</td>
-                                                        <td>
-                                                            <a class="btn btn-info btn-xs"
-                                                                href="{{ route('quick_sale.show', $quickSale) }}"
-                                                                title="Afficher"><i class="fa fa-eye"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a class="btn btn-warning btn-xs"
-                                                                href="{{ route('quick_sale.edit', $quickSale) }}"
-                                                                title="Modifier"><i class="fa fa-edit"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a class="btn btn-danger btn-xs"
-                                                                href="{{ route('quick_sale.destroy', $quickSale) }}"
-                                                                title="Supprimer"><i class="fa fa-trash"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a class="btn btn-dark btn-xs" target="_blank" 
-                                                    href="{{ route('quick_sale.printing.receipt', $quickSale) }}"
-                                                    title="Imprimer"><i class="fa fa-print"
-                                                        aria-hidden="true"></i></a>
+                                                        <td class="d-flex flex-row justify-content-around align-items-center">
+                                                            <x-show-record routeName="quick_sale.show" :routeParam="$quickSale->id" />
+                                                            
+                                                            <x-edit-record routeName="quick_sale.edit" :routeParam="$quickSale->id" />
+
+                                                            <x-destroy-record routeName="quick_sale.destroy" :routeParam="$quickSale->id" />
+
+                                                            <x-print-one-record routeName="quick_sale.printing.receipt" :routeParam="$quickSale->id" />
                                                         </td>
                                                     </tr>
                                                 @empty

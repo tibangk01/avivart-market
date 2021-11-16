@@ -64,9 +64,7 @@
             </div>
             <div class="col-lg-6">
                 <div class="text-right py-1">
-                    <a class="btn btn-flat btn-primary" href="{{ route('product_order.create') }}">
-                        <i class="fa fa-plus"></i> Ajouter
-                    </a>
+                    <x-create-record routeName="product_order.create" />
                 </div>
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover table-striped datatable">
@@ -86,21 +84,13 @@
                                     <td>{{ $product->pivot->quantity }}</td>
                                     <td>{{ $product->pivot->created_at }}</td>
                                     <td>{{ $product->pivot->updated_at }}</td>
-                                    <td>
-                                        <a class="btn btn-info btn-xs"
-                                            href="{{ route('product_order.show', $product->pivot->id) }}"
-                                            title="Afficher"><i class="fa fa-eye"
-                                                aria-hidden="true"></i></a>
+                                    <td class="d-flex flex-row justify-content-around align-items-center">
+                                        <x-show-record routeName="product_order.show" :routeParam="$product->pivot->id" />
 
                                         @if(!$order->paid)
-                                        <a class="btn btn-warning btn-xs"
-                                            href="{{ route('product_order.edit', $product->pivot->id) }}"
-                                            title="Editer"><i class="fa fa-edit"
-                                                aria-hidden="true"></i></a>
-                                        <a class="btn btn-danger btn-xs"
-                                            href="{{ route('product_order.destroy', $product->pivot->id) }}"
-                                            title="Afficher"><i class="fa fa-trash"
-                                                aria-hidden="true"></i></a>
+                                        <x-edit-record routeName="product_order.edit" :routeParam="$product->pivot->id" />
+
+                                        <x-destroy-record routeName="product_order.destroy" :routeParam="$product->pivot->id" />
                                         @endif
                                     </td>
                                 </tr>

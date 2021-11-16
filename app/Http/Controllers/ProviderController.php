@@ -244,7 +244,9 @@ class ProviderController extends Controller
      */
     public function destroy(Provider $provider)
     {
-        //
+        //$provider->delete();
+
+        return back()->withDanger('Donnée supprimée');
     }
 
     /**

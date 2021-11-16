@@ -111,6 +111,8 @@ class OrderDeliveryNoteController extends Controller
      */
     public function destroy(OrderDeliveryNote $orderDeliveryNote)
     {
-        //
+        //$orderDeliveryNote->delete();
+
+        return back()->withDanger('Donnée supprimée');
     }
 }

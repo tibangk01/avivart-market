@@ -196,7 +196,9 @@ class AgencyController extends Controller
      */
     public function destroy(Agency $agency)
     {
-        //
+        //$agency->delete();
+
+        return back()->withDanger('Donnée supprimée');
     }
 
     public function printingAll(Request $request)

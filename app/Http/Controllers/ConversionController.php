@@ -115,6 +115,8 @@ class ConversionController extends Controller
      */
     public function destroy(Conversion $conversion)
     {
-        //
+        $conversion->delete();
+
+        return back()->withDanger('Donnée supprimée');
     }
 }

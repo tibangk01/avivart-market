@@ -107,7 +107,9 @@ class ContractTypeController extends Controller
      */
     public function destroy(ContractType $contractType)
     {
-        //
+        $contractType->delete();
+
+        return back()->withDanger('Donnée supprimée');
     }
 
     /**

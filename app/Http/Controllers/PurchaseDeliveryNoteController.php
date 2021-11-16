@@ -111,6 +111,8 @@ class PurchaseDeliveryNoteController extends Controller
      */
     public function destroy(PurchaseDeliveryNote $purchaseDeliveryNote)
     {
-        //
+        //$purchaseDeliveryNote->delete();
+
+        return back()->withDanger('Donnée supprimée');
     }
 }

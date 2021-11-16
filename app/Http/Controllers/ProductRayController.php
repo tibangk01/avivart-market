@@ -114,6 +114,8 @@ class ProductRayController extends Controller
      */
     public function destroy(ProductRay $productRay)
     {
-        //
+        $productRay->delete();
+
+        return back()->withDanger('Donnée supprimée');
     }
 }

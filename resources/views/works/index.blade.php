@@ -22,10 +22,8 @@
                                 aria-labelledby="nav-home-tab">
 
                                 <div class="d-flex">
-                                    <div class="ml-auto">
-                                        <a class="btn btn-flat btn-primary mb-1"
-                                            href="{{ route('work.create') }}"><i class="fa fa-plus"></i>
-                                            Ajouter</a>
+                                    <div class="ml-auto mb-1">
+                                        <x-create-record routeName="work.create" />
                                     </div>
                                 </div>
 
@@ -46,16 +44,12 @@
                                                         <td>{{ $work->name }}</td>
                                                         <td>{{ $work->created_at }}</td>
                                                         <td>{{ $work->created_at }}</td>
-                                                        <td>
-                                                            <a class="btn btn-info btn-xs" href="{{ route('work.show', $work) }}"
-                                                                title="Afficher"><i class="fa fa-eye"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a class="btn btn-warning btn-xs" href="{{ route('work.edit', $work) }}"
-                                                                title="Modifier"><i class="fa fa-edit"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a class="btn btn-danger btn-xs" href="{{ route('work.destroy',$work) }}"
-                                                                title="Supprimer"><i class="fa fa-trash"
-                                                                    aria-hidden="true"></i></a>
+                                                        <td class="d-flex flex-row justify-content-around align-items-center">
+                                                            <x-show-record routeName="work.show" :routeParam="$work->id" />
+                                                            
+                                                            <x-edit-record routeName="work.edit" :routeParam="$work->id" />
+
+                                                            <x-destroy-record routeName="work.destroy" :routeParam="$work->id" />
                                                         </td>
                                                     </tr>
                                                 @empty

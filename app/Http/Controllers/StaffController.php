@@ -200,7 +200,9 @@ class StaffController extends Controller
      */
     public function destroy(Staff $staff)
     {
-        //
+        //$staff->delete();
+
+        return back()->withDanger('Donnée supprimée');
     }
 
     /**
@@ -259,17 +261,17 @@ class StaffController extends Controller
         return $pdf->stream("staff_{$staff->id}.pdf");
     }
 
-    public function qrcode(Request $request, Staff $staff)
+    public function badge(Request $request, Staff $staff)
     {
         \WerneckbhQRCode::text('QR Code Generator for Laravel!')
-        ->setOutfile(public_path('qrcodes/qrcode1.png'))
+        ->setOutfile(public_path("badges/staff_badge_{$staff->id}.png"))
         ->png();
 
         //array(0,0,567.00,283.80) a0...a10
-        $pdf = PDF::loadView('staffs.printing.qrcode', compact('staff'));
+        $pdf = PDF::loadView('staffs.printing.badge', compact('staff'));
         $pdf->setPaper('a7', 'landscape');
-        $pdf->save(public_path("libraries/docs/staff_qrcode_{$staff->id}.pdf"));
+        $pdf->save(public_path("libraries/docs/staff_badge_{$staff->id}.pdf"));
 
-        return $pdf->stream("staff_qrcode_{$staff->id}.pdf");
+        return $pdf->stream("staff_badge_{$staff->id}.pdf");
     }
 }

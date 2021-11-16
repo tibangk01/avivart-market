@@ -138,6 +138,8 @@ class SupplyController extends Controller
      */
     public function destroy(Supply $supply)
     {
-        //
+        //$supply->delete();
+
+        return back()->withDanger('Donnée supprimée');
     }
 }

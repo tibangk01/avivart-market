@@ -107,7 +107,9 @@ class StudyLevelController extends Controller
      */
     public function destroy(StudyLevel $studyLevel)
     {
-        //
+        $studyLevel->delete();
+
+        return back()->withDanger('Donnée supprimée');
     }
 
     /**

@@ -20,11 +20,8 @@
                                 aria-labelledby="nav-home-tab">
 
                                 <div class="d-flex">
-                                    <div class="ml-auto">
-
-                                        <a class="btn btn-flat btn-primary mb-1" href="{{ route('exercise_product.create') }}"><i
-                                                class="fa fa-plus"></i>
-                                            Ajouter</a>
+                                    <div class="ml-auto mb-1">
+                                        <x-create-record routeName="exercise_product.create" />
                                     </div>
                                 </div>
 
@@ -52,19 +49,12 @@
                                                     <td>{{ $exerciseProduct->loss }}</td>
                                                     <td>{{ $exerciseProduct->created_at }}</td>
                                                     <td>{{ $exerciseProduct->updated_at }}</td>
-                                                    <td>
-                                                        <a class="btn btn-info btn-xs"
-                                                            href="{{ route('exercise_product.show', $exerciseProduct) }}"
-                                                            title="Afficher"><i class="fa fa-eye"
-                                                                aria-hidden="true"></i></a>
-                                                        <a class="btn btn-warning btn-xs"
-                                                            href="{{ route('exercise_product.edit', $exerciseProduct) }}"
-                                                            title="Modifier"><i class="fa fa-edit"
-                                                                aria-hidden="true"></i></a>
-                                                        <a class="btn btn-danger btn-xs"
-                                                            href="{{ route('exercise_product.destroy', $exerciseProduct) }}"
-                                                            title="Supprimer"><i class="fa fa-trash"
-                                                                aria-hidden="true"></i></a>
+                                                    <td class="d-flex flex-row justify-content-around align-items-center">
+                                                        <x-show-record routeName="exercise_product.show" :routeParam="$exerciseProduct->id" />
+                                                        
+                                                        <x-edit-record routeName="exercise_product.edit" :routeParam="$exerciseProduct->id" />
+
+                                                        <x-destroy-record routeName="exercise_product.destroy" :routeParam="$exerciseProduct->id" />
                                                     </td>
                                                 </tr>
                                             @empty

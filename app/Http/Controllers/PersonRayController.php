@@ -114,6 +114,8 @@ class PersonRayController extends Controller
      */
     public function destroy(PersonRay $personRay)
     {
-        //
+        $personRay->delete();
+
+        return back()->withDanger('Donnée supprimée');
     }
 }

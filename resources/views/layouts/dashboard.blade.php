@@ -171,6 +171,19 @@
     <script type="text/javascript" src="https://avivart.net/ecosoft/libs/js/jquery-active-page.js"></script>
     <script type="text/javascript">
         $('ul.nav-sidebar ul > li > a').matchactive();
+
+        $(document).ready(function(){
+          $('.delete-form').on('submit', function(){
+                if(confirm("Are you sure you want to delete it?"))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            });
+        });
     </script>
 
     @livewireScripts

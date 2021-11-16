@@ -132,6 +132,8 @@ class DayTransactionController extends Controller
      */
     public function destroy(DayTransaction $dayTransaction)
     {
-        //
+        $dayTransaction->delete();
+
+        return back()->withDanger('Donnée supprimée');
     }
 }

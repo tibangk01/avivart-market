@@ -22,10 +22,8 @@
                                 aria-labelledby="nav-home-tab">
 
                                 <div class="d-flex">
-                                    <div class="ml-auto">
-                                        <a class="btn btn-flat btn-primary mb-1"
-                                            href="{{ route('vat.create') }}"><i class="fa fa-plus"></i>
-                                            Ajouter</a>
+                                    <div class="ml-auto mb-1">
+                                        <x-create-record routeName="vat.create" />
                                     </div>
                                 </div>
 
@@ -46,16 +44,12 @@
                                                         <td>{{ $vat->percentage }}</td>
                                                         <td>{{ $vat->created_at }}</td>
                                                         <td>{{ $vat->created_at }}</td>
-                                                        <td>
-                                                            <a class="btn btn-info btn-xs" href="{{ route('vat.show', $vat) }}"
-                                                                title="Afficher"><i class="fa fa-eye"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a class="btn btn-warning btn-xs" href="{{ route('vat.edit', $vat) }}"
-                                                                title="Modifier"><i class="fa fa-edit"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a class="btn btn-danger btn-xs" href="{{ route('vat.destroy',$vat) }}"
-                                                                title="Supprimer"><i class="fa fa-trash"
-                                                                    aria-hidden="true"></i></a>
+                                                        <td class="d-flex flex-row justify-content-around align-items-center">
+                                                            <x-show-record routeName="vat.show" :routeParam="$vat->id" />
+                                                            
+                                                            <x-edit-record routeName="vat.edit" :routeParam="$vat->id" />
+
+                                                            <x-destroy-record routeName="vat.destroy" :routeParam="$vat->id" />
                                                         </td>
                                                     </tr>
                                                 @empty

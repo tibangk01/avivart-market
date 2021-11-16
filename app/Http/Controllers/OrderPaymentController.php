@@ -158,7 +158,9 @@ class OrderPaymentController extends Controller
      */
     public function destroy(OrderPayment $orderPayment)
     {
-        //
+        //$orderPayment->delete();
+
+        return back()->withDanger('Donnée supprimée');
     }
 
     public function printingAll(Request $request)

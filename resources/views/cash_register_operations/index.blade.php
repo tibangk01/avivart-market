@@ -22,12 +22,8 @@
                                     aria-labelledby="nav-home-tab">
 
                                     <div class="d-flex">
-                                        <div class="ml-auto">
-
-                                            <a class="btn btn-flat btn-primary mb-1"
-                                                href="{{ route('cash_register_operation.create') }}"><i
-                                                    class="fa fa-plus"></i>
-                                                Ajouter</a>
+                                        <div class="ml-auto mb-1">
+                                            <x-create-record routeName="cash_register_operation.create" />
                                         </div>
                                     </div>
 
@@ -51,19 +47,12 @@
                                                         <td>{{ $cashRegisterOperation->amount }}</td>
                                                         <td>{{ $cashRegisterOperation->created_at }}</td>
                                                         <td>{{ $cashRegisterOperation->updated_at }}</td>
-                                                        <td>
-                                                            <a class="btn btn-info btn-xs"
-                                                                href="{{ route('cash_register_operation.show', $cashRegisterOperation) }}"
-                                                                title="Afficher"><i class="fa fa-eye"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a class="btn btn-warning btn-xs"
-                                                                href="{{ route('cash_register_operation.edit', $cashRegisterOperation) }}"
-                                                                title="Modifier"><i class="fa fa-edit"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a class="btn btn-danger btn-xs"
-                                                                href="{{ route('cash_register_operation.destroy', $cashRegisterOperation) }}"
-                                                                title="Supprimer"><i class="fa fa-trash"
-                                                                    aria-hidden="true"></i></a>
+                                                        <td class="d-flex flex-row justify-content-around align-items-center">
+                                                            <x-show-record routeName="cash_register_operation.show" :routeParam="$cashRegisterOperation->id" />
+                                                            
+                                                            <x-edit-record routeName="cash_register_operation.edit" :routeParam="$cashRegisterOperation->id" />
+
+                                                            <x-destroy-record routeName="cash_register_operation.destroy" :routeParam="$cashRegisterOperation->id" />
                                                         </td>
                                                     </tr>
                                                 @empty

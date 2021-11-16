@@ -153,7 +153,9 @@ class PurchaseController extends Controller
      */
     public function destroy(Purchase $purchase)
     {
-        //
+        //$purchase->delete();
+
+        return back()->withDanger('Donnée supprimée');
     }
 
     /**

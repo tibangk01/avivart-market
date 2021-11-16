@@ -114,6 +114,8 @@ class StaffTypeController extends Controller
      */
     public function destroy(StaffType $staffType)
     {
-        //
+        $staffType->delete();
+
+        return back()->withDanger('Donnée supprimée');
     }
 }

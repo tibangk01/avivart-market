@@ -20,11 +20,8 @@
                                     aria-labelledby="nav-home-tab">
 
                                     <div class="d-flex">
-                                        <div class="ml-auto">
-
-                                            <a class="btn btn-flat btn-primary mb-1" href="{{ route('sale_place_staff.create') }}"><i
-                                                    class="fa fa-plus"></i>
-                                                Ajouter</a>
+                                        <div class="ml-auto mb-1">
+                                            <x-create-record routeName="sale_place_staff.create" />
                                         </div>
                                     </div>
 
@@ -46,19 +43,12 @@
                                                         <td>{{ $salePlaceStaff->staff->human->user->full_name }}</td>
                                                         <td>{{ $salePlaceStaff->created_at }}</td>
                                                         <td>{{ $salePlaceStaff->updated_at }}</td>
-                                                        <td>
-                                                            <a class="btn btn-info btn-xs"
-                                                                href="{{ route('sale_place_staff.show', $salePlaceStaff) }}"
-                                                                title="Afficher"><i class="fa fa-eye"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a class="btn btn-warning btn-xs"
-                                                                href="{{ route('sale_place_staff.edit', $salePlaceStaff) }}"
-                                                                title="Modifier"><i class="fa fa-edit"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a class="btn btn-danger btn-xs"
-                                                                href="{{ route('sale_place_staff.destroy', $salePlaceStaff) }}"
-                                                                title="Supprimer"><i class="fa fa-trash"
-                                                                    aria-hidden="true"></i></a>
+                                                        <td class="d-flex flex-row justify-content-around align-items-center">
+                                                            <x-show-record routeName="sale_place_staff.show" :routeParam="$salePlaceStaff->id" />
+                                                            
+                                                            <x-edit-record routeName="sale_place_staff.edit" :routeParam="$salePlaceStaff->id" />
+
+                                                            <x-destroy-record routeName="sale_place_staff.destroy" :routeParam="$salePlaceStaff->id" />
                                                         </td>
                                                     </tr>
                                                 @empty

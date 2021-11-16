@@ -196,7 +196,9 @@ class QuickSaleController extends Controller
      */
     public function destroy(QuickSale $quickSale)
     {
-        //
+        //$quickSale->delete();
+
+        return back()->withDanger('Donnée supprimée');
     }
 
     /**

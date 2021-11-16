@@ -22,12 +22,8 @@
                                     aria-labelledby="nav-home-tab">
 
                                     <div class="d-flex">
-                                        <div class="ml-auto">
-
-                                            <a class="btn btn-flat btn-primary mb-1"
-                                                href="{{ route('bank_operation_type.create') }}"><i
-                                                    class="fa fa-plus"></i>
-                                                Ajouter</a>
+                                        <div class="ml-auto mb-1">
+                                            <x-create-record routeName="bank_operation_type.create" />
                                         </div>
                                     </div>
 
@@ -47,19 +43,12 @@
                                                         <td>{{ $bankOperationType->name }}</td>
                                                         <td>{{ $bankOperationType->created_at }}</td>
                                                         <td>{{ $bankOperationType->updated_at }}</td>
-                                                        <td>
-                                                            <a class="btn btn-info btn-xs"
-                                                                href="{{ route('bank_operation_type.show', $bankOperationType) }}"
-                                                                title="Afficher"><i class="fa fa-eye"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a class="btn btn-warning btn-xs"
-                                                                href="{{ route('bank_operation_type.edit', $bankOperationType) }}"
-                                                                title="Modifier"><i class="fa fa-edit"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a class="btn btn-danger btn-xs"
-                                                                href="{{ route('bank_operation_type.destroy', $bankOperationType) }}"
-                                                                title="Supprimer"><i class="fa fa-trash"
-                                                                    aria-hidden="true"></i></a>
+                                                        <td class="d-flex flex-row justify-content-around align-items-center">
+                                                            <x-show-record routeName="bank_operation_type.show" :routeParam="$bankOperationType->id" />
+                                                            
+                                                            <x-edit-record routeName="bank_operation_type.edit" :routeParam="$bankOperationType->id" />
+
+                                                            <x-destroy-record routeName="bank_operation_type.destroy" :routeParam="$bankOperationType->id" />
                                                         </td>
                                                     </tr>
                                                 @empty

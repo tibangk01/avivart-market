@@ -107,7 +107,9 @@ class BankOperationTypeController extends Controller
      */
     public function destroy(BankOperationType $bankOperationType)
     {
-        //
+        $bankOperationType->delete();
+
+        return back()->withDanger('Donnée supprimée');
     }
 
     /**

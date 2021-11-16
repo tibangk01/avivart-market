@@ -20,13 +20,9 @@
                                 aria-labelledby="nav-home-tab">
                                 <div class="d-flex">
                                     <div class="ml-auto mb-1">
-                                        <a class="btn btn-flat btn-dark" target="_blank" 
-                                                            href="{{ route('proforma.printing.all') }}"
-                                                            title="Imprimer"><i class="fa fa-print"></i> Imprimer</a>
-
-                                        <a class="btn btn-flat btn-primary mb-1"
-                                            href="{{ route('proforma.create') }}" target="_blank"><i class="fa fa-plus"></i>
-                                            Ajouter</a>
+                                        <x-print-all-record routeName="proforma.printing.all" />
+                                            
+                                        <x-create-record routeName="proforma.create" />
                                     </div>
                                 </div>
                                 <div class="table-responsive">
@@ -53,23 +49,14 @@
                                                 <td>{{ $proforma->totalTTC() }}</td>
                                                 <td>{{ $proforma->created_at }}</td>
                                                 <td>{{ $proforma->updated_at }}</td>
-                                                <td>
-                                                    <a class="btn btn-info btn-xs"
-                                                        href="{{ route('proforma.show', $proforma) }}"
-                                                        title="Afficher"><i class="fa fa-eye"
-                                                            aria-hidden="true"></i></a>
-                                                    <a class="btn btn-warning btn-xs"
-                                                        href="{{ route('proforma.edit', $proforma) }}"
-                                                        title="Modifier"><i class="fa fa-edit"
-                                                            aria-hidden="true"></i></a>
-                                                    <a class="btn btn-danger btn-xs"
-                                                        href="{{ route('proforma.destroy', $proforma) }}"
-                                                        title="Supprimer"><i class="fa fa-trash"
-                                                            aria-hidden="true"></i></a>
-                                                    <a class="btn btn-dark btn-xs" target="_blank" 
-                                                        href="{{ route('proforma.printing.one', $proforma) }}"
-                                                        title="Imprimer"><i class="fa fa-print"
-                                                            aria-hidden="true"></i></a>
+                                                <td class="d-flex flex-row justify-content-around align-items-center">
+                                                    <x-show-record routeName="proforma.show" :routeParam="$proforma->id" />
+                                                    
+                                                    <x-edit-record routeName="proforma.edit" :routeParam="$proforma->id" />
+
+                                                    <x-destroy-record routeName="proforma.destroy" :routeParam="$proforma->id" />
+
+                                                    <x-print-one-record routeName="proforma.printing.one" :routeParam="$proforma->id" />
                                                 </td>
                                             </tr>
                                             @empty

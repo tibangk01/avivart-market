@@ -131,7 +131,9 @@ class BankOperationController extends Controller
      */
     public function destroy(BankOperation $bankOperation)
     {
-        //
+        $bankOperation->delete();
+
+        return back()->withDanger('Donnée supprimée');
     }
 
     /**

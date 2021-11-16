@@ -223,7 +223,7 @@ Route::middleware(['auth', 'staff'])->group(function () {
         Route::prefix('/staff/printing')->name('staff.printing.')->group(function() {
             Route::get('/', [StaffController::class, 'printingAll'])->name('all');
             Route::get('/{staff}', [StaffController::class, 'printingOne'])->name('one');
-            Route::get('/qrcode/{staff}', [StaffController::class, 'qrcode'])->name('qrcode');
+            Route::get('/badge/{staff}', [StaffController::class, 'badge'])->name('badge');
         });
 
         Route::resource('staff', StaffController::class);

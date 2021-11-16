@@ -171,6 +171,8 @@ class ProductOrderController extends Controller
      */
     public function destroy(ProductOrder $productOrder)
     {
-        //
+        $productOrder->delete();
+
+        return back()->withDanger('Donnée supprimée');
     }
 }

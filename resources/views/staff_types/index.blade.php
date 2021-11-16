@@ -22,10 +22,8 @@
                                 aria-labelledby="nav-home-tab">
 
                                 <div class="d-flex">
-                                    <div class="ml-auto">
-                                        <a class="btn btn-flat btn-primary mb-1"
-                                            href="{{ route('staff_type.create') }}"><i class="fa fa-plus"></i>
-                                            Ajouter</a>
+                                    <div class="ml-auto mb-1">
+                                        <x-create-record routeName="staff_type.create" />
                                     </div>
                                 </div>
 
@@ -46,16 +44,12 @@
                                                         <td>{{ $staffType->name }}</td>
                                                         <td>{{ $staffType->created_at }}</td>
                                                         <td>{{ $staffType->created_at }}</td>
-                                                        <td>
-                                                            <a class="btn btn-info btn-xs" href="{{ route('staff_type.show', $staffType) }}"
-                                                                title="Afficher"><i class="fa fa-eye"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a class="btn btn-warning btn-xs" href="{{ route('staff_type.edit', $staffType) }}"
-                                                                title="Modifier"><i class="fa fa-edit"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a class="btn btn-danger btn-xs" href="{{ route('staff_type.destroy',$staffType) }}"
-                                                                title="Supprimer"><i class="fa fa-trash"
-                                                                    aria-hidden="true"></i></a>
+                                                        <td class="d-flex flex-row justify-content-around align-items-center">
+                                                            <x-show-record routeName="staff_type.show" :routeParam="$staffType->id" />
+                                                            
+                                                            <x-edit-record routeName="staff_type.edit" :routeParam="$staffType->id" />
+
+                                                            <x-destroy-record routeName="staff_type.destroy" :routeParam="$staffType->id" />
                                                         </td>
                                                     </tr>
                                                 @empty

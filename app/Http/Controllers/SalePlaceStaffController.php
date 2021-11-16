@@ -112,6 +112,8 @@ class SalePlaceStaffController extends Controller
      */
     public function destroy(SalePlaceStaff $salePlaceStaff)
     {
-        //
+        $salePlaceStaff->delete();
+
+        return back()->withDanger('Donnée supprimée');
     }
 }

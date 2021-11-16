@@ -114,6 +114,8 @@ class MarketController extends Controller
      */
     public function destroy(Market $market)
     {
-        //
+        $market->delete();
+
+        return back()->withDanger('Donnée supprimée');
     }
 }

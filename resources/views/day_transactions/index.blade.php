@@ -22,12 +22,8 @@
                                     aria-labelledby="nav-home-tab">
 
                                     <div class="d-flex">
-                                        <div class="ml-auto">
-
-                                            <a class="btn btn-flat btn-primary mb-1"
-                                                href="{{ route('day_transaction.create') }}"><i
-                                                    class="fa fa-plus"></i>
-                                                Ajouter</a>
+                                        <div class="ml-auto mb-1">
+                                            <x-create-record routeName="day_transaction.create" />
                                         </div>
                                     </div>
 
@@ -47,19 +43,12 @@
                                                     <td>{{ $dayTransaction->exercise->getPeriod() }}</td>
                                                     <td>{{ $dayTransaction->getDay() }}</td>
                                                     <td>{{ $dayTransaction->getState() }}</td>
-                                                    <td>
-                                                        <a class="btn btn-info btn-xs"
-                                                                href="{{ route('day_transaction.show', $dayTransaction) }}"
-                                                                title="Afficher"><i class="fa fa-eye"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a class="btn btn-warning btn-xs"
-                                                                href="{{ route('day_transaction.edit', $dayTransaction) }}"
-                                                                title="Modifier"><i class="fa fa-edit"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a class="btn btn-danger btn-xs"
-                                                                href="{{ route('day_transaction.destroy', $dayTransaction) }}"
-                                                                title="Supprimer"><i class="fa fa-trash"
-                                                                    aria-hidden="true"></i></a>
+                                                    <td class="d-flex flex-row justify-content-around align-items-center">
+                                                        <x-show-record routeName="day_transaction.show" :routeParam="$dayTransaction->id" />
+                                                        
+                                                        <x-edit-record routeName="day_transaction.edit" :routeParam="$dayTransaction->id" />
+
+                                                        <x-destroy-record routeName="day_transaction.destroy" :routeParam="$dayTransaction->id" />
                                                     </td>
                                                 </tr>
                                                 @empty

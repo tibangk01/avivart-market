@@ -101,7 +101,7 @@ class ProductPurchaseController extends Controller
     public function edit(ProductPurchase $productPurchase)
     {
         abort_if((session('staffStatusBarInfo') === null), 403, "Veuillez ouvrir votre caisse");
-        
+
         $products = Product::all()->pluck(null, 'id');
         $purchases = Purchase::all()->pluck(null, 'id');
 
@@ -159,6 +159,8 @@ class ProductPurchaseController extends Controller
      */
     public function destroy(ProductPurchase $productPurchase)
     {
-        //
+        $productPurchase->delete();
+
+        return back()->withDanger('Donnée supprimée');
     }
 }

@@ -17,23 +17,14 @@
                     <td>{{ $provider->person->user->full_name }}</td>
                     <td>{{ $provider->person->user->getFullPhoneNumber() }}</td>
                     <td>{{ $provider->person->user->email }}</td>
-                    <td>
-                        <a class="btn btn-info btn-xs"
-                            href="{{ route('provider.show', $provider) }}"
-                            title="Afficher"><i class="fa fa-eye"
-                                aria-hidden="true"></i></a>
-                        <a class="btn btn-warning btn-xs"
-                            href="{{ route('provider.edit', $provider) }}"
-                            title="Modifier"><i class="fa fa-edit"
-                                aria-hidden="true"></i></a>
-                        <a class="btn btn-danger btn-xs"
-                            href="{{ route('provider.destroy', $provider) }}"
-                            title="Supprimer"><i class="fa fa-trash"
-                                aria-hidden="true"></i></a>
-                        <a class="btn btn-dark btn-xs" target="_blank" 
-                                                    href="{{ route('provider.printing.one', $provider) }}"
-                                                    title="Imprimer"><i class="fa fa-print"
-                                                        aria-hidden="true"></i></a>
+                    <td class="d-flex flex-row justify-content-around align-items-center">
+                        <x-show-record routeName="provider.show" :routeParam="$provider->id" />
+                        
+                        <x-edit-record routeName="provider.edit" :routeParam="$provider->id" />
+
+                        <x-destroy-record routeName="provider.destroy" :routeParam="$provider->id" />
+
+                        <x-print-one-record routeName="provider.printing.one" :routeParam="$provider->id" />
                     </td>
                 </tr>
             @empty

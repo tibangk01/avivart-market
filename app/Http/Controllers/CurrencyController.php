@@ -114,6 +114,8 @@ class CurrencyController extends Controller
      */
     public function destroy(Currency $currency)
     {
-        //
+        $currency->delete();
+
+        return back()->withDanger('Donnée supprimée');
     }
 }

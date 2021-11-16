@@ -112,6 +112,8 @@ class AgencyStaffController extends Controller
      */
     public function destroy(AgencyStaff $agencyStaff)
     {
-        //
+        $agencyStaff->delete();
+
+        return back()->withDanger('Donnée supprimée');
     }
 }

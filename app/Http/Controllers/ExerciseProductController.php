@@ -153,7 +153,9 @@ class ExerciseProductController extends Controller
      */
     public function destroy(ExerciseProduct $exerciseProduct)
     {
-        //
+        $exerciseProduct->delete();
+
+        return back()->withDanger('Donnée supprimée');
     }
 
     /**

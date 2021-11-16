@@ -144,6 +144,8 @@ class ProductProformaController extends Controller
      */
     public function destroy(ProductProforma $productProforma)
     {
-        //
+        $productProforma->delete();
+
+        return back()->withDanger('Donnée supprimée');
     }
 }

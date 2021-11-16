@@ -20,10 +20,8 @@
                                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
                                     aria-labelledby="nav-home-tab">
                                     <div class="d-flex">
-                                        <div class="ml-auto">
-                                            <a class="btn btn-flat btn-primary mb-1"
-                                                href="{{ route('contract_type.create') }}"><i class="fa fa-plus"></i>
-                                                Ajouter</a>
+                                        <div class="ml-auto mb-1">
+                                            <x-create-record routeName="contract_type.create" />
                                         </div>
                                     </div>
                                     <div class="table-responsive">
@@ -42,19 +40,12 @@
                                                         <td>{{ $contractType->name }}</td>
                                                         <td>{{ $contractType->created_at }}</td>
                                                         <td>{{ $contractType->updated_at }}</td>
-                                                        <td>
-                                                            <a class="btn btn-info btn-xs"
-                                                                href="{{ route('contract_type.show', $contractType) }}"
-                                                                title="Afficher"><i class="fa fa-eye"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a class="btn btn-warning btn-xs"
-                                                                href="{{ route('contract_type.edit', $contractType) }}"
-                                                                title="Modifier"><i class="fa fa-edit"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a class="btn btn-danger btn-xs"
-                                                                href="{{ route('contract_type.destroy', $contractType) }}"
-                                                                title="Supprimer"><i class="fa fa-trash"
-                                                                    aria-hidden="true"></i></a>
+                                                        <td class="d-flex flex-row justify-content-around align-items-center">
+                                                            <x-show-record routeName="contract_type.show" :routeParam="$contractType->id" />
+                                                            
+                                                            <x-edit-record routeName="contract_type.edit" :routeParam="$contractType->id" />
+
+                                                            <x-destroy-record routeName="contract_type.destroy" :routeParam="$contractType->id" />
                                                         </td>
                                                     </tr>
                                                 @empty

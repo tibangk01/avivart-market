@@ -20,9 +20,7 @@
                                     aria-labelledby="nav-home-tab">
                                     <div class="d-flex">
                                         <div class="ml-auto mb-1">
-                                            <a class="btn btn-flat btn-dark" target="_blank" 
-                                                            href="{{ route('transaction.printing.all') }}"
-                                                            title="Imprimer"><i class="fa fa-print"></i> Imprimer</a>
+                                            <x-print-all-record routeName="transaction.printing.all" />
                                         </div>
                                     </div>
                                     <div class="table-responsive">
@@ -45,16 +43,10 @@
                                                 <td>{{ $transaction->transaction_type->name }}</td>
                                                 <td>{{ $transaction->activity }}</td>
                                                 <td>{{ $transaction->created_at }}</td>
-                                                <td>
-                                                    <a class="btn btn-info btn-xs"
-                                                        href="{{ route('transaction.show', $transaction) }}"
-                                                        title="Afficher"><i class="fa fa-eye"
-                                                            aria-hidden="true"></i></a>
+                                                <td class="d-flex flex-row justify-content-around align-items-center">
+                                                    <x-show-record routeName="transaction.show" :routeParam="$transaction->id" />
 
-                                                    <a class="btn btn-dark btn-xs" target="_blank" 
-                                                            href="{{ route('transaction.printing.one', $transaction) }}"
-                                                            title="Imprimer"><i class="fa fa-print"
-                                                                aria-hidden="true"></i></a>
+                                                    <x-print-one-record routeName="transaction.printing.one" :routeParam="$transaction->id" />
                                                 </td>
                                             </tr>
                                             @empty

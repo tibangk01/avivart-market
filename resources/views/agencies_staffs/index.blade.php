@@ -20,11 +20,8 @@
                                 aria-labelledby="nav-home-tab">
 
                                 <div class="d-flex">
-                                    <div class="ml-auto">
-
-                                        <a class="btn btn-flat btn-primary mb-1" href="{{ route('agency_staff.create') }}"><i
-                                                class="fa fa-plus"></i>
-                                            Ajouter</a>
+                                    <div class="ml-auto mb-1">
+                                        <x-create-record routeName="agency_staff.create" />
                                     </div>
                                 </div>
 
@@ -46,19 +43,12 @@
                                                     <td>{{ $agencyStaff->staff->human->user->full_name }}</td>
                                                     <td>{{ $agencyStaff->created_at }}</td>
                                                     <td>{{ $agencyStaff->updated_at }}</td>
-                                                    <td>
-                                                        <a class="btn btn-info btn-xs"
-                                                            href="{{ route('agency_staff.show', $agencyStaff) }}"
-                                                            title="Afficher"><i class="fa fa-eye"
-                                                                aria-hidden="true"></i></a>
-                                                        <a class="btn btn-warning btn-xs"
-                                                            href="{{ route('agency_staff.edit', $agencyStaff) }}"
-                                                            title="Modifier"><i class="fa fa-edit"
-                                                                aria-hidden="true"></i></a>
-                                                        <a class="btn btn-danger btn-xs"
-                                                            href="{{ route('agency_staff.destroy', $agencyStaff) }}"
-                                                            title="Supprimer"><i class="fa fa-trash"
-                                                                aria-hidden="true"></i></a>
+                                                    <td class="d-flex flex-row justify-content-around align-items-center">
+                                                        <x-show-record routeName="agency_staff.show" :routeParam="$agencyStaff->id" />
+                                                        
+                                                        <x-edit-record routeName="agency_staff.edit" :routeParam="$agencyStaff->id" />
+
+                                                        <x-destroy-record routeName="agency_staff.destroy" :routeParam="$agencyStaff->id" />
                                                     </td>
                                                 </tr>
                                             @empty

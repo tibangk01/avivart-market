@@ -46,17 +46,12 @@
                                                     <td>{{ $society->enterprise->website }}</td>
                                                     <td>{{ $society->fiscal_code }}</td>
                                                     <td>{{ $society->tppcr }}</td>
-                                                    <td>
-                                                        <a class="btn btn-info btn-xs" href="{{ route('society.show', $society) }}"
-                                                            title="Afficher"><i class="fa fa-eye"
-                                                                aria-hidden="true"></i></a>
-                                                        <a class="btn btn-warning btn-xs" href="{{ route('society.edit', $society) }}"
-                                                            title="Modifier"><i class="fa fa-edit"
-                                                                aria-hidden="true"></i></a>
-                                                        <a class="btn btn-dark btn-xs" target="_blank" 
-                                                            href="{{ route('society.printing.one', $society) }}"
-                                                            title="Imprimer"><i class="fa fa-print"
-                                                                aria-hidden="true"></i></a>
+                                                    <td class="d-flex flex-row justify-content-around align-items-center">
+                                                        <x-show-record routeName="society.show" :routeParam="$society->id" />
+                                                        
+                                                        <x-edit-record routeName="society.edit" :routeParam="$society->id" />
+
+                                                        <x-print-one-record routeName="society.printing.one" :routeParam="$society->id" />
                                                     </td>
                                                 </tr>
                                                 @empty

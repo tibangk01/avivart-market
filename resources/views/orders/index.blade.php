@@ -20,13 +20,9 @@
                                 aria-labelledby="nav-home-tab">
                                 <div class="d-flex">
                                     <div class="ml-auto mb-1">
-                                        <a class="btn btn-flat btn-dark" target="_blank" 
-                                                            href="{{ route('order.printing.all') }}"
-                                                            title="Imprimer"><i class="fa fa-print"></i> Imprimer</a>
-
-                                        <a class="btn btn-flat btn-primary"
-                                            href="{{ route('order.create') }}" target="_blank"><i class="fa fa-plus"></i>
-                                            Ajouter</a>
+                                        <x-print-all-record routeName="order.printing.all" />
+                                            
+                                        <x-create-record routeName="order.create" />
                                     </div>
                                 </div>
                                 <div class="table-responsive">
@@ -57,23 +53,14 @@
                                                     <td>{{ $order->totalTTC() }}</td>
                                                     <td>{{ $order->created_at }}</td>
                                                     <td>{{ $order->updated_at }}</td>
-                                                    <td>
-                                                        <a class="btn btn-info btn-xs"
-                                                            href="{{ route('order.show', $order) }}"
-                                                            title="Afficher"><i class="fa fa-eye"
-                                                                aria-hidden="true"></i></a>
-                                                        <a class="btn btn-warning btn-xs"
-                                                            href="{{ route('order.edit', $order) }}"
-                                                            title="Modifier"><i class="fa fa-edit"
-                                                                aria-hidden="true"></i></a>
-                                                        <a class="btn btn-danger btn-xs"
-                                                            href="{{ route('order.destroy', $order) }}"
-                                                            title="Supprimer"><i class="fa fa-trash"
-                                                                aria-hidden="true"></i></a>
-                                                        <a class="btn btn-dark btn-xs" target="_blank" 
-                                                            href="{{ route('order.printing.one', $order) }}"
-                                                            title="Imprimer"><i class="fa fa-print"
-                                                                aria-hidden="true"></i></a>
+                                                    <td class="d-flex flex-row justify-content-around align-items-center">
+                                                        <x-show-record routeName="order.show" :routeParam="$order->id" />
+                                                        
+                                                        <x-edit-record routeName="order.edit" :routeParam="$order->id" />
+
+                                                        <x-destroy-record routeName="order.destroy" :routeParam="$order->id" />
+
+                                                        <x-print-one-record routeName="order.printing.one" :routeParam="$order->id" />
                                                     </td>
                                                 </tr>
                                             @empty

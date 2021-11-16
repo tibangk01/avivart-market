@@ -22,13 +22,9 @@
 
                                     <div class="d-flex">
                                         <div class="ml-auto mb-1">
-                                        <a class="btn btn-flat btn-dark" target="_blank" 
-                                                            href="{{ route('order_payment.printing.all') }}"
-                                                            title="Imprimer"><i class="fa fa-print"></i> Imprimer</a>
-
-                                            <a class="btn btn-flat btn-primary"
-                                                href="{{ route('order_payment.create') }}" target="_blank"><i class="fa fa-plus"></i>
-                                                Ajouter</a>
+                                            <x-print-all-record routeName="order_payment.printing.all" />
+                                            
+                                            <x-create-record routeName="order_payment.create" />
                                         </div>
                                     </div>
 
@@ -52,26 +48,14 @@
                                                         <td>{{ $orderPayment->payment->payment_mode->name }}</td>
                                                         <td>{{ $orderPayment->created_at }}</td>
                                                         <td>{{ $orderPayment->created_at }}</td>
-                                                        <td>
-                                                            <a class="btn btn-info btn-xs"
-                                                                href="{{ route('order_payment.show', $orderPayment) }}"
-                                                                title="Afficher"><i class="fa fa-eye"
-                                                                    aria-hidden="true"></i></a>
-
-                                                            <a class="btn btn-warning btn-xs"
-                                                                href="{{ route('order_payment.edit', $orderPayment) }}"
-                                                                title="Modifier"><i class="fa fa-edit"
-                                                                    aria-hidden="true"></i></a>
+                                                        <td class="d-flex flex-row justify-content-around align-items-center">
+                                                            <x-show-record routeName="order_payment.show" :routeParam="$orderPayment->id" />
                                                             
-                                                            <a class="btn btn-danger btn-xs"
-                                                                href="{{ route('order_payment.destroy', $orderPayment) }}"
-                                                                title="Supprimer"><i class="fa fa-trash"
-                                                                    aria-hidden="true"></i></a>
+                                                            <x-edit-record routeName="order_payment.edit" :routeParam="$orderPayment->id" />
 
-                                                            <a class="btn btn-dark btn-xs" target="_blank" 
-                                                            href="{{ route('order_payment.printing.one', $orderPayment) }}"
-                                                            title="Imprimer"><i class="fa fa-print"
-                                                                aria-hidden="true"></i></a>
+                                                            <x-destroy-record routeName="order_payment.destroy" :routeParam="$orderPayment->id" />
+
+                                                            <x-print-one-record routeName="order_payment.printing.one" :routeParam="$orderPayment->id" />
                                                         </td>
                                                     </tr>
                                                 @empty

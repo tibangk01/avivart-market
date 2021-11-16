@@ -112,6 +112,8 @@ class RoleUserController extends Controller
      */
     public function destroy(RoleUser $roleUser)
     {
-        //
+        $roleUser->delete();
+
+        return back()->withDanger('Donnée supprimée');
     }
 }

@@ -126,7 +126,9 @@ class CashRegisterOperationController extends Controller
      */
     public function destroy(CashRegisterOperation $cashRegisterOperation)
     {
-        //
+        //$cashRegisterOperation->delete();
+
+        return back()->withDanger('Donnée supprimée');
     }
 
     /**
