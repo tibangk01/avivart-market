@@ -6,6 +6,7 @@ use Illuminate\View\Component;
 use App\Models\Region;
 use App\Models\PersonRay;
 use App\Models\Country;
+use App\Models\Market;
 
 class Corporation extends Component
 {
@@ -14,6 +15,8 @@ class Corporation extends Component
     public $regions;
     
     public $personRays;
+
+    public $markets;
 
     public $customer;
 
@@ -31,6 +34,8 @@ class Corporation extends Component
         $this->regions = Region::all()->pluck(null, 'id');
 
         $this->personRays = PersonRay::all()->pluck(null, 'id');
+
+        $this->markets = Market::all()->pluck(null, 'id');
     }
 
     /**

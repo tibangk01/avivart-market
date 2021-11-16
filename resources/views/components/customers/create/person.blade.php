@@ -4,17 +4,22 @@
 
     <div class="form-group">
         {!! Form::label('country_id', 'Pays') !!}
-        {!! Form::select('country_id', $countries, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisir un pays']) !!}
+        {!! Form::select('country_id', $countries, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez']) !!}
     </div>
 
     <div class="form-group">
         {!! Form::label('civility_id', 'Civilité') !!}
-        {!! Form::select('civility_id', $civilities, null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Choisissez une civilité']) !!}
+        {!! Form::select('civility_id', $civilities, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez']) !!}
     </div>
 
     <div class="form-group">
         {!! Form::label('person_ray_id', 'Type de client') !!}
-        {!! Form::select('person_ray_id', $personRays, null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Choisissez un type de client']) !!}
+        {!! Form::select('person_ray_id', $personRays, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez']) !!}
+    </div>
+
+    <div class="form-group">
+        {!! Form::label('market_id', 'Marché') !!}
+        {!! Form::select('market_id', $markets, null, ['class' => 'form-control', 'placeholder' => 'Choisissez']) !!}
     </div>
 
     <div class="form-group">

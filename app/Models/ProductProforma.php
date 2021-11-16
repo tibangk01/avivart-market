@@ -44,11 +44,13 @@ class ProductProforma extends Model
 	];
 
 	protected $fillable = [
+		'product_id',
+		'proforma_id',
 		'quantity',
 		'global_selling_price',
 		'selling_price',
 		'global_rental_price',
-		'rental_price'
+		'rental_price',
 	];
 
 	public function product()

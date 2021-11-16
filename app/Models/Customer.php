@@ -19,12 +19,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $person_ray_id
  * @property int|null $person_id
  * @property int|null $corporation_id
+ * @property int|null $market_id
  * @property string|null $deleted_at
  * @property Carbon $created_at
  * @property Carbon $updated_at
  *
  * @property Person|null $person
  * @property Corporation|null $corporation
+ * @property Market|null $market
  * @property PersonType $person_type
  * @property PersonRay $person_ray
  * @property Collection|Order[] $orders
@@ -41,14 +43,16 @@ class Customer extends Model
 		'person_type_id' => 'int',
 		'person_ray_id' => 'int',
 		'person_id' => 'int',
-		'corporation_id' => 'int'
+		'corporation_id' => 'int',
+		'market_id' => 'int'
 	];
 
 	protected $fillable = [
 		'person_type_id',
 		'person_ray_id',
 		'person_id',
-		'corporation_id'
+		'corporation_id',
+		'market_id'
 	];
 
 	public function person()
@@ -59,6 +63,11 @@ class Customer extends Model
 	public function corporation()
 	{
 		return $this->belongsTo(Corporation::class);
+	}
+
+	public function market()
+	{
+		return $this->belongsTo(Market::class);
 	}
 
 	public function person_type()

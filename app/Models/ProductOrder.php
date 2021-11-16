@@ -45,12 +45,14 @@ class ProductOrder extends Model
 	];
 
 	protected $fillable = [
+		'product_id',
+		'order_id',
 		'quantity',
 		'global_selling_price',
 		'selling_price',
 		'global_rental_price',
 		'rental_price',
-		'comment'
+		'comment',
 	];
 
 	public function product()

@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Purchase;
 use App\Models\ProductPurchase;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductPurchaseController extends Controller
 {
@@ -26,6 +27,8 @@ class ProductPurchaseController extends Controller
      */
     public function create()
     {
+        abort_if((session('staffStatusBarInfo') === null), 403, "Veuillez ouvrir votre caisse");
+
         $products = Product::all()->pluck(null, 'id');
         $purchases = Purchase::all()->pluck(null, 'id');
 
@@ -48,9 +51,31 @@ class ProductPurchaseController extends Controller
                 'comment' => ['nullable'],
             ]);
 
-            $productPurchase = ProductPurchase::create($request->all());
+            try {
+                DB::beginTransaction();
 
-            session()->flash('success', 'Donnée enregistrée.');
+                $exercise = session('staffStatusBarInfo')->day_transaction->exercise;
+
+                $product = Product::findOrFail($request->product_id);
+
+                $product->purchases()->sync([
+                    $product->id => $request->except('_token'),
+                ]);
+
+                $this->saveInventory($exercise, $product);
+
+                //$productPurchase = ProductPurchase::create($request->all());
+
+                DB::commit();
+
+                session()->flash('success', 'Donnée enregistrée.');
+            } catch (\Exception $ex) {
+                DB::rollback();
+
+                dd($ex);
+
+                session()->flash('error', "Une erreur s'est produite");
+            }
         }
 
         return back();
@@ -75,8 +100,9 @@ class ProductPurchaseController extends Controller
      */
     public function edit(ProductPurchase $productPurchase)
     {
+        abort_if((session('staffStatusBarInfo') === null), 403, "Veuillez ouvrir votre caisse");
+        
         $products = Product::all()->pluck(null, 'id');
-
         $purchases = Purchase::all()->pluck(null, 'id');
 
         return view('product_purchase.edit', compact('productPurchase', 'products', 'purchases'));
@@ -99,9 +125,27 @@ class ProductPurchaseController extends Controller
                 'comment' => ['nullable'],
             ]);
 
-            $productPurchase->update($request->all());
+            try {
+                DB::beginTransaction();
 
-            session()->flash('success', 'Donnée enregistrée.');
+                $exercise = session('staffStatusBarInfo')->day_transaction->exercise;
+
+                $product = Product::findOrFail($request->product_id);
+
+                $productPurchase->update($request->all());
+
+                $this->saveInventory($exercise, $product);
+
+                DB::commit();
+
+                session()->flash('success', 'Donnée enregistrée.');
+            } catch (\Exception $ex) {
+                DB::rollback();
+
+                dd($ex);
+
+                session()->flash('error', "Une erreur s'est produite");
+            }
         }
 
         return back();

@@ -45,11 +45,13 @@ class ProductPurchase extends Model
 	];
 
 	protected $fillable = [
+		'product_id',
+		'purchase_id',
 		'ordered_quantity',
 		'delivered_quantity',
 		'global_purchase_price',
 		'purchase_price',
-		'comment'
+		'comment',
 	];
 
 	public function product()

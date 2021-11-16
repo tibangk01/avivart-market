@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Work;
+use App\Models\Market;
 use Illuminate\Http\Request;
 
-class WorkController extends Controller
+class MarketController extends Controller
 {
     public function __construct()
     {
@@ -19,9 +19,9 @@ class WorkController extends Controller
      */
     public function index()
     {
-        $works = Work::all();
+        $markets = Market::all();
 
-        return view('works.index', compact('works'));
+        return view('markets.index', compact('markets'));
     }
 
     /**
@@ -31,7 +31,7 @@ class WorkController extends Controller
      */
     public function create()
     {
-        return view('works.create');
+        return view('markets.create');
     }
 
     /**
@@ -45,12 +45,12 @@ class WorkController extends Controller
         if ($request->isMethod('post')) {
 
             $request->validate([
-                'name' => ['required', 'min:3', 'max:100'],
+                'name' => ['required', 'min:3', 'max:50'],
             ]);
 
-            $work = Work::create($request->only('name'));
+            $market = Market::create($request->only('name'));
 
-            if ($work) {
+            if ($market) {
                 session()->flash('success', "Donnée enregistrée");
             } else {
                 session()->flash('error', "Une erreur s'est produite");
@@ -64,41 +64,41 @@ class WorkController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Work  $work
+     * @param  \App\Models\Market  $market
      * @return \Illuminate\Http\Response
      */
-    public function show(Work $work)
+    public function show(Market $market)
     {
-        return view('works.show', compact('work'));
+        return view('markets.show', compact('market'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Work  $work
+     * @param  \App\Models\Market  $market
      * @return \Illuminate\Http\Response
      */
-    public function edit(Work $work)
+    public function edit(Market $market)
     {
-        return view('works.edit', compact('work'));
+        return view('markets.edit', compact('market'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Work  $work
+     * @param  \App\Models\Market  $market
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Work $work)
+    public function update(Request $request, Market $market)
     {
         if ($request->isMethod('put')) {
 
             $request->validate([
-                'name' => ['required', 'min:3', 'max:100'],
+                'name' => ['required', 'min:3', 'max:50'],
             ]);
 
-            $work->update($request->all());
+            $market->update($request->all());
 
             session()->flash('success', 'Modification réussi');
         }
@@ -109,10 +109,10 @@ class WorkController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Work  $work
+     * @param  \App\Models\Market  $market
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Work $work)
+    public function destroy(Market $market)
     {
         //
     }

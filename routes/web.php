@@ -9,6 +9,7 @@ use App\Http\Controllers\VatController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\WorkController;
+use App\Http\Controllers\MarketController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\AgencyController;
@@ -158,6 +159,10 @@ Route::middleware(['auth', 'staff'])->group(function () {
 
         /** works routes */
         Route::resource('work', WorkController::class);
+        /** End works routes */
+
+        /** works routes */
+        Route::resource('market', MarketController::class);
         /** End works routes */
 
         /** product rays routes */

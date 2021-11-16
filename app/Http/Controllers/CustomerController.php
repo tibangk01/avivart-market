@@ -90,7 +90,7 @@ class CustomerController extends Controller
                             ));
 
                             Customer::create(array_merge(
-                                $request->only('person_ray_id'),
+                                $request->only('person_ray_id', 'market_id'),
                                 [
                                     'person_type_id' => 1,
                                     'corporation_id' => $corporation->id,
@@ -121,7 +121,7 @@ class CustomerController extends Controller
                             ]);
 
                             Customer::create(array_merge(
-                                $request->only('person_ray_id'),
+                                $request->only('person_ray_id', 'market_id'),
                                 [
                                     'person_type_id' => 2,
                                     'person_id' => $person->id,
@@ -203,7 +203,7 @@ class CustomerController extends Controller
 
                             $customer->corporation->update($request->only('tppcr', 'fiscal_code'));
 
-                            $customer->update($request->only('person_ray_id'));
+                            $customer->update($request->only('person_ray_id', 'market_id'));
 
                             break;
 
@@ -213,7 +213,7 @@ class CustomerController extends Controller
 
                             //$customer->person->update([]);
 
-                            $customer->update($request->only('person_ray_id'));
+                            $customer->update($request->only('person_ray_id', 'market_id'));
 
                             break;
                     }
@@ -259,6 +259,7 @@ class CustomerController extends Controller
     {
         $formData = [
             'country_id' => ['required'],
+            'market_id' => ['nullable'],
             'region_id' => ['required'],
             'person_ray_id' => ['required'],
             'name' => ['required', 'min:3', 'max:50'],
@@ -293,6 +294,7 @@ class CustomerController extends Controller
     {
         $formData = [
             'country_id' => ['required'],
+            'market_id' => ['nullable'],
             'civility_id' => ['required'],
             'person_ray_id' => ['required'],
             'first_name' => ['required', 'min:3', 'max:25'],

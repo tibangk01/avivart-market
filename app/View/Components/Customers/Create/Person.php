@@ -6,6 +6,7 @@ use Illuminate\View\Component;
 use App\Models\Civility;
 use App\Models\PersonRay;
 use App\Models\Country;
+use App\Models\Market;
 
 class Person extends Component
 {
@@ -14,6 +15,8 @@ class Person extends Component
     public $civilities;
 
     public $personRays;
+
+    public $markets;
 
     /**
      * Create a new component instance.
@@ -27,6 +30,8 @@ class Person extends Component
         $this->civilities = Civility::all()->pluck(null, 'id');
 
         $this->personRays = PersonRay::all()->pluck(null, 'id');
+
+        $this->markets = Market::all()->pluck(null, 'id');
     }
 
     /**

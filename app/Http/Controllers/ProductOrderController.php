@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Order;
 use App\Models\ProductOrder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductOrderController extends Controller
 {
@@ -26,6 +27,8 @@ class ProductOrderController extends Controller
      */
     public function create()
     {
+        abort_if((session('staffStatusBarInfo') === null), 403, "Veuillez ouvrir votre caisse");
+
         $products = Product::all()->pluck(null, 'id');
         $orders = Order::all()->pluck(null, 'id');
 
@@ -48,9 +51,35 @@ class ProductOrderController extends Controller
                 'comment' => ['nullable'],
             ]);
 
-            $productOrder = ProductOrder::create($request->all());
+            try {
+                DB::beginTransaction();
 
-            session()->flash('success', 'Donnée enregistrée.');
+                $exercise = session('staffStatusBarInfo')->day_transaction->exercise;
+
+                $product = Product::findOrFail($request->product_id);
+
+                $product->orders()->sync([
+                    $product->id => $request->except('_token'),
+                ]);
+
+                $product->update([
+                    'stock_quantity' => $product->stock_quantity - $request->quantity,
+                ]);
+
+                $this->saveInventory($exercise, $product);
+
+                //$productOrder = ProductOrder::create($request->all());
+
+                DB::commit();
+
+                session()->flash('success', 'Donnée enregistrée.');
+            } catch (\Exception $ex) {
+                DB::rollback();
+
+                dd($ex);
+
+                session()->flash('error', "Une erreur s'est produite");
+            }
         }
 
         return back();
@@ -75,8 +104,9 @@ class ProductOrderController extends Controller
      */
     public function edit(ProductOrder $productOrder)
     {
-        $products = Product::all()->pluck(null, 'id');
+        abort_if((session('staffStatusBarInfo') === null), 403, "Veuillez ouvrir votre caisse");
 
+        $products = Product::all()->pluck(null, 'id');
         $orders = Order::all()->pluck(null, 'id');
 
         return view('product_order.edit', compact('productOrder', 'products', 'orders'));
@@ -99,9 +129,35 @@ class ProductOrderController extends Controller
                 'comment' => ['nullable'],
             ]);
 
-            $productOrder->update($request->all());
+            try {
+                DB::beginTransaction();
 
-            session()->flash('success', 'Donnée enregistrée.');
+                $exercise = session('staffStatusBarInfo')->day_transaction->exercise;
+
+                $product = Product::findOrFail($request->product_id);
+
+                $product->update([
+                    'stock_quantity' => $product->stock_quantity + $productOrder->quantity,
+                ]);
+
+                $productOrder->update($request->all());
+
+                $product->update([
+                    'stock_quantity' => $product->stock_quantity - $request->quantity,
+                ]);
+
+                $this->saveInventory($exercise, $product);
+
+                DB::commit();
+
+                session()->flash('success', 'Donnée enregistrée.');
+            } catch (\Exception $ex) {
+                DB::rollback();
+
+                dd($ex);
+
+                session()->flash('error', "Une erreur s'est produite");
+            }
         }
 
         return back();

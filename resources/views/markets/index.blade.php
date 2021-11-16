@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => "Fonctions"])
+@extends('layouts.dashboard', ['title' => "Marchés"])
 
 @section('body')
 <div class="content">
@@ -24,7 +24,7 @@
                                 <div class="d-flex">
                                     <div class="ml-auto">
                                         <a class="btn btn-flat btn-primary mb-1"
-                                            href="{{ route('work.create') }}"><i class="fa fa-plus"></i>
+                                            href="{{ route('market.create') }}"><i class="fa fa-plus"></i>
                                             Ajouter</a>
                                     </div>
                                 </div>
@@ -41,19 +41,19 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @forelse ($works as $work)
+                                                @forelse ($markets as $market)
                                                     <tr>
-                                                        <td>{{ $work->name }}</td>
-                                                        <td>{{ $work->created_at }}</td>
-                                                        <td>{{ $work->created_at }}</td>
+                                                        <td>{{ $market->name }}</td>
+                                                        <td>{{ $market->created_at }}</td>
+                                                        <td>{{ $market->created_at }}</td>
                                                         <td>
-                                                            <a class="btn btn-info btn-xs" href="{{ route('work.show', $work) }}"
+                                                            <a class="btn btn-info btn-xs" href="{{ route('market.show', $market) }}"
                                                                 title="Afficher"><i class="fa fa-eye"
                                                                     aria-hidden="true"></i></a>
-                                                            <a class="btn btn-warning btn-xs" href="{{ route('work.edit', $work) }}"
+                                                            <a class="btn btn-warning btn-xs" href="{{ route('market.edit', $market) }}"
                                                                 title="Modifier"><i class="fa fa-edit"
                                                                     aria-hidden="true"></i></a>
-                                                            <a class="btn btn-danger btn-xs" href="{{ route('work.destroy',$work) }}"
+                                                            <a class="btn btn-danger btn-xs" href="{{ route('market.destroy',$market) }}"
                                                                 title="Supprimer"><i class="fa fa-trash"
                                                                     aria-hidden="true"></i></a>
                                                         </td>

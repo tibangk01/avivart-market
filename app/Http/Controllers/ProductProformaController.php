@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Proforma;
 use App\Models\ProductProforma;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductProformaController extends Controller
 {
@@ -47,9 +48,27 @@ class ProductProformaController extends Controller
                 'quantity' => ['required'],
             ]);
 
-            $productProforma = ProductProforma::create($request->all());
+            try {
+                DB::beginTransaction();
 
-            session()->flash('success', 'Donnée enregistrée.');
+                $product = Product::findOrFail($request->product_id);
+
+                $product->proformas()->sync([
+                    $product->id => $request->except('_token'),
+                ]);
+
+                //$productProforma = ProductProforma::create($request->all());
+
+                DB::commit();
+
+                session()->flash('success', 'Donnée enregistrée.');
+            } catch (\Exception $ex) {
+                DB::rollback();
+
+                dd($ex);
+
+                session()->flash('error', "Une erreur s'est produite");
+            }
         }
 
         return back();
@@ -97,9 +116,21 @@ class ProductProformaController extends Controller
                 'quantity' => ['required'],
             ]);
 
-            $productProforma->update($request->all());
+            try {
+                DB::beginTransaction();
 
-            session()->flash('success', 'Donnée enregistrée.');
+                $productProforma->update($request->all());
+
+                DB::commit();
+
+                session()->flash('success', 'Donnée enregistrée.');
+            } catch (\Exception $ex) {
+                DB::rollback();
+
+                dd($ex);
+
+                session()->flash('error', "Une erreur s'est produite");
+            }
         }
 
         return back();

@@ -101,6 +101,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('market.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-suitcase"></i>
+                                <p>Marchés</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('product_ray.index') }}" class="nav-link">
                                 <i class="nav-icon fa fa-list-ol"></i>
                                 <p>Rayons de produit</p>

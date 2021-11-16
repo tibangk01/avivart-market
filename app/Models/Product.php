@@ -121,21 +121,21 @@ class Product extends Model implements Buyable
 	public function orders()
 	{
 		return $this->belongsToMany(Order::class, 'product_order')
-					->withPivot('id', 'quantity')
+					->withPivot('id', 'quantity', 'global_selling_price', 'selling_price', 'global_rental_price', 'rental_price', 'comment')
 					->withTimestamps();
 	}
 
 	public function proformas()
 	{
 		return $this->belongsToMany(Proforma::class, 'product_proforma')
-					->withPivot('id', 'quantity')
+					->withPivot('id', 'quantity', 'global_selling_price', 'selling_price', 'global_rental_price', 'rental_price')
 					->withTimestamps();
 	}
 
 	public function purchases()
 	{
 		return $this->belongsToMany(Purchase::class, 'product_purchase')
-					->withPivot('id', 'ordered_quantity', 'delivered_quantity')
+					->withPivot('id', 'ordered_quantity', 'delivered_quantity', 'global_purchase_price', 'purchase_price', 'comment')
 					->withTimestamps();
 	}
 
