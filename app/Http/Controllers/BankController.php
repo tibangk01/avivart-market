@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Bank;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreBankRequest;
+use App\Http\Requests\UpdateBankRequest;
 
 class BankController extends Controller
 {

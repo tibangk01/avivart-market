@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\ProductRay;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreProductRayRequest;
+use App\Http\Requests\UpdateProductRayRequest;
 
 class ProductRayController extends Controller
 {

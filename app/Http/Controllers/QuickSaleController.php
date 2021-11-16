@@ -10,6 +10,8 @@ use App\Models\ExerciseProduct;
 use Illuminate\Http\Request;
 use BarryvdhDomPDF as PDF;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreQuickSaleRequest;
+use App\Http\Requests\UpdateQuickSaleRequest;
 
 class QuickSaleController extends Controller
 {

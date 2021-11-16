@@ -7,6 +7,8 @@ use App\Models\CashRegister;
 use App\Models\DayTransaction;
 use App\Models\CashRegisterTransaction;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreCashRegisterTransactionRequest;
+use App\Http\Requests\UpdateCashRegisterTransactionRequest;
 
 class CashRegisterTransactionController extends Controller
 {

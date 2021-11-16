@@ -11,6 +11,8 @@ use App\Models\Region;
 use App\Models\Library;
 use Illuminate\Support\Facades\DB;
 use BarryvdhDomPDF as PDF;
+use App\Http\Requests\StoreSalePlaceRequest;
+use App\Http\Requests\UpdateSalePlaceRequest;
 
 class SalePlaceController extends Controller
 {

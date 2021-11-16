@@ -11,6 +11,8 @@ use App\Models\Library;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use BarryvdhDomPDF as PDF;
+use App\Http\Requests\StoreProviderRequest;
+use App\Http\Requests\UpdateProviderRequest;
 
 class ProviderController extends Controller
 {

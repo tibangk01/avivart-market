@@ -11,6 +11,8 @@ use App\Models\ProductCategory;
 use App\Models\ProductType;
 use Illuminate\Support\Facades\DB;
 use BarryvdhDomPDF as PDF;
+use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 
 class ProductController extends Controller
 {

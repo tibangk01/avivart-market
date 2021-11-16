@@ -11,6 +11,8 @@ use App\Models\ExerciseProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use BarryvdhDomPDF as PDF;
+use App\Http\Requests\StoreOrderPaymentRequest;
+use App\Http\Requests\UpdateOrderPaymentRequest;
 
 class OrderPaymentController extends Controller
 {

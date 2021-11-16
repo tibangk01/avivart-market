@@ -8,6 +8,8 @@ use App\Models\Product;
 use App\Models\ExerciseProduct;
 use Illuminate\Http\Request;
 use BarryvdhDomPDF as PDF;
+use App\Http\Requests\StoreExerciseRequest;
+use App\Http\Requests\UpdateExerciseRequest;
 
 class ExerciseController extends Controller
 {

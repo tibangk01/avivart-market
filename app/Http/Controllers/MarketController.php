@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Market;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreMarketRequest;
+use App\Http\Requests\UpdateMarketRequest;
 
 class MarketController extends Controller
 {

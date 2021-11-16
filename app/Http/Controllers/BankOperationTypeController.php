@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\BankOperationType;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreBankOperationTypeRequest;
+use App\Http\Requests\UpdateBankOperationTypeRequest;
 
 class BankOperationTypeController extends Controller
 {

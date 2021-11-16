@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\CashRegister;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreCashRegisterRequest;
+use App\Http\Requests\UpdateCashRegisterRequest;
 
 class CashRegisterController extends Controller
 {

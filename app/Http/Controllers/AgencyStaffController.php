@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreAgencyStaffRequest;
+use App\Http\Requests\UpdateAgencyStaffRequest;
 use App\Models\Agency;
 use App\Models\Staff;
 use App\Models\AgencyStaff;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AgencyStaffController extends Controller
 {
@@ -48,9 +51,23 @@ class AgencyStaffController extends Controller
                 'staff_id' => ['required'],
             ]);
 
-            $agencyStaff = AgencyStaff::create($request->all());
+            try {
 
-            session()->flash('success', "Donnée enregistrée");
+                DB::beginTransaction();
+
+                $agencyStaff = AgencyStaff::create($request->all());
+
+                DB::commit();
+
+                session()->flash('success', "Donnée enregistrée");
+
+            } catch (\Exception $ex) {
+                DB::rollBack();
+
+                dd($ex);
+
+                session()->flash('error', "Une erreur s'est produite");
+            }
         }
 
         return back();
@@ -96,9 +113,23 @@ class AgencyStaffController extends Controller
                 'staff_id' => ['required'],
             ]);
 
-            $agencyStaff->update($request->all());
+            try {
 
-            session()->flash('success', "Donnée enregistrée");
+                DB::beginTransaction();
+
+                $agencyStaff->update($request->all());
+
+                DB::commit();
+
+                session()->flash('success', "Donnée enregistrée");
+
+            } catch (\Exception $ex) {
+                DB::rollBack();
+
+                dd($ex);
+
+                session()->flash('error', "Une erreur s'est produite");
+            }
         }
 
         return back();

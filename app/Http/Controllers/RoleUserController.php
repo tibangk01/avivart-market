@@ -6,6 +6,9 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\RoleUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreRoleUserRequest;
+use App\Http\Requests\UpdateRoleUserRequest;
 
 class RoleUserController extends Controller
 {
@@ -48,9 +51,23 @@ class RoleUserController extends Controller
                 'user_id' => ['required'],
             ]);
 
-            $roleUser = RoleUser::create($request->all());
+            try {
 
-            session()->flash('success', "Donnée enregistrée");
+                DB::beginTransaction();
+
+                $roleUser = RoleUser::create($request->all());
+
+                DB::commit();
+
+                session()->flash('success', "Donnée enregistrée");
+
+            } catch (\Exception $ex) {
+                DB::rollBack();
+
+                dd($ex);
+
+                session()->flash('error', "Une erreur s'est produite");
+            }
         }
 
         return back();
@@ -96,9 +113,23 @@ class RoleUserController extends Controller
                 'user_id' => ['required'],
             ]);
 
-            $roleUser->update($request->all());
+            try {
 
-            session()->flash('success', "Donnée enregistrée");
+                DB::beginTransaction();
+
+                $roleUser->update($request->all());
+
+                DB::commit();
+
+                session()->flash('success', "Donnée enregistrée");
+
+            } catch (\Exception $ex) {
+                DB::rollBack();
+
+                dd($ex);
+
+                session()->flash('error', "Une erreur s'est produite");
+            }
         }
 
         return back();

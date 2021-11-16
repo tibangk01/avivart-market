@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Vat;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreVatRequest;
+use App\Http\Requests\UpdateVatRequest;
 
 class VatController extends Controller
 {

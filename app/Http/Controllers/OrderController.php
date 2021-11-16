@@ -13,6 +13,8 @@ use App\Models\Vat;
 use App\Models\Discount;
 use App\Models\OrderState;
 use App\Models\Product;
+use App\Http\Requests\StoreOrderRequest;
+use App\Http\Requests\UpdateOrderRequest;
 
 class OrderController extends Controller
 {

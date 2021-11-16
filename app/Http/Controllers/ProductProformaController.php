@@ -7,6 +7,8 @@ use App\Models\Proforma;
 use App\Models\ProductProforma;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreProductProformaRequest;
+use App\Http\Requests\UpdateProductProformaRequest;
 
 class ProductProformaController extends Controller
 {

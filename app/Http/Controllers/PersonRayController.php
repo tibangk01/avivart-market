@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\PersonRay;
 use Illuminate\Http\Request;
+use App\Http\Requests\StorePersonRayRequest;
+use App\Http\Requests\UpdatePersonRayRequest;
 
 class PersonRayController extends Controller
 {

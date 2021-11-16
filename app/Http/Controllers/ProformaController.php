@@ -11,6 +11,8 @@ use App\Models\Customer;
 use App\Models\Vat;
 use App\Models\Discount;
 use App\Models\Product;
+use App\Http\Requests\StoreProformaRequest;
+use App\Http\Requests\UpdateProformaRequest;
 
 class ProformaController extends Controller
 {

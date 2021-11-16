@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Conversion;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreConversionRequest;
+use App\Http\Requests\UpdateConversionRequest;
 
 class ConversionController extends Controller
 {

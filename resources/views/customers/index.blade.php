@@ -25,13 +25,12 @@
 
                                 <div class="d-flex">
                                     <div class="ml-auto mb-1">
-                                            <a class="btn btn-flat btn-dark" target="_blank" 
-                                                            href="{{ route('customer.printing.all', ['printing' => 'corporation']) }}"
-                                                            title="Imprimer"><i class="fa fa-print"></i> Imprimer</a>
-
-                                        <a class="btn btn-flat btn-primary"
-                                            href="{{ route('customer.create', ['create' => 'corporation']) }}"><i class="fa fa-plus"></i>
-                                            Ajouter</a>
+                                        <a class="btn btn-flat btn-primary" href="{{ route('customer.create', ['create' => 'corporation']) }}" title="Ajouter">
+                                            <i class="fa fa-plus"></i>
+                                        </a>
+                                        <a class="btn btn-flat btn-dark" target="_blank" href="{{ route('customer.printing.all', ['printing' => 'corporation']) }}" title="Imprimer">
+                                            <i class="fa fa-print"></i>
+                                        </a>
                                     </div>
                                 </div>
 
@@ -43,13 +42,12 @@
 
                                 <div class="d-flex">
                                     <div class="ml-auto mb-1">
-                                            <a class="btn btn-flat btn-dark" target="_blank" 
-                                                            href="{{ route('customer.printing.all', ['printing' => 'person']) }}"
-                                                            title="Imprimer"><i class="fa fa-print"></i> Imprimer</a>
-
-                                        <a class="btn btn-flat btn-primary"
-                                            href="{{ route('customer.create', ['create' => 'person']) }}"><i class="fa fa-plus"></i>
-                                            Ajouter</a>
+                                        <a class="btn btn-flat btn-primary" href="{{ route('customer.create', ['create' => 'person']) }}" title="Ajouter">
+                                            <i class="fa fa-plus"></i>
+                                        </a>
+                                        <a class="btn btn-flat btn-dark" target="_blank" href="{{ route('customer.printing.all', ['printing' => 'person']) }}" title="Imprimer">
+                                            <i class="fa fa-print"></i>
+                                        </a>
                                     </div>
                                 </div>
 

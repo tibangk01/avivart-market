@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Work;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreWorkRequest;
+use App\Http\Requests\UpdateWorkRequest;
 
 class WorkController extends Controller
 {

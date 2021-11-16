@@ -8,6 +8,8 @@ use App\Models\ProductPurchase;
 use App\Models\PurchaseDeliveryNote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StorePurchaseDeliveryNoteRequest;
+use App\Http\Requests\UpdatePurchaseDeliveryNoteRequest;
 
 class PurchaseDeliveryNoteController extends Controller
 {

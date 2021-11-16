@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\StaffType;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreStaffTypeRequest;
+use App\Http\Requests\UpdateStaffTypeRequest;
 
 class StaffTypeController extends Controller
 {

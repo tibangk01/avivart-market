@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\ProductRay;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreProductCategoryRequest;
+use App\Http\Requests\UpdateProductCategoryRequest;
 
 class ProductCategoryController extends Controller
 {

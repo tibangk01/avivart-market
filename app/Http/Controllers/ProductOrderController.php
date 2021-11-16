@@ -7,6 +7,8 @@ use App\Models\Order;
 use App\Models\ProductOrder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreProductOrderRequest;
+use App\Http\Requests\UpdateProductOrderRequest;
 
 class ProductOrderController extends Controller
 {

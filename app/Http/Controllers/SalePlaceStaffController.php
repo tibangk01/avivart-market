@@ -6,6 +6,9 @@ use App\Models\SalePlace;
 use App\Models\Staff;
 use App\Models\SalePlaceStaff;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreSalePlaceStaffRequest;
+use App\Http\Requests\UpdateSalePlaceStaffRequest;
 
 class SalePlaceStaffController extends Controller
 {
@@ -48,9 +51,23 @@ class SalePlaceStaffController extends Controller
                 'staff_id' => ['required'],
             ]);
 
-            $salePlaceStaff = SalePlaceStaff::create($request->all());
+            try {
 
-            session()->flash('success', "Donnée enregistrée");
+                DB::beginTransaction();
+
+                $salePlaceStaff = SalePlaceStaff::create($request->all());
+
+                DB::commit();
+
+                session()->flash('success', "Donnée enregistrée");
+
+            } catch (\Exception $ex) {
+                DB::rollBack();
+
+                dd($ex);
+
+                session()->flash('error', "Une erreur s'est produite");
+            }
         }
 
         return back();
@@ -96,9 +113,23 @@ class SalePlaceStaffController extends Controller
                 'staff_id' => ['required'],
             ]);
 
-            $salePlaceStaff->update($request->all());
+            try {
 
-            session()->flash('success', "Donnée enregistrée");
+                DB::beginTransaction();
+
+                $salePlaceStaff->update($request->all());
+
+                DB::commit();
+
+                session()->flash('success', "Donnée enregistrée");
+
+            } catch (\Exception $ex) {
+                DB::rollBack();
+
+                dd($ex);
+
+                session()->flash('error', "Une erreur s'est produite");
+            }
         }
 
         return back();

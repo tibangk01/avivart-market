@@ -7,6 +7,8 @@ use App\Models\Purchase;
 use App\Models\ProductPurchase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreProductPurchaseRequest;
+use App\Http\Requests\UpdateProductPurchaseRequest;
 
 class ProductPurchaseController extends Controller
 {

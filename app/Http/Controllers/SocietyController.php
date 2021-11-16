@@ -8,6 +8,8 @@ use App\Models\Region;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use BarryvdhDomPDF as PDF;
+use App\Http\Requests\StoreSocietyRequest;
+use App\Http\Requests\UpdateSocietyRequest;
 
 class SocietyController extends Controller
 {

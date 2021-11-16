@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\CashRegisterOperationType;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreCashRegisterOperationTypeRequest;
+use App\Http\Requests\UpdateCashRegisterOperationTypeRequest;
 
 class CashRegisterOperationTypeController extends Controller
 {

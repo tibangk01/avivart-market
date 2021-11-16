@@ -12,6 +12,8 @@ use App\Models\Discount;
 use Illuminate\Support\Facades\DB;
 use App\Models\Society;
 use App\Models\Product;
+use App\Http\Requests\StorePurchaseRequest;
+use App\Http\Requests\UpdatePurchaseRequest;
 
 class PurchaseController extends Controller
 {

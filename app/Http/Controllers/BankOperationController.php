@@ -6,6 +6,8 @@ use App\Models\BankOperation;
 use App\Models\Bank;
 use App\Models\BankOperationType;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreBankOperationRequest;
+use App\Http\Requests\UpdateBankOperationRequest;
 
 class BankOperationController extends Controller
 {

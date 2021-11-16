@@ -7,6 +7,8 @@ use App\Models\Product;
 use App\Models\ExerciseProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreExerciseProductRequest;
+use App\Http\Requests\UpdateExerciseProductRequest;
 
 class ExerciseProductController extends Controller
 {

@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => "Logiciel de gestion de stock"])
+@extends('layouts.dashboard', ['title' => "Système d'Information de Vente"])
 
 @section('body')
     <section class="content">

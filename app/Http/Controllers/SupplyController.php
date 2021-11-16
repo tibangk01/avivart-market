@@ -8,6 +8,8 @@ use App\Models\Product;
 use App\Models\Supply;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreSupplyRequest;
+use App\Http\Requests\UpdateSupplyRequest;
 
 class SupplyController extends Controller
 {

@@ -8,6 +8,8 @@ use App\Models\ProductOrder;
 use App\Models\OrderDeliveryNote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreOrderDeliveryNoteRequest;
+use App\Http\Requests\UpdateOrderDeliveryNoteRequest;
 
 class OrderDeliveryNoteController extends Controller
 {

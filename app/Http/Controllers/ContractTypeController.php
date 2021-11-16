@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\ContractType;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreContractTypeRequest;
+use App\Http\Requests\UpdateContractTypeRequest;
 
 class ContractTypeController extends Controller
 {
