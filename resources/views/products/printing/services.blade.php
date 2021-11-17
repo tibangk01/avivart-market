@@ -10,6 +10,7 @@
             <th>Type</th>
             <th>Unité</th>
             <th>PVU</th>
+            <th>Qté en Stock</th>
             <th>Date de Création</th>
             <th>Date de Modification</th>
         </tr>
@@ -21,12 +22,13 @@
             <td>{{ $product->product_type->name }}</td>
             <td>{{ $product->conversion->name }}</td>
             <td>{{ $product->selling_price }}</td>
+            <td>{{ $product->stock_quantity }}</td>
             <td>{{ $product->created_at }}</td>
             <td>{{ $product->updated_at }}</td>
         </tr>
         @empty
         <tr>
-            <td colspan="6">Pas d'enregistrements.</td>
+            <td colspan="7">Pas d'enregistrements.</td>
         </tr>
         @endforelse
     </tbody>

@@ -141,7 +141,7 @@ class ProductController extends Controller
 
                 DB::beginTransaction();
 
-                $product->update($request->all());
+                $product->update($request->except('status'));
 
                 DB::commit();
 
@@ -188,12 +188,12 @@ class ProductController extends Controller
             'product_category_id' => ['required'],
             'conversion_id' => ['required'],
             'name' => ['required', 'min:3', 'max:50'],
+            'stock_quantity' => ['required', 'numeric'],
         ];
 
         if ($request->input('status') == 'product') {
             $inputs += [
                 'items' => ['required', 'numeric'],
-                'stock_quantity' => ['required', 'numeric'],
                 'alert_quantity' => ['required', 'numeric'],
                 'global_purchase_price' => ['required'],
                 'purchase_price' => ['required'],

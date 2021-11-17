@@ -37,16 +37,16 @@
                     {!! Form::text('name', null, ['class' => 'form-control', 'required' => true]) !!}
                 </div>
 
+                <div class="form-group">
+                    {!! Form::label('stock_quantity', 'Quantité en Stock', ['class' => 'form-label']) !!}
+                    {!! Form::number('stock_quantity', null, ['class' => 'form-control', 'required' => true, 'min' => 0, 'step' => 1]) !!}
+                </div>
+
                 @if(!$product->status)
 
                 <div class="form-group">
                     {!! Form::label('items', "Nombre d'élément") !!}
                     {!! Form::number('items', null, ['class' => 'form-control', 'required' => true, 'min' => 1, 'step' => 1]) !!}
-                </div>
-
-                <div class="form-group">
-                    {!! Form::label('stock_quantity', 'Quantité en Stock', ['class' => 'form-label']) !!}
-                    {!! Form::number('stock_quantity', null, ['class' => 'form-control', 'required' => true, 'min' => 0, 'step' => 1]) !!}
                 </div>
 
                 <div class="form-group">

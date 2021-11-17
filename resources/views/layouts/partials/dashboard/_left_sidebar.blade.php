@@ -21,7 +21,7 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column nav-flat nav-compact" data-widget="treeview"
-                role="menu" data-accordion="false">
+                role="menu" data-accordion="true">
                 
                 <li class="nav-item">
                     <a href="{{ route('page.index') }}" class="nav-link {{ Str::of(request()->path())->startsWith('/') ? 'menu-open active' : '' }}">

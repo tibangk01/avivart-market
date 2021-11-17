@@ -115,6 +115,7 @@
                                                 <th>Unité</th>
                                                 <th>Fournisseur</th>
                                                 <th>PVU</th>
+                                                <th>Qté en Stock</th>
                                                 <th>Date de Création</th>
                                                 <th>Date de Modification</th>
                                                 <th>Actions</th>
@@ -129,6 +130,7 @@
                                                 <td>{{ $product->conversion->name }}</td>
                                                 <td>{{ $product->provider->getName() }}</td>
                                                 <td>{{ $product->selling_price }}</td>
+                                                <td>{{ $product->stock_quantity }}</td>
                                                 <td>{{ $product->created_at }}</td>
                                                 <td>{{ $product->updated_at }}</td>
                                                 <td class="d-flex flex-row justify-content-around align-items-center">
@@ -143,7 +145,7 @@
                                             </tr>
                                         @empty
                                         <tr>
-                                            <td colspan="9">Pas d'enregistrements</td>
+                                            <td colspan="10">Pas d'enregistrements</td>
                                         </tr>
                                         @endforelse
                                         </tbody>

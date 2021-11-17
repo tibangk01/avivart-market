@@ -59,6 +59,8 @@
         {!! Form::close() !!}
     </div>
 
-    <div class="text-center py-2">&copy; Copyright 2022, <a href="https://avivart.net" target="_blank">AVIV'ART</a></div>
+    <div class="text-center py-2">
+        <strong>&copy; Copyright 2022, <a href="https://www.avivart.net" target="_blank">AVIV'ART</a>.</strong> Tous Droits Réservés
+    </div>
 </div>
 @endsection

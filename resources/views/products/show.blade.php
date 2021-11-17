@@ -40,6 +40,10 @@
                                     <th>Nom</th>
                                     <td>{{ $product->name }}</td>
                                 </tr>
+                                <tr>
+                                    <th>Quantité en Stock</th>
+                                    <td>{{ $product->stock_quantity }}</td>
+                                </tr>
 
                                 @if(!$product->status)
                                 <tr>
@@ -73,10 +77,6 @@
                                 <tr>
                                     <th>Prix de Location Unitaire</th>
                                     <td>{{ $product->rental_price }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Quantité en Stock</th>
-                                    <td>{{ $product->stock_quantity }}</td>
                                 </tr>
                                 <tr>
                                     <th>Quantité Vendue</th>

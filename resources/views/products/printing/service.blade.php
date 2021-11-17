@@ -40,6 +40,10 @@
             <td>{{ $product->selling_price }}</td>
         </tr>
         <tr>
+            <th>Quantité en Stock</th>
+            <td>{{ $product->stock_quantity }}</td>
+        </tr>
+        <tr>
             <th>Date de Création</th>
             <td>{{ $product->created_at }}</td>
         </tr>

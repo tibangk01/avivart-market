@@ -40,7 +40,7 @@
     @livewireStyles
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed text-sm">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed text-sm {{ session('sidebarCollapseValue', '') }}">
     <div class="wrapper">
 
         <!-- Preloader -->
@@ -165,9 +165,16 @@
     <script src="{{ asset('vendors/custom/js/datatable.js') }}"></script>
 
     <!-- Page specific script -->
+    <script src="{{ asset('js/laroute.js') }}"></script>
     <script type="text/javascript" src="https://avivart.net/ecosoft/libs/js/jquery-active-page.js"></script>
     <script type="text/javascript">
         $('ul.nav-sidebar ul > li > a').matchactive();
+
+        $('[data-widget]').click(function (e) {
+            $.get(laroute.route('settings.index', {sidebar_collapse_value: null}), function (response, status) {
+                console.log(response, status);
+            });
+        });
 
         $(document).ready(function(){
           $('.delete-form').on('submit', function(){
