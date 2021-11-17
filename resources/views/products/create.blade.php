@@ -10,6 +10,8 @@
             <div class="col-lg-6">
                 {!! Form::open(['method' => 'post', 'route' => 'product.store']) !!}
 
+                {!! Form::hidden('status', request()->query('status')) !!}
+
                 <div class="form-group">
                     {!! Form::label('provider_id', 'Fournisseur') !!}
                     {!! Form::select('provider_id', $providers, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez']) !!}
@@ -34,6 +36,8 @@
                     {!! Form::label('name', 'Nom') !!}
                     {!! Form::text('name', null, ['class' => 'form-control', 'required' => true]) !!}
                 </div>
+
+                @if(request()->query('status') == 'product')
 
                 <div class="form-group">
                     {!! Form::label('items', "Nombre d'élément") !!}
@@ -113,6 +117,15 @@
                     {!! Form::label('characteristics', 'Caractéristiques', ['class' => 'form-label']) !!}
                     {!! Form::textarea('characteristics', null, ['class' => 'form-control']) !!}
                 </div>
+
+                @elseif(request()->query('status') == 'service')
+
+                <div class="form-group">
+                    {!! Form::label('selling_price', "Prix de Vente Unitaire") !!}
+                    {!! Form::number('selling_price', null, ['class' => 'form-control', 'required' => true, 'step' => 'any']) !!}
+                </div>
+
+                @endif
 
                 <div class="form-group text-right">
                     {!! Form::submit('Enregistrer', ['class' => 'btn btn-success']) !!}

@@ -21,18 +21,6 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th>Nom</th>
-                                    <td>{{ $product->name }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Nombre d'Elément</th>
-                                    <td>{{ $product->items }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Description</th>
-                                    <td>{{ $product->description }}</td>
-                                </tr>
-                                <tr>
                                     <th>Fournisseur</th>
                                     <td>{{ $product->provider->getName() }}</td>
                                 </tr>
@@ -47,6 +35,20 @@
                                 <tr>
                                     <th>Unité</th>
                                     <td>{{ $product->conversion->name }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Nom</th>
+                                    <td>{{ $product->name }}</td>
+                                </tr>
+
+                                @if(!$product->status)
+                                <tr>
+                                    <th>Nombre d'Elément</th>
+                                    <td>{{ $product->items }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Description</th>
+                                    <td>{{ $product->description }}</td>
                                 </tr>
                                 <tr>
                                     <th>Prix d'Achat Global</th>
@@ -96,6 +98,13 @@
                                     <th>Date d'expiration</th>
                                     <td>{{ $product->expiration_date }}</td>
                                 </tr>
+                                @else
+                                <tr>
+                                    <th>Prix de Vente Unitaire</th>
+                                    <td>{{ $product->selling_price }}</td>
+                                </tr>
+                                @endif
+
                                 <tr>
                                     <th>Date de Création</th>
                                     <td>{{ $product->created_at }}</td>

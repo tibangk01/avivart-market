@@ -28,9 +28,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::where('status', false)->get();
 
-        return view('products.index', compact('products'));
+        $services = Product::where('status', true)->get();
+
+        return view('products.index', compact('products', 'services'));
     }
 
     /**
@@ -75,6 +77,7 @@ class ProductController extends Controller
                     $request->all(),
                     [
                         'library_id' => $library->id,
+                        'status' => ($request->input('status') == 'service'),
                     ]
                 ));
 
@@ -83,8 +86,10 @@ class ProductController extends Controller
                 session()->flash('success', 'Donnée enregistré.');
 
                 return redirect()->route('product.show', ['product' => $product]);
-            } catch (\Throwable $th) {
+            } catch (\Exception $ex) {
                 DB::rollBack();
+
+                dd($ex);
 
                 session()->flash('error', "Une erreur s'est produite");
             }
@@ -132,9 +137,23 @@ class ProductController extends Controller
 
             $this->_validateRequest($request);
 
-            $product->update($request->all());
+            try {
 
-            session()->flash('success', 'Modification reussi');
+                DB::beginTransaction();
+
+                $product->update($request->all());
+
+                DB::commit();
+
+                session()->flash('success', 'Modification reussi');
+
+            } catch (\Exception $ex) {
+                DB::rollBack();
+
+                dd($ex);
+
+                session()->flash('error', "Une erreur s'est produite");
+            }
         }
 
         return back();
@@ -163,49 +182,79 @@ class ProductController extends Controller
      */
     private function _validateRequest($request)
     {
-        $request->validate([
+        $inputs = [
             'provider_id' => ['required'],
             'product_type_id' => ['required'],
             'product_category_id' => ['required'],
             'conversion_id' => ['required'],
             'name' => ['required', 'min:3', 'max:50'],
-            'items' => ['required', 'numeric'],
-            'stock_quantity' => ['required', 'numeric'],
-            'alert_quantity' => ['required', 'numeric'],
-            'global_purchase_price' => ['required'],
-            'purchase_price' => ['required'],
-            'global_selling_price' => ['required'],
-            'selling_price' => ['required'],
-            'global_rental_price' => ['required'],
-            'rental_price' => ['required'],
-            'serial_number' => ['nullable'],
-            'manufacture_date' => ['nullable'],
-            'expiration_date' => ['nullable'],
-            'mark' => ['nullable'],
-            'ref' => ['nullable'],
-            'description' => ['nullable'],
-            'characteristics' => ['nullable'],
-        ]);
+        ];
+
+        if ($request->input('status') == 'product') {
+            $inputs += [
+                'items' => ['required', 'numeric'],
+                'stock_quantity' => ['required', 'numeric'],
+                'alert_quantity' => ['required', 'numeric'],
+                'global_purchase_price' => ['required'],
+                'purchase_price' => ['required'],
+                'global_selling_price' => ['required'],
+                'selling_price' => ['required'],
+                'global_rental_price' => ['required'],
+                'rental_price' => ['required'],
+                'serial_number' => ['nullable'],
+                'manufacture_date' => ['nullable'],
+                'expiration_date' => ['nullable'],
+                'mark' => ['nullable'],
+                'ref' => ['nullable'],
+                'description' => ['nullable'],
+                'characteristics' => ['nullable'],
+            ];
+        } elseif ($request->input('status') == 'service') {
+            $inputs += [
+                'selling_price' => ['required'],
+            ];
+        }
+
+        $request->validate($inputs);
     }
 
     public function printingAll(Request $request)
     {
-        $products = Product::all();
+        if ($request->query('status') == 'products') {
+            $products = Product::where('status', false)->get();
 
-        $pdf = PDF::loadView('products.printing.products', compact('products'));
-        //$pdf->setOptions(array('isRemoteEnabled' => true));
-        $pdf->setPaper('a4', 'landscape');
-        $pdf->save(public_path("libraries/docs/products.pdf"));
+            $pdf = PDF::loadView('products.printing.products', compact('products'));
+            //$pdf->setOptions(array('isRemoteEnabled' => true));
+            $pdf->setPaper('a4', 'landscape');
+            $pdf->save(public_path("libraries/docs/products.pdf"));
 
-        return $pdf->stream('products.pdf');
+            return $pdf->stream('products.pdf');
+        } elseif ($request->query('status') == 'services') {
+            $products = Product::where('status', true)->get();
+
+            $pdf = PDF::loadView('products.printing.services', compact('products'));
+            //$pdf->setOptions(array('isRemoteEnabled' => true));
+            $pdf->setPaper('a4', 'landscape');
+            $pdf->save(public_path("libraries/docs/services.pdf"));
+
+            return $pdf->stream('services.pdf');
+        }
     }
 
     public function printingOne(Request $request, Product $product)
     {
-        $pdf = PDF::loadView('products.printing.product', compact('product'));
-        $pdf->setPaper('a4', 'portrait');
-        $pdf->save(public_path("libraries/docs/product_{$product->id}.pdf"));
+        if (!$product->status) {
+            $pdf = PDF::loadView('products.printing.product', compact('product'));
+            $pdf->setPaper('a4', 'portrait');
+            $pdf->save(public_path("libraries/docs/product_{$product->id}.pdf"));
 
-        return $pdf->stream('product.pdf');
+            return $pdf->stream('product.pdf');
+        } else {
+            $pdf = PDF::loadView('products.printing.service', compact('product'));
+            $pdf->setPaper('a4', 'portrait');
+            $pdf->save(public_path("libraries/docs/service_{$product->id}.pdf"));
+
+            return $pdf->stream('service.pdf');
+        }
     }
 }

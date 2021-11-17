@@ -1,4 +1,4 @@
-<nav class="main-header navbar navbar-expand {{ session('navbarTheme', 'navbar-dark bg-danger') }} border-bottom-0 text-sm">
+<nav class="main-header navbar navbar-expand {{ session('navbarTheme', 'navbar-dark text-light navbar-navy') }} border-bottom-0 text-sm">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
         <li class="nav-item">

@@ -395,6 +395,16 @@ Route::middleware(['auth', 'staff'])->group(function () {
 
     });
 
+    Route::prefix('reports')->group(function () {
+
+        
+    });
+
+    Route::prefix('stats')->group(function () {
+
+        
+    });
+
     /** Libraries routes */
     Route::resource('library', LibraryController::class);
     /** End Libraries routes */

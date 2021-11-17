@@ -11,11 +11,11 @@
                             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                 <a class="nav-item nav-link active rounded-0" id="nav-first-tab" data-toggle="tab"
                                     href="#nav-first" role="tab" aria-controls="nav-first"
-                                    aria-selected="true">Entreprise</a>
+                                    aria-selected="true">Entreprises</a>
 
                                 <a class="nav-item nav-link rounded-0" id="nav-second-tab" data-toggle="tab"
                                     href="#nav-second" role="tab" aria-controls="nav-second"
-                                    aria-selected="true">Particulier</a>
+                                    aria-selected="true">Particuliers</a>
                             </div>
                         </nav>
                     </div>

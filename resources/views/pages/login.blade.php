@@ -1,10 +1,29 @@
 @extends('layouts.auth', ['title' => 'Connexion'])
 
-@php($cardHeaderBackColor = ['bg-primary', 'bg-danger', 'bg-success', 'bg-info', 'bg-dark', 'bg-warning', 'bg-purple'])
+@php($cardHeaderBackColor = [
+    'bg-primary',
+    'bg-warning',
+    'bg-info',
+    'bg-danger',
+    'bg-success',
+    'bg-dark',
+    'bg-secondary',
+    'bg-indigo',
+    'bg-lightblue',
+    'bg-navy',
+    'bg-purple',
+    'bg-fuchsia',
+    'bg-pink',
+    'bg-maroon',
+    'bg-orange',
+    'bg-lime',
+    'bg-teal',
+    'bg-olive'
+])
 
 @section('body')
 <div class="card" id="login">
-    <div class="{{ $cardHeaderBackColor[mt_rand(0, 6)] }} text-center py-2">{{ config('app.name') }}</div>
+    <div class="{{ $cardHeaderBackColor[mt_rand(0, 17)] }} text-center py-2">{{ config('app.name') }}</div>
 
     <div class="card-body login-card-body">
         <p class="login-box-msg">Connectez-vous</p>

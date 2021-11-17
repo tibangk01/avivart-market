@@ -91,6 +91,7 @@ class Product extends Model implements Buyable
 		'ref',
 		'description',
 		'characteristics',
+		'status',
 	];
 
 	public function provider()

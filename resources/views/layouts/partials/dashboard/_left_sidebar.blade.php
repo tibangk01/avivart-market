@@ -1,4 +1,4 @@
-<aside class="main-sidebar {{ session('sidebarLeftTheme', 'sidebar-dark-danger elevation-4') }}">
+<aside class="main-sidebar {{ session('sidebarLeftTheme', 'sidebar-dark-navy elevation-4') }}">
     <!-- Brand Logo -->
     <a href="{{ route('page.index') }}" class="brand-link">
         <img src="{{ asset('vendors/dist/img/AdminLTELogo.png') }}" alt="{{ config('app.name') }}"
@@ -390,6 +390,42 @@
                             <a data-attr="menu-open" data-class="active" href="{{ route('page.about') }}" class="nav-link">
                                 <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
                                 <p>A propos</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item has-treeview {{ Str::of(request()->path())->startsWith('reports') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon fas fa-info-circle"></i>
+                      <p>
+                        Rapports
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="#" class="nav-link">
+                                <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
+                                <p>Rapport 1</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item has-treeview {{ Str::of(request()->path())->startsWith('stats') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon fas fa-info-circle"></i>
+                      <p>
+                        Statistiques
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="#" class="nav-link">
+                                <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
+                                <p>Statistique 1</p>
                             </a>
                         </li>
                     </ul>

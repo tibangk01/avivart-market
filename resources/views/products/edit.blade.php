@@ -10,6 +10,8 @@
             <div class="col-lg-6">
                 {!! Form::model($product, ['method' => 'put', 'route' => ['product.update', $product]]) !!}
 
+                {!! Form::hidden('status', $product->status ? 'service' : 'product') !!}
+
                 <div class="form-group">
                     {!! Form::label('provider_id', 'Fournisseur') !!}
                     {!! Form::select('provider_id', $providers, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez']) !!}
@@ -34,6 +36,8 @@
                     {!! Form::label('name', 'Nom', ['class' => 'form-label']) !!}
                     {!! Form::text('name', null, ['class' => 'form-control', 'required' => true]) !!}
                 </div>
+
+                @if(!$product->status)
 
                 <div class="form-group">
                     {!! Form::label('items', "Nombre d'élément") !!}
@@ -113,6 +117,15 @@
                     {!! Form::label('characteristics', 'Caractéristiques', ['class' => 'form-label']) !!}
                     {!! Form::textarea('characteristics', null, ['class' => 'form-control']) !!}
                 </div>
+
+                @elseif($product->status)
+
+                <div class="form-group">
+                    {!! Form::label('selling_price', "Prix de Vente Unitaire") !!}
+                    {!! Form::number('selling_price', null, ['class' => 'form-control', 'required' => true, 'step' => 'any']) !!}
+                </div>
+
+                @endif
 
                 <div class="btn-group pull-right">
                     {!! Form::submit('Modifier', ['class' => 'btn btn-success']) !!}
