@@ -5,6 +5,8 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\OrderState;
 use App\Models\Order;
+use App\Models\OrderPayment as OrderPaymentModel;
+use App\Models\Payment;
 use App\Models\PaymentMode;
 
 class OrderPayment extends Component
@@ -26,6 +28,8 @@ class OrderPayment extends Component
         $this->orders = Order::where('paid', false)->get();
 
         $this->paymentModes = PaymentMode::all();
+
+        $this->amount = 0;
     }
 
     public function render()
@@ -35,6 +39,10 @@ class OrderPayment extends Component
 
     public function setAmount(int $value)
     {
+        if ($value == 0) {
+            return;
+        }
+        
         $this->order = Order::findOrFail($value);
 
         $this->amount = $this->order->totalTTC();

@@ -60,6 +60,18 @@ class PurchasePaymentController extends Controller
 
                 $purchase = Purchase::findOrFail($request->purchase_id);
 
+                $totalPayment = 0;
+
+                if ($purchasePayments = PurchasePayment::where('purchase_id', $purchase->id)->get()) {
+                    foreach ($purchasePayments as $purchasePayment) {
+                        $totalPayment += $purchasePayment->payment->amount;
+                    }
+                }
+
+                if ((floatval($request->amount) + $totalPayment) > $purchase->totalTTC()) {
+                    return back()->withDanger('Erreur de payement');
+                }
+
                 $payment = Payment::create($request->except('purchase_id'));
 
                 $purchasePayment = PurchasePayment::create([
@@ -68,7 +80,7 @@ class PurchasePaymentController extends Controller
                 ]);
 
                 $purchase->update([
-                    'paid' => true,
+                    'paid' => ($request->state == 'on' || $request->state) ? true : false,
                 ]);
 
                 DB::commit();

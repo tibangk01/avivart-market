@@ -62,6 +62,18 @@ class OrderPaymentController extends Controller
 
                 $order = Order::findOrFail($request->order_id);
 
+                $totalPayment = 0;
+
+                if ($orderPayments = OrderPayment::where('order_id', $order->id)->get()) {
+                    foreach ($orderPayments as $orderPayment) {
+                        $totalPayment += $orderPayment->payment->amount;
+                    }
+                }
+
+                if ((floatval($request->amount) + $totalPayment) > $order->totalTTC()) {
+                    return back()->withDanger('Erreur de payement');
+                }
+
                 $payment = Payment::create($request->except('order_id'));
 
                 $orderPayment = OrderPayment::create([
@@ -71,7 +83,7 @@ class OrderPaymentController extends Controller
 
                 $order->update([
                     'order_state_id' => $request->input('order_state_id'),
-                    'paid' => true,
+                    'paid' => ($request->state == 'on' || $request->state) ? true : false,
                 ]);
 
                 DB::commit();

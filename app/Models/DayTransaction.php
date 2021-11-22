@@ -56,7 +56,7 @@ class DayTransaction extends Model
 
 	public function getDay()
 	{
-		return $this->day->format('d/m/Y');
+		return $this->day->isoFormat('L');
 	}
 
 	public function getState()

@@ -36,7 +36,8 @@ class Payment extends Model
 
 	protected $fillable = [
 		'payment_mode_id',
-		'amount'
+		'amount',
+		'state',
 	];
 
 	public function payment_mode()

@@ -166,6 +166,7 @@
 
     <!-- Page specific script -->
     <script src="{{ asset('js/laroute.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
     <script type="text/javascript" src="https://avivart.net/ecosoft/libs/js/jquery-active-page.js"></script>
     <script type="text/javascript">
         $('ul.nav-sidebar ul > li > a').matchactive();
