@@ -60,19 +60,18 @@ class PurchasePaymentController extends Controller
 
                 $purchase = Purchase::findOrFail($request->purchase_id);
 
-                $totalPayment = 0;
-
-                if ($purchasePayments = PurchasePayment::where('purchase_id', $purchase->id)->get()) {
-                    foreach ($purchasePayments as $purchasePayment) {
-                        $totalPayment += $purchasePayment->payment->amount;
-                    }
-                }
+                $totalPayment = PurchasePayment::totalPayment($purchase);
 
                 if ((floatval($request->amount) + $totalPayment) > $purchase->totalTTC()) {
                     return back()->withDanger('Erreur de payement');
                 }
 
-                $payment = Payment::create($request->except('purchase_id'));
+                $payment = Payment::create(array_merge(
+                    $request->except('purchase_id'),
+                    [
+                        'state' => ($request->state == 'on' || $request->state) ? true : false,
+                    ]
+                ));
 
                 $purchasePayment = PurchasePayment::create([
                     'purchase_id' => $purchase->id,
@@ -80,7 +79,7 @@ class PurchasePaymentController extends Controller
                 ]);
 
                 $purchase->update([
-                    'paid' => ($request->state == 'on' || $request->state) ? true : false,
+                    'paid' => (floatval($request->amount) + $totalPayment) == $purchase->totalTTC(),
                 ]);
 
                 DB::commit();
@@ -148,9 +147,23 @@ class PurchasePaymentController extends Controller
                 'amount' => ['required'],
             ]);
 
-            $purchasePayment->payment->update($request->only('payment_mode_id'));
+            try {
 
-            session()->flash('success', 'Donnée enregistrée.');
+                DB::beginTransaction();
+
+                $purchasePayment->payment->update($request->only('payment_mode_id'));
+
+                DB::commit();
+
+                session()->flash('success', 'Donnée enregistrée.');
+
+            } catch (\Exception $ex) {
+                DB::rollBack();
+
+                dd($ex);
+
+                session()->flash('error', "Une erreur s'est produite");
+            }
         }
 
         return  back();

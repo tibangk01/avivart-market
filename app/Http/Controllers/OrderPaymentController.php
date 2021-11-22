@@ -62,19 +62,18 @@ class OrderPaymentController extends Controller
 
                 $order = Order::findOrFail($request->order_id);
 
-                $totalPayment = 0;
-
-                if ($orderPayments = OrderPayment::where('order_id', $order->id)->get()) {
-                    foreach ($orderPayments as $orderPayment) {
-                        $totalPayment += $orderPayment->payment->amount;
-                    }
-                }
+                $totalPayment = OrderPayment::totalPayment($order);
 
                 if ((floatval($request->amount) + $totalPayment) > $order->totalTTC()) {
                     return back()->withDanger('Erreur de payement');
                 }
 
-                $payment = Payment::create($request->except('order_id'));
+                $payment = Payment::create(array_merge(
+                    $request->except('order_id'),
+                    [
+                        'state' => ($request->state == 'on' || $request->state) ? true : false,
+                    ]
+                ));
 
                 $orderPayment = OrderPayment::create([
                     'order_id' => $order->id,
@@ -83,7 +82,7 @@ class OrderPaymentController extends Controller
 
                 $order->update([
                     'order_state_id' => $request->input('order_state_id'),
-                    'paid' => ($request->state == 'on' || $request->state) ? true : false,
+                    'paid' => (floatval($request->amount) + $totalPayment) == $order->totalTTC(),
                 ]);
 
                 DB::commit();
@@ -153,12 +152,26 @@ class OrderPaymentController extends Controller
                 'order_id' => ['required'],
                 'amount' => ['required'],
             ]);
+
+            try {
+
+                DB::beginTransaction();
             
-            $orderPayment->order->update($request->only('order_state_id'));
+                $orderPayment->order->update($request->only('order_state_id'));
 
-            $orderPayment->payment->update($request->only('payment_mode_id'));
+                $orderPayment->payment->update($request->only('payment_mode_id'));
 
-            session()->flash('success', 'Donnée enregistrée.');
+                DB::commit();
+
+                session()->flash('success', 'Donnée enregistrée.');
+                
+            } catch (\Exception $ex) {
+                DB::rollBack();
+
+                dd($ex);
+
+                session()->flash('error', "Une erreur s'est produite");
+            }
         }
 
         return  back();

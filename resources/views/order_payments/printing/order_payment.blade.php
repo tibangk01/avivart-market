@@ -12,7 +12,7 @@
 
 <p class="text-right">Fait à {{ session('sessionSociety')->enterprise->city }} le {{ $orderPayment->created_at->format('d M Y') }}</p>
 
-<h6 class="text-uppercase">REF : {{ $orderPayment->order->getNumber() }} | {{ session('sessionSociety')->enterprise->city }}-{{ session('sessionSociety')->enterprise->country->name }}, Date : {{ $orderPayment->created_at->format('d/m/Y') }}.</h6>
+<h6 class="text-uppercase">REF : {{ $orderPayment->order->getNumber() }} | {{ session('sessionSociety')->enterprise->city }}-{{ session('sessionSociety')->enterprise->country->name }}, Date : {{ $orderPayment->created_at->isoFormat('L') }}.</h6>
 
 <table class="table table-bordered table-sm">
     <thead class="thead-dark">
@@ -64,10 +64,22 @@
             <th colspan="4">Total TTC</th>
             <td colspan="3">{{ $orderPayment->order->totalTTC() }}</td>
         </tr>
+        <tr class="">
+            <th colspan="4">Montant Payé</th>
+            <td colspan="3">{{ $orderPayment->payment->amount }}</td>
+        </tr>
+        <tr class="">
+            <th colspan="4">Total Payé</th>
+            <td colspan="3">{{ $orderPayment->totalPayment($orderPayment->order) }}</td>
+        </tr>
+        <tr class="">
+            <th colspan="4">Reste a Payer</th>
+            <td colspan="3">{{ $orderPayment->remnantPayment($orderPayment->order) }}</td>
+        </tr>
     </tfoot>
 </table>
 
-<p class="text-dark">Arrêté le présent reçu à la somme de {{ numberTransformer($orderPayment->order->totalTTC()) }}</p>
+<p class="text-dark">Arrêté le présent reçu à la somme de {{ numberTransformer($orderPayment->payment->amount) }}</p>
 
 <x-signature />
 

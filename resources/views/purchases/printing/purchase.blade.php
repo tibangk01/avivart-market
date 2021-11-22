@@ -10,7 +10,7 @@
     <p class="m-0 fs-12">Tél : {{ $purchase->provider->getFullPhoneNumber() }}</p>
 </div>
 
-<h6 class="text-uppercase">REF : {{ $purchase->getNumber() }} | {{ session('sessionSociety')->enterprise->city }}-{{ session('sessionSociety')->enterprise->country->name }}, Date : {{ $purchase->created_at->format('d/m/Y') }}.</h6>
+<h6 class="text-uppercase">REF : {{ $purchase->getNumber() }} | {{ session('sessionSociety')->enterprise->city }}-{{ session('sessionSociety')->enterprise->country->name }}, Date : {{ $purchase->created_at->isoFormat('L') }}.</h6>
 
 <table class="table table-bordered table-sm">
     <thead class="thead-dark">

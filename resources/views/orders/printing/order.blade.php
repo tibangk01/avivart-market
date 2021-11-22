@@ -10,7 +10,7 @@
     <p class="m-0 fs-12">Tél : {{ $order->customer->getFullPhoneNumber() }}</p>
 </div>
 
-<h6 class="text-uppercase">REF : {{ $order->getNumber() }}, Date : {{ $order->created_at->format('d/m/Y') }}.</h6>
+<h6 class="text-uppercase">REF : {{ $order->getNumber() }}, Date : {{ $order->created_at->isoFormat('L') }}.</h6>
 
 <table class="table table-bordered table-sm">
     <thead class="thead-dark">

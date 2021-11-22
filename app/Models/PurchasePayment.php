@@ -46,4 +46,22 @@ class PurchasePayment extends Model
 	{
 		return $this->belongsTo(Payment::class);
 	}
+
+	public function scopeTotalPayment($query, Purchase $purchase)
+	{
+		$totalPayment = 0;
+
+		if ($purchasePayments = $query->where('purchase_id', $purchase->id)->get()) {
+            foreach ($purchasePayments as $purchasePayment) {
+                $totalPayment += $purchasePayment->payment->amount;
+            }
+        }
+
+        return $totalPayment;
+	}
+
+	public function scopeRemnantPayment($query, Purchase $purchase)
+	{
+        return $purchase->totalTTC() - $this->totalPayment($purchase);
+	}
 }
