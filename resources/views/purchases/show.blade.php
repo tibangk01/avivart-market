@@ -67,8 +67,11 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th>Produit</th>
+                                <th>PAG</th>
+                                <th>PAU</th>
                                 <th>Qté Comdée</th>
                                 <th>Qté Livrée</th>
+                                <th>PAHT</th>
                                 <th>DC</th>
                                 <th>DM</th>
                                 <th>Actions</th>
@@ -78,8 +81,11 @@
                             @forelse ($purchase->products as $product)
                                 <tr>
                                     <td>{{ $product->name }}</td>
+                                    <td>{{ $product->pivot->global_purchase_price }}</td>
+                                    <td>{{ $product->pivot->purchase_price }}</td>
                                     <td>{{ $product->pivot->ordered_quantity }}</td>
                                     <td>{{ $product->pivot->delivered_quantity }}</td>
+                                    <td>{{ $product->pivot->purchase_price * $product->pivot->ordered_quantity }}</td>
                                     <td>{{ $product->pivot->created_at }}</td>
                                     <td>{{ $product->pivot->updated_at }}</td>
                                     <td class="d-flex flex-row justify-content-around align-items-center">
@@ -94,7 +100,7 @@
                                 </tr>
                             @empty
                             <tr>
-                                <td colspan="6">Pas d'enregistrements</td>
+                                <td colspan="8">Pas d'enregistrements</td>
                             </tr>
                             @endforelse
                         </tbody>

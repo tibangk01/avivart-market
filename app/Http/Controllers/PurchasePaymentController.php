@@ -152,7 +152,7 @@ class PurchasePaymentController extends Controller
      */
     public function destroy(PurchasePayment $purchasePayment)
     {
-        //$purchasePayment->delete();
+        $purchasePayment->payment->delete();
 
         return back()->withDanger('Donnée supprimée');
     }

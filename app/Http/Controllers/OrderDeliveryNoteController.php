@@ -113,7 +113,9 @@ class OrderDeliveryNoteController extends Controller
      */
     public function destroy(OrderDeliveryNote $orderDeliveryNote)
     {
-        //$orderDeliveryNote->delete();
+        if ($library = Library::find($orderDeliveryNote->library_id)) {
+            $library->delete();
+        }
 
         return back()->withDanger('Donnée supprimée');
     }

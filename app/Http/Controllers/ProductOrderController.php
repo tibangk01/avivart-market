@@ -49,6 +49,8 @@ class ProductOrderController extends Controller
             $request->validate([
                 'product_id' => ['required'],
                 'order_id' => ['required'],
+                'global_selling_price' => ['required'],
+                'selling_price' => ['required'],
                 'quantity' => ['required'],
                 'comment' => ['nullable'],
             ]);
@@ -127,6 +129,8 @@ class ProductOrderController extends Controller
             $request->validate([
                 'product_id' => ['required'],
                 'order_id' => ['required'],
+                'global_selling_price' => ['required'],
+                'selling_price' => ['required'],
                 'quantity' => ['required'],
                 'comment' => ['nullable'],
             ]);

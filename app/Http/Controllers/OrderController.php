@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use \Cart;
 use Illuminate\Support\Facades\DB;
 use App\Models\Customer;
+use App\Models\OrderPayment;
 use App\Models\Vat;
 use App\Models\Discount;
 use App\Models\OrderState;
@@ -187,7 +188,11 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //$order->delete();
+        if ($orderPayment = OrderPayment::where('order_id', $order->id)->first()) {
+            $orderPayment->payment->delete();
+        }
+
+        $order->delete();
 
         return back()->withDanger('Donnée supprimée');
     }

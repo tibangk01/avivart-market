@@ -47,6 +47,8 @@ class ProductProformaController extends Controller
             $request->validate([
                 'product_id' => ['required'],
                 'proforma_id' => ['required'],
+                'global_selling_price' => ['required'],
+                'selling_price' => ['required'],
                 'quantity' => ['required'],
             ]);
 
@@ -115,6 +117,8 @@ class ProductProformaController extends Controller
             $request->validate([
                 'product_id' => ['required'],
                 'proforma_id' => ['required'],
+                'global_selling_price' => ['required'],
+                'selling_price' => ['required'],
                 'quantity' => ['required'],
             ]);
 

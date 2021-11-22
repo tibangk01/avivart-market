@@ -49,6 +49,8 @@ class ProductPurchaseController extends Controller
             $request->validate([
                 'product_id' => ['required'],
                 'purchase_id' => ['required'],
+                'global_purchase_price' => ['required'],
+                'purchase_price' => ['required'],
                 'ordered_quantity' => ['required'],
                 'comment' => ['nullable'],
             ]);
@@ -123,6 +125,8 @@ class ProductPurchaseController extends Controller
             $request->validate([
                 'product_id' => ['required'],
                 'purchase_id' => ['required'],
+                'global_purchase_price' => ['required'],
+                'purchase_price' => ['required'],
                 'ordered_quantity' => ['required'],
                 'comment' => ['nullable'],
             ]);

@@ -20,8 +20,20 @@
                                 <td>{{ $productProforma->product->name }}</td>
                             </tr>
                             <tr>
+                                <th>Prix de Vente Global</th>
+                                <td>{{ $productProforma->global_selling_price }}</td>
+                            </tr>
+                            <tr>
+                                <th>Prix de Vente Unitaire</th>
+                                <td>{{ $productProforma->selling_price }}</td>
+                            </tr>
+                            <tr>
                                 <th>Quantité</th>
                                 <td>{{ $productProforma->quantity }}</td>
+                            </tr>
+                            <tr>
+                                <th>Prix de Vente HT</th>
+                                <td>{{ $productProforma->selling_price * $productProforma->quantity }}</td>
                             </tr>
                             <tr>
                                 <th>Date de Création</th>

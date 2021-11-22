@@ -7,6 +7,7 @@ use BarryvdhDomPDF as PDF;
 use Illuminate\Http\Request;
 use \Cart;
 use App\Models\Provider;
+use App\Models\PurchasePayment;
 use App\Models\Vat;
 use App\Models\Discount;
 use Illuminate\Support\Facades\DB;
@@ -155,7 +156,11 @@ class PurchaseController extends Controller
      */
     public function destroy(Purchase $purchase)
     {
-        //$purchase->delete();
+        if ($purchasePayment = PurchasePayment::where('purchase_id', $purchase->id)->first()) {
+            $purchasePayment->payment->delete();
+        }
+
+        $purchase->delete();
 
         return back()->withDanger('Donnée supprimée');
     }

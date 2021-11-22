@@ -63,7 +63,10 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th>Produit</th>
+                                <th>PVG</th>
+                                <th>PVU</th>
                                 <th>Qté</th>
+                                <th>PVHT</th>
                                 <th>DC</th>
                                 <th>DM</th>
                                 <th>Actions</th>
@@ -73,7 +76,10 @@
                             @forelse ($proforma->products as $product)
                                 <tr>
                                     <td>{{ $product->name }}</td>
+                                    <td>{{ $product->pivot->global_selling_price }}</td>
+                                    <td>{{ $product->pivot->selling_price }}</td>
                                     <td>{{ $product->pivot->quantity }}</td>
+                                    <td>{{ $product->pivot->selling_price * $product->pivot->quantity }}</td>
                                     <td>{{ $product->pivot->created_at }}</td>
                                     <td>{{ $product->pivot->updated_at }}</td>
                                     <td class="d-flex flex-row justify-content-around align-items-center">
@@ -86,7 +92,7 @@
                                 </tr>
                             @empty
                             <tr>
-                                <td colspan="5">Pas d'enregistrements</td>
+                                <td colspan="8">Pas d'enregistrements</td>
                             </tr>
                             @endforelse
                         </tbody>

@@ -18,7 +18,17 @@
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('ordered_quantity', 'Quantité') !!}
+                    {!! Form::label('global_purchase_price', "Prix d'Achat Global") !!}
+                    {!! Form::number('global_purchase_price', null, ['class' => 'form-control', 'required' => true, 'step' => 'any']) !!}
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('purchase_price', "Prix d'Achat Unitaire") !!}
+                    {!! Form::number('purchase_price', null, ['class' => 'form-control', 'required' => true, 'step' => 'any']) !!}
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('ordered_quantity', 'Quantité Commandée') !!}
                     {!! Form::number('ordered_quantity', null, ['class' => 'form-control', 'required' => true, 'min' => 1, 'step' => 1]) !!}
                 </div>
 

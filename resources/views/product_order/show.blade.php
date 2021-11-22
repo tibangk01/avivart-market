@@ -20,8 +20,20 @@
                                 <td>{{ $productOrder->product->name }}</td>
                             </tr>
                             <tr>
+                                <th>Prix de Vente Global</th>
+                                <td>{{ $productOrder->global_selling_price }}</td>
+                            </tr>
+                            <tr>
+                                <th>Prix de Vente Unitaire</th>
+                                <td>{{ $productOrder->selling_price }}</td>
+                            </tr>
+                            <tr>
                                 <th>Quantité</th>
                                 <td>{{ $productOrder->quantity }}</td>
+                            </tr>
+                            <tr>
+                                <th>Prix de Vente HT</th>
+                                <td>{{ $productOrder->selling_price * $productOrder->quantity }}</td>
                             </tr>
                             <tr>
                                 <th>Date de Création</th>

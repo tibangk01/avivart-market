@@ -18,6 +18,16 @@
                 </div>
 
                 <div class="form-group">
+                    {!! Form::label('global_selling_price', "Prix de Vente Global") !!}
+                    {!! Form::number('global_selling_price', null, ['class' => 'form-control', 'required' => true, 'step' => 'any']) !!}
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('selling_price', "Prix de Vente Unitaire") !!}
+                    {!! Form::number('selling_price', null, ['class' => 'form-control', 'required' => true, 'step' => 'any']) !!}
+                </div>
+
+                <div class="form-group">
                     {!! Form::label('quantity', 'Quantité') !!}
                     {!! Form::number('quantity', null, ['class' => 'form-control', 'required' => true, 'min' => 1, 'step' => 1]) !!}
                 </div>
