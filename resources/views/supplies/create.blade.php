@@ -8,7 +8,7 @@
                 
                 @if($purchases->count())
                 <div class="table-responsive">
-                    <table class="table table-bordered table-hover datatable">
+                    <table class="table table-bordered table-hover">
                         <thead class="thead-dark">
                             <tr>
                                 <th>Nom</th>
@@ -25,8 +25,9 @@
                         </thead>
                         <tbody>
                             @forelse ($purchases as $purchase)
-                            <tr class="table-info">
-                                <th colspan="10">Commande fournisseur N° {{ $purchase->getNumber() }} addressé au Fournisseur {{ $purchase->provider->getName() }}</th>
+                            <tr class="table-info text-center">
+                                <th colspan="9">Commande fournisseur N° {{ $purchase->getNumber() }} addressé au Fournisseur {{ $purchase->provider->getName() }}</th>
+                                <td>Nombre de Produits ({{ $purchase->products->count() }})</td>
                             </tr>
 
                             @forelse($purchase->products as $product)

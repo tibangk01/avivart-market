@@ -24,11 +24,11 @@
                             </tr>
                             <tr>
                                 <th>Date de Début</th>
-                                <td>{{ $exercise->start_date }}</td>
+                                <td>{{ $exercise->start_date->isoFormat('LL') }}</td>
                             </tr>
                             <tr>
                                 <th>Date de Fin</th>
-                                <td>{{ $exercise->end_date }}</td>
+                                <td>{{ $exercise->end_date->isoFormat('LL') }}</td>
                             </tr>
                             <tr>
                                 <th>Vente Réelle</th>

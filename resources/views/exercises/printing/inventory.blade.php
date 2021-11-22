@@ -11,7 +11,7 @@
 <table class="table table-bordered table-sm">
     <tr>
         <th>Période d'inventaire : {{ $exercise->getPeriod() }}</th>
-        <th class="text-right">Date de Création : {{ $exercise->created_at->format('d/m/Y H:i:s') }}</th>
+        <th class="text-right">Date de Création : {{ $exercise->created_at->isoFormat('L LTS') }}</th>
     </tr>
 </table>
 

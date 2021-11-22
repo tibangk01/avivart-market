@@ -47,8 +47,8 @@
                                                 <tr>
                                                     <td>{{ $exercise->currency->name }}</td>
                                                     <td>{{ $exercise->title }}</td>
-                                                    <td>{{ $exercise->start_date }}</td>
-                                                    <td>{{ $exercise->end_date }}</td>
+                                                    <td>{{ $exercise->start_date->isoFormat('LL') }}</td>
+                                                    <td>{{ $exercise->end_date->isoFormat('LL') }}</td>
                                                     <td>{{ $exercise->real_sale }}</td>
                                                     <td>{{ $exercise->created_at }}</td>
                                                     <td>{{ $exercise->created_at }}</td>

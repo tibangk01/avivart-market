@@ -8,7 +8,7 @@
                 @if($orders->count())
 
                 <div class="table-responsive">
-                    <table class="table table-bordered table-hover datatable">
+                    <table class="table table-bordered table-hover">
                         <thead class="thead-dark">
                             <tr>
                                 <th>Nom</th>
@@ -26,8 +26,9 @@
                         </thead>
                         <tbody>
                             @forelse ($orders as $order)
-                            <tr class="table-primary">
-                                <th colspan="10">Commande client N° {{ $order->getNumber() }} addressée au client {{ $order->customer->getName() }}</th>
+                            <tr class="table-primary text-center">
+                                <th colspan="9">Commande client N° {{ $order->getNumber() }} addressée au client {{ $order->customer->getName() }}</th>
+                                <td>Nombre de Produits ({{ $order->products->count() }})</td>
                                 <td>
                                     @if($order->has_delivery_note)
                                     <strong class="badge badge-info">Fichier attaché</strong>

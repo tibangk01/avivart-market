@@ -1,6 +1,6 @@
 <footer class="">
     <div class="text-right fs-11">
-        Document généré le {{ date('d M Y à H:i:s') }} / <strong>Page : <span class="pagenum"></span></strong>
+        Document généré le {{ now()->isoFormat('LL LTS') }} / <strong>Page : <span class="pagenum"></span></strong>
     </div>
 
     <hr class="my-1">

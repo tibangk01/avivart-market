@@ -19,6 +19,27 @@
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
                                 aria-labelledby="nav-home-tab">
 
+                                {!! Form::open(['method' => 'GET', 'route' => 'exercise_product.index']) !!}
+                                <fieldset>
+                                    <legend class="text-sm text-danger font-weight-bold">Recherche Avancée</legend>
+                                    <div class="row">
+                                        <div class="col-md-11">
+                                            <div class="form-group">
+                                                {!! Form::select('exercise_id', $exercises, request()->query('exercise_id'), ['class' => 'form-control', 'placeholder' => "Toutes"]) !!}
+                                                {!! Form::label('exercise_id', "Période d'inventaire") !!}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <div class="form-group">
+                                                {!! Form::submit('Filtrer', ['class' => 'btn btn-info btn-block']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                {!! Form::close() !!}
+
+                                <hr>
+
                                 <div class="d-flex">
                                     <div class="ml-auto mb-1">
                                         <x-create-record routeName="exercise_product.create" />
@@ -26,10 +47,9 @@
                                 </div>
 
                                 <div class="table-responsive">
-                                    <table class="table table-bordered table-hover table-striped datatable">
+                                    <table class="table table-bordered table-hover table-striped">
                                         <thead class="thead-dark">
                                             <tr>
-                                                <th>Période d'inventaire</th>
                                                 <th>Produit</th>
                                                 <th>Stock Initial</th>
                                                 <th>Stock Final</th>
@@ -40,26 +60,35 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse($exerciseProducts as $exerciseProduct)
-                                                <tr>
-                                                    <td>{{ $exerciseProduct->exercise->getPeriod() }}</td>
-                                                    <td>{{ $exerciseProduct->product->name }}</td>
-                                                    <td>{{ $exerciseProduct->initial_stock }}</td>
-                                                    <td>{{ $exerciseProduct->final_stock }}</td>
-                                                    <td>{{ $exerciseProduct->loss }}</td>
-                                                    <td>{{ $exerciseProduct->created_at }}</td>
-                                                    <td>{{ $exerciseProduct->updated_at }}</td>
-                                                    <td class="d-flex flex-row justify-content-around align-items-center">
-                                                        <x-show-record routeName="exercise_product.show" :routeParam="$exerciseProduct->id" />
-                                                        
-                                                        <x-edit-record routeName="exercise_product.edit" :routeParam="$exerciseProduct->id" />
-
-                                                        <x-destroy-record routeName="exercise_product.destroy" :routeParam="$exerciseProduct->id" />
-                                                    </td>
+                                            @forelse($exercises as $exercise)
+                                                <tr class="table-warning text-center">
+                                                    <th colspan="6">Periode : {{ $exercise->getPeriod() }}</th>
+                                                    <td>Nombre de Produits ({{ $exercise->products->count() }})</td>
                                                 </tr>
+                                                @forelse($exercise->products as $product)
+                                                    <tr>
+                                                        <td>{{ $product->name }}</td>
+                                                        <td>{{ $product->pivot->initial_stock }}</td>
+                                                        <td>{{ $product->pivot->final_stock }}</td>
+                                                        <td>{{ $product->pivot->loss }}</td>
+                                                        <td>{{ $product->pivot->created_at }}</td>
+                                                        <td>{{ $product->pivot->updated_at }}</td>
+                                                        <td class="d-flex flex-row justify-content-around align-items-center">
+                                                            <x-show-record routeName="exercise_product.show" :routeParam="$product->pivot->id" />
+                                                            
+                                                            <x-edit-record routeName="exercise_product.edit" :routeParam="$product->pivot->id" />
+
+                                                            <x-destroy-record routeName="exercise_product.destroy" :routeParam="$product->pivot->id" />
+                                                        </td>
+                                                    </tr>
+                                                @empty
+                                                    <tr>
+                                                        <td colspan="7">Pas d'enregistrements</td>
+                                                    </tr>
+                                                @endforelse
                                             @empty
                                                 <tr>
-                                                    <td colspan="8">Pas d'enregistrements</td>
+                                                    <td colspan="7">Pas d'enregistrements</td>
                                                 </tr>
                                             @endforelse
                                         </tbody>

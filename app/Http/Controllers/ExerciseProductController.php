@@ -19,9 +19,15 @@ class ExerciseProductController extends Controller
      */
     public function index()
     {
-        $exerciseProducts = ExerciseProduct::all();
+        $query = Exercise::query();
 
-        return view('exercises_products.index', compact('exerciseProducts'));
+        if ($exercise_id = request()->query('exercise_id')) {
+            $query->where('id', $exercise_id);
+        }
+
+        $exercises = $query->get()->pluck(null, 'id');
+
+        return view('exercises_products.index', compact('exercises'));
     }
 
     /**

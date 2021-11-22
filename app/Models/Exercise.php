@@ -66,7 +66,7 @@ class Exercise extends Model
 
 	public function getPeriod(string $separator = ' au ')
 	{
-		return $this->start_date->format('d/m/Y') . $separator . $this->end_date->format('d/m/Y');
+		return $this->start_date->isoFormat('L') . $separator . $this->end_date->isoFormat('L');
 	}
 
 	public function __toString()
