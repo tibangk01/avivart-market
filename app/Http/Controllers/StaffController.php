@@ -202,7 +202,13 @@ class StaffController extends Controller
      */
     public function destroy(Staff $staff)
     {
-        //$staff->delete();
+        if ($human = Human::find($staff->human_id)) {
+            if ($user = User::find($human->user_id)) {
+                if ($library = Library::find($user->library_id)) {
+                    $library->delete();
+                }
+            }
+        }
 
         return back()->withDanger('Donnée supprimée');
     }

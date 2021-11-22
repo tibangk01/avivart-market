@@ -246,7 +246,23 @@ class ProviderController extends Controller
      */
     public function destroy(Provider $provider)
     {
-        //$provider->delete();
+        if ($provider->person_type_id == 1) {
+            if ($corporation = Corporation::find($provider->corporation_id)) {
+                if ($enterprise = Enterprise::find($corporation->enterprise_id)) {
+                    if ($library = Library::find($enterprise->library_id)) {
+                        $library->delete();
+                    }
+                }
+            }
+        } else {
+            if ($person = Person::find($provider->person_id)) {
+                if ($user = User::find($person->user_id)) {
+                    if ($library = Library::find($user->library_id)) {
+                        $library->delete();
+                    }
+                }
+            }
+        }
 
         return back()->withDanger('Donnée supprimée');
     }

@@ -196,7 +196,11 @@ class AgencyController extends Controller
      */
     public function destroy(Agency $agency)
     {
-        //$agency->delete();
+        if ($enterprise = Enterprise::find($agency->enterprise_id)) {
+            if ($library = Library::find($enterprise->library_id)) {
+                $library->delete();
+            }
+        }
 
         return back()->withDanger('Donnée supprimée');
     }

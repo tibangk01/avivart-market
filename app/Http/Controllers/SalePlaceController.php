@@ -193,7 +193,11 @@ class SalePlaceController extends Controller
      */
     public function destroy(SalePlace $salePlace)
     {
-        //$salePlace->delete();
+        if ($enterprise = Enterprise::find($salePlace->enterprise_id)) {
+            if ($library = Library::find($enterprise->library_id)) {
+                $library->delete();
+            }
+        }
 
         return back()->withDanger('Donnée supprimée');
     }

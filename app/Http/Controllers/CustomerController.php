@@ -246,7 +246,23 @@ class CustomerController extends Controller
      */
     public function destroy(Customer $customer)
     {
-        //$customer->delete();
+        if ($customer->person_type_id == 1) {
+            if ($corporation = Corporation::find($customer->corporation_id)) {
+                if ($enterprise = Enterprise::find($corporation->enterprise_id)) {
+                    if ($library = Library::find($enterprise->library_id)) {
+                        $library->delete();
+                    }
+                }
+            }
+        } else {
+            if ($person = Person::find($customer->person_id)) {
+                if ($user = User::find($person->user_id)) {
+                    if ($library = Library::find($user->library_id)) {
+                        $library->delete();
+                    }
+                }
+            }
+        }
 
         return back()->withDanger('Donnée supprimée');
     }
