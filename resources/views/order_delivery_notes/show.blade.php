@@ -4,12 +4,6 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row">
-
-            <div class="col-lg-12">
-                <x-library :library='$orderDeliveryNote->library' class="img200_200" />
-                <a href="{{ route('library.edit', $orderDeliveryNote->library) }}"><i class="fas fa-edit"></i> Editer</a>
-            </div>
-
             <div class="col-lg-6">
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-hover">
@@ -39,12 +33,17 @@
                         </tbody>
                     </table>
                 </div>
+
+                <p>
+                    <x-library :library='$orderDeliveryNote->library' class="img200_200" />
+                    <a href="{{ route('library.edit', $orderDeliveryNote->library) }}"><i class="fas fa-edit"></i> Editer</a>
+                </p>
             </div>
             <div class="col-lg-6">
                 <h4>Ligne de commande client</h4>
 
                 <div class="text-right py-1">
-                    @can('cudProductOrder', $order)
+                    @can('cudProductOrder', $orderDeliveryNote->order)
                     <x-create-record routeName="product_order.create" />
                     @endcan
                 </div>
@@ -76,7 +75,7 @@
                                     <td class="d-flex flex-row justify-content-around align-items-center">
                                         <x-show-record routeName="product_order.show" :routeParam="$product->pivot->id" />
 
-                                        @can('cudProductOrder', $order)
+                                        @can('cudProductOrder', $orderDeliveryNote->order)
                                         <x-edit-record routeName="product_order.edit" :routeParam="$product->pivot->id" />
 
                                         <x-destroy-record routeName="product_order.destroy" :routeParam="$product->pivot->id" />

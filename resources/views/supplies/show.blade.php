@@ -46,7 +46,7 @@
                 <h4>Ligne de commande fournisseur</h4>
 
                 <div class="text-right py-1">
-                    @can('cudProductPurchase', $purchase)
+                    @can('cudProductPurchase', $supply->product_purchase->purchase)
                     <x-create-record routeName="product_purchase.create" />
                     @endcan
                 </div>
@@ -80,7 +80,7 @@
                                     <td class="d-flex flex-row justify-content-around align-items-center">
                                         <x-show-record routeName="product_purchase.show" :routeParam="$product->pivot->id" />
 
-                                        @can('cudProductPurchase', $purchase)
+                                        @can('cudProductPurchase', $supply->product_purchase->purchase)
                                         <x-edit-record routeName="product_purchase.edit" :routeParam="$product->pivot->id" />
 
                                         <x-destroy-record routeName="product_purchase.destroy" :routeParam="$product->pivot->id" />
