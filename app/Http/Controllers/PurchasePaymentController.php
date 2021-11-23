@@ -52,7 +52,7 @@ class PurchasePaymentController extends Controller
                 'payment_mode_id' => ['required'],
                 'purchase_id' => ['required'],
                 'amount' => ['required'],
-                'account_number' => ['nullable', 'max:30'],
+                'cheque_number' => ['nullable', 'max:30'],
             ]);
 
             try {
@@ -146,14 +146,14 @@ class PurchasePaymentController extends Controller
                 'payment_mode_id' => ['required'],
                 'purchase_id' => ['required'],
                 'amount' => ['required'],
-                'account_number' => ['nullable', 'max:30'],
+                'cheque_number' => ['nullable', 'max:30'],
             ]);
 
             try {
 
                 DB::beginTransaction();
 
-                $purchasePayment->payment->update($request->only('payment_mode_id', 'account_number'));
+                $purchasePayment->payment->update($request->only('payment_mode_id', 'cheque_number'));
 
                 DB::commit();
 

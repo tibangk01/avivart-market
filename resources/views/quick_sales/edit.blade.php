@@ -34,8 +34,8 @@
                     {!! Form::close() !!}
                 </div>
                 <div class="col-lg-6">
-                    <div class="table-responsive bg-white p-2">
-                        <table class="mb-0 table table-bordered table-hover table-striped text-nowrap datatable text-center">
+                    <div class="table-responsive">
+                        <table class="mb-0 table table-bordered table-hover table-striped datatable">
                             <thead class="thead-dark">
                                 <tr>
                                     <th>Action</th>

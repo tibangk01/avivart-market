@@ -32,8 +32,8 @@
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('account_number', 'N° de compte') !!}
-                    {!! Form::text('account_number', $orderPayment->payment->account_number, ['class' => 'form-control', 'placeholder' => 'N° de compte']) !!}
+                    {!! Form::label('cheque_number', 'N° de chèque') !!}
+                    {!! Form::text('cheque_number', $orderPayment->payment->cheque_number, ['class' => 'form-control', 'placeholder' => 'N° de chèque']) !!}
                 </div>
 
                 <div class="form-group text-right">

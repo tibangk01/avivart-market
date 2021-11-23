@@ -12,7 +12,7 @@
         Veuillez patienter...
     </div>
 
-    <div class="table-responsive bg-white p-2">
+    <div class="table-responsive">
         <table class="mb-0 table table-bordered table-hover table-striped">
             <thead class="thead-dark">
                 <tr>

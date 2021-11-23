@@ -47,8 +47,8 @@
     </div>
 
     <div class="form-group">
-        <label for="account_number">N° de compte</label>
-        <input type="text" name="account_number" id="account_number" placeholder="N° de compte" class="form-control">
+        <label for="cheque_number">N° de chèque</label>
+        <input type="text" name="cheque_number" id="cheque_number" placeholder="N° de chèque" class="form-control">
     </div>
 
     <div class="form-group text-right">

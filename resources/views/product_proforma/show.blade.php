@@ -6,8 +6,8 @@
         <div class="row">
             <div class="col-md-12">
                 
-                <div class="table-responsive bg-white">
-                    <table class="table table-bordered table-striped table-hover mb-0">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover">
                         <thead class="thead-dark">
                             <tr>
                                 <th>Clé</th>

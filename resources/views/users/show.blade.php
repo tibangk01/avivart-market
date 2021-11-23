@@ -33,8 +33,8 @@
                                     </div>
                                 </div>
 
-                                <div class="table-responsive bg-white">
-                                    <table class="table table-bordered table-striped table-hover mb-0">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped table-hover">
                                         <thead class="thead-dark">
                                             <tr>
                                                 <th>Clé</th>
@@ -123,7 +123,7 @@
                                         </div>
                                     </div>
                                     <div class="table-responsive">
-                                        <table class="table table-bordered table-hover table-striped datatable text-center">
+                                        <table class="table table-bordered table-hover table-striped datatable">
                                             <thead class="thead-dark">
                                                 <tr>
                                                     <th></th>

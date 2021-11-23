@@ -13,8 +13,8 @@
                 <div class="col-lg-6">
                     <h4>Informations</h4>
 
-                    <div class="table-responsive bg-white">
-                        <table class="table table-bordered table-striped table-hover mb-0">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover">
                             <thead class="thead-dark">
                                 <tr>
                                     <th>Clé</th>
@@ -104,8 +104,8 @@
                 <div class="col-lg-6">
                     <h4>Transactions de Caisse Journalière (TCJ)</h4>
 
-                    <div class="table-responsive bg-white">
-                        <table class="table table-bordered table-striped table-hover table-striped mb-0">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover table-striped">
                             <thead class="thead-dark">
                                 <tr>
                                     <th>Journée</th>

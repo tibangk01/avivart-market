@@ -35,7 +35,7 @@
                                                     <th>Commande fournisseur</th>
                                                     <th>Montant</th>
                                                     <th>Mode de payement</th>
-                                                    <th>N° de compte</th>
+                                                    <th>N° de chèque</th>
                                                     <th>Date de Création</th>
                                                     <th>Date de Modification</th>
                                                     <th>Actions</th>
@@ -47,7 +47,7 @@
                                                         <td>{{ $purchasePayment->purchase->getNumber() }}</td>
                                                         <td>{{ $purchasePayment->payment->amount }}</td>
                                                         <td>{{ $purchasePayment->payment->payment_mode->name }}</td>
-                                                        <td>{{ $purchasePayment->payment->account_number }}</td>
+                                                        <td>{{ $purchasePayment->payment->cheque_number }}</td>
                                                         <td>{{ $purchasePayment->created_at }}</td>
                                                         <td>{{ $purchasePayment->created_at }}</td>
                                                         <td class="d-flex flex-row justify-content-around align-items-center">

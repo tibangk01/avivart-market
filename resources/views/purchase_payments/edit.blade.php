@@ -27,8 +27,8 @@
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('account_number', 'N° de compte') !!}
-                    {!! Form::text('account_number', $purchasePayment->payment->account_number, ['class' => 'form-control', 'placeholder' => 'N° de compte']) !!}
+                    {!! Form::label('cheque_number', 'N° de chèque') !!}
+                    {!! Form::text('cheque_number', $purchasePayment->payment->cheque_number, ['class' => 'form-control', 'placeholder' => 'N° de chèque']) !!}
                 </div>
 
                 <div class="form-group text-right">

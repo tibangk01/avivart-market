@@ -11,8 +11,8 @@
                     <a href="{{ route('library.edit', $agency->enterprise->library) }}"><i class="fas fa-edit"></i> Editer</a>
                 </div>
 
-                    <div class="table-responsive bg-white">
-                        <table class="table table-bordered table-striped table-hover mb-0">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover">
                             <thead class="thead-dark">
                                 <tr>
                                     <th>Clé</th>
