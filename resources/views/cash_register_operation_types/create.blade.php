@@ -19,13 +19,13 @@
                     <div class="form-group">
 
                         <label for="valueOne" class="form-label">
-                            {!! Form::radio('state', '0', null, ['id' => 'valueOne']) !!} Sortie ?
+                            {!! Form::radio('state', 0, null, ['id' => 'valueOne']) !!} Sortie
                         </label>
 
                         &nbsp;&nbsp;&nbsp;
 
                         <label for="valueTwo" class="form-label">
-                            {!! Form::radio('state', '1', null, ['id' => 'valueTwo']) !!} Entrée ?
+                            {!! Form::radio('state', 1, null, ['id' => 'valueTwo']) !!} Entrée
                         </label>
 
                     </div>

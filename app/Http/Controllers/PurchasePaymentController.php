@@ -45,15 +45,9 @@ class PurchasePaymentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePurchasePaymentRequest $request)
     {
         if ($request->isMethod('POST')) {
-            $request->validate([
-                'payment_mode_id' => ['required'],
-                'purchase_id' => ['required'],
-                'amount' => ['required'],
-                'cheque_number' => ['nullable', 'max:30'],
-            ]);
 
             try {
 
@@ -139,15 +133,9 @@ class PurchasePaymentController extends Controller
      * @param  \App\Models\PurchasePayment  $purchasePayment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PurchasePayment $purchasePayment)
+    public function update(UpdatePurchasePaymentRequest $request, PurchasePayment $purchasePayment)
     {
         if ($request->isMethod('PUT')) {
-            $request->validate([
-                'payment_mode_id' => ['required'],
-                'purchase_id' => ['required'],
-                'amount' => ['required'],
-                'cheque_number' => ['nullable', 'max:30'],
-            ]);
 
             try {
 

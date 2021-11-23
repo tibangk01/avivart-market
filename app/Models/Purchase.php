@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $provider_id
  * @property int $vat_id
  * @property int $discount_id
+ * @property int $order_state_id
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * 
@@ -35,12 +36,14 @@ class Purchase extends Model
 		'provider_id' => 'int',
 		'vat_id' => 'int',
 		'discount_id' => 'int',
+		'order_state_id' => 'int',
 	];
 
 	protected $fillable = [
 		'provider_id',
 		'vat_id',
 		'discount_id',
+		'order_state_id',
 		'has_delivery_note',
 		'paid',
 	];
@@ -60,11 +63,41 @@ class Purchase extends Model
 		return $this->belongsTo(Discount::class);
 	}
 
+	public function order_state()
+	{
+		return $this->belongsTo(OrderState::class);
+	}
+
 	public function products()
 	{
 		return $this->belongsToMany(Product::class, 'product_purchase')
 					->withPivot('id', 'ordered_quantity', 'delivered_quantity', 'global_purchase_price', 'purchase_price', 'comment')
 					->withTimestamps();
+	}
+
+	public function getOrderStateStyle(): string
+	{
+		$bgColor = '';
+
+		switch (intval($this->order_state_id)) {
+			case 1:	//en entente
+				$bgColor = 'table-warning';
+				break;
+
+			case 2:	//en cours de livraison
+				$bgColor = 'table-white';
+				break;
+
+			case 3:	//livrée
+				$bgColor = $this->paid ? 'table-success' : 'table-danger';
+				break;
+			
+			default:	//annulée
+				$bgColor = 'table-primary';
+				break;
+		}
+
+		return $bgColor;
 	}
 
 	public function getPaid()

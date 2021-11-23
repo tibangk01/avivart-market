@@ -13,7 +13,7 @@ class StoreProformaRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class StoreProformaRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'customer_id' => ['required'],
+            'vat_id' => ['nullable'],
+            'discount_id' => ['nullable'],
         ];
     }
 }

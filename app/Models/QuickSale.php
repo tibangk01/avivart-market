@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $product_id
  * @property int $vat_id
  * @property int $discount_id
+ * @property int $order_state_id
  * @property int $quantity
  * @property float $selling_price
  * @property Carbon $created_at
@@ -35,6 +36,7 @@ class QuickSale extends Model
 		'product_id' => 'int',
 		'vat_id' => 'int',
 		'discount_id' => 'int',
+		'order_state_id' => 'int',
 		'quantity' => 'int',
 		'selling_price' => 'float'
 	];
@@ -43,8 +45,10 @@ class QuickSale extends Model
 		'product_id',
 		'vat_id',
 		'discount_id',
+		'order_state_id',
 		'quantity',
-		'selling_price'
+		'selling_price',
+		'paid',
 	];
 
 	public function product()
@@ -61,6 +65,41 @@ class QuickSale extends Model
 	{
 		return $this->belongsTo(Discount::class);
 	}
+
+	public function order_state()
+	{
+		return $this->belongsTo(OrderState::class);
+	}
+
+	public function getOrderStateStyle(): string
+	{
+		$bgColor = '';
+
+		switch (intval($this->order_state_id)) {
+			case 1:	//en entente
+				$bgColor = 'table-warning';
+				break;
+
+			case 2:	//en cours de livraison
+				$bgColor = 'table-white';
+				break;
+
+			case 3:	//livrée
+				$bgColor = $this->paid ? 'table-success' : 'table-danger';
+				break;
+			
+			default:	//annulée
+				$bgColor = 'table-primary';
+				break;
+		}
+
+		return $bgColor;
+	}
+
+	public function getPaid()
+    {
+        return $this->paid ? 'Payer' : 'Non payer';
+    }
 
 	public function getVat()
     {
@@ -95,4 +134,9 @@ class QuickSale extends Model
 	{
 		return $this->selling_price * $this->quantity;
 	}
+
+	public function __toString()
+    {
+        return $this->getNumber();
+    }
 }

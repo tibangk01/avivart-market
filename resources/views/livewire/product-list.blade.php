@@ -1,9 +1,9 @@
 <section>
     <div class="row">
         <div class="col-md-8">
-            <h6 class="pt-2 text-danger">Sélection : {{ count($ids) }}</h6>
+            <h6 class="pt-3 text-danger">Sélection : {{ count($ids) }}</h6>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 py-2">
             <input type="search" name="search" id="search" class="form-control" placeholder="Rechercher..." wire:model="search" required>
         </div>
     </div>

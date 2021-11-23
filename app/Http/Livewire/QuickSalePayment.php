@@ -4,28 +4,28 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\OrderState;
-use App\Models\Purchase;
-use App\Models\PurchasePayment as PurchasePaymentModel;
+use App\Models\QuickSale;
+use App\Models\QuickSalePayment as QuickSalePaymentModel;
 use App\Models\Payment;
 use App\Models\PaymentMode;
 
-class PurchasePayment extends Component
+class QuickSalePayment extends Component
 {
     public $paymentModes;
-
+    
     public $orderStates;
 
-    public $purchases;
+    public $quickSales;
 
-    public $purchase;
+    public $quickSale;
 
     public $amount;
 
     public function mount()
     {
         $this->orderStates = OrderState::all();
-        
-        $this->purchases = Purchase::where('paid', false)->get();
+
+        $this->quickSales = QuickSale::where('paid', false)->get();
 
         $this->paymentModes = PaymentMode::all();
 
@@ -34,7 +34,7 @@ class PurchasePayment extends Component
 
     public function render()
     {
-        return view('livewire.purchase-payment');
+        return view('livewire.quick-sale-payment');
     }
 
     public function setAmount(int $value)
@@ -42,9 +42,9 @@ class PurchasePayment extends Component
         if ($value == 0) {
             return;
         }
+        
+        $this->quickSale = QuickSale::findOrFail($value);
 
-        $this->purchase = Purchase::findOrFail($value);
-
-        $this->amount = PurchasePaymentModel::remnantPayment($this->purchase);
+        $this->amount = QuickSalePaymentModel::remnantPayment($this->quickSale);
     }
 }

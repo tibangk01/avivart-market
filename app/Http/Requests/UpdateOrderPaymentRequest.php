@@ -13,7 +13,7 @@ class UpdateOrderPaymentRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,11 @@ class UpdateOrderPaymentRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'order_id' => ['required'],
+            'payment_mode_id' => ['required'],
+            'order_state_id' => ['required'],
+            'amount' => ['required'],
+            'cheque_number' => ['nullable', 'max:30'],
         ];
     }
 }

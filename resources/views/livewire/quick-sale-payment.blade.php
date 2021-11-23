@@ -4,14 +4,14 @@
         Veuillez patienter...
     </div>
 
-    {!! Form::open(['method' => 'POST', 'route' => 'purchase_payment.store']) !!}
+    {!! Form::open(['method' => 'POST', 'route' => 'quick_sale_payment.store']) !!}
 
     <div class="form-group">
-        <label for="purchase_id">Commande fournisseur</label>
-        <select class="form-control" name="purchase_id" id="purchase_id" required wire:change="setAmount($event.target.value)">
+        <label for="quick_sale_id">Vente rapide</label>
+        <select class="form-control" name="quick_sale_id" id="quick_sale_id" required wire:change="setAmount($event.target.value)">
             <option value="0">Choisissez</option>
-            @foreach($purchases as $purchase)
-            <option value="{{ $purchase->id }}">{{ $purchase->getNumber() }}</option>
+            @foreach($quickSales as $quickSale)
+            <option value="{{ $quickSale->id }}">{{ $quickSale->getNumber() }}</option>
             @endforeach
         </select>
     </div>

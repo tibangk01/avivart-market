@@ -4,17 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\OrderState;
 use App\Models\PaymentMode;
-use App\Models\Order;
+use App\Models\QuickSale;
 use App\Models\Payment;
-use App\Models\OrderPayment;
-use App\Models\ExerciseProduct;
+use App\Models\QuickSalePayment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use BarryvdhDomPDF as PDF;
-use App\Http\Requests\StoreOrderPaymentRequest;
-use App\Http\Requests\UpdateOrderPaymentRequest;
+use App\Http\Requests\StoreQuickSalePaymentRequest;
+use App\Http\Requests\UpdateQuickSalePaymentRequest;
 
-class OrderPaymentController extends Controller
+class QuickSalePaymentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,9 +22,9 @@ class OrderPaymentController extends Controller
      */
     public function index()
     {
-        $orderPayments = OrderPayment::all();
+        $quickSalePayments = QuickSalePayment::all();
         
-        return view('order_payments.index', compact('orderPayments'));
+        return view('quick_sale_payments.index', compact('quickSalePayments'));
     }
 
     /**
@@ -37,7 +36,7 @@ class OrderPaymentController extends Controller
     {
         abort_if((session('staffStatusBarInfo') === null), 403, "Veuillez ouvrir votre caisse");
 
-        return view('order_payments.create');
+        return view('quick_sale_payments.create');
     }
 
     /**
@@ -46,7 +45,7 @@ class OrderPaymentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreOrderPaymentRequest $request)
+    public function store(StoreQuickSalePaymentRequest $request)
     {
         if ($request->isMethod('POST')) {
 
@@ -54,29 +53,29 @@ class OrderPaymentController extends Controller
 
                 DB::beginTransaction();
 
-                $order = Order::findOrFail($request->order_id);
+                $quickSale = QuickSale::findOrFail($request->quick_sale_id);
 
-                $totalPayment = OrderPayment::totalPayment($order);
+                $totalPayment = QuickSalePayment::totalPayment($quickSale);
 
-                if ((floatval($request->amount) + $totalPayment) > $order->totalTTC()) {
+                if ((floatval($request->amount) + $totalPayment) > $quickSale->totalTTC()) {
                     return back()->withDanger('Erreur de payement');
                 }
 
                 $payment = Payment::create(array_merge(
-                    $request->except('order_id'),
+                    $request->except('quick_sale_id'),
                     [
                         'state' => ($request->state == 'on' || $request->state) ? true : false,
                     ]
                 ));
 
-                $orderPayment = OrderPayment::create([
-                    'order_id' => $order->id,
+                $quickSalePayment = QuickSalePayment::create([
+                    'quick_sale_id' => $quickSale->id,
                     'payment_id' => $payment->id,
                 ]);
 
-                $order->update([
+                $quickSale->update([
                     'order_state_id' => $request->input('order_state_id'),
-                    'paid' => (floatval($request->amount) + $totalPayment) == $order->totalTTC(),
+                    'paid' => (floatval($request->amount) + $totalPayment) == $quickSale->totalTTC(),
                 ]);
 
                 DB::commit();
@@ -88,7 +87,7 @@ class OrderPaymentController extends Controller
                     '+'
                 );
 
-                return redirect()->to(route('order_payment.printing.one', ['order_payment' => $orderPayment]));    //to or away
+                return redirect()->to(route('quick_sale_payment.printing.one', ['quick_sale_payment' => $quickSalePayment]));    //to or away
 
             } catch (\Exception $ex) {
                 DB::rollBack();
@@ -105,39 +104,39 @@ class OrderPaymentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\OrderPayment  $orderPayment
+     * @param  \App\Models\QuickSalePayment  $quickSalePayment
      * @return \Illuminate\Http\Response
      */
-    public function show(OrderPayment $orderPayment)
+    public function show(QuickSalePayment $quickSalePayment)
     {
-        return view('order_payments.show', compact('orderPayment'));
+        return view('quick_sale_payments.show', compact('quickSalePayment'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\OrderPayment  $orderPayment
+     * @param  \App\Models\QuickSalePayment  $quickSalePayment
      * @return \Illuminate\Http\Response
      */
-    public function edit(OrderPayment $orderPayment)
+    public function edit(QuickSalePayment $quickSalePayment)
     {
         $orderStates = OrderState::all()->pluck(null, 'id');
 
-        $orders = Order::where('paid', true)->get()->pluck(null, 'id');
+        $quickSales = QuickSale::where('paid', true)->get()->pluck(null, 'id');
 
         $paymentModes = PaymentMode::all()->pluck(null, 'id');
 
-        return view('order_payments.edit', compact('orderPayment', 'orderStates', 'orders', 'paymentModes'));
+        return view('quick_sale_payments.edit', compact('quickSalePayment', 'orderStates', 'quickSales', 'paymentModes'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\OrderPayment  $orderPayment
+     * @param  \App\Models\QuickSalePayment  $quickSalePayment
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateOrderPaymentRequest $request, OrderPayment $orderPayment)
+    public function update(UpdateQuickSalePaymentRequest $request, QuickSalePayment $quickSalePayment)
     {
         if ($request->isMethod('PUT')) {
 
@@ -145,9 +144,9 @@ class OrderPaymentController extends Controller
 
                 DB::beginTransaction();
             
-                $orderPayment->order->update($request->only('order_state_id'));
+                $quickSalePayment->quick_sale->update($request->only('order_state_id'));
 
-                $orderPayment->payment->update($request->only('payment_mode_id', 'cheque_number'));
+                $quickSalePayment->payment->update($request->only('payment_mode_id', 'cheque_number'));
 
                 DB::commit();
 
@@ -168,33 +167,33 @@ class OrderPaymentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\OrderPayment  $orderPayment
+     * @param  \App\Models\QuickSalePayment  $quickSalePayment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(OrderPayment $orderPayment)
+    public function destroy(QuickSalePayment $quickSalePayment)
     {
-        $orderPayment->payment->delete();
+        $quickSalePayment->payment->delete();
 
         return back()->withDanger('Donnée supprimée');
     }
 
     public function printingAll(Request $request)
     {
-        $orderPayments = OrderPayment::all();
+        $quickSalePayments = QuickSalePayment::all();
 
-        $pdf = PDF::loadView('order_payments.printing.order_payments', compact('orderPayments'));
+        $pdf = PDF::loadView('quick_sale_payments.printing.quick_sale_payments', compact('quickSalePayments'));
         $pdf->setPaper('a4', 'landscape');
-        $pdf->save(public_path("libraries/docs/order_payments.pdf"));
+        $pdf->save(public_path("libraries/docs/quick_sale_payments.pdf"));
 
-        return $pdf->stream('order_payments.pdf');
+        return $pdf->stream('quick_sale_payments.pdf');
     }
 
-    public function printingOne(Request $request, OrderPayment $orderPayment)
+    public function printingOne(Request $request, QuickSalePayment $quickSalePayment)
     {
-        $pdf = PDF::loadView('order_payments.printing.order_payment', compact('orderPayment'));
+        $pdf = PDF::loadView('quick_sale_payments.printing.quick_sale_payment', compact('quickSalePayment'));
         $pdf->setPaper('a4', 'portrait');
-        $pdf->save(public_path("libraries/docs/order_payment_{$orderPayment->id}.pdf"));
+        $pdf->save(public_path("libraries/docs/quick_sale_payment_{$quickSalePayment->id}.pdf"));
 
-        return $pdf->stream("order_payment_{$orderPayment->id}.pdf");
+        return $pdf->stream("quick_sale_payment_{$quickSalePayment->id}.pdf");
     }
 }

@@ -31,6 +31,7 @@
                                             <tr>
                                                 <th>Numéro</th>
                                                 <th>Fournisseur</th>
+                                                <th>Etat</th>
                                                 <th>Statut</th>
                                                 <th>Fichier</th>
                                                 <th>TVA</th>
@@ -43,9 +44,10 @@
                                         </thead>
                                         <tbody>
                                             @forelse ($purchases as $purchase)
-                                                <tr>
+                                                <tr class="{{ $purchase->getOrderStateStyle() }}">
                                                     <td>{{ $purchase->getNumber() }}</td>
                                                     <td>{{ $purchase->provider->getName() }}</td>
+                                                    <td>{{ $purchase->order_state->name }}</td>
                                                     <td><span class="{{ $purchase->paid ? 'badge badge-success' : 'badge badge-danger' }}">{{ $purchase->getPaid() }}</span></td>
                                                     <td><span class="{{ $purchase->has_delivery_note ? 'badge badge-primary' : 'badge badge-warning' }}">{{ $purchase->hasDeliveryNote() }}</span></td>
                                                     <td>{{ $purchase->getVat() }}</td>
@@ -56,16 +58,18 @@
                                                     <td class="d-flex flex-row justify-content-around align-items-center">
                                                         <x-show-record routeName="purchase.show" :routeParam="$purchase->id" />
                                                         
+                                                        @can('cudProductPurchase', $purchase)
                                                         <x-edit-record routeName="purchase.edit" :routeParam="$purchase->id" />
 
                                                         <x-destroy-record routeName="purchase.destroy" :routeParam="$purchase->id" />
+                                                        @endcan
 
                                                         <x-print-one-record routeName="purchase.printing.one" :routeParam="$purchase->id" />
                                                     </td>
                                                 </tr>
                                             @empty
                                             <tr>
-                                                <td colspan="10">Pas d'enregistrements</td>
+                                                <td colspan="11">Pas d'enregistrements</td>
                                             </tr>
                                             @endforelse
                                         </tbody>

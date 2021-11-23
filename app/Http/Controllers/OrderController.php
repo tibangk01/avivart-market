@@ -56,11 +56,9 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreOrderRequest $request)
     {
         if ($request->isMethod('POST')) {
-
-            $this->_validateRequest($request);
             
             $cartContent = Cart::instance($request->input('instance'))->content();
 
@@ -84,12 +82,7 @@ class OrderController extends Controller
             try {
                 DB::beginTransaction();
 
-                $order = Order::create([
-                    'customer_id' => $request->customer_id,
-                    'vat_id' => $request->vat_id,
-                    'discount_id' => $request->discount_id,
-                    'order_state_id' => $request->order_state_id,
-                ]);
+                $order = Order::create($request->validated());
 
                 foreach ($cartContent as $row) {
                     $product = Product::findOrFail($row->id);
@@ -166,15 +159,30 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(UpdateOrderRequest $request, Order $order)
     {
         if ($request->isMethod('PUT')) {
 
-            $this->_validateRequest($request);
+            //Gate
+            $this->authorize('cudProductOrder', $order);
 
-            $order->update($request->all());
+            try {
+                
+                DB::beginTransaction();
 
-            session()->flash('success', 'Donnée enregistrée.');
+                $order->update($request->validated());
+
+                DB::commit();
+
+                session()->flash('success', 'Donnée enregistrée.');
+
+            } catch (\Exception $ex) {
+                DB::rollback();
+
+                dd($ex);
+
+                session()->flash('error', "Une erreur s'est produite");
+            }
         }
 
         return back();
@@ -188,6 +196,9 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
+        //Gate
+        $this->authorize('cudProductOrder', $order);
+
         if ($orderPayment = OrderPayment::where('order_id', $order->id)->first()) {
             $orderPayment->payment->delete();
         }
@@ -195,24 +206,6 @@ class OrderController extends Controller
         $order->delete();
 
         return back()->withDanger('Donnée supprimée');
-    }
-
-    /**
-     * validateRequest
-     *
-     * Validate creation and edition incomming data
-     *
-     * @param mixed $request
-     * @return void
-     */
-    private function _validateRequest($request)
-    {
-        $request->validate([
-            'customer_id' => ['required'],
-            'vat_id' => ['nullable'],
-            'discount_id' => ['nullable'],
-            'order_state_id' => ['required'],
-        ]);
     }
 
     public function printingAll(Request $request)

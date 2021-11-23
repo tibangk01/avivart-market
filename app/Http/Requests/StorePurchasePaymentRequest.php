@@ -13,7 +13,7 @@ class StorePurchasePaymentRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class StorePurchasePaymentRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'purchase_id' => ['required'],
+            'payment_mode_id' => ['required'],
+            'amount' => ['required'],
+            'cheque_number' => ['nullable', 'max:30'],
         ];
     }
 }

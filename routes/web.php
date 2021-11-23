@@ -56,6 +56,7 @@ use App\Http\Controllers\SalePlaceStaffController;
 use App\Http\Controllers\RoleUserController;
 use App\Http\Controllers\ExerciseProductController;
 use App\Http\Controllers\QuickSaleController;
+use App\Http\Controllers\QuickSalePaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -288,6 +289,15 @@ Route::middleware(['auth', 'staff'])->group(function () {
         Route::resource('product', ProductController::class);
         /** End Products routes */
 
+        /** quick sales routes */
+        Route::prefix('/quick_sale/printing')->name('quick_sale.printing.')->group(function() {
+            Route::get('/', [QuickSaleController::class, 'printingAll'])->name('all');
+            Route::get('/{quick_sale}', [QuickSaleController::class, 'printingOne'])->name('one');
+        });
+        
+        Route::resource('quick_sale', QuickSaleController::class);
+        /** End quick sales routes */
+
         /** purchases routes */
         Route::prefix('/purchase/printing')->name('purchase.printing.')->group(function() {
             Route::get('/', [PurchaseController::class, 'printingAll'])->name('all');
@@ -327,20 +337,18 @@ Route::middleware(['auth', 'staff'])->group(function () {
         Route::resource('order_delivery_note', OrderDeliveryNoteController::class);
         /** End order delivery notes routes */
 
-
     });
 
     Route::prefix('cash_registers')->group(function () {
 
-        /** quick sales routes */
-        Route::prefix('/quick_sale/printing')->name('quick_sale.printing.')->group(function() {
-            Route::get('/', [QuickSaleController::class, 'printingAll'])->name('all');
-            Route::get('/{quick_sale}', [QuickSaleController::class, 'printingOne'])->name('one');
-            Route::get('/{quick_sale}/receipt', [QuickSaleController::class, 'receipt'])->name('receipt');
+        /** quick_sale payemnts routes */
+        Route::prefix('/quick_sale_payment/printing')->name('quick_sale_payment.printing.')->group(function() {
+            Route::get('/', [QuickSalePaymentController::class, 'printingAll'])->name('all');
+            Route::get('/{quick_sale_payment}', [QuickSalePaymentController::class, 'printingOne'])->name('one');
         });
-        
-        Route::resource('quick_sale', QuickSaleController::class);
-        /** End quick sales routes */
+
+        Route::resource('quick_sale_payment', QuickSalePaymentController::class);
+        /** End quick_sale payemnts routes */
 
         /** purchase payemnts routes */
         Route::prefix('/purchase_payment/printing')->name('purchase_payment.printing.')->group(function() {

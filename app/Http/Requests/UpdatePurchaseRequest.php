@@ -13,7 +13,7 @@ class UpdatePurchaseRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class UpdatePurchaseRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'provider_id' => ['required'],
+            'vat_id' => ['nullable'],
+            'discount_id' => ['nullable'],
+            'order_state_id' => ['required'],
         ];
     }
 }

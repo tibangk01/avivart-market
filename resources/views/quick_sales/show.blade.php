@@ -15,43 +15,51 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Produit</td>
+                                    <th>Statut</th>
+                                    <td>{{ $quickSale->getPaid() }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Produit</th>
                                     <td>{{ $quickSale->product->name }}</td>
                                 </tr>
                                 <tr>
-                                    <td>TVA</td>
+                                    <th>Etat</th>
+                                    <td>{{ $quickSale->order_state->name }}</td>
+                                </tr>
+                                <tr>
+                                    <th>TVA</th>
                                     <td>{{ $quickSale->getVat() }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Remise</td>
+                                    <th>Remise</th>
                                     <td>{{ $quickSale->getDiscount() }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Quantité</td>
+                                    <th>Quantité</th>
                                     <td>{{ $quickSale->quantity }}</td>
                                 </tr>
                                 <tr>
-                                    <td>PVU</td>
+                                    <th>PVU</th>
                                     <td>{{ $quickSale->selling_price }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Total HT</td>
+                                    <th>Total HT</th>
                                     <td>{{ $quickSale->totalHT() }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Total TVA</td>
+                                    <th>Total TVA</th>
                                     <td>{{ $quickSale->totalTVA() }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Total TTC</td>
+                                    <th>Total TTC</th>
                                     <td>{{ $quickSale->totalTTC() }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Date de Création</td>
+                                    <th>Date de Création</th>
                                     <td>{{ $quickSale->created_at }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Date de Modification</td>
+                                    <th>Date de Modification</th>
                                     <td>{{ $quickSale->updated_at }}</td>
                                 </tr>
                             </tbody>

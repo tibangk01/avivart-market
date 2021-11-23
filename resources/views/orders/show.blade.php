@@ -70,7 +70,9 @@
                 <h4>Ligne de commande client</h4>
 
                 <div class="text-right py-1">
+                    @can('cudProductOrder', $order)
                     <x-create-record routeName="product_order.create" />
+                    @endcan
                 </div>
 
                 <div class="table-responsive">
@@ -100,11 +102,11 @@
                                     <td class="d-flex flex-row justify-content-around align-items-center">
                                         <x-show-record routeName="product_order.show" :routeParam="$product->pivot->id" />
 
-                                        @if(!$order->paid)
+                                        @can('cudProductOrder', $order)
                                         <x-edit-record routeName="product_order.edit" :routeParam="$product->pivot->id" />
 
                                         <x-destroy-record routeName="product_order.destroy" :routeParam="$product->pivot->id" />
-                                        @endif
+                                        @endcan
                                     </td>
                                 </tr>
                             @empty

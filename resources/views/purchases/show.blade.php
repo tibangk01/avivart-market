@@ -31,6 +31,10 @@
                                 <td>{{ $purchase->provider->getName() }}</td>
                             </tr>
                             <tr>
+                                <th>Etat</th>
+                                <td>{{ $purchase->order_state->name }}</td>
+                            </tr>
+                            <tr>
                                 <th>TVA</th>
                                 <td>{{ $purchase->getVat() }}</td>
                             </tr>
@@ -66,7 +70,9 @@
                 <h4>Ligne de commande fournisseur</h4>
 
                 <div class="text-right py-1">
+                    @can('cudProductPurchase', $purchase)
                     <x-create-record routeName="product_purchase.create" />
+                    @endcan
                 </div>
 
                 <div class="table-responsive">
@@ -98,16 +104,16 @@
                                     <td class="d-flex flex-row justify-content-around align-items-center">
                                         <x-show-record routeName="product_purchase.show" :routeParam="$product->pivot->id" />
 
-                                        @if(!$purchase->paid)
+                                        @can('cudProductPurchase', $purchase)
                                         <x-edit-record routeName="product_purchase.edit" :routeParam="$product->pivot->id" />
 
                                         <x-destroy-record routeName="product_purchase.destroy" :routeParam="$product->pivot->id" />
-                                        @endif
+                                        @endcan
                                     </td>
                                 </tr>
                             @empty
                             <tr>
-                                <td colspan="8">Pas d'enregistrements</td>
+                                <td colspan="9">Pas d'enregistrements</td>
                             </tr>
                             @endforelse
                         </tbody>

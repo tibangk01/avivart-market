@@ -10,6 +10,7 @@ use App\Models\Provider;
 use App\Models\PurchasePayment;
 use App\Models\Vat;
 use App\Models\Discount;
+use App\Models\OrderState;
 use Illuminate\Support\Facades\DB;
 use App\Models\Society;
 use App\Models\Product;
@@ -48,11 +49,9 @@ class PurchaseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePurchaseRequest $request)
     {
         if ($request->isMethod('POST')) {
-            
-            $this->_validateRequest($request);
 
             $cartContent = Cart::instance($request->input('instance'))->content();
 
@@ -61,11 +60,7 @@ class PurchaseController extends Controller
             try {
                 DB::beginTransaction();
 
-                $purchase = Purchase::create([
-                    'provider_id' => $request->provider_id,
-                    'vat_id' => $request->vat_id,
-                    'discount_id' => $request->discount_id,
-                ]);
+                $purchase = Purchase::create($request->validated());
 
                 foreach ($cartContent as $row) {
                     $product = Product::findOrFail($row->id);
@@ -124,7 +119,9 @@ class PurchaseController extends Controller
 
         $discounts = Discount::all()->pluck(null, 'id');
 
-        return view('purchases.edit', compact('purchase', 'providers', 'vats', 'discounts'));
+        $orderStates = OrderState::all()->pluck(null, 'id');
+
+        return view('purchases.edit', compact('purchase', 'providers', 'vats', 'discounts', 'orderStates'));
     }
 
     /**
@@ -134,15 +131,30 @@ class PurchaseController extends Controller
      * @param  \App\Models\Purchase  $purchase
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Purchase $purchase)
+    public function update(UpdatePurchaseRequest $request, Purchase $purchase)
     {
         if ($request->isMethod('PUT')) {
-            
-            $this->_validateRequest($request);
 
-            $purchase->update($request->all());
+            //Gate
+            $this->authorize('cudProductPurchase', $purchase);
 
-            session()->flash('success', 'Donnée enregistrée.');
+            try {
+                
+                DB::beginTransaction();
+
+                $purchase->update($request->validated());
+
+                DB::commit();
+
+                session()->flash('success', 'Donnée enregistrée.');
+
+            } catch (\Exception $ex) {
+                DB::rollback();
+
+                dd($ex);
+
+                session()->flash('error', "Une erreur s'est produite");
+            }
         }
 
         return back();
@@ -156,6 +168,9 @@ class PurchaseController extends Controller
      */
     public function destroy(Purchase $purchase)
     {
+        //Gate
+        $this->authorize('cudProductPurchase', $purchase);
+
         if ($purchasePayment = PurchasePayment::where('purchase_id', $purchase->id)->first()) {
             $purchasePayment->payment->delete();
         }
@@ -163,23 +178,6 @@ class PurchaseController extends Controller
         $purchase->delete();
 
         return back()->withDanger('Donnée supprimée');
-    }
-
-    /**
-     * validateRequest
-     *
-     * Validate creation and edition incomming data
-     *
-     * @param mixed $request
-     * @return void
-     */
-    private function _validateRequest($request)
-    {
-        $request->validate([
-            'provider_id' => ['required'],
-            'vat_id' => ['nullable'],
-            'discount_id' => ['nullable'],
-        ]);
     }
 
     public function printingAll(Request $request)

@@ -58,9 +58,11 @@
                                                     <td class="d-flex flex-row justify-content-around align-items-center">
                                                         <x-show-record routeName="order.show" :routeParam="$order->id" />
                                                         
+                                                        @can('cudProductOrder', $order)
                                                         <x-edit-record routeName="order.edit" :routeParam="$order->id" />
 
                                                         <x-destroy-record routeName="order.destroy" :routeParam="$order->id" />
+                                                        @endcan
 
                                                         <x-print-one-record routeName="order.printing.one" :routeParam="$order->id" />
                                                     </td>

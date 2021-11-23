@@ -55,6 +55,11 @@ class ProductOrderController extends Controller
                 'comment' => ['nullable'],
             ]);
 
+            $order = Order::findOrFail($request->order_id);
+
+            //Gate
+            $this->authorize('cudProductOrder', $order);
+
             try {
                 DB::beginTransaction();
 
@@ -135,6 +140,9 @@ class ProductOrderController extends Controller
                 'comment' => ['nullable'],
             ]);
 
+            //Gate
+            $this->authorize('cudProductOrder', $productOrder->order);
+
             try {
                 DB::beginTransaction();
 
@@ -177,6 +185,9 @@ class ProductOrderController extends Controller
      */
     public function destroy(ProductOrder $productOrder)
     {
+        //Gate
+        $this->authorize('cudProductOrder', $productOrder->order);
+
         $productOrder->delete();
 
         return back()->withDanger('Donnée supprimée');

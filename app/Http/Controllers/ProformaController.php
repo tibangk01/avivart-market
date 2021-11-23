@@ -44,22 +44,16 @@ class ProformaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProformaRequest $request)
     {
         if ($request->isMethod('POST')) {
-
-            $this->_validateRequest($request);
 
             $cartContent = Cart::instance($request->input('instance'))->content();
 
             try {
                 DB::beginTransaction();
 
-                $proforma = Proforma::create([
-                    'customer_id' => $request->customer_id,
-                    'vat_id' => $request->vat_id,
-                    'discount_id' => $request->discount_id,
-                ]);
+                $proforma = Proforma::create($request->validated());
 
                 foreach ($cartContent as $row) {
                     $product = Product::findOrFail($row->id);
@@ -128,15 +122,27 @@ class ProformaController extends Controller
      * @param  \App\Models\Proforma  $proforma
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Proforma $proforma)
+    public function update(UpdateProformaRequest $request, Proforma $proforma)
     {
         if ($request->isMethod('PUT')) {
 
-            $this->_validateRequest($request);
+            try {
 
-            $proforma->update($request->all());
+                DB::beginTransaction();
 
-            session()->flash('success', 'Donnée enregistrée.');
+                $proforma->update($request->validated());
+
+                DB::commit();
+
+                session()->flash('success', 'Donnée enregistrée.');
+
+            } catch (\Exception $ex) {
+                DB::rollback();
+
+                dd($ex);
+
+                session()->flash('error', "Une erreur s'est produite");
+            }
         }
 
         return back();
@@ -153,23 +159,6 @@ class ProformaController extends Controller
         $proforma->delete();
 
         return back()->withDanger('Donnée supprimée');
-    }
-
-    /**
-     * validateRequest
-     *
-     * Validate creation and edition incomming data
-     *
-     * @param mixed $request
-     * @return void
-     */
-    private function _validateRequest($request)
-    {
-        $request->validate([
-            'customer_id' => ['required'],
-            'vat_id' => ['nullable'],
-            'discount_id' => ['nullable'],
-        ]);
     }
 
     public function printingAll(Request $request)

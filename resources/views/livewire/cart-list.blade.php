@@ -98,16 +98,6 @@
      @elseif ($instance == 'order')
 
     <div class="form-group">
-        <label for="order_state_id">Etat</label>
-        <select required class="form-control" id="order_state_id" name="order_state_id">
-            <option value="">Choisissez</option>
-            @foreach($orderStates as $orderState)
-            <option value="{{ $orderState->id }}">{{ $orderState->name }}</option>
-            @endforeach
-        </select>
-    </div>
-
-    <div class="form-group">
         <label for="customer_id">Client</label>
         <select required class="form-control" id="customer_id" name="customer_id">
             <option value="">Choisissez</option>
@@ -138,6 +128,20 @@
             @endforeach
         </select>
     </div>
+
+    @if (in_array($instance, array('purchase', 'order')))
+
+    <div class="form-group">
+        <label for="order_state_id">Etat</label>
+        <select required class="form-control" id="order_state_id" name="order_state_id">
+            <option value="">Choisissez</option>
+            @foreach($orderStates as $orderState)
+            <option value="{{ $orderState->id }}">{{ $orderState->name }}</option>
+            @endforeach
+        </select>
+    </div>
+
+    @endif
 
     <div class="form-group text-right">
         <button type="submit" class="btn btn-success">Valider le panier</button>

@@ -27,6 +27,27 @@
                         {!! Form::select('discount_id', $discounts, null, ['class' => 'form-control', 'placeholder' => 'Choisissez']) !!}
                     </div>
 
+                    <div class="form-group">
+                        {!! Form::label('order_state_id', 'Etat') !!}
+                        {!! Form::select('order_state_id', $orderStates, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez']) !!}
+                    </div>
+
+                    <div class="form-group">
+
+                        <span class="mr-3">Statut :</span>
+
+                        <label for="valueOne" class="form-label">
+                            {!! Form::radio('paid', 0, null, ['id' => 'valueOne']) !!} Non payer
+                        </label>
+
+                        &nbsp;&nbsp;&nbsp;
+
+                        <label for="valueTwo" class="form-label">
+                            {!! Form::radio('paid', 1, null, ['id' => 'valueTwo']) !!} Payer
+                        </label>
+
+                    </div>
+
                     <div class="form-group text-right">
                         {!! Form::submit('Modifier', ['class' => 'btn btn-success']) !!}
                     </div>

@@ -55,6 +55,11 @@ class ProductPurchaseController extends Controller
                 'comment' => ['nullable'],
             ]);
 
+            $purchase = Purchase::findOrFail($request->purchase_id);
+
+            //Gate
+            $this->authorize('cudProductPurchase', $purchase);
+
             try {
                 DB::beginTransaction();
 
@@ -131,6 +136,9 @@ class ProductPurchaseController extends Controller
                 'comment' => ['nullable'],
             ]);
 
+            //Gate
+            $this->authorize('cudProductPurchase', $productPurchase->purchase);
+
             try {
                 DB::beginTransaction();
 
@@ -165,6 +173,9 @@ class ProductPurchaseController extends Controller
      */
     public function destroy(ProductPurchase $productPurchase)
     {
+        //Gate
+        $this->authorize('cudProductPurchase', $productPurchase->purchase);
+
         $productPurchase->delete();
 
         return back()->withDanger('Donnée supprimée');

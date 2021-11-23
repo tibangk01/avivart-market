@@ -22,6 +22,11 @@
                     {!! Form::select('discount_id', $discounts, null, ['class' => 'form-control', 'placeholder' => 'Choisissez']) !!}
                 </div>
 
+                <div class="form-group">
+                    {!! Form::label('order_state_id', 'Etat') !!}
+                    {!! Form::select('order_state_id', $orderStates, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez']) !!}
+                </div>
+
                 <div class="form-group text-right">
                     <button type="submit" class="btn btn-warning">Modifier</button>
                 </div>

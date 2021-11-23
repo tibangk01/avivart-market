@@ -13,7 +13,7 @@ class UpdateQuickSaleRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,12 @@ class UpdateQuickSaleRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'product_id' => ['required'],
+            'vat_id' => ['nullable'],
+            'discount_id' => ['nullable'],
+            'order_state_id' => ['required'],
+            'quantity' => ['required'],
+            'paid' => ['required'],
         ];
     }
 }

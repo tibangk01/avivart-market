@@ -21,6 +21,8 @@
 
                                     <div class="d-flex">
                                         <div class="ml-auto mb-1">
+                                            <x-print-all-record routeName="quick_sale.printing.all" />
+
                                             <x-create-record routeName="quick_sale.create" />
                                         </div>
                                     </div>
@@ -31,6 +33,8 @@
                                                 <tr>
                                                     <th>Numéro</th>
                                                     <th>Produit</th>
+                                                    <th>Etat</th>
+                                                    <th>Statut</th>
                                                     <th>TVA</th>
                                                     <th>Remise</th>
                                                     <th>Quantité</th>
@@ -45,9 +49,11 @@
                                             </thead>
                                             <tbody>
                                                 @forelse($quickSales as $quickSale)
-                                                    <tr>
+                                                    <tr class="{{ $quickSale->getOrderStateStyle() }}">
                                                         <td>{{ $quickSale->getNumber() }}</td>
                                                         <td>{{ $quickSale->product->name }}</td>
+                                                        <td>{{ $quickSale->order_state->name }}</td>
+                                                        <td><span class="{{ $quickSale->paid ? 'badge badge-success' : 'badge badge-danger' }}">{{ $quickSale->getPaid() }}</span></td>
                                                         <td>{{ $quickSale->getVat() }}</td>
                                                         <td>{{ $quickSale->getDiscount() }}</td>
                                                         <td>{{ $quickSale->quantity }}</td>
@@ -60,16 +66,18 @@
                                                         <td class="d-flex flex-row justify-content-around align-items-center">
                                                             <x-show-record routeName="quick_sale.show" :routeParam="$quickSale->id" />
                                                             
+                                                            @can('cudQuickSale', $quickSale)
                                                             <x-edit-record routeName="quick_sale.edit" :routeParam="$quickSale->id" />
 
                                                             <x-destroy-record routeName="quick_sale.destroy" :routeParam="$quickSale->id" />
+                                                            @endcan
 
-                                                            <x-print-one-record routeName="quick_sale.printing.receipt" :routeParam="$quickSale->id" />
+                                                            <x-print-one-record routeName="quick_sale.printing.one" :routeParam="$quickSale->id" />
                                                         </td>
                                                     </tr>
                                                 @empty
                                                     <tr>
-                                                        <td colspan="12">Pas d'enregistrements</td>
+                                                        <td colspan="14">Pas d'enregistrements</td>
                                                     </tr>
                                                 @endforelse
                                             </tbody>
