@@ -19,6 +19,12 @@
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
                                 aria-labelledby="nav-home-tab">
 
+                                <div class="d-flex">
+                                    <div class="ml-auto mb-1">
+                                        <x-create-record routeName="exercise_product.create" />
+                                    </div>
+                                </div>
+
                                 {!! Form::open(['method' => 'GET', 'route' => 'exercise_product.index']) !!}
                                 <fieldset>
                                     <legend class="text-sm text-danger font-weight-bold">Recherche Avancée</legend>
@@ -37,14 +43,6 @@
                                     </div>
                                 </fieldset>
                                 {!! Form::close() !!}
-
-                                <hr>
-
-                                <div class="d-flex">
-                                    <div class="ml-auto mb-1">
-                                        <x-create-record routeName="exercise_product.create" />
-                                    </div>
-                                </div>
 
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-hover table-striped">

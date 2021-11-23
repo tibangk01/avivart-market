@@ -1,4 +1,9 @@
 <div x-data="{ state: true }">
+
+    <div wire:loading>
+        Veuillez patienter...
+    </div>
+
     {!! Form::open(['method' => 'POST', 'route' => 'purchase_payment.store']) !!}
 
     <div class="form-group">
@@ -29,6 +34,11 @@
             <option value="{{ $paymentMode->id }}">{{ $paymentMode->name }}</option>
             @endforeach
         </select>
+    </div>
+
+    <div class="form-group">
+        <label for="account_number">N° de compte</label>
+        <input type="text" name="account_number" id="account_number" placeholder="N° de compte" class="form-control">
     </div>
 
     <div class="form-group text-right">

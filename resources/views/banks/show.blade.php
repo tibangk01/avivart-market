@@ -20,7 +20,7 @@
                                 </tr>
                                 <tr>
                                     <td>N° de compte</td>
-                                    <td>{{ $bank->account }}</td>
+                                    <td>{{ $bank->account_number }}</td>
                                 </tr>
                                 <tr>
                                     <td>Date de Création</td>

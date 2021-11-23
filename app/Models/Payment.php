@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property int $payment_mode_id
  * @property float $amount
+ * @property string $account_number
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * 
@@ -38,6 +39,7 @@ class Payment extends Model
 		'payment_mode_id',
 		'amount',
 		'state',
+		'account_number',
 	];
 
 	public function payment_mode()

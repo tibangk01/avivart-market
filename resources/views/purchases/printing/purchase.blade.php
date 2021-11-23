@@ -20,7 +20,7 @@
             <th>Marque</th>
             <th>Modèle</th>
             <th>Qté</th>
-            <th>Commnentaire</th>
+            <th>Commentaire</th>
         </tr>
     </thead>
     <tbody>

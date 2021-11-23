@@ -36,7 +36,7 @@ class LibraryController extends Controller
                     case 'local':
 
                         $request->validate([
-                            'image' => ['required', 'mimes:jpg,jpeg,png,gif', 'max:10000'],
+                            'image' => ['required', 'mimes:jpg,jpeg,png,gif,pdf', 'max:10000'],
                             'description' => ['required', 'min:10']
                         ]);
 
@@ -64,6 +64,10 @@ class LibraryController extends Controller
                                     $purchaseDeliveryNote = PurchaseDeliveryNote::create([
                                         'purchase_id' => $purchase->id,
                                         'library_id' => $library->id,
+                                    ]);
+
+                                    $purchase->update([
+                                        'has_delivery_note' => true,
                                     ]);
     
                                     DB::commit();
@@ -101,6 +105,10 @@ class LibraryController extends Controller
                                     $orderDeliveryNote = OrderDeliveryNote::create([
                                         'order_id' => $order->id,
                                         'library_id' => $library->id,
+                                    ]);
+
+                                    $order->update([
+                                        'has_delivery_note' => true,
                                     ]);
     
                                     DB::commit();
@@ -147,6 +155,10 @@ class LibraryController extends Controller
                                     'library_id' => $library->id,
                                 ]);
 
+                                $purchase->update([
+                                    'has_delivery_note' => true,
+                                ]);
+
                                 DB::commit();
 
                                 session()->forget('purchase');
@@ -179,6 +191,10 @@ class LibraryController extends Controller
                                 $orderDeliveryNote = OrderDeliveryNote::create([
                                     'order_id' => $order->id,
                                     'library_id' => $library->id,
+                                ]);
+
+                                $order->update([
+                                    'has_delivery_note' => true,
                                 ]);
 
                                 DB::commit();
@@ -244,7 +260,7 @@ class LibraryController extends Controller
                     case 'local':
 
                         $request->validate([
-                            'image' => ['required', 'mimes:jpg,jpeg,png,gif', 'max:10000'],
+                            'image' => ['required', 'mimes:jpg,jpeg,png,gif,pdf', 'max:10000'],
                             'description' => ['required', 'min:10']
                         ]);
 

@@ -7,6 +7,25 @@
             <div class="col-lg-12">
                 @if($orders->count())
 
+                {!! Form::open(['method' => 'GET', 'route' => 'order_delivery_note.create']) !!}
+                <fieldset>
+                    <legend class="text-sm text-danger font-weight-bold">Recherche Avancée</legend>
+                    <div class="row">
+                        <div class="col-md-11">
+                            <div class="form-group">
+                                {!! Form::select('order_id', $orders, request()->query('order_id'), ['class' => 'form-control', 'placeholder' => "Toutes"]) !!}
+                                {!! Form::label('purchase_id', "Commande client") !!}
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <div class="form-group">
+                                {!! Form::submit('Filtrer', ['class' => 'btn btn-info btn-block']) !!}
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                {!! Form::close() !!}
+
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover">
                         <thead class="thead-dark">

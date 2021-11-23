@@ -31,10 +31,11 @@
                                             <tr>
                                                 <th>Numéro</th>
                                                 <th>Fournisseur</th>
+                                                <th>Statut</th>
+                                                <th>Fichier</th>
                                                 <th>TVA</th>
                                                 <th>Remise</th>
                                                 <th>Total TTC</th>
-                                                <th>Statut</th>
                                                 <th>Date de Création</th>
                                                 <th>Date de Modification</th>
                                                 <th>Actions</th>
@@ -42,13 +43,14 @@
                                         </thead>
                                         <tbody>
                                             @forelse ($purchases as $purchase)
-                                                <tr class="{{ $purchase->getBgColor() }}">
+                                                <tr>
                                                     <td>{{ $purchase->getNumber() }}</td>
                                                     <td>{{ $purchase->provider->getName() }}</td>
+                                                    <td><span class="{{ $purchase->paid ? 'badge badge-success' : 'badge badge-danger' }}">{{ $purchase->getPaid() }}</span></td>
+                                                    <td><span class="{{ $purchase->has_delivery_note ? 'badge badge-primary' : 'badge badge-warning' }}">{{ $purchase->hasDeliveryNote() }}</span></td>
                                                     <td>{{ $purchase->getVat() }}</td>
                                                     <td>{{ $purchase->getDiscount() }}</td>
                                                     <td>{{ $purchase->totalTTC() }}</td>
-                                                    <td><span class="{{ $purchase->paid ? 'badge badge-success' : 'badge badge-danger' }}">{{ $purchase->getPaid() }}</span></td>
                                                     <td>{{ $purchase->created_at }}</td>
                                                     <td>{{ $purchase->updated_at }}</td>
                                                     <td class="d-flex flex-row justify-content-around align-items-center">
@@ -63,7 +65,7 @@
                                                 </tr>
                                             @empty
                                             <tr>
-                                                <td colspan="9">Pas d'enregistrements</td>
+                                                <td colspan="10">Pas d'enregistrements</td>
                                             </tr>
                                             @endforelse
                                         </tbody>

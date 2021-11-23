@@ -1,12 +1,15 @@
 <section>
     <div class="row">
         <div class="col-md-8">
-            <h4>Sélection : {{ count($ids) }}</h4>
+            <h6 class="pt-2 text-danger">Sélection : {{ count($ids) }}</h6>
         </div>
         <div class="col-md-4">
-            <input type="search" name="search" id="search" class="form-control"
-                    placeholder="Rechercher..." wire:model="search" required>
+            <input type="search" name="search" id="search" class="form-control" placeholder="Rechercher..." wire:model="search" required>
         </div>
+    </div>
+
+    <div wire:loading>
+        Veuillez patienter...
     </div>
 
     <div class="table-responsive bg-white p-2">

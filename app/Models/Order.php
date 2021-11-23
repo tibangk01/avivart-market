@@ -106,6 +106,11 @@ class Order extends Model
         return $this->paid ? 'Payer' : 'Non payer';
     }
 
+    public function hasDeliveryNote()
+    {
+        return $this->has_delivery_note ? 'Fichier attaché' : 'Pas de fichier';
+    }
+
     public function getVat()
     {
         return ($this->vat !== null) ? $this->vat->percentage : 0;
@@ -114,11 +119,6 @@ class Order extends Model
     public function getDiscount()
     {
         return ($this->discount !== null) ? $this->discount->amount : 0;
-    }
-
-    public function getBgColor()
-    {
-        return $this->paid ? 'table-success' : 'table-danger';
     }
 
 	public function getNumber()

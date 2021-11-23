@@ -5,6 +5,8 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-6">
+                    <h4>Formulaire d'enregistrement</h4>
+
                     {!! Form::open(['method' => 'POST', 'route' => 'quick_sale.store']) !!}
 
                     <div class="form-group">
@@ -34,6 +36,8 @@
                     {!! Form::close() !!}
                 </div>
                 <div class="col-lg-6">
+                    <h4>Liste de produits</h4>
+
                     <div class="table-responsive bg-white p-2">
                         <table class="mb-0 table table-bordered table-hover table-striped text-nowrap datatable text-center">
                             <thead class="thead-dark">

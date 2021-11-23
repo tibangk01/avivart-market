@@ -1,6 +1,8 @@
 @extends('layouts.pdf', ['title' => "Inventaire", 'watermark' => true, 'orientation' => 'landscape'])
 
 @php
+    use App\Models\Supply;
+    
     $supplies = 0; $sales = 0; $mu = 0; $ca = 0; $vt = 0;
 @endphp
 
@@ -40,7 +42,7 @@
             <td>{{ $product->product_type->name }}</td>
             <td class="text-center">{{ $product->pivot->initial_stock }}</td>
             <td class="text-center">
-                {{ $supplies = App\Models\Supply::countSupplies($exercise, $product) }}
+                {{ $supplies = Supply::countSupplies($exercise, $product) }}
             </td>
             <td class="text-center">{{ $product->pivot->final_stock }}</td>
             <td class="text-center">{{ $product->pivot->loss }}</td>

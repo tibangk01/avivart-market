@@ -45,6 +45,6 @@ class OrderPayment extends Component
         
         $this->order = Order::findOrFail($value);
 
-        $this->amount = $this->order->totalTTC();
+        $this->amount = OrderPaymentModel::remnantPayment($this->order);
     }
 }

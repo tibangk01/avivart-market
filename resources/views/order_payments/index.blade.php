@@ -35,6 +35,7 @@
                                                     <th>Commande client</th>
                                                     <th>Montant</th>
                                                     <th>Mode de payement</th>
+                                                    <th>N° de compte</th>
                                                     <th>Date de Création</th>
                                                     <th>Date de Modification</th>
                                                     <th>Actions</th>
@@ -46,6 +47,7 @@
                                                         <td>{{ $orderPayment->order->getNumber() }}</td>
                                                         <td>{{ $orderPayment->payment->amount }}</td>
                                                         <td>{{ $orderPayment->payment->payment_mode->name }}</td>
+                                                        <td>{{ $orderPayment->payment->account_number }}</td>
                                                         <td>{{ $orderPayment->created_at }}</td>
                                                         <td>{{ $orderPayment->created_at }}</td>
                                                         <td class="d-flex flex-row justify-content-around align-items-center">
@@ -60,7 +62,7 @@
                                                     </tr>
                                                 @empty
                                                     <tr>
-                                                        <td colspan="6">Pas d'enregistrements</td>
+                                                        <td colspan="7">Pas d'enregistrements</td>
                                                     </tr>
                                                 @endforelse
                                             </tbody>

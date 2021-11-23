@@ -31,6 +31,11 @@
                     {!! Form::select('payment_mode_id', $paymentModes, $orderPayment->payment->payment_mode_id, ['class' => 'form-control', 'required' => true, 'placeholder' => "Choisissez"]) !!}
                 </div>
 
+                <div class="form-group">
+                    {!! Form::label('account_number', 'N° de compte') !!}
+                    {!! Form::text('account_number', $orderPayment->payment->account_number, ['class' => 'form-control', 'placeholder' => 'N° de compte']) !!}
+                </div>
+
                 <div class="form-group text-right">
                     {!! Form::submit('Enregistrer', ['class' => 'btn btn-success']) !!}
                 </div>

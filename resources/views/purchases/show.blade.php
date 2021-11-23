@@ -14,9 +14,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="{{ $purchase->getBgColor() }}">
+                            <tr>
                                 <th>Statut</th>
                                 <td>{{ $purchase->getPaid() }}</td>
+                            </tr>
+                            <tr>
+                                <th>Fichier</th>
+                                <td>{{ $purchase->hasDeliveryNote() }}</td>
                             </tr>
                             <tr>
                                 <th>Numéro</th>
@@ -59,9 +63,12 @@
                 </div>
             </div>
             <div class="col-lg-6">
+                <h4>Ligne de commande fournisseur</h4>
+
                 <div class="text-right py-1">
                     <x-create-record routeName="product_purchase.create" />
                 </div>
+
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover table-striped datatable">
                         <thead class="thead-dark">

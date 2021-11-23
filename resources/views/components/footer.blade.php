@@ -4,7 +4,7 @@
     <strong class="text-danger">Journée en cours ({{ $staffStatusBarInfo->day_transaction->getState() }}) : </strong>{{ $staffStatusBarInfo->day_transaction->getDay() }} |
     <strong class="text-danger">Caisse en cours ({{ $staffStatusBarInfo->getState() }}) : </strong>{{ $staffStatusBarInfo->cash_register->name }} |
     <strong class="text-success">Montant de la caisse : </strong>{{ amountConverter($staffStatusBarInfo->amount) }} |
-    <em class="text-warning">Devise : </em>{{ $staffStatusBarInfo->day_transaction->exercise->currency->name }}
+    <em class="text-info">Devise : </em>{{ $staffStatusBarInfo->day_transaction->exercise->currency->name }}
     @else
     <strong>&copy; Copyright 2022, <a href="https://www.avivart.net" target="_blank">AVIV'ART</a>.</strong> Tous Droits Réservés
     @endif

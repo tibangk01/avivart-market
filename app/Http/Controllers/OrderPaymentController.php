@@ -54,6 +54,7 @@ class OrderPaymentController extends Controller
                 'order_state_id' => ['required'],
                 'order_id' => ['required'],
                 'amount' => ['required'],
+                'account_number' => ['nullable', 'max:30'],
             ]);
 
             try {
@@ -151,6 +152,7 @@ class OrderPaymentController extends Controller
                 'order_state_id' => ['required'],
                 'order_id' => ['required'],
                 'amount' => ['required'],
+                'account_number' => ['nullable', 'max:30'],
             ]);
 
             try {
@@ -159,7 +161,7 @@ class OrderPaymentController extends Controller
             
                 $orderPayment->order->update($request->only('order_state_id'));
 
-                $orderPayment->payment->update($request->only('payment_mode_id'));
+                $orderPayment->payment->update($request->only('payment_mode_id', 'account_number'));
 
                 DB::commit();
 

@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $id
  * @property string $name
- * @property string $account
+ * @property string $account_number
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * 
@@ -29,7 +29,7 @@ class Bank extends Model
 
 	protected $fillable = [
 		'name',
-		'account'
+		'account_number'
 	];
 
 	public function bank_operations()

@@ -32,7 +32,13 @@ class SupplyController extends Controller
      */
     public function create()
     {
-        $purchases = Purchase::with('products')->get();
+        $query = Purchase::query();
+
+        if ($purchase_id = request()->query('purchase_id')) {
+            $query->where('id', $purchase_id);
+        }
+
+        $purchases = $query->with('products')->get()->pluck(null, 'id');
 
         return view('supplies.create', compact('purchases'));
     }

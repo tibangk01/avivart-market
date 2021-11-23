@@ -33,6 +33,7 @@
                                                 <th>Client</th>
                                                 <th>Etat</th>
                                                 <th>Statut</th>
+                                                <th>Fichier</th>
                                                 <th>TVA</th>
                                                 <th>Remise</th>
                                                 <th>Total TTC</th>
@@ -48,6 +49,7 @@
                                                     <td>{{ $order->customer->getName() }}</td>
                                                     <td>{{ $order->order_state->name }}</td>
                                                     <td><span class="{{ $order->paid ? 'badge badge-success' : 'badge badge-danger' }}">{{ $order->getPaid() }}</span></td>
+                                                    <td><span class="{{ $order->has_delivery_note ? 'badge badge-primary' : 'badge badge-warning' }}">{{ $order->hasDeliveryNote() }}</span></td>
                                                     <td>{{ $order->getVat() }}</td>
                                                     <td>{{ $order->getDiscount() }}</td>
                                                     <td>{{ $order->totalTTC() }}</td>
@@ -65,7 +67,7 @@
                                                 </tr>
                                             @empty
                                             <tr>
-                                                <td colspan="10">Pas d'enregistrements</td>
+                                                <td colspan="11">Pas d'enregistrements</td>
                                             </tr>
                                             @endforelse
                                         </tbody>

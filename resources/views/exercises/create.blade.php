@@ -22,7 +22,7 @@
 
                 <div class="form-group">
                     {!! Form::label('real_sale', "Vente Réelle") !!}
-                    {!! Form::number('real_sale', null, ['class' => 'form-control', 'required' => true, 'placeholder' => "Vente Réelle", 'step' => 'any']) !!}
+                    {!! Form::number('real_sale', 0, ['class' => 'form-control', 'required' => true, 'placeholder' => "Vente Réelle", 'step' => 'any']) !!}
                 </div>
 
                 <div class="form-group">
@@ -32,7 +32,7 @@
 
                 <div class="form-group">
                     {!! Form::label('end_date', "Date de Fin") !!}
-                    {!! Form::date('end_date', now(), ['class' => 'form-control', 'required' => true, 'placeholder' => "Date de Fin"]) !!}
+                    {!! Form::date('end_date', now()->addDay(), ['class' => 'form-control', 'required' => true, 'placeholder' => "Date de Fin"]) !!}
                 </div>
 
                 <div class="form-group">

@@ -40,6 +40,6 @@ class PurchasePayment extends Component
 
         $this->purchase = Purchase::findOrFail($value);
 
-        $this->amount = $this->purchase->totalTTC();
+        $this->amount = PurchasePaymentModel::remnantPayment($this->purchase);
     }
 }

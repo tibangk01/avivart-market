@@ -3,6 +3,10 @@
 <section>
     @if($rows->count())
 
+    <div wire:loading>
+        Veuillez patienter...
+    </div>
+
     <div class="table-responsive bg-white p-2">
         <table class="mb-0 table table-bordered table-hover table-striped">
             <thead class="thead-dark">
@@ -60,7 +64,7 @@
     </div>
 
     <p class="my-2 text-right">
-        <a wire:click.prevent="$refresh" href="" class="btn btn-default"><i class="fa fa-spinner mr-2"></i> Actualiser</a>
+        <a wire:click.prevent="$refresh" href="" class="btn btn-default"><i class="fa fa-spinner mr-2"></i> Actualiser le panier</a>
         <a wire:click.prevent="truncate()" href="{{ route('cart.truncate', ['instance' => $instance]) }}" class="btn btn-danger"><i class="fa fa-eraser mr-2"></i> Vider le panier</a>
     </p>
 
@@ -142,7 +146,7 @@
 
     @else
 
-    <p>Aucun produit dans le panier</p>
+    <h6 class="text-secondary">Aucun produit dans le panier</h6>
 
     @endif
 </section>

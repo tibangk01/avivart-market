@@ -40,7 +40,7 @@
                                                 @forelse($banks as $bank)
                                                     <tr>
                                                         <td>{{ $bank->name }}</td>
-                                                        <td>{{ $bank->account }}</td>
+                                                        <td>{{ $bank->account_number }}</td>
                                                         <td>{{ $bank->created_at }}</td>
                                                         <td>{{ $bank->updated_at }}</td>
                                                         <td class="d-flex flex-row justify-content-around align-items-center">

@@ -31,7 +31,7 @@
                                 <div class="input-group">
                                     <div class="custom-file">
                                         {!! Form::file('image', ['required' => 'required', 'class' => 'custom-file-input']) !!}
-                                        {!! Form::label('image', 'Choisissez une image', ['class' => 'custom-file-label']) !!}
+                                        {!! Form::label('image', 'Choisissez', ['class' => 'custom-file-label']) !!}
                                     </div>
                                 </div>
                             </div>

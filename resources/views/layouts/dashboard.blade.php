@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $title ?? config('app.name') }} | {{ config('app.name') }}</title>
+    <title>{{ config('app.name') }} | Version 1.0 | {{ $title ?? config('app.name') }}</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -73,14 +73,15 @@
 
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">{{ $title ?? 'Laravel' }}</h1>
+                            <h1 class="m-0 text-secondary">{{ $title ?? 'Laravel' }}</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="{{ route('page.index') }}" class="">Tableau de bord</a>
+                                <li class="breadcrumb-item">
+                                    <a href="{{ route('page.index') }}" class="">Tableau de bord</a>
                                 </li>
-                                <li class="breadcrumb-item active"><a
-                                        class="text-muted">{{ $title ?? 'Laravel' }}</a>
+                                <li class="breadcrumb-item active">
+                                    <a class="text-muted">{{ $title ?? 'Laravel' }}</a>
                                 </li>
                             </ol>
                         </div><!-- /.col -->

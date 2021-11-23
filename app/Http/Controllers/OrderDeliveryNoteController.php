@@ -32,7 +32,13 @@ class OrderDeliveryNoteController extends Controller
      */
     public function create()
     {
-        $orders = Order::with('products')->get();
+        $query = Order::query();
+
+        if ($order_id = request()->query('order_id')) {
+            $query->where('id', $order_id);
+        }
+
+        $orders = $query->with('products')->get()->pluck(null, 'id');
 
         return view('order_delivery_notes.create', compact('orders'));
     }

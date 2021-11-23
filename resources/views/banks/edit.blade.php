@@ -16,8 +16,8 @@
                     </div>
 
                     <div class="form-group">
-                        {!! Form::label('account', 'N° de compte', ['class' => 'form-label']) !!}
-                        {!! Form::text('account', null, ['class' => 'form-control']) !!}
+                        {!! Form::label('account_number', 'N° de compte', ['class' => 'form-label']) !!}
+                        {!! Form::text('account_number', null, ['class' => 'form-control']) !!}
                     </div>
 
                     <div class="form-group text-right">

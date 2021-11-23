@@ -54,7 +54,8 @@ class Supply extends Model
 
     	$supplies = $query->whereHas('product_purchase', function ($q) use ($exercise, $product) {
     		$q->where('product_id', $product->id);
-    	})->whereBetween('created_at', [$exercise->start_date->format('Y-m-d'), $exercise->end_date->format('Y-m-d')])
+    	})
+    	->whereBetween('created_at', [$exercise->start_date->format('Y-m-d'), $exercise->end_date->format('Y-m-d')])
     	->get();
 
     	if ($supplies->count()) {

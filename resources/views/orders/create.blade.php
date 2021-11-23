@@ -5,12 +5,12 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-6">
-                <h6>Liste des produits</h6>
+                <h4>Liste de produits</h4>
 
                 <livewire:product-list instance="order" />
             </div>
             <div class="col-lg-6">
-                <h6>Panier de produits</h6>
+                <h4>Panier de produits</h4>
 
                 <div>
                     {!! Form::open(['route' => 'cart.load_proforma']) !!}

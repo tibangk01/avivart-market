@@ -124,7 +124,7 @@ class BankController extends Controller
     {
         $request->validate([
             'name' => ['required', 'max:40'],
-            'account' => ['required', 'max:30'],
+            'account_number' => ['required', 'max:30'],
         ]);
     }
 }

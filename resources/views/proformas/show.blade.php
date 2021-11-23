@@ -55,9 +55,12 @@
                 </div>
             </div>
             <div class="col-lg-6">
+                <h4>Ligne de proforma</h4>
+
                 <div class="text-right py-1">
                     <x-create-record routeName="product_proforma.create" />
                 </div>
+
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover table-striped datatable">
                         <thead class="thead-dark">
