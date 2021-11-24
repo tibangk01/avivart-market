@@ -46,8 +46,9 @@
                         <tbody>
                             @forelse ($purchases as $purchase)
                             <tr class="table-info text-center">
-                                <th colspan="9">Commande fournisseur N° {{ $purchase->getNumber() }} addressé au Fournisseur {{ $purchase->provider->getName() }}</th>
+                                <th colspan="8">Commande fournisseur N° {{ $purchase->getNumber() }} addressé au Fournisseur {{ $purchase->provider->getName() }}</th>
                                 <td>Nombre de Produits ({{ $purchase->products->count() }})</td>
+                                <td><a class="badge  badge-warning" href="{{ route('supply.create', ['purchaseId' => $purchase->id]) }}">Tout livrer</a></td>
                             </tr>
 
                             @forelse($purchase->products as $product)

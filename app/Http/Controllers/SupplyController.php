@@ -32,6 +32,41 @@ class SupplyController extends Controller
      */
     public function create()
     {
+        if ($purchase_id = request()->query('purchaseId')) {
+            $productPurchases = ProductPurchase::where('purchase_id', $purchase_id)->get();
+            
+            try {
+
+                DB::beginTransaction();
+
+                foreach($productPurchases as $productPurchase) {
+
+                    $productPurchase->update([
+                        'delivered_quantity' => $productPurchase->ordered_quantity,
+                    ]);
+
+                    $productPurchase->product->update([
+                        'stock_quantity' => $productPurchase->product->stock_quantity + $productPurchase->delivered_quantity,
+                    ]);
+
+                    $supply = Supply::create([
+                        'product_purchase_id' => $productPurchase->id,
+                        'quantity' => $productPurchase->delivered_quantity,
+                    ]);
+                }
+
+                DB::commit();
+
+                session()->flash('success', 'Donnée enregistrée.');
+            } catch (\Exception $ex) {
+                DB::rollback();
+
+                dd($ex);
+
+                session()->flash('error', "Une erreur s'est produite");
+            }
+        }
+
         $query = Purchase::query();
 
         if ($purchase_id = request()->query('purchase_id')) {
@@ -71,7 +106,7 @@ class SupplyController extends Controller
                 ]);
 
                 $productPurchase->product->update([
-                    'stock_quantity' => $productPurchase->product->stock_quantity +  + $quantity,
+                    'stock_quantity' => $productPurchase->product->stock_quantity + $quantity,
                 ]);
 
                 $supply = Supply::create([

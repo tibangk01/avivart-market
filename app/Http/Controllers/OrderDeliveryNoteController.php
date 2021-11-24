@@ -53,6 +53,10 @@ class OrderDeliveryNoteController extends Controller
     {
         if ($request->isMethod('POST')) {
 
+            $request->validate([
+                'comment' => ['required', 'min:10'],
+            ]);
+
             $productOrder = ProductOrder::findOrFail($request->input('product_order_id'));
 
             try {

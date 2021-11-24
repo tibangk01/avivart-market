@@ -53,6 +53,10 @@ class PurchaseDeliveryNoteController extends Controller
     {
         if ($request->isMethod('POST')) {
 
+            $request->validate([
+                'comment' => ['required', 'min:10'],
+            ]);
+
             $productPurchase = ProductPurchase::findOrFail($request->input('product_purchase_id'));
 
             try {

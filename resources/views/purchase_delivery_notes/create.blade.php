@@ -51,7 +51,7 @@
                                     @if($purchase->has_delivery_note)
                                     <strong class="badge badge-info">Fichier attaché</strong>
                                     @else
-                                    <a href="{{ route('library.create', array('purchase' => $purchase->id)) }}">Attacher un fichier</a>
+                                    <a class="badge badge-warning" href="{{ route('library.create', array('purchase' => $purchase->id)) }}">Attacher un fichier</a>
                                     @endif
                                 </td>
                             </tr>
