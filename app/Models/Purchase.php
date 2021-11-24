@@ -75,6 +75,19 @@ class Purchase extends Model
 					->withTimestamps();
 	}
 
+	public function supplyIsCompleted()
+	{
+		$supplyIsCompleted = false;
+
+		if ($this->products->count()) {
+			foreach($this->products as $product) {
+				$supplyIsCompleted = $product->pivot->ordered_quantity == $product->pivot->delivered_quantity;
+			}
+		}
+
+		return $supplyIsCompleted;
+	}
+
 	public function getOrderStateStyle(): string
 	{
 		$bgColor = '';
