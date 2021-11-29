@@ -57,6 +57,7 @@ use App\Http\Controllers\RoleUserController;
 use App\Http\Controllers\ExerciseProductController;
 use App\Http\Controllers\QuickSaleController;
 use App\Http\Controllers\QuickSalePaymentController;
+use App\Http\Controllers\GoodController;
 
 /*
 |--------------------------------------------------------------------------
@@ -111,32 +112,11 @@ Route::prefix('/')->name('page.')->group(function () {
 
 Route::middleware(['auth', 'staff'])->group(function () {
 
-    Route::prefix('parameters')->group(function () {
-
-        /** Societies routes */
-        Route::prefix('/society/printing')->name('society.printing.')->group(function() {
-            Route::get('/', [SocietyController::class, 'printingAll'])->name('all');
-            Route::get('/{society}', [SocietyController::class, 'printingOne'])->name('one');
-        });
-
-        Route::resource('society', SocietyController::class)->only(['index', 'show', 'edit', 'update']);
-        /** End Societies routes */
-
-        /** staff types routes */
-        Route::resource('staff_type', StaffTypeController::class);
-        /** End staff types routes */
+    Route::prefix('stock')->group(function () {
 
         /** conversions routes */
         Route::resource('conversion', ConversionController::class);
         /** End conversions routes */
-
-        /** study level routes */
-        Route::resource('study_level', StudyLevelController::class);
-        /** End study level routes */
-
-        /** contract type routes */
-        Route::resource('contract_type', ContractTypeController::class);
-        /** End contract type routes */
 
         /** currencies routes */
         Route::resource('currency', CurrencyController::class);
@@ -158,13 +138,9 @@ Route::middleware(['auth', 'staff'])->group(function () {
         Route::resource('exercise', ExerciseController::class);
         /** End exercises routes */
 
-        /** works routes */
-        Route::resource('work', WorkController::class);
-        /** End works routes */
-
-        /** works routes */
-        Route::resource('market', MarketController::class);
-        /** End works routes */
+        /** exercise product routes */
+        Route::resource('exercise_product', ExerciseProductController::class);
+        /** End exercise product routes */
 
         /** product rays routes */
         Route::resource('product_ray', ProductRayController::class);
@@ -178,29 +154,160 @@ Route::middleware(['auth', 'staff'])->group(function () {
         Route::resource('product_type', ProductTypeController::class);
         /** End product types routes */
 
-        /** person rays routes */
-        Route::resource('person_ray', PersonRayController::class);
-        /** End person rays routes */
+        /** Products routes */
+        Route::prefix('/product/printing')->name('product.printing.')->group(function() {
+            Route::get('/', [ProductController::class, 'printingAll'])->name('all');
+            Route::get('/{product}', [ProductController::class, 'printingOne'])->name('one');
+        });
 
-        /** banks routes */
-        Route::resource('bank', BankController::class);
-        /** End banks routes */
+        Route::resource('product', ProductController::class);
+        /** End Products routes */
 
-        /** cash register routes */
-        Route::resource('cash_register', CashRegisterController::class);
-        /** End cash register routes */
+    });
+
+    Route::prefix('sales')->group(function () {
+
+        /** quick sales routes */
+        Route::prefix('/quick_sale/printing')->name('quick_sale.printing.')->group(function() {
+            Route::get('/', [QuickSaleController::class, 'printingAll'])->name('all');
+            Route::get('/{quick_sale}', [QuickSaleController::class, 'printingOne'])->name('one');
+        });
+        
+        Route::resource('quick_sale', QuickSaleController::class);
+        /** End quick sales routes */
+
+        /** proformas routes */
+        Route::prefix('/proforma/printing')->name('proforma.printing.')->group(function() {
+            Route::get('/', [ProformaController::class, 'printingAll'])->name('all');
+            Route::get('/{proforma}', [ProformaController::class, 'printingOne'])->name('one');
+        });
+        
+        Route::resource('proforma', ProformaController::class);
+        /** End proformas routes */
+
+        /** orders routes */
+        Route::prefix('/order/printing')->name('order.printing.')->group(function() {
+            Route::get('/', [OrderController::class, 'printingAll'])->name('all');
+            Route::get('/{order}', [OrderController::class, 'printingOne'])->name('one');
+        });
+        
+        Route::resource('order', OrderController::class);
+        /** End orders routes */
+
+        /** order delivery notes routes */
+        Route::resource('order_delivery_note', OrderDeliveryNoteController::class);
+        /** End order delivery notes routes */
+
+        /** purchases routes */
+        Route::prefix('/purchase/printing')->name('purchase.printing.')->group(function() {
+            Route::get('/', [PurchaseController::class, 'printingAll'])->name('all');
+            Route::get('/{purchase}', [PurchaseController::class, 'printingOne'])->name('one');
+        });
+        
+        Route::resource('purchase', PurchaseController::class);
+        /** End purchases routes */
+
+        /** purchase delivery notes routes */
+        Route::resource('purchase_delivery_note', PurchaseDeliveryNoteController::class);
+        /** End purchase delivery notes routes */
+
+        /** supplies routes */
+        Route::resource('supply', SupplyController::class);
+        /** End supplies routes */
+
+    });
+
+    Route::prefix('billings')->group(function () {
+
+        /** quick_sale payemnts routes */
+        Route::prefix('/quick_sale_payment/printing')->name('quick_sale_payment.printing.')->group(function() {
+            Route::get('/', [QuickSalePaymentController::class, 'printingAll'])->name('all');
+            Route::get('/{quick_sale_payment}', [QuickSalePaymentController::class, 'printingOne'])->name('one');
+        });
+
+        Route::resource('quick_sale_payment', QuickSalePaymentController::class);
+        /** End quick_sale payemnts routes */
+
+        /** order payments routes */
+        Route::prefix('/order_payment/printing')->name('order_payment.printing.')->group(function() {
+            Route::get('/', [OrderPaymentController::class, 'printingAll'])->name('all');
+            Route::get('/{order_payment}', [OrderPaymentController::class, 'printingOne'])->name('one');
+        });
+
+        Route::resource('order_payment', OrderPaymentController::class);
+        /** End order payments routes */
+
+        /** purchase payemnts routes */
+        Route::prefix('/purchase_payment/printing')->name('purchase_payment.printing.')->group(function() {
+            Route::get('/', [PurchasePaymentController::class, 'printingAll'])->name('all');
+            Route::get('/{purchase_payment}', [PurchasePaymentController::class, 'printingOne'])->name('one');
+        });
+
+        Route::resource('purchase_payment', PurchasePaymentController::class);
+        /** End purchase payemnts routes */
+
+    });
+
+    Route::prefix('operations')->group(function () {
 
         /** cash register operations types routes */
         Route::resource('cash_register_operation_type', CashRegisterOperationTypeController::class);
         /** End cash register operations types routes */
 
-        /** bank operations types routes */
-        Route::resource('bank_operation_type', BankOperationTypeController::class);
-        /** End bank operations types routes */
+        /** cash register operations routes */
+        Route::resource('cash_register_operation', CashRegisterOperationController::class);
+        /** End cash register operations routes */
+
+        /** day transactions routes */
+        Route::resource('day_transaction', DayTransactionController::class);
+        /** End day transactions routes */
+
+        /** cash register transactions routes */
+        Route::resource('cash_register_transaction', CashRegisterTransactionController::class);
+        /** End cash register transactions routes */
 
     });
 
-    Route::prefix('activities')->group(function () {
+    Route::prefix('clientele')->group(function () {
+
+        /** works routes */
+        Route::resource('market', MarketController::class);
+        /** End works routes */
+
+        /** person rays routes */
+        Route::resource('person_ray', PersonRayController::class);
+        /** End person rays routes */
+
+        /** providers routes */
+        Route::prefix('/provider/printing')->name('provider.printing.')->group(function() {
+            Route::get('/', [ProviderController::class, 'printingAll'])->name('all');
+            Route::get('/{provider}', [ProviderController::class, 'printingOne'])->name('one');
+        });
+        
+        Route::resource('provider', ProviderController::class);
+        /** End providers routes */
+
+        /** customers routes */
+        Route::prefix('/customer/printing')->name('customer.printing.')->group(function() {
+            Route::get('/', [CustomerController::class, 'printingAll'])->name('all');
+            Route::get('/{customer}', [CustomerController::class, 'printingOne'])->name('one');
+        });
+
+        Route::resource('customer', CustomerController::class);
+        /** End customers routes */
+
+    });
+
+    Route::prefix('organisation')->group(function () {
+
+        /** Societies routes */
+        Route::prefix('/society/printing')->name('society.printing.')->group(function() {
+            Route::get('/', [SocietyController::class, 'printingAll'])->name('all');
+            Route::get('/{society}', [SocietyController::class, 'printingOne'])->name('one');
+        });
+
+        Route::resource('society', SocietyController::class)->only(['index', 'show', 'edit', 'update']);
+        /** End Societies routes */
 
         /** Agencies routes */
         Route::prefix('/agency/printing')->name('agency.printing.')->group(function() {
@@ -219,6 +326,50 @@ Route::middleware(['auth', 'staff'])->group(function () {
 
         Route::resource('sale_place', SalePlaceController::class);
         /** End Sale Places routes */
+
+    });
+
+    Route::prefix('accounting')->group(function () {
+
+        /** cash register routes */
+        Route::resource('cash_register', CashRegisterController::class);
+        /** End cash register routes */
+
+        /** banks routes */
+        Route::resource('bank', BankController::class);
+        /** End banks routes */
+
+        /** bank operations types routes */
+        Route::resource('bank_operation_type', BankOperationTypeController::class);
+        /** End bank operations types routes */
+
+        /** bank operations routes */
+        Route::resource('bank_operation', BankOperationController::class);
+        /** End bank operations routes */
+
+        /** goods routes */
+        Route::resource('good', GoodController::class);
+        /** End goods routes */
+
+    });
+
+    Route::prefix('team')->group(function () {
+
+        /** study level routes */
+        Route::resource('study_level', StudyLevelController::class);
+        /** End study level routes */
+
+        /** contract type routes */
+        Route::resource('contract_type', ContractTypeController::class);
+        /** End contract type routes */
+
+        /** works routes */
+        Route::resource('work', WorkController::class);
+        /** End works routes */
+
+        /** staff types routes */
+        Route::resource('staff_type', StaffTypeController::class);
+        /** End staff types routes */
 
         /** staffs routes */
         Route::prefix('/staff/printing')->name('staff.printing.')->group(function() {
@@ -242,132 +393,16 @@ Route::middleware(['auth', 'staff'])->group(function () {
         Route::resource('role_user', RoleUserController::class);
         /** End role user routes */
 
-        /** exercise product routes */
-        Route::resource('exercise_product', ExerciseProductController::class);
-        /** End exercise product routes */
-
-        /** day transactions routes */
-        Route::resource('day_transaction', DayTransactionController::class);
-        /** End day transactions routes */
-
-        /** cash register transactions routes */
-        Route::resource('cash_register_transaction', CashRegisterTransactionController::class);
-        /** End cash register transactions routes */
-
-        /** cash register operations routes */
-        Route::resource('cash_register_operation', CashRegisterOperationController::class);
-        /** End cash register operations routes */
-
-        /** bank operations routes */
-        Route::resource('bank_operation', BankOperationController::class);
-        /** End bank operations routes */
-
-        /** providers routes */
-        Route::prefix('/provider/printing')->name('provider.printing.')->group(function() {
-            Route::get('/', [ProviderController::class, 'printingAll'])->name('all');
-            Route::get('/{provider}', [ProviderController::class, 'printingOne'])->name('one');
-        });
-        
-        Route::resource('provider', ProviderController::class);
-        /** End providers routes */
-
-        /** customers routes */
-        Route::prefix('/customer/printing')->name('customer.printing.')->group(function() {
-            Route::get('/', [CustomerController::class, 'printingAll'])->name('all');
-            Route::get('/{customer}', [CustomerController::class, 'printingOne'])->name('one');
-        });
-
-        Route::resource('customer', CustomerController::class);
-        /** End customers routes */
-
-        /** Products routes */
-        Route::prefix('/product/printing')->name('product.printing.')->group(function() {
-            Route::get('/', [ProductController::class, 'printingAll'])->name('all');
-            Route::get('/{product}', [ProductController::class, 'printingOne'])->name('one');
-        });
-
-        Route::resource('product', ProductController::class);
-        /** End Products routes */
-
-        /** quick sales routes */
-        Route::prefix('/quick_sale/printing')->name('quick_sale.printing.')->group(function() {
-            Route::get('/', [QuickSaleController::class, 'printingAll'])->name('all');
-            Route::get('/{quick_sale}', [QuickSaleController::class, 'printingOne'])->name('one');
-        });
-        
-        Route::resource('quick_sale', QuickSaleController::class);
-        /** End quick sales routes */
-
-        /** purchases routes */
-        Route::prefix('/purchase/printing')->name('purchase.printing.')->group(function() {
-            Route::get('/', [PurchaseController::class, 'printingAll'])->name('all');
-            Route::get('/{purchase}', [PurchaseController::class, 'printingOne'])->name('one');
-        });
-        
-        Route::resource('purchase', PurchaseController::class);
-        /** End purchases routes */
-
-        /** supplies routes */
-        Route::resource('supply', SupplyController::class);
-        /** End supplies routes */
-
-        /** proformas routes */
-        Route::prefix('/proforma/printing')->name('proforma.printing.')->group(function() {
-            Route::get('/', [ProformaController::class, 'printingAll'])->name('all');
-            Route::get('/{proforma}', [ProformaController::class, 'printingOne'])->name('one');
-        });
-        
-        Route::resource('proforma', ProformaController::class);
-        /** End proformas routes */
-
-        /** orders routes */
-        Route::prefix('/order/printing')->name('order.printing.')->group(function() {
-            Route::get('/', [OrderController::class, 'printingAll'])->name('all');
-            Route::get('/{order}', [OrderController::class, 'printingOne'])->name('one');
-        });
-        
-        Route::resource('order', OrderController::class);
-        /** End orders routes */
-
-        /** purchase delivery notes routes */
-        Route::resource('purchase_delivery_note', PurchaseDeliveryNoteController::class);
-        /** End purchase delivery notes routes */
-        
-        /** order delivery notes routes */
-        Route::resource('order_delivery_note', OrderDeliveryNoteController::class);
-        /** End order delivery notes routes */
-
     });
 
-    Route::prefix('cash_registers')->group(function () {
+    Route::prefix('reports')->group(function () {
 
-        /** quick_sale payemnts routes */
-        Route::prefix('/quick_sale_payment/printing')->name('quick_sale_payment.printing.')->group(function() {
-            Route::get('/', [QuickSalePaymentController::class, 'printingAll'])->name('all');
-            Route::get('/{quick_sale_payment}', [QuickSalePaymentController::class, 'printingOne'])->name('one');
-        });
+        
+    });
 
-        Route::resource('quick_sale_payment', QuickSalePaymentController::class);
-        /** End quick_sale payemnts routes */
+    Route::prefix('stats')->group(function () {
 
-        /** purchase payemnts routes */
-        Route::prefix('/purchase_payment/printing')->name('purchase_payment.printing.')->group(function() {
-            Route::get('/', [PurchasePaymentController::class, 'printingAll'])->name('all');
-            Route::get('/{purchase_payment}', [PurchasePaymentController::class, 'printingOne'])->name('one');
-        });
-
-        Route::resource('purchase_payment', PurchasePaymentController::class);
-        /** End purchase payemnts routes */
-
-        /** order payments routes */
-        Route::prefix('/order_payment/printing')->name('order_payment.printing.')->group(function() {
-            Route::get('/', [OrderPaymentController::class, 'printingAll'])->name('all');
-            Route::get('/{order_payment}', [OrderPaymentController::class, 'printingOne'])->name('one');
-        });
-
-        Route::resource('order_payment', OrderPaymentController::class);
-        /** End order payments routes */
-
+        
     });
 
     Route::prefix('utilities')->group(function () {
@@ -403,15 +438,7 @@ Route::middleware(['auth', 'staff'])->group(function () {
 
     });
 
-    Route::prefix('reports')->group(function () {
-
-        
-    });
-
-    Route::prefix('stats')->group(function () {
-
-        
-    });
+    
 
     /** Libraries routes */
     Route::resource('library', LibraryController::class);

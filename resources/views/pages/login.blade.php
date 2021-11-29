@@ -22,6 +22,10 @@
 ])
 
 @section('body')
+<div class="py-2 text-center">
+    <img class="w-100" src="{{ asset('img/logo_bg_transparent.png') }}" alt="{{ config('app.name') }}">
+</div>
+
 <div class="card" id="login">
     <div class="{{ $cardHeaderBackColor[mt_rand(0, 17)] }} text-center py-2">{{ config('app.name') }}</div>
 

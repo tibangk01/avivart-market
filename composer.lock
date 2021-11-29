@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "40cabeb91515fc13f889c91daa501ee4",
+    "content-hash": "b8910229ab75dfe41ce00e739a69b338",
     "packages": [
         {
             "name": "arrilot/laravel-widgets",
@@ -7262,6 +7262,66 @@
             "time": "2020-12-21T19:12:11+00:00"
         },
         {
+            "name": "unicodeveloper/laravel-sessiontimeout",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/unicodeveloper/laravel-sessiontimeout.git",
+                "reference": "5bbb26dfb561f5fa22d33bc7b9ea467537f5bc8d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/unicodeveloper/laravel-sessiontimeout/zipball/5bbb26dfb561f5fa22d33bc7b9ea467537f5bc8d",
+                "reference": "5bbb26dfb561f5fa22d33bc7b9ea467537f5bc8d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*",
+                "scrutinizer/ocular": "~1.1"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Unicodeveloper\\Session\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Prosper Otemuyiwa",
+                    "email": "prosperotemuyiwa@gmail.com",
+                    "homepage": "https://twitter.com/unicodeveloper",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A middleware to deal with your sessiontimeout problems in Laravel 5",
+            "homepage": "https://github.com/unicodeveloper/laravel-sessiontimeout",
+            "keywords": [
+                "laravel",
+                "laravel 5",
+                "laravel-sessiontimeout",
+                "session",
+                "timeout"
+            ],
+            "support": {
+                "issues": "https://github.com/unicodeveloper/laravel-sessiontimeout/issues",
+                "source": "https://github.com/unicodeveloper/laravel-sessiontimeout/tree/master"
+            },
+            "time": "2015-11-23T05:04:29+00:00"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v5.3.0",
             "source": {
@@ -10786,7 +10846,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "unicodeveloper/laravel-sessiontimeout": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

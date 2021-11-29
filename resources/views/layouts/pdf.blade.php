@@ -9,6 +9,8 @@
 
     <title>{{ config('app.name') }} - Impression - {{ $title ?? 'Laravel' }}</title>
 
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.jpg') }}">
+
     <link rel="stylesheet" href="{{ asset('vendors/dist/css/adminlte.min.css') }}">
 
     <style type="text/css">

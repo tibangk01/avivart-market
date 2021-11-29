@@ -7,22 +7,24 @@
 
     <title>{{ $title ?? config('app.name') }} < Authentification < {{ config('app.name') }}</title>
 
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.jpg') }}">
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     
     <link rel="stylesheet" href="{{ asset('vendors/plugins/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/dist/css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     <style>
         body {
-            background: linear-gradient(90deg, rgba(2, 0, 36, 1) 10%, rgba(9, 9, 121, 1) 50%, rgba(0, 212, 255, 1) 100%);
+            /*background: linear-gradient(90deg, rgba(2, 0, 36, 1) 10%, rgba(9, 9, 121, 1) 50%, rgba(0, 212, 255, 1) 100%);*/
         }
-
     </style>
 
 </head>
 
-<body class="hold-transition login-page text-sm">
+<body class="hold-transition login-page text-sm" style="background-color: #000;">
 
     @include('layouts.partials._validation_errors')
 

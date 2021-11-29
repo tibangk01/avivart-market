@@ -1,9 +1,9 @@
 <aside class="main-sidebar {{ session('sidebarLeftTheme', 'sidebar-dark-navy elevation-4') }}">
     <!-- Brand Logo -->
     <a href="{{ route('page.index') }}" class="brand-link">
-        <img src="{{ asset('vendors/dist/img/AdminLTELogo.png') }}" alt="{{ config('app.name') }}"
-            class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">{{ config('app.name') }}</span>
+        <img src="{{ asset('favicon.jpg') }}" alt="{{ config('app.name') }}" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <img class="brand-text" width="40" height="18" src="{{ asset('img/logo_bg_transparent.png') }}" alt="{{ config('app.name') }}">
+        <!-- <span class="brand-text font-weight-light"></span> -->
     </a>
 
     <!-- Sidebar -->
@@ -26,47 +26,23 @@
                 <li class="nav-item">
                     <a href="{{ route('page.index') }}" class="nav-link {{ Str::of(request()->path())->startsWith('/') ? 'menu-open active' : '' }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>Tableau de bord</p>
+                        <p>TABLEAU DE BORD</p>
                     </a>
                 </li>
 
-                <li class="nav-item has-treeview {{ Str::of(request()->path())->startsWith('parameters') ? 'menu-open' : '' }}">
+                <li class="nav-item has-treeview {{ Str::of(request()->path())->startsWith('stock') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
                       <i class="nav-icon fas fa-cog"></i>
                       <p>
-                        Parametres
+                        GESTION DE STOCK
                         <i class="right fas fa-angle-left"></i>
                       </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a data-attr="menu-open" data-class="active" href="{{ route('society.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-building"></i>
-                                <p>Société</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a data-attr="menu-open" data-class="active" href="{{ route('staff_type.index') }}" class="nav-link">
-                                <i class=" nav-icon fas fa-list-alt" aria-hidden="true"></i>
-                                <p>Types de staff</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('conversion.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>Unités de mesure</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a data-attr="menu-open" data-class="active" href="{{ route('study_level.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>Niveaux d'étude</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a data-attr="menu-open" data-class="active" href="{{ route('contract_type.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>Types de contrat</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -95,15 +71,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a data-attr="menu-open" data-class="active" href="{{ route('work.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-suitcase"></i>
-                                <p>Fonctions</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a data-attr="menu-open" data-class="active" href="{{ route('market.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-suitcase"></i>
-                                <p>Marchés</p>
+                            <a data-attr="menu-open" data-class="active" href="{{ route('exercise_product.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>Régul Inventaires</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -125,23 +95,107 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a data-attr="menu-open" data-class="active" href="{{ route('person_ray.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-list-alt"></i>
-                                <p>Types de fournisseur/client</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a data-attr="menu-open" data-class="active" href="{{ route('bank.index') }}" class="nav-link">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('product.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-file"></i>
-                                <p>Banques</p>
+                                <p>Produits & Services</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item has-treeview {{ Str::of(request()->path())->startsWith('sales') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon fas fa-list"></i>
+                      <p>
+                        GESTION DES VENTES
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('quick_sale.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-shopping-bag"></i>
+                                <p>Ventes rapide</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a data-attr="menu-open" data-class="active" href="{{ route('cash_register.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-users"></i>
-                                <p>Caisses</p>
+                            <a data-attr="menu-open" data-class="active" href="{{ route('proforma.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-file"></i>
+                                <p>Proformas</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('order.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-shopping-bag"></i>
+                                <p>Commandes client</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('order_delivery_note.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-shopping-bag"></i>
+                                <p>Livraisons client</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('purchase.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-file"></i>
+                                <p>Commandes fournisseur</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('purchase_delivery_note.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-shopping-bag"></i>
+                                <p>Réceptions fournisseur</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('supply.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-shopping-basket"></i>
+                                <p>Approvisionnements</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item has-treeview {{ Str::of(request()->path())->startsWith('billings') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon fas fa-user"></i>
+                      <p>
+                        GESTION DES FACTURATIONS
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('quick_sale_payment.index') }}" class="nav-link">
+                                <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
+                                <p>Payements vente rapide</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('order_payment.index') }}" class="nav-link">
+                                <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
+                                <p>Payements client</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('purchase_payment.index') }}" class="nav-link">
+                                <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
+                                <p>Payements fournisseur</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item has-treeview {{ Str::of(request()->path())->startsWith('operations') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon fas fa-list-alt"></i>
+                      <p>
+                        GESTION DES OPERATIONS
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('cash_register_operation_type.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
@@ -149,23 +203,77 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a data-attr="menu-open" data-class="active" href="{{ route('bank_operation_type.index') }}" class="nav-link">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('cash_register_operation.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
-                                <p>Types d'opération de banque</p>
+                                <p>Opérations de caisse</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('day_transaction.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-cubes"></i>
+                                <p>Transactions de journée</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('cash_register_transaction.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-cubes"></i>
+                                <p>Transactions de caisse</p>
                             </a>
                         </li>
                     </ul>
                 </li>
 
-                <li class="nav-item has-treeview {{ Str::of(request()->path())->startsWith('activities') ? 'menu-open' : '' }}">
+                <li class="nav-item has-treeview {{ Str::of(request()->path())->startsWith('clientele') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
-                      <i class="nav-icon fas fa-list"></i>
+                      <i class="nav-icon fas fa-list-alt"></i>
                       <p>
-                        Activités
+                        GESTION DE LA CLIENTELE
                         <i class="right fas fa-angle-left"></i>
                       </p>
                     </a>
                     <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('market.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-suitcase"></i>
+                                <p>Marchés</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('person_ray.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-list-alt"></i>
+                                <p>Types de fournisseur/client</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('provider.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-truck"></i>
+                                <p>Fournisseurs</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('customer.index') }}" class="nav-link">
+                                <i class="nav-icon fa fa-users" aria-hidden="true"></i>
+                                <p>Clients</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li class="nav-item has-treeview {{ Str::of(request()->path())->startsWith('organisation') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon fas fa-list-alt"></i>
+                      <p>
+                        ORGANISATION
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('society.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-building"></i>
+                                <p>Société</p>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('agency.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-cubes"></i>
@@ -176,6 +284,84 @@
                             <a data-attr="menu-open" data-class="active" href="{{ route('sale_place.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-sitemap"></i>
                                 <p>Points de vente</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item has-treeview {{ Str::of(request()->path())->startsWith('accounting') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon fas fa-list-alt"></i>
+                      <p>
+                        COMPTABILITE
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('cash_register.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>Caisses</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('bank.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-file"></i>
+                                <p>Banques</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('bank_operation_type.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>Types d'opération de banque</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('bank_operation.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>Opérations de banque</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('good.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>Amortissement des biens</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item has-treeview {{ Str::of(request()->path())->startsWith('team') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon fas fa-list-alt"></i>
+                      <p>
+                        GESTION DU PERSONNEL
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('study_level.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>Niveaux d'étude</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('contract_type.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>Types de contrat</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('work.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-suitcase"></i>
+                                <p>Fonctions</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-attr="menu-open" data-class="active" href="{{ route('staff_type.index') }}" class="nav-link">
+                                <i class=" nav-icon fas fa-list-alt" aria-hidden="true"></i>
+                                <p>Types de staff</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -202,127 +388,40 @@
                                 <p>Rôles & Utilisateurs</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a data-attr="menu-open" data-class="active" href="{{ route('exercise_product.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-users"></i>
-                                <p>Régul Inventaires</p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a data-attr="menu-open" data-class="active" href="{{ route('day_transaction.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-cubes"></i>
-                                <p>Transactions de journée</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a data-attr="menu-open" data-class="active" href="{{ route('cash_register_transaction.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-cubes"></i>
-                                <p>Transactions de caisse</p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a data-attr="menu-open" data-class="active" href="{{ route('cash_register_operation.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-users"></i>
-                                <p>Opérations de caisse</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a data-attr="menu-open" data-class="active" href="{{ route('bank_operation.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-users"></i>
-                                <p>Opérations de banque</p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a data-attr="menu-open" data-class="active" href="{{ route('provider.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-truck"></i>
-                                <p>Fournisseurs</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a data-attr="menu-open" data-class="active" href="{{ route('customer.index') }}" class="nav-link">
-                                <i class="nav-icon fa fa-users" aria-hidden="true"></i>
-                                <p>Clients</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a data-attr="menu-open" data-class="active" href="{{ route('product.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-file"></i>
-                                <p>Produits & Services</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a data-attr="menu-open" data-class="active" href="{{ route('quick_sale.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-bag"></i>
-                                <p>Ventes rapide</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a data-attr="menu-open" data-class="active" href="{{ route('purchase.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-file"></i>
-                                <p>Commandes fournisseur</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a data-attr="menu-open" data-class="active" href="{{ route('supply.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-basket"></i>
-                                <p>Approvisionnements</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a data-attr="menu-open" data-class="active" href="{{ route('proforma.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-file"></i>
-                                <p>Proformas</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a data-attr="menu-open" data-class="active" href="{{ route('order.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-bag"></i>
-                                <p>Commandes client</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a data-attr="menu-open" data-class="active" href="{{ route('purchase_delivery_note.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-bag"></i>
-                                <p>Réceptions fournisseur</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a data-attr="menu-open" data-class="active" href="{{ route('order_delivery_note.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-bag"></i>
-                                <p>Livraisons client</p>
-                            </a>
-                        </li>
                     </ul>
                 </li>
 
-                <li class="nav-item has-treeview {{ Str::of(request()->path())->startsWith('cash_registers') ? 'menu-open' : '' }}">
+                <li class="nav-item has-treeview {{ Str::of(request()->path())->startsWith('reports') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
-                      <i class="nav-icon fas fa-user"></i>
+                      <i class="nav-icon fas fa-info-circle"></i>
                       <p>
-                        Caisses
+                        RAPPORTS
                         <i class="right fas fa-angle-left"></i>
                       </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a data-attr="menu-open" data-class="active" href="{{ route('quick_sale_payment.index') }}" class="nav-link">
+                            <a data-attr="menu-open" data-class="active" href="#" class="nav-link">
                                 <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
-                                <p>Payements vente rapide</p>
+                                <p>Rapport 1</p>
                             </a>
                         </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item has-treeview {{ Str::of(request()->path())->startsWith('stats') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon fas fa-info-circle"></i>
+                      <p>
+                        STATISTIQUES
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a data-attr="menu-open" data-class="active" href="{{ route('purchase_payment.index') }}" class="nav-link">
+                            <a data-attr="menu-open" data-class="active" href="#" class="nav-link">
                                 <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
-                                <p>Payements fournisseur</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a data-attr="menu-open" data-class="active" href="{{ route('order_payment.index') }}" class="nav-link">
-                                <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
-                                <p>Payements client</p>
+                                <p>Statistique 1</p>
                             </a>
                         </li>
                     </ul>
@@ -332,7 +431,7 @@
                     <a href="#" class="nav-link">
                       <i class="nav-icon fas fa-database"></i>
                       <p>
-                        Utilitaires
+                        UTILITAIRES
                         <i class="right fas fa-angle-left"></i>
                       </p>
                     </a>
@@ -357,7 +456,7 @@
                     <a href="#" class="nav-link">
                       <i class="nav-icon fas fa-list-alt"></i>
                       <p>
-                        Outils
+                        OUTILS
                         <i class="right fas fa-angle-left"></i>
                       </p>
                     </a>
@@ -375,7 +474,7 @@
                     <a href="#" class="nav-link">
                       <i class="nav-icon fas fa-info-circle"></i>
                       <p>
-                        Aides
+                        AIDES
                         <i class="right fas fa-angle-left"></i>
                       </p>
                     </a>
@@ -396,42 +495,6 @@
                             <a data-attr="menu-open" data-class="active" href="{{ route('page.about') }}" class="nav-link">
                                 <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
                                 <p>A propos</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="nav-item has-treeview {{ Str::of(request()->path())->startsWith('reports') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link">
-                      <i class="nav-icon fas fa-info-circle"></i>
-                      <p>
-                        Rapports
-                        <i class="right fas fa-angle-left"></i>
-                      </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a data-attr="menu-open" data-class="active" href="#" class="nav-link">
-                                <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
-                                <p>Rapport 1</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="nav-item has-treeview {{ Str::of(request()->path())->startsWith('stats') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link">
-                      <i class="nav-icon fas fa-info-circle"></i>
-                      <p>
-                        Statistiques
-                        <i class="right fas fa-angle-left"></i>
-                      </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a data-attr="menu-open" data-class="active" href="#" class="nav-link">
-                                <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
-                                <p>Statistique 1</p>
                             </a>
                         </li>
                     </ul>
