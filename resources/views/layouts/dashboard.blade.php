@@ -47,11 +47,11 @@
         <x-preloader />
 
         <!-- Navbar -->
-        @include('layouts.partials.dashboard._nav')
+        @include('layouts.partials._nav')
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        @include('layouts.partials.dashboard._left_sidebar')
+        @include('layouts.partials._left_sidebar')
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -108,7 +108,7 @@
         </div>
 
         <!-- Control Sidebar -->
-        @include('layouts.partials.dashboard._right_sidebar')
+        @include('layouts.partials._right_sidebar')
         <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
@@ -170,16 +170,17 @@
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
     <script type="text/javascript" src="https://avivart.net/ecosoft/libs/js/jquery-active-page.js"></script>
     <script type="text/javascript">
-        $('ul.nav-sidebar ul > li > a').matchactive();
-
-        $('[data-widget]').click(function (e) {
-            $.get(laroute.route('settings.index', {sidebar_collapse_value: null}), function (response, status) {
-                console.log(response, status);
-            });
-        });
-
         $(document).ready(function(){
-          $('.delete-form').on('submit', function(){
+
+            $('ul.nav-sidebar ul > li > a').matchactive();
+
+            $('[data-widget]').click(function (e) {
+                $.get(laroute.route('settings.index', {sidebar_collapse_value: null}), function (response, status) {
+                    console.log(response, status);
+                });
+            });
+          
+            $('.delete-form').on('submit', function(){
                 if(confirm("Are you sure you want to delete it?"))
                 {
                     return true;
@@ -189,6 +190,7 @@
                     return false;
                 }
             });
+
         });
     </script>
 
