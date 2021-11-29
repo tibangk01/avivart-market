@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $date_of_service
  * @property float $original_value
  * @property float $rate_charged
- * @property Carbon $amortization_year
+ * @property int $amortization
  * @property Carbon $created_at
  * @property Carbon $updated_at
  *
@@ -43,6 +43,6 @@ class Good extends Model
 		'date_of_service',
 		'original_value',
 		'rate_charged',
-		'amortization_year'
+		'amortization'
 	];
 }

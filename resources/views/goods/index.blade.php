@@ -34,7 +34,8 @@
                                                     <th>Date de mise en service</th>
                                                     <th>Valeur d'origine</th>
                                                     <th>Taux pratiqué</th>
-                                                    <th>Année d'amortissement</th>
+                                                    <th>Amortissement</th>
+                                                    <th>Date fin amortissement</th>
                                                     <th>Date de Création</th>
                                                     <th>Date de Modification</th>
                                                     <th>Actions</th>
@@ -48,7 +49,8 @@
                                                         <td>{{ $good->date_of_service->isoFormat('L') }}</td>
                                                         <td>{{ $good->original_value }}</td>
                                                         <td>{{ $good->rate_charged }}%</td>
-                                                        <td>{{ $good->amortization_year }}</td>
+                                                        <td>{{ $good->amortization }}</td>
+                                                        <td>{{ $good->date_of_service->addYears($good->amortization)->isoFormat('L') }}</td>
                                                         <td>{{ $good->created_at }}</td>
                                                         <td>{{ $good->updated_at }}</td>
                                                         <td class="d-flex flex-row justify-content-around align-items-center">
@@ -61,7 +63,7 @@
                                                     </tr>
                                                 @empty
                                                     <tr>
-                                                        <td colspan="9">Pas d'enregistrements</td>
+                                                        <td colspan="10">Pas d'enregistrements</td>
                                                     </tr>
                                                 @endforelse
                                             </tbody>

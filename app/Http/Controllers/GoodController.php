@@ -129,7 +129,7 @@ class GoodController extends Controller
             'date_of_service' => ['required'],
             'original_value' => ['required'],
             'rate_charged' => ['required'],
-            'amortization_year' => ['required'],
+            'amortization' => ['required'],
         ]);
     }
 }

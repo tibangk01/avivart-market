@@ -36,8 +36,8 @@
                     </div>
 
                     <div class="form-group">
-                        {!! Form::label('amortization_year', "Année d'amortissement") !!}
-                        {!! Form::number('amortization_year', null, ['class' => 'form-control', 'required' => true, 'minlength' => 4, 'maxlength' => 4]) !!}
+                        {!! Form::label('amortization', "Amortissement") !!}
+                        {!! Form::number('amortization', null, ['class' => 'form-control', 'required' => true, 'step' => 'any', 'min' => 0]) !!}
                     </div>
 
                     <div class="form-group text-right">

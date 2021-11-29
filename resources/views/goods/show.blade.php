@@ -35,8 +35,12 @@
                                     <td>{{ $good->rate_charged }}%</td>
                                 </tr>
                                 <tr>
-                                    <td>Année d'amortissement</td>
-                                    <td>{{ $good->amortization_year }}</td>
+                                    <td>Amortissement</td>
+                                    <td>{{ $good->amortization }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Date fin amortissement</td>
+                                    <td>{{ $good->date_of_service->addYears($good->amortization)->isoFormat('L') }}</td>
                                 </tr>
                                 <tr>
                                     <td>Date de Création</td>
