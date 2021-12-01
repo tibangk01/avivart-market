@@ -42,7 +42,7 @@
     @livewireStyles
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed text-sm {{ session('sidebarCollapseValue', '') }}">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed text-sm">
     <div class="wrapper">
 
         <!-- Preloader -->
@@ -175,12 +175,6 @@
         $(document).ready(function(){
 
             $('ul.nav-sidebar ul > li > a').matchactive();
-
-            $('[data-widget]').click(function (e) {
-                $.get(laroute.route('settings.index', {sidebar_collapse_value: null}), function (response, status) {
-                    console.log(response, status);
-                });
-            });
           
             $('.delete-form').on('submit', function(){
                 if(confirm("Are you sure you want to delete it?"))

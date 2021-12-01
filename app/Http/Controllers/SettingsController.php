@@ -13,16 +13,6 @@ class SettingsController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->has('sidebar_collapse_value')) {
-            if (session('sidebarCollapseValue') == null) {
-                session()->put('sidebarCollapseValue', 'sidebar-collapse');
-            } else {
-                session()->put('sidebarCollapseValue', '');
-            }
-
-            return response()->json(['sidebarCollapseValue' => session('sidebarCollapseValue')]);
-        }
-
         if ($request->has('navbar_theme')) {
             session()->put('navbarTheme', $request->query('navbar_theme'));
 

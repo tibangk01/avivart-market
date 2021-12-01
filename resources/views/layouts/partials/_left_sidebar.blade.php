@@ -2,8 +2,9 @@
     <!-- Brand Logo -->
     <a href="{{ route('page.index') }}" class="brand-link">
         <img src="{{ asset('favicon.jpg') }}" alt="{{ config('app.name') }}" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <img class="brand-text" width="40" height="18" src="{{ asset('img/logo_bg_transparent.png') }}" alt="{{ config('app.name') }}">
-        <!-- <span class="brand-text font-weight-light"></span> -->
+        <span class="brand-text font-weight-bold">
+            <i class="text-pink">Digi</i><i class="text-info">vente</i>
+        </span>
     </a>
 
     <!-- Sidebar -->
@@ -32,7 +33,7 @@
 
                 <li class="nav-item has-treeview {{ Str::of(request()->path())->startsWith('stock') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
-                      <i class="nav-icon fas fa-cog"></i>
+                      <i class="nav-icon fas fa-cart-arrow-down"></i>
                       <p>
                         GESTION DE STOCK
                         <i class="right fas fa-angle-left"></i>
@@ -47,13 +48,13 @@
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('currency.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-euro-sign    "></i>
+                                <i class="nav-icon fas fa-euro-sign"></i>
                                 <p>Devises</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('vat.index') }}" class="nav-link">
-                                <i class="nav-icon fa fa-percent" aria-hidden="true"></i>
+                                <i class="nav-icon fa fa-percent"></i>
                                 <p>TVAs</p>
                             </a>
                         </li>
@@ -65,8 +66,7 @@
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('exercise.index') }}" class="nav-link">
-
-                                <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
+                                <i class="nav-icon fa fa-calendar"></i>
                                 <p>Périodes d'inventaire</p>
                             </a>
                         </li>
@@ -105,7 +105,7 @@
 
                 <li class="nav-item has-treeview {{ Str::of(request()->path())->startsWith('sales') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
-                      <i class="nav-icon fas fa-list"></i>
+                      <i class="nav-icon fas fa-clone"></i>
                       <p>
                         GESTION DES VENTES
                         <i class="right fas fa-angle-left"></i>
@@ -114,13 +114,13 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('quick_sale.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-bag"></i>
+                                <i class="nav-icon fas fa-shopping-basket"></i>
                                 <p>Ventes rapide</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('proforma.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-file"></i>
+                                <i class="nav-icon fas fa-cart-plus"></i>
                                 <p>Proformas</p>
                             </a>
                         </li>
@@ -132,25 +132,25 @@
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('order_delivery_note.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-bag"></i>
+                                <i class="nav-icon fas fa-file"></i>
                                 <p>Livraisons client</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('purchase.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-file"></i>
+                                <i class="nav-icon fas fa-shopping-bag"></i>
                                 <p>Commandes fournisseur</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('purchase_delivery_note.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-bag"></i>
+                                <i class="nav-icon fas fa-file"></i>
                                 <p>Réceptions fournisseur</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('supply.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-basket"></i>
+                                <i class="nav-icon fas fa-cart-plus"></i>
                                 <p>Approvisionnements</p>
                             </a>
                         </li>
@@ -159,7 +159,7 @@
 
                 <li class="nav-item has-treeview {{ Str::of(request()->path())->startsWith('billings') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
-                      <i class="nav-icon fas fa-user"></i>
+                      <i class="nav-icon fas fa-file"></i>
                       <p>
                         GESTION DES FACTURATIONS
                         <i class="right fas fa-angle-left"></i>
@@ -168,19 +168,19 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('quick_sale_payment.index') }}" class="nav-link">
-                                <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
+                                <i class="nav-icon fa fa-calendar"></i>
                                 <p>Payements vente rapide</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('order_payment.index') }}" class="nav-link">
-                                <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
+                                <i class="nav-icon fa fa-calendar"></i>
                                 <p>Payements client</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('purchase_payment.index') }}" class="nav-link">
-                                <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
+                                <i class="nav-icon fa fa-calendar"></i>
                                 <p>Payements fournisseur</p>
                             </a>
                         </li>
@@ -189,7 +189,7 @@
 
                 <li class="nav-item has-treeview {{ Str::of(request()->path())->startsWith('operations') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
-                      <i class="nav-icon fas fa-list-alt"></i>
+                      <i class="nav-icon fas fa-bars"></i>
                       <p>
                         GESTION DES OPERATIONS
                         <i class="right fas fa-angle-left"></i>
@@ -225,7 +225,7 @@
 
                 <li class="nav-item has-treeview {{ Str::of(request()->path())->startsWith('clientele') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
-                      <i class="nav-icon fas fa-list-alt"></i>
+                      <i class="nav-icon fas fa-user-secret"></i>
                       <p>
                         GESTION DE LA CLIENTELE
                         <i class="right fas fa-angle-left"></i>
@@ -252,7 +252,7 @@
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('customer.index') }}" class="nav-link">
-                                <i class="nav-icon fa fa-users" aria-hidden="true"></i>
+                                <i class="nav-icon fa fa-users"></i>
                                 <p>Clients</p>
                             </a>
                         </li>
@@ -261,7 +261,7 @@
                 
                 <li class="nav-item has-treeview {{ Str::of(request()->path())->startsWith('organisation') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
-                      <i class="nav-icon fas fa-list-alt"></i>
+                      <i class="nav-icon fas fa-building"></i>
                       <p>
                         ORGANISATION
                         <i class="right fas fa-angle-left"></i>
@@ -291,7 +291,7 @@
 
                 <li class="nav-item has-treeview {{ Str::of(request()->path())->startsWith('accounting') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
-                      <i class="nav-icon fas fa-list-alt"></i>
+                      <i class="nav-icon fas fa-calculator"></i>
                       <p>
                         COMPTABILITE
                         <i class="right fas fa-angle-left"></i>
@@ -333,7 +333,7 @@
 
                 <li class="nav-item has-treeview {{ Str::of(request()->path())->startsWith('team') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
-                      <i class="nav-icon fas fa-list-alt"></i>
+                      <i class="nav-icon fas fa-users"></i>
                       <p>
                         GESTION DU PERSONNEL
                         <i class="right fas fa-angle-left"></i>
@@ -360,7 +360,7 @@
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('staff_type.index') }}" class="nav-link">
-                                <i class=" nav-icon fas fa-list-alt" aria-hidden="true"></i>
+                                <i class=" nav-icon fas fa-list-alt"></i>
                                 <p>Types de staff</p>
                             </a>
                         </li>
@@ -393,7 +393,7 @@
 
                 <li class="nav-item has-treeview {{ Str::of(request()->path())->startsWith('reports') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
-                      <i class="nav-icon fas fa-info-circle"></i>
+                      <i class="nav-icon fas fa-folder"></i>
                       <p>
                         RAPPORTS
                         <i class="right fas fa-angle-left"></i>
@@ -402,7 +402,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="#" class="nav-link">
-                                <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
+                                <i class="nav-icon fa fa-calendar"></i>
                                 <p>Rapport 1</p>
                             </a>
                         </li>
@@ -411,7 +411,7 @@
 
                 <li class="nav-item has-treeview {{ Str::of(request()->path())->startsWith('stats') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
-                      <i class="nav-icon fas fa-info-circle"></i>
+                      <i class="nav-icon fas fa-industry"></i>
                       <p>
                         STATISTIQUES
                         <i class="right fas fa-angle-left"></i>
@@ -420,7 +420,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="#" class="nav-link">
-                                <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
+                                <i class="nav-icon fa fa-calendar"></i>
                                 <p>Statistique 1</p>
                             </a>
                         </li>
@@ -429,7 +429,7 @@
 
                 <li class="nav-item has-treeview {{ Str::of(request()->path())->startsWith('utilities') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
-                      <i class="nav-icon fas fa-database"></i>
+                      <i class="nav-icon fas fa-cubes"></i>
                       <p>
                         UTILITAIRES
                         <i class="right fas fa-angle-left"></i>
@@ -438,14 +438,14 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('page.backups') }}" class="nav-link">
-                                <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
+                                <i class="nav-icon fa fa-database"></i>
                                 <p>Sauvegarde des données</p>
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('transaction.index') }}" class="nav-link">
-                                <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
+                                <i class="nav-icon fa fa-history"></i>
                                 <p>Pistes d'audit</p>
                             </a>
                         </li>
@@ -454,7 +454,7 @@
 
                 <li class="nav-item has-treeview {{ Str::of(request()->path())->startsWith('tools') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
-                      <i class="nav-icon fas fa-list-alt"></i>
+                      <i class="nav-icon fas fa-cube"></i>
                       <p>
                         OUTILS
                         <i class="right fas fa-angle-left"></i>
@@ -463,7 +463,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('settings.index') }}" class="nav-link">
-                                <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
+                                <i class="nav-icon fa fa-cogs"></i>
                                 <p>Parametres</p>
                             </a>
                         </li>
@@ -481,19 +481,19 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('page.doc') }}" class="nav-link">
-                                <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
+                                <i class="nav-icon fa fa-book"></i>
                                 <p>Documentation</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('page.licence') }}" class="nav-link">
-                                <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
+                                <i class="nav-icon fa fa-file"></i>
                                 <p>Licence</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('page.about') }}" class="nav-link">
-                                <i class="nav-icon fa fa-calendar" aria-hidden="true"></i>
+                                <i class="nav-icon fa fa-question-circle"></i>
                                 <p>A propos</p>
                             </a>
                         </li>
@@ -504,5 +504,4 @@
         </nav>
 
     </div>
-    <!-- /.sidebar -->
 </aside>

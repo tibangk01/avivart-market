@@ -39,7 +39,7 @@
         {{-- @asyncWidget('notification') --}}
 
         <li class="nav-item">
-            <a href="{{ route('settings.index') }}" class="nav-link"><i class="fa fa-cog"></i></a>
+            <a href="{{ route('settings.index') }}" class="nav-link"><i class="fa fa-cogs"></i></a>
         </li>
 
         <!-- Profil -->
