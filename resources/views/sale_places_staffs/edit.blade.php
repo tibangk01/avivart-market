@@ -4,9 +4,7 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-6">
-            </div>
-            <div class="col-lg-6">
+            <div class="col-lg-12">
 
                 {!! Form::model($salePlaceStaff, ['method' => 'put', 'route' => ['sale_place_staff.update', $salePlaceStaff]]) !!}
                 <div class="form-group">

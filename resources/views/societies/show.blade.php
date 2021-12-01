@@ -6,10 +6,9 @@
         <div class="row">
             <div class="col-lg-12">
                 <p>
-                <a class="btn btn-flat btn-dark" target="_blank" 
-                                                            href="{{ route('society.printing.one', $society) }}"
-                                                            title="Imprimer"><i class="fa fa-print"
-                                                                aria-hidden="true"></i> Imprimer</a>
+                    <a class="btn btn-flat btn-dark" target="_blank" href="{{ route('society.printing.one', $society) }}" title="Imprimer">
+                        <i class="fa fa-print"></i> Imprimer
+                    </a>
                 </p>
 
                 <div>

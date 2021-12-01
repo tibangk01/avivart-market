@@ -4,10 +4,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-6">
-                    <h4>Text</h4>
-                </div>
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     {!! Form::model($agency, ['method' => 'PUT', 'route' => ['agency.update', $agency]]) !!}
 
                     <div class="form-group">

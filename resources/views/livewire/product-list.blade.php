@@ -1,7 +1,13 @@
 <section>
     <div class="row">
         <div class="col-md-8">
-            <h6 class="pt-3 text-danger">Sélection : {{ count($ids) }}</h6>
+            <h6 class="pt-2">
+                <span class="btn btn-default"><i class="fa fa-list mr-2"></i> Sélection <b>({{ count($ids) }})</b></span>
+                @if(count($ids) > 0)
+                <a href="" wire:click.prevent="addProducts()" class="btn btn-info"><i class="fa fa-plus mr-2"></i> Ajouter les sélections</a>
+                <a href="" wire:click.prevent="truncateProducts()" class="btn btn-warning"><i class="fa fa-times mr-2"></i> Vider les sélections</a>
+                @endif
+            </h6>
         </div>
         <div class="col-md-4 py-2">
             <input type="search" name="search" id="search" class="form-control" placeholder="Rechercher..." wire:model="search" required>
@@ -46,13 +52,6 @@
             </tbody>
         </table>
     </div>
-
-    @if(count($ids) > 0)
-    <p class="my-2">
-        <a href="" wire:click.prevent="addProducts()" class="btn btn-info"><i class="fa fa-plus mr-2"></i> Ajouter les sélections</a>
-        <a href="" wire:click.prevent="truncateProducts()" class="btn btn-warning"><i class="fa fa-times mr-2"></i> Vider les sélections</a>
-    </p>
-    @endif
 
     <p>Page : {{ $products->currentPage() }} | Nombre : {{ $products->count() }} | Total : {{ $products->total() }} | Par page : {{ $products->perPage() }}</p>
 
