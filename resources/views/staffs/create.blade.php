@@ -5,9 +5,9 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                {!! Form::open(['method' => 'post', 'route' => 'staff.store']) !!}
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
+                        {!! Form::open(['method' => 'post', 'route' => 'staff.store']) !!}
                         <div class="form-group">
                             {!! Form::label('country_id', 'Pays') !!}
                             {!! Form::select('country_id', $countries, null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Choisissez']) !!}
@@ -52,8 +52,7 @@
                             {!! Form::label('last_name', 'Nom', ['class' => 'form-label']) !!}
                             {!! Form::text('last_name', null, ['class' => 'form-control', 'required' => true]) !!}
                         </div>
-                    </div>
-                    <div class="col-lg-6">
+                    
                         <div class="form-group">
                             {!! Form::label('first_name', 'Prénoms', ['class' => 'form-label']) !!}
                             {!! Form::text('first_name', null, ['class' => 'form-control', 'required' => true]) !!}
@@ -102,9 +101,9 @@
                         <div class="form-group text-right">
                             {!! Form::submit('Enregistrer', ['class' => 'btn btn-success']) !!}
                         </div>
+                        {!! Form::close() !!}
                     </div>
                 </div>
-                {!! Form::close() !!}
             </div>
         </div>
     </div>

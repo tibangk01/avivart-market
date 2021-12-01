@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => "Fournisseur"])
+@extends('layouts.dashboard', ['title' => ($provider->person_type_id == 1) ? "Fournisseur entreprise" : "Fournisseur particulier"])
 
 @section('body')
 <section class="content">

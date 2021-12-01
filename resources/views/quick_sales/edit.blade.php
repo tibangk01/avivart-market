@@ -33,19 +33,15 @@
                     </div>
 
                     <div class="form-group">
-
                         <span class="mr-3">Statut :</span>
 
-                        <label for="valueOne" class="form-label">
+                        <label for="valueOne" class="form-label mr-3">
                             {!! Form::radio('paid', 0, null, ['id' => 'valueOne']) !!} Non payer
                         </label>
-
-                        &nbsp;&nbsp;&nbsp;
 
                         <label for="valueTwo" class="form-label">
                             {!! Form::radio('paid', 1, null, ['id' => 'valueTwo']) !!} Payer
                         </label>
-
                     </div>
 
                     <div class="form-group text-right">

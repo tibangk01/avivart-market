@@ -32,6 +32,7 @@
                                             <thead class="thead-dark">
                                                 <tr>
                                                     <th>Nom</th>
+                                                    <th>Etat</th>
                                                     <th>Date de Création</th>
                                                     <th>Date de Modification</th>
                                                     <th>Actions</th>
@@ -41,6 +42,7 @@
                                                 @forelse ($bankOperationTypes as $bankOperationType)
                                                     <tr class="{{ $bankOperationType->getBgColor() }}">
                                                         <td>{{ $bankOperationType->name }}</td>
+                                                        <td>{{ $bankOperationType->getStateText() }}</td>
                                                         <td>{{ $bankOperationType->created_at }}</td>
                                                         <td>{{ $bankOperationType->updated_at }}</td>
                                                         <td class="d-flex flex-row justify-content-around align-items-center">
@@ -53,7 +55,7 @@
                                                     </tr>
                                                 @empty
                                                     <tr>
-                                                        <td colspan="4">Pas d'enregistrements</td>
+                                                        <td colspan="5">Pas d'enregistrements</td>
                                                     </tr>
                                                 @endforelse
                                             </tbody>

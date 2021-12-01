@@ -14,17 +14,15 @@
                     </div>
 
                     <div class="form-group">
+                        <span class="mr-3">Etat :</span>
 
-                        <label for="valueOne" class="form-label">
+                        <label for="valueOne" class="form-label mr-3">
                             {!! Form::radio('state', 0, null, ['id' => 'valueOne']) !!} Sortie
                         </label>
-
-                        &nbsp;&nbsp;&nbsp;
 
                         <label for="valueTwo" class="form-label">
                             {!! Form::radio('state', 1, null, ['id' => 'valueTwo']) !!} Entrée
                         </label>
-
                     </div>
 
                     <div class="form-group text-right">

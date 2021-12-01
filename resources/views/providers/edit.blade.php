@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => "Fournisseur"])
+@extends('layouts.dashboard', ['title' => ($provider->person_type_id == 1) ? "Fournisseur entreprise" : "Fournisseur particulier"])
 
 @section('body')
 <section class="content">
@@ -8,8 +8,6 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h2>Fournisseur Entreprise</h2>
-                
                     <x-providers.edit.corporation :provider="$provider" />
                 </div>
             </div>
@@ -18,8 +16,6 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h2>Fournisseur Particlier</h2>
-                
                     <x-providers.edit.person :provider="$provider" />
                 </div>
             </div>

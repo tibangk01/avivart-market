@@ -1,47 +1,33 @@
-@extends('layouts.dashboard', ['title' => "Client"])
+@extends('layouts.dashboard', ['title' => (request()->query('create') == 'corporation') ? "Client entreprise" : "Client particulier"])
 
 @section('body')
 <section class="content">
     <div class="container-fluid">
 
-        @if(request()->has('create'))
-            @if(request()->query('create') == 'corporation')
+        @if(request()->query('create') == 'corporation')
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <h2>Client Entreprise</h2>
-                
-                    <x-customers.create.corporation />
-                </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <x-customers.create.corporation />
             </div>
+        </div>
 
-            @elseif(request()->query('create') == 'person')
+        @elseif(request()->query('create') == 'person')
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <h2>Client Particlier</h2>
-                
-                    <x-customers.create.person />
-                </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <x-customers.create.person />
             </div>
+        </div>
 
-            @else
-            
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Erreur interne</p>
-                </div>
-            </div>
-
-            @endif
         @else
-
+        
         <div class="row">
             <div class="col-lg-12">
                 <p>Erreur interne</p>
             </div>
         </div>
-        
+
         @endif
 
     </div>

@@ -241,7 +241,7 @@
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('person_ray.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-list-alt"></i>
-                                <p>Types de fournisseur/client</p>
+                                <p>Types de fournisseur & client</p>
                             </a>
                         </li>
                         <li class="nav-item">

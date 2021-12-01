@@ -20,6 +20,10 @@
                                     <td>{{ $bankOperationType->name }}</td>
                                 </tr>
                                 <tr>
+                                    <td>Etat</td>
+                                    <td>{{ $bankOperationType->getStateText() }}</td>
+                                </tr>
+                                <tr>
                                     <td>Date de Création</td>
                                     <td>{{ $bankOperationType->created_at }}</td>
                                 </tr>

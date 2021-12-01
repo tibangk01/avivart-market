@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => "Client"])
+@extends('layouts.dashboard', ['title' => ($customer->person_type_id == 1) ? "Client entreprise" : "Client particulier"])
 
 @section('body')
 <section class="content">

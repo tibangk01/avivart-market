@@ -20,6 +20,10 @@
                                     <td>{{ $cashRegisterOperationType->name }}</td>
                                 </tr>
                                 <tr>
+                                    <td>Etat</td>
+                                    <td>{{ $cashRegisterOperationType->getStateText() }}</td>
+                                </tr>
+                                <tr>
                                     <td>Date de Création</td>
                                     <td>{{ $cashRegisterOperationType->created_at }}</td>
                                 </tr>
