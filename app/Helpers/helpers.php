@@ -41,3 +41,30 @@ if (!function_exists('amountConverter')) {
 		return number_format($value, 2, ',', ' ') . $currency;
 	}
 }
+
+if (!function_exists('setLoadedProformaCustomer')) {
+	function setLoadedProformaCustomer(int $customerId)
+	{
+		if (session('loadedProforma')) {
+			return session('loadedProforma')->customer_id == $customerId ? 'selected' : null;
+		}
+	}
+}
+
+if (!function_exists('setLoadedProformaVat')) {
+	function setLoadedProformaVat(int $vatId)
+	{
+		if (session('loadedProforma')) {
+			return session('loadedProforma')->vat_id == $vatId ? 'selected' : null;
+		}
+	}
+}
+
+if (!function_exists('setLoadedProformaDiscount')) {
+	function setLoadedProformaDiscount(int $discountId)
+	{
+		if (session('loadedProforma')) {
+			return session('loadedProforma')->discount_id == $discountId ? 'selected' : null;
+		}
+	}
+}

@@ -102,7 +102,7 @@
         <select required class="form-control" id="customer_id" name="customer_id">
             <option value="">Choisissez</option>
             @foreach($customers as $customer)
-            <option value="{{ $customer->id }}" {{ session('loadedProforma')?->customer_id == $customer->id ? 'selected' : null }}>{{ $customer->getName() }}</option>
+            <option value="{{ $customer->id }}" {{ setLoadedProformaCustomer($customer->id) }}>{{ $customer->getName() }}</option>
             @endforeach
         </select>
     </div>
@@ -114,7 +114,7 @@
         <select class="form-control" id="vat_id" name="vat_id">
             <option value="">Choisissez</option>
             @foreach($vats as $vat)
-            <option value="{{ $vat->id }}" {{ session('loadedProforma')?->vat_id == $vat->id ? 'selected' : null }}>{{ $vat->percentage }}</option>
+            <option value="{{ $vat->id }}" {{ setLoadedProformaVat($vat->id) }}>{{ $vat->percentage }}</option>
             @endforeach
         </select>
     </div>
@@ -124,7 +124,7 @@
         <select class="form-control" id="discount_id" name="discount_id">
             <option value="">Choisissez</option>
             @foreach($discounts as $discount)
-            <option value="{{ $discount->id }}" {{ session('loadedProforma')?->discount_id == $discount->id ? 'selected' : null }}>{{ $discount->amount }}</option>
+            <option value="{{ $discount->id }}" {{ setLoadedProformaDiscount($discount->id) }}>{{ $discount->amount }}</option>
             @endforeach
         </select>
     </div>
