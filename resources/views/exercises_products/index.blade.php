@@ -31,8 +31,13 @@
                                     <div class="row">
                                         <div class="col-md-11">
                                             <div class="form-group">
-                                                {!! Form::select('exercise_id', $exercises, request()->query('exercise_id'), ['class' => 'form-control', 'placeholder' => "Toutes"]) !!}
-                                                {!! Form::label('exercise_id', "Période d'inventaire") !!}
+                                                <select class="form-control" id="exercise_id" name="exercise_id">
+                                                    <option value="">Toutes</option>
+                                                    @foreach($exercises as $exercise)
+                                                    <option value="{{ $exercise->id }}" {{ request()->query('exercise_id') == $exercise->id ? 'selected' : null }}>{{ $exercise->getPeriod() }}</option>
+                                                    @endforeach
+                                                </select>
+                                                <label for="order_id">Période d'inventaire</label>
                                             </div>
                                         </div>
                                         <div class="col-md-1">
@@ -60,8 +65,11 @@
                                         <tbody>
                                             @forelse($exercises as $exercise)
                                                 <tr class="table-warning text-center">
-                                                    <th colspan="6">Periode : {{ $exercise->getPeriod() }}</th>
+                                                    <th colspan="5">Periode : {{ $exercise->getPeriod() }}</th>
                                                     <td>Nombre de Produits ({{ $exercise->products->count() }})</td>
+                                                    <td>
+                                                        <x-print-one-record routeName="exercise.printing.inventory" :routeParam="$exercise->id" />
+                                                    </td>
                                                 </tr>
                                                 @forelse($exercise->products as $product)
                                                     <tr>

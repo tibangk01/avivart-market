@@ -3,27 +3,23 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
-use App\Models\Agency;
-use App\Models\SalePlace;
+use App\Models\Product;
+use App\Models\QuickSale;
 use App\Models\Purchase;
 use App\Models\Order;
 
 class Statbox extends Component
 {
-    public $agenciesCount;
+    public $productsCount;
+    public $servicesCount;
 
-    public $salePlacesCount;
-
-    public $purchasesCount;
-
-    public $ordersCount;
+    public $quickSalesPaidCount;
+    public $quickSalesUnpaidCount;
 
     public $purchasesPaidCount;
-
     public $purchasesUnpaidCount;
 
     public $ordersPaidCount;
-
     public $ordersUnpaidCount;
 
     /**
@@ -33,20 +29,16 @@ class Statbox extends Component
      */
     public function __construct()
     {
-        $this->agenciesCount = Agency::count();
+        $this->productsCount = Product::where('status', false)->count();
+        $this->servicesCount = Product::where('status', true)->count();
 
-        $this->salePlacesCount = SalePlace::count();
-
-        $this->purchasesCount = Purchase::count();
+        $this->quickSalesPaidCount = QuickSale::where('paid', true)->count();
+        $this->quickSalesUnpaidCount = QuickSale::where('paid', false)->count();
 
         $this->purchasesPaidCount = Purchase::where('paid', true)->count();
-
         $this->purchasesUnpaidCount = Purchase::where('paid', false)->count();
 
-        $this->ordersCount = Order::count();
-
         $this->ordersPaidCount = Order::where('paid', true)->count();
-
         $this->ordersUnpaidCount = Order::where('paid', false)->count();
     }
 

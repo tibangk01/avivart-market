@@ -27,7 +27,7 @@
 
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <h4>Dark</h4>
+                                        <h4>Sombre</h4>
                                         <ul>
                                             <li><a href="{{ route('settings.index', ['navbar_theme' => 'navbar-dark text-light navbar-primary']) }}">Primary</a></li>
                                             <li><a href="{{ route('settings.index', ['navbar_theme' => 'navbar-dark text-light navbar-secondary']) }}">Secondary</a></li>
@@ -48,7 +48,7 @@
                                     </div>
 
                                     <div class="col-md-6">
-                                        <h4>Light</h4>
+                                        <h4>Clair</h4>
                                         <ul>
                                             <li><a href="{{ route('settings.index', ['navbar_theme' => 'navbar-light']) }}">Light</a></li>
                                             <li><a href="{{ route('settings.index', ['navbar_theme' => 'navbar-light navbar-warning']) }}">Warning</a></li>
@@ -65,7 +65,7 @@
 
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <h4>Dark</h4>
+                                        <h4>Sombre</h4>
                                         <ul>
                                             <li><a href="{{ route('settings.index', ['sidebar_left_theme' => 'sidebar-dark-primary elevation-4']) }}">Primary avec élevation de 4</a></li>
                                             <li><a href="{{ route('settings.index', ['sidebar_left_theme' => 'sidebar-dark-primary elevation-3']) }}">Primary avec élevation de 3</a></li>

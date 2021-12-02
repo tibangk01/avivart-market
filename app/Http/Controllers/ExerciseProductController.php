@@ -25,7 +25,7 @@ class ExerciseProductController extends Controller
             $query->where('id', $exercise_id);
         }
 
-        $exercises = $query->get()->pluck(null, 'id');
+        $exercises = $query->get();
 
         return view('exercises_products.index', compact('exercises'));
     }

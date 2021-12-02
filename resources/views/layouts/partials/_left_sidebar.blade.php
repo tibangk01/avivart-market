@@ -73,7 +73,7 @@
                         <li class="nav-item">
                             <a data-attr="menu-open" data-class="active" href="{{ route('exercise_product.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
-                                <p>Régul Inventaires</p>
+                                <p>Inventaires</p>
                             </a>
                         </li>
                         <li class="nav-item">
