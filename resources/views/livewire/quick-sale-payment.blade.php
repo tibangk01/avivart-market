@@ -1,4 +1,4 @@
-<div x-data="{ state: true }">
+<section x-data="{ state: true }">
 
     <div wire:loading>
         Veuillez patienter...
@@ -56,4 +56,4 @@
     </div>
 
     {!! Form::close() !!}
-</div>
+</section>
