@@ -10,7 +10,7 @@
     <p class="m-0 fs-12">Tél : {{ $orderPayment->order->customer->getFullPhoneNumber() }}</p>
 </div>
 
-<p class="text-right">Fait à {{ session('sessionSociety')->enterprise->city }} le {{ $orderPayment->created_at->format('d M Y') }}</p>
+<p class="text-right">Fait à {{ session('sessionSociety')->enterprise->city }} le {{ $orderPayment->created_at->isoFormat('LL') }}</p>
 
 <h6 class="text-uppercase">REF : {{ $orderPayment->order->getNumber() }} | {{ session('sessionSociety')->enterprise->city }}-{{ session('sessionSociety')->enterprise->country->name }}, Date : {{ $orderPayment->created_at->isoFormat('L') }}.</h6>
 

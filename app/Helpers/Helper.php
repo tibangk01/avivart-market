@@ -19,11 +19,13 @@ class Helper
      */
     public static function randomAlphaNumeric(bool $useNumerics = false, int $length = 8): string
     {
-        return ($useNumerics) ? mb_substr(str_shuffle(self::$alphas.''.self::$numerics), 0, $length) : mb_substr(str_shuffle(self::$alphas), 0, $length);
+        return ($useNumerics) ?
+            mb_substr(str_shuffle(self::$alphas . self::$numerics), 0, $length) :
+            mb_substr(str_shuffle(self::$alphas), 0, $length);
     }
 
     public static function defaultPassword()
     {
-        return 'roottoor';
+        return '123456789';
     }
 }

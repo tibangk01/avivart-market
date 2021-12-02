@@ -1,13 +1,13 @@
-@extends('layouts.pdf', ['title' => 'Reçu de vente', 'watermark' => true, 'orientation' => 'portrait'])
+@extends('layouts.pdf', ['title' => 'Reçu de payement vente rapide', 'watermark' => true, 'orientation' => 'portrait'])
 
 @section('body')
-<h4 class="text-center text-dark text-uppercase"><u>Reçu de vente</u></h4>
+<h4 class="text-center text-dark text-uppercase"><u>Reçu de payement vente rapide</u></h4>
 
 <div class="text-right" style="margin-top: 1cm; margin-bottom: 1cm;">
     
 </div>
 
-<p class="text-right">Fait à {{ session('sessionSociety')->enterprise->city }} le {{ $quickSalePayment->created_at->format('d M Y') }}</p>
+<p class="text-right">Fait à {{ session('sessionSociety')->enterprise->city }} le {{ $quickSalePayment->created_at->isoFormat('LL') }}</p>
 
 <h6 class="text-uppercase">REF : {{ $quickSalePayment->quick_sale->getNumber() }} | {{ session('sessionSociety')->enterprise->city }}-{{ session('sessionSociety')->enterprise->country->name }}, Date : {{ $quickSalePayment->created_at->isoFormat('L') }}.</h6>
 

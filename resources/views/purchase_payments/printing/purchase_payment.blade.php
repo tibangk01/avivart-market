@@ -10,7 +10,7 @@
     <p class="m-0 fs-12">Tél : {{ $purchasePayment->purchase->provider->getFullPhoneNumber() }}</p>
 </div>
 
-<p class="text-right">Fait à {{ session('sessionSociety')->enterprise->city }} le {{ $purchasePayment->created_at->format('d M Y') }}</p>
+<p class="text-right">Fait à {{ session('sessionSociety')->enterprise->city }} le {{ $purchasePayment->created_at->isoFormat('LL') }}</p>
 
 <h6 class="text-uppercase">REF : {{ $purchasePayment->purchase->getNumber() }} | {{ session('sessionSociety')->enterprise->city }}-{{ session('sessionSociety')->enterprise->country->name }}, Date : {{ $purchasePayment->created_at->isoFormat('L') }}.</h6>
 
@@ -63,15 +63,15 @@
             <td colspan="3">{{ $purchasePayment->purchase->totalTTC() }}</td>
         </tr>
         <tr class="">
-            <th colspan="4">Montant Payé</th>
+            <th colspan="3">Montant Payé</th>
             <td colspan="3">{{ $purchasePayment->payment->amount }}</td>
         </tr>
         <tr class="">
-            <th colspan="4">Total Payé</th>
+            <th colspan="3">Total Payé</th>
             <td colspan="3">{{ $purchasePayment->totalPayment($purchasePayment->purchase) }}</td>
         </tr>
         <tr class="">
-            <th colspan="4">Reste a Payer</th>
+            <th colspan="3">Reste a Payer</th>
             <td colspan="3">{{ $purchasePayment->remnantPayment($purchasePayment->purchase) }}</td>
         </tr>
     </tfoot>

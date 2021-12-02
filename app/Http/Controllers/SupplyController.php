@@ -73,7 +73,7 @@ class SupplyController extends Controller
             $query->where('id', $purchase_id);
         }
 
-        $purchases = $query->with('products')->get()->pluck(null, 'id');
+        $purchases = $query->with('products')->get();
 
         return view('supplies.create', compact('purchases'));
     }

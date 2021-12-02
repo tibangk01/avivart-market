@@ -15,7 +15,7 @@
 
                 <div class="form-group">
                     {!! Form::label('amount', 'Montant') !!}
-                    {!! Form::number('amount', $quickSalePayment->payment->amount, ['class' => 'form-control', 'required' => true, 'step' => 'any', 'readonly' => true]) !!}
+                    {!! Form::number('amount', $quickSalePayment->payment->amount, ['class' => 'form-control', 'required' => true, 'step' => 'any', 'min' => 1, 'readonly' => true]) !!}
                 </div>
 
                 <div class="form-group">

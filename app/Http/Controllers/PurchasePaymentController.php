@@ -57,6 +57,10 @@ class PurchasePaymentController extends Controller
 
                 $totalPayment = PurchasePayment::totalPayment($purchase);
 
+                if ((floatval(session('staffStatusBarInfo')->amount) - floatval($request->amount)) < 0) {
+                    return back()->withDanger('Caisse insuffisant');
+                }
+
                 if ((floatval($request->amount) + $totalPayment) > $purchase->totalTTC()) {
                     return back()->withDanger('Erreur de payement');
                 }

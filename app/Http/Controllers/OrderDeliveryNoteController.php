@@ -38,7 +38,7 @@ class OrderDeliveryNoteController extends Controller
             $query->where('id', $order_id);
         }
 
-        $orders = $query->with('products')->get()->pluck(null, 'id');
+        $orders = $query->with('products')->get();
 
         return view('order_delivery_notes.create', compact('orders'));
     }

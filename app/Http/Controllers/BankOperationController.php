@@ -30,6 +30,8 @@ class BankOperationController extends Controller
      */
     public function create()
     {
+        abort_if((session('staffStatusBarInfo') === null), 403, "Veuillez ouvrir votre caisse");
+
         $banks = Bank::all()->pluck(null, 'id');
 
         $bankOperationTypes = BankOperationType::all()->pluck(null, 'id');
@@ -49,6 +51,14 @@ class BankOperationController extends Controller
         if ($request->isMethod('post')) {
 
             $this->_validateRequest($request);
+
+            $bankOperationType = BankOperationType::findOrFail($request->bank_operation_type_id);
+
+            if (!$bankOperationType->state) {
+                if ((floatval(session('staffStatusBarInfo')->amount) - floatval($request->amount)) < 0) {
+                    return back()->withDanger('Caisse insuffisant');
+                }
+            }
 
             $bankOperation = BankOperation::create($request->all());
 

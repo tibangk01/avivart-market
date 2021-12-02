@@ -3,18 +3,18 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Product;
 use App\Models\PurchaseDeliveryNote;
 use App\Models\ProductPurchase;
+use App\Models\Purchase;
 use Illuminate\Support\Facades\DB;
 
 class CreatePurchaseDeliveryNote extends Component
 {
-    public $product;
+    public $purchases;
 
-    public function mount($product)
+    public function mount($purchases)
     {
-        $this->product = $product;
+        $this->purchases = $purchases;
     }
 
     public function render()
@@ -41,5 +41,7 @@ class CreatePurchaseDeliveryNote extends Component
 
             dd($ex);
         }
+
+        $this->purchases = Purchase::with('products')->get();   //to refresh the table
     }
 }

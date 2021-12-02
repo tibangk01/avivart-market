@@ -38,7 +38,7 @@ class PurchaseDeliveryNoteController extends Controller
             $query->where('id', $purchase_id);
         }
 
-        $purchases = $query->with('products')->get()->pluck(null, 'id');
+        $purchases = $query->with('products')->get();
 
         return view('purchase_delivery_notes.create', compact('purchases'));
     }

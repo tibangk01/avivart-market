@@ -18,7 +18,7 @@
 
     <div class="form-group">
         <label for="amount">Montant</label>
-        <input type="number" class="form-control" name="amount" id="amount" wire:model="amount" x-bind:readonly="state" required step="any">
+        <input type="number" class="form-control" name="amount" id="amount" wire:model="amount" x-bind:readonly="state" required step="any" min="1">
     </div>
 
     <div class="form-group">

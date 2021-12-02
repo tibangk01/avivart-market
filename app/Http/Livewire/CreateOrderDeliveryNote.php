@@ -3,17 +3,18 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Product;
+use App\Models\OrderDeliveryNote;
 use App\Models\ProductOrder;
+use App\Models\Order;
 use Illuminate\Support\Facades\DB;
 
 class CreateOrderDeliveryNote extends Component
 {
-    public $product;
+    public $orders;
 
-    public function mount($product)
+    public function mount($orders)
     {
-        $this->product = $product;
+        $this->orders = $orders;
     }
 
     public function render()
@@ -40,5 +41,7 @@ class CreateOrderDeliveryNote extends Component
 
             dd($ex);
         }
+
+        $this->orders = Order::with('products')->get();   //to refresh the table
     }
 }

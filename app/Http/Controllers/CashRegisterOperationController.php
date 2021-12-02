@@ -29,6 +29,8 @@ class CashRegisterOperationController extends Controller
      */
     public function create()
     {
+        abort_if((session('staffStatusBarInfo') === null), 403, "Veuillez ouvrir votre caisse");
+        
         $cashRegisterOperationTypes = CashRegisterOperationType::all()->pluck(null, 'id');
 
         return view('cash_register_operations.create', compact('cashRegisterOperationTypes'));
@@ -46,6 +48,14 @@ class CashRegisterOperationController extends Controller
         if ($request->isMethod('post')) {
 
             $this->_validateRequest($request);
+
+            $cashRegisterOperationType = CashRegisterOperationType::findOrFail($request->cash_register_operation_type_id);
+
+            if (!$cashRegisterOperationType->state) {
+                if ((floatval(session('staffStatusBarInfo')->amount) - floatval($request->amount)) < 0) {
+                    return back()->withDanger('Caisse insuffisant');
+                }
+            }
 
             $cashRegisterOperation = CashRegisterOperation::create($request->all());
 
